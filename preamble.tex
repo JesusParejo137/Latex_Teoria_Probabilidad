@@ -1,0 +1,181 @@
+% ==============================================================================
+% PREAMBLE.TEX - Configuración y Paquetes para Teoría de la Probabilidad
+% ==============================================================================
+
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2.5cm, headheight=14pt]{geometry}
+\usepackage{amsmath, amsfonts, amssymb, amsthm, mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage[most]{tcolorbox}
+\tcbuselibrary{theorems, skins, breakable}
+\usepackage{bookmark}
+
+% Asegura el registro de capítulos y secciones en el índice
+\setcounter{tocdepth}{2}
+\setcounter{secnumdepth}{2}
+
+% ------------------------------------------------------------------------------
+% Configuración de Encabezados y Pies de Página a Doble Cara (fancyhdr)
+% ------------------------------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % Limpia todos los campos
+
+% Configuración para páginas Pares (Página izquierda / Par)
+\fancyhead[LE]{\small\bfseries\leftmark}  % Capítulo justificado a la izquierda
+\fancyhead[RE]{\small\bfseries\thepage}   % Número de página a la derecha
+
+% Configuración para páginas Impares (Página derecha / Impar)
+\fancyhead[LO]{\small\bfseries\thepage}   % Número de página a la izquierda
+\fancyhead[RO]{\small\bfseries\rightmark}  % Sección justificada a la derecha
+
+% Formato de las etiquetas de capítulo y sección
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\renewcommand{\headrulewidth}{0.4pt} % Línea del encabezado
+
+% Estilo plano para páginas de inicio de capítulo
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% ------------------------------------------------------------------------------
+% Configuración de TikZ y solución de conflictos con Babel Spanish
+% ------------------------------------------------------------------------------
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit, backgrounds, babel}
+
+% ------------------------------------------------------------------------------
+% Configuración de Hipervínculos
+% ------------------------------------------------------------------------------
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue!80!black,
+    citecolor=blue!80!black,
+    urlcolor=blue!80!black
+}
+
+% ------------------------------------------------------------------------------
+% Entornos Estilizados (Encabezado propio con título blanco y texto en la línea siguiente)
+% ------------------------------------------------------------------------------
+
+% 1. DEFINICIÓN (Azul)
+\newtcbtheorem[number within=chapter]{definicion}{Definición}{
+    colback=blue!3!white,
+    colframe=blue!75!black,
+    coltitle=white,
+    fonttitle=\bfseries,
+    enhanced,
+    separator sign={: },
+    breakable
+}{def}
+
+% 2. TEOREMA (Rojo)
+\newtcbtheorem[number within=chapter]{teorema}{Teorema}{
+    colback=red!3!white,
+    colframe=red!75!black,
+    coltitle=white,
+    fonttitle=\bfseries,
+    enhanced,
+    separator sign={: },
+    breakable
+}{teo}
+
+% 3. PROPOSICIÓN (Naranja)
+\newtcbtheorem[number within=chapter]{proposicion}{Proposición}{
+    colback=orange!3!white,
+    colframe=orange!75!black,
+    coltitle=white,
+    fonttitle=\bfseries,
+    enhanced,
+    separator sign={: },
+    breakable
+}{prop}
+
+% 4. LEMA (Turquesa)
+\newtcbtheorem[number within=chapter]{lema}{Lema}{
+    colback=teal!3!white,
+    colframe=teal!75!black,
+    coltitle=white,
+    fonttitle=\bfseries,
+    enhanced,
+    separator sign={: },
+    breakable
+}{lem}
+
+% 5. EJEMPLO (Gris)
+\newtcbtheorem[number within=chapter]{ejemplo}{Ejemplo}{
+    colback=gray!4!white,
+    colframe=gray!60!black,
+    coltitle=white,
+    fonttitle=\bfseries,
+    enhanced,
+    separator sign={: },
+    breakable
+}{ejem}
+
+% 6. OBSERVACIÓN / NOTA (Subtítulo en blanco sobre banda oscura)
+\newtcolorbox{observacion}[1][]{
+    colback=gray!5!white,
+    colframe=gray!60!black,
+    coltitle=white,
+    fonttitle=\bfseries,
+    title={Observación \ifstrempty{#1}{}{(#1)}},
+    enhanced,
+    breakable
+}
+
+% 7. DEMOSTRACIÓN
+\newenvironment{demostracion}[1][Demostración]{%
+    \par\vspace{0.5em}\noindent
+    \tcbset{
+        enhanced,
+        colback=gray!3!white,
+        colframe=gray!50!black,
+        boxrule=0pt,
+        leftrule=3pt,
+        arc=0pt,
+        outer arc=0pt,
+        top=6pt, bottom=6pt, left=10pt, right=10pt,
+        breakable
+    }%
+    \begin{tcolorbox}%
+    \textbf{#1.}\,%
+}{%
+    \hfill$\square$%
+    \end{tcolorbox}\par\vspace{0.5em}%
+}
+
+% 8. PROBLEMA RESUELTO (Púrpura)
+\newtcbtheorem[number within=chapter]{problema}{Problema Resuelto}{
+    colback=purple!3!white,
+    colframe=purple!75!black,
+    coltitle=white,
+    fonttitle=\bfseries,
+    enhanced,
+    separator sign={: },
+    breakable
+}{prob}
+
+% ------------------------------------------------------------------------------
+% Notación Matemática
+% ------------------------------------------------------------------------------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+
+\newcommand{\Pprob}{\mathbb{P}}
+\newcommand{\Eesperanza}{\mathbb{E}}
+\newcommand{\Vvarianza}{\mathrm{Var}}
+\newcommand{\medida}{\mu}

@@ -1,0 +1,673 @@
+\chapter{Estructuras con conjuntos}
+
+\section{Sucesiones de conjuntos}
+
+Sea $\Omega$ un conjunto fijo al que tomaremos como conjunto universal, y denotemos por $\mathcal{P}(\Omega)$ al conjunto de partes de $\Omega$, formado por todos los subconjuntos de $\Omega$.
+
+\begin{definicion}{Sucesión monótona de conjuntos}{sucesion_monotona}
+Sea $\{A_n\}_{n \in \mathbb{N}}$ una colección o sucesión de subconjuntos de $\Omega$ ($A_n \subseteq \Omega$ para todo $n \in \mathbb{N}$).
+\begin{itemize}
+    \item La sucesión $\{A_n\}$ es \textbf{creciente} ($A_n \uparrow$) si verifica:
+    \[
+        A_n \subseteq A_{n+1}, \quad \forall n \in \mathbb{N}
+    \]
+    \item La sucesión $\{A_n\}$ es \textbf{decreciente} ($A_n \downarrow$) si verifica:
+    \[
+        A_n \supseteq A_{n+1}, \quad \forall n \in \mathbb{N}
+    \]
+\end{itemize}
+\end{definicion}
+
+\begin{definicion}{Límites superior e inferior de una sucesión}{limites_conjuntos}
+Dada una sucesión $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{P}(\Omega)$:
+\begin{enumerate}
+    \item Llamaremos \textbf{límite superior} de $\{A_n\}$, denotado por $\varlimsup_{n \to \infty} A_n$ o $\operatorname{Lim}(A_n)$, al conjunto de los elementos de $\Omega$ que pertenecen a infinitos conjuntos de la sucesión $\{A_n\}$:
+    \[
+        \varlimsup_{n \to \infty} A_n = \{ \omega \in \Omega \mid \omega \in A_n \text{ para infinitos subíndices } n \}
+    \]
+    \item Llamaremos \textbf{límite inferior} de $\{A_n\}$, denotado por $\varliminf_{n \to \infty} A_n$ o $\operatorname{Lim}(A_n)$, al conjunto de los elementos de $\Omega$ que pertenecen a todos salvo un número finito de conjuntos de la sucesión $\{A_n\}$:
+    \[
+        \varliminf_{n \to \infty} A_n = \{ \omega \in \Omega \mid \omega \in A_n \text{ para todos salvo un número finito de } n \}
+    \]
+\end{enumerate}
+\end{definicion}
+
+\begin{observacion}[Existencia de límites]
+Por la propia definición de $\varlimsup_{n \to \infty} A_n$ y $\varliminf_{n \to \infty} A_n$, ambos límites existen siempre para cualquier sucesión de conjuntos.
+\end{observacion}
+
+% ------------------------------------------------------------------------------
+% DIAGRAMA CONCEPTUAL
+% ------------------------------------------------------------------------------
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=0.98, >=Stealth]
+    % Espacio Universal Omega
+    \draw[thick, fill=gray!3, rounded corners=8pt] (-0.5, -0.2) rectangle (15.5, 4.2);
+    \node[anchor=north west, font=\bfseries\Large, color=gray!70!black] at (0, 4.0) {$\Omega$};
+
+    % Conjuntos independientes en secuencia temporal (A_1 a A_6)
+    \foreach \i/\x in {1/1.3, 2/3.6, 3/5.9, 4/8.2, 5/10.5, 6/12.8} {
+        \draw[thick, fill=blue!8, draw=blue!70!black] (\x, 2.1) circle (0.85cm);
+        \node[font=\bfseries, color=blue!80!black] at (\x, 3.2) {$A_{\i}$};
+    }
+    \node[font=\bfseries\Large, color=blue!80!black] at (14.5, 2.1) {$\dots$};
+
+    % Elemento \omega_2 \in LimSup (Presente en impares, ausente en pares)
+    \fill[teal!80!black] (1.3, 2.5) circle (3pt) node[above=2pt, font=\small\bfseries] {$\omega_2$};
+    \node[circle, fill=red!15, draw=red!60!black, inner sep=1pt, font=\tiny\bfseries] at (3.6, 2.5) {$\times$};
+    \fill[teal!80!black] (5.9, 2.5) circle (3pt);
+    \node[circle, fill=red!15, draw=red!60!black, inner sep=1pt, font=\tiny\bfseries] at (8.2, 2.5) {$\times$};
+    \fill[teal!80!black] (10.5, 2.5) circle (3pt);
+    \node[circle, fill=red!15, draw=red!60!black, inner sep=1pt, font=\tiny\bfseries] at (12.8, 2.5) {$\times$};
+    \draw[teal!80!black, thick, dashed] (1.3, 2.5) -- (5.9, 2.5) -- (10.5, 2.5) -- (14.2, 2.5);
+
+    % Elemento \omega_1 \in LimInf (Ausente en A_1 y A_2; presente desde A_3)
+    \node[circle, fill=red!15, draw=red!60!black, inner sep=1pt, font=\tiny\bfseries] at (1.3, 1.7) {$\times$};
+    \node[circle, fill=red!15, draw=red!60!black, inner sep=1pt, font=\tiny\bfseries] at (3.6, 1.7) {$\times$};
+    \fill[red!80!black] (5.9, 1.7) circle (3pt) node[below=2pt, font=\small\bfseries] {$\omega_1$};
+    \fill[red!80!black] (8.2, 1.7) circle (3pt);
+    \fill[red!80!black] (10.5, 1.7) circle (3pt);
+    \fill[red!80!black] (12.8, 1.7) circle (3pt);
+    \draw[red!80!black, ultra thick, ->] (5.2, 1.7) -- (14.2, 1.7);
+
+\end{tikzpicture}
+\caption{Visualización temporal de pertenencia para el Límite Superior e Inferior.}
+\label{fig:limites_intuitivos_limpio}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Comportamiento de $\omega_1$ (Límite inferior):} Falta en $A_1$ y $A_2$, pero permanece dentro de $A_3, A_4, \dots$ de forma ininterrumpida. Falla solo en un número \textbf{finito} de conjuntos, por lo que $\omega_1 \in \varliminf_{n \to \infty} A_n$.
+    \item \textbf{Comportamiento de $\omega_2$ (Límite superior):} Alterna entre pertenencia en subconjuntos impares y ausencia en pares. Reaparece en \textbf{infinitos} conjuntos, asegurando que $\omega_2 \in \varlimsup_{n \to \infty} A_n$.
+\end{itemize}
+
+\begin{proposicion}{Caracterización de los límites superior e inferior}{prop1}
+Para cualquier sucesión de conjuntos $\{A_n\}_{n \in \mathbb{N}}$ de $\Omega$, se verifica:
+\begin{enumerate}[label=\alph*)]
+    \item $\displaystyle \varliminf_{n \to \infty} A_n \subseteq \varlimsup_{n \to \infty} A_n$
+    \item $\displaystyle \varliminf_{n \to \infty} A_n = \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j$
+    \item $\displaystyle \varlimsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j$
+\end{enumerate}
+\end{proposicion}
+
+\begin{demostracion}
+Demostramos cada uno de los apartados:
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Demostración de $\varliminf A_n \subseteq \varlimsup A_n$:}
+    Sea $\omega \in \varliminf A_n$. Por definición, $\omega$ pertenece a todos los $A_n$ salvo a lo sumo un número finito. Esto implica que existe un índice $n_0 \in \mathbb{N}$ tal que $\omega \in A_n$ para todo $n \ge n_0$. Por tanto, el conjunto de subíndices $n$ para los cuales $\omega \in A_n$ es infinito, lo que prueba que $\omega \in \varlimsup A_n$.
+
+    \item \textbf{Demostración de $\varliminf A_n = \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j$:}
+    \begin{itemize}
+        \item ($\subseteq$): Sea $\omega \in \varliminf A_n$. Existe $n_0 \in \mathbb{N}$ tal que $\omega \in A_j$ para todo $j \ge n_0$. Esto equivale a afirmar que $\omega \in \bigcap_{j=n_0}^\infty A_j$. En consecuencia, $\omega \in \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j$.
+        \item ($\supseteq$): Sea $\omega \in \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j$. Entonces existe un subíndice $s \in \mathbb{N}$ tal que $\omega \in \bigcap_{j=s}^\infty A_j$, lo cual implica que $\omega \in A_j$ para todo $j \ge s$. Por tanto, $\omega$ sólo puede fallar en los conjuntos de índice menor que $s$ (a lo sumo $s-1$ conjuntos, que es un número finito). Por ende, $\omega \in \varliminf A_n$.
+    \end{itemize}
+
+    \item \textbf{Demostración de $\varlimsup A_n = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j$:}
+    \begin{itemize}
+        \item ($\subseteq$): Sea $\omega \in \varlimsup A_n$. Entonces $\omega \in A_j$ para un número infinito de índices $j$. Fijado cualquier $n \in \mathbb{N}$, debe existir algún subíndice $j \ge n$ tal que $\omega \in A_j$. Por consiguiente, $\omega \in \bigcup_{j=n}^\infty A_j$ para todo $n \in \mathbb{N}$, de donde $\omega \in \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j$.
+        \item ($\supseteq$): Sea $\omega \in \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j$. Entonces, para cada $n \in \mathbb{N}$, se tiene $\omega \in \bigcup_{j=n}^\infty A_j$. Supongamos por contradicción que $\omega$ perteneciera únicamente a un número finito de conjuntos $A_n$, y sea $n_0$ el máximo subíndice tal que $\omega \in A_{n_0}$. Para todo $n \ge n_0 + 1$, se tendría $\omega \notin A_j$ para cualquier $j \ge n$, lo cual contradice que $\omega \in \bigcup_{j=n}^\infty A_j$. Por lo tanto, $\omega$ pertenece a infinitos $A_n$, de modo que $\omega \in \varlimsup A_n$.
+    \end{itemize}
+\end{enumerate}
+\end{demostracion}
+
+\begin{definicion}{Convergencia de sucesiones de conjuntos}{convergencia_conjuntos}
+Si los conjuntos límite inferior y límite superior coinciden, se define dicho conjunto común como el \textbf{límite de la sucesión} $\{A_n\}$:
+\[
+    \varliminf_{n \to \infty} A_n = \varlimsup_{n \to \infty} A_n = \lim_{n \to \infty} A_n
+\]
+Diremos que la sucesión $\{A_n\}$ es \textbf{convergente} cuando existe su límite. En caso contrario, diremos que la sucesión no es convergente.
+\end{definicion}
+
+\begin{ejemplo}{Cálculo de límites de una sucesión en $\mathbb{N}$}{limites_naturales}
+En el espacio universal $\Omega = \mathbb{N}$, consideramos la sucesión de subconjuntos:
+\[
+    A_{2k-1} = \{1, 3, 5, \dots, 2k-1\} \quad \text{y} \quad A_{2k} = \{2, 4, 6, \dots, 2k\}, \quad \forall k \in \mathbb{N}
+\]
+Calcular los límites inferior y superior, y determinar su convergencia.
+
+\paragraph{Solución:}
+\begin{enumerate}
+    \item \textbf{Límite superior ($\varlimsup A_n = \mathbb{N}$):} Todo impar $m = 2k-1$ pertenece a $A_{2j-1}$ para todo $j \ge k$ (infinitos conjuntos). Del mismo modo, todo par $m = 2k$ pertenece a infinitos conjuntos pares $A_{2j}$. Así pues, $\varlimsup_{n \to \infty} A_n = \mathbb{N}$.
+    \item \textbf{Límite inferior ($\varliminf A_n = \varnothing$):} Ningún impar pertenece a ningún conjunto par $A_{2k}$ (falla en infinitos conjuntos). Análogamente, ningún par pertenece a los conjuntos impares. Por ende, $\varliminf_{n \to \infty} A_n = \varnothing$.
+\end{enumerate}
+Como $\varliminf A_n = \varnothing \neq \mathbb{N} = \varlimsup A_n$, la sucesión **no converge**.
+\end{ejemplo}
+
+\begin{figure}[htbp]
+\centering
+
+\begin{tikzpicture}[scale=0.98, >=Stealth]
+    % Espacio Universal
+    \draw[thick, fill=gray!3, rounded corners=8pt] (-0.5, -0.2) rectangle (15.5, 4.4);
+    \node[anchor=north west, font=\bfseries\Large, color=gray!70!black] at (0, 4.2) {$\Omega = \mathbb{N}$};
+
+    % Conjuntos (elementos con comas protegidos por llaves)
+    \foreach \i/\x/\elem in {1/1.3/{\{1\}}, 2/3.6/{\{2\}}, 3/5.9/{\{1,3\}}, 4/8.2/{\{2,4\}}, 5/10.5/{\{1,3,5\}}, 6/12.8/{\{2,4,6\}}} {
+        \draw[thick, fill=blue!8, draw=blue!70!black] (\x, 2.1) circle (0.95cm);
+        \node[font=\bfseries, color=blue!80!black] at (\x, 3.3) {$A_{\i}$};
+        \node[font=\small\bfseries, color=black] at (\x, 2.1) {$\elem$};
+    }
+    \node[font=\bfseries\Large, color=blue!80!black] at (14.5, 2.1) {$\dots$};
+
+    % m = 1
+    \fill[teal!80!black] (1.3, 2.7) circle (2.5pt) node[above=1pt, font=\tiny\bfseries] {$1$};
+    \node[circle, fill=red!15, draw=red!60!black, inner sep=1pt, font=\tiny\bfseries] at (3.6, 2.7) {$\times$};
+    \fill[teal!80!black] (5.9, 2.7) circle (2.5pt) node[above=1pt, font=\tiny\bfseries] {$1$};
+    \node[circle, fill=red!15, draw=red!60!black, inner sep=1pt, font=\tiny\bfseries] at (8.2, 2.7) {$\times$};
+    \fill[teal!80!black] (10.5, 2.7) circle (2.5pt) node[above=1pt, font=\tiny\bfseries] {$1$};
+    \node[circle, fill=red!15, draw=red!60!black, inner sep=1pt, font=\tiny\bfseries] at (12.8, 2.7) {$\times$};
+    \draw[teal!80!black, thick, dashed] (1.3, 2.7) -- (5.9, 2.7) -- (10.5, 2.7) -- (14.2, 2.7);
+
+    % m = 2
+    \node[circle, fill=red!15, draw=red!60!black, inner sep=1pt, font=\tiny\bfseries] at (1.3, 1.5) {$\times$};
+    \fill[orange!90!black] (3.6, 1.5) circle (2.5pt) node[below=1pt, font=\tiny\bfseries] {$2$};
+    \node[circle, fill=red!15, draw=red!60!black, inner sep=1pt, font=\tiny\bfseries] at (5.9, 1.5) {$\times$};
+    \fill[orange!90!black] (8.2, 1.5) circle (2.5pt) node[below=1pt, font=\tiny\bfseries] {$2$};
+    \node[circle, fill=red!15, draw=red!60!black, inner sep=1pt, font=\tiny\bfseries] at (10.5, 1.5) {$\times$};
+    \fill[orange!90!black] (12.8, 1.5) circle (2.5pt) node[below=1pt, font=\tiny\bfseries] {$2$};
+    \draw[orange!90!black, thick, dashed] (3.6, 1.5) -- (8.2, 1.5) -- (12.8, 1.5) -- (14.2, 1.5);
+
+\end{tikzpicture}
+
+\caption{Representación gráfica de la pertenencia de $1$ y $2$ en la sucesión del Ejemplo \ref{ejem:limites_naturales}.}
+\label{fig:ejemplo_naturales_limites}
+\end{figure}
+
+\begin{proposicion}{Límite de la unión e intersección finita de sucesiones}{prop2}
+Sean $\{A_n^1\}, \dots, \{A_n^k\}$ un número finito $k$ de sucesiones de conjuntos de $\Omega$. Se verifica:
+\begin{enumerate}[label=\alph*)]
+    \item $\displaystyle \varlimsup_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right) = \bigcup_{i=1}^k \varlimsup_{n \to \infty} A_n^i$
+    \item $\displaystyle \varliminf_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right) \supseteq \bigcup_{i=1}^k \varliminf_{n \to \infty} A_n^i \quad \text{y} \quad \varliminf_{n \to \infty} \left( \bigcap_{i=1}^k A_n^i \right) = \bigcap_{i=1}^k \varliminf_{n \to \infty} A_n^i$
+\end{enumerate}
+\end{proposicion}
+
+\begin{demostracion}
+Probemos el caso $k=2$ ($A_n = A_n^1 \cup A_n^2$); por inducción finita se extiende a cualquier $k \in \mathbb{N}$:
+\begin{enumerate}[label=\alph*)]
+    \item Usando la caracterización de $\varlimsup$:
+    \[
+        \varlimsup_{n \to \infty} (A_n^1 \cup A_n^2) = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty (A_j^1 \cup A_j^2) = \bigcap_{n=1}^\infty \left( \left( \bigcup_{j=n}^\infty A_j^1 \right) \cup \left( \bigcup_{j=n}^\infty A_j^2 \right) \right)
+    \]
+    Sean $\sigma_n^1 = \bigcup_{j=n}^\infty A_j^1$ y $\sigma_n^2 = \bigcup_{j=n}^\infty A_j^2$. Son sucesiones decrecientes. Dado que en conjuntos la intersección distribuye sobre la unión de sucesiones decrecientes, se deduce directamente que $\bigcap_{n=1}^\infty (\sigma_n^1 \cup \sigma_n^2) = \left(\bigcap_{n=1}^\infty \sigma_n^1\right) \cup \left(\bigcap_{n=1}^\infty \sigma_n^2\right) = \varlimsup A_n^1 \cup \varlimsup A_n^2$.
+
+    \item Para el límite inferior, sea $\omega \in \varliminf A_n^1 \cup \varliminf A_n^2$. Si $\omega \in \varliminf A_n^1$, pertenece a $A_n^1$ salvo finitos $n$, luego pertenece a $A_n^1 \cup A_n^2$ salvo finitos $n$, es decir, $\omega \in \varliminf (A_n^1 \cup A_n^2)$.
+    Análogamente, para intersecciones finitas $\delta_n^1 \cap \delta_n^2 = (\bigcap_{j=n}^\infty A_j^1) \cap (\bigcap_{j=n}^\infty A_j^2) = \bigcap_{j=n}^\infty (A_j^1 \cap A_j^2)$, de donde se obtiene la igualdad exacta para $\varliminf (A_n^1 \cap A_n^2)$.
+\end{enumerate}
+\end{demostracion}
+
+\begin{proposicion}{Convergencia de sucesiones monótonas}{prop3}
+Si una sucesión de conjuntos $\{A_n\}_{n \in \mathbb{N}}$ de $\Omega$ es monótona, entonces es convergente. Además:
+\begin{enumerate}[label=\alph*)]
+    \item Si $A_n \uparrow$ (creciente), entonces $\displaystyle \lim_{n \to \infty} A_n = \bigcup_{n=1}^\infty A_n$.
+    \item Si $A_n \downarrow$ (decreciente), entonces $\displaystyle \lim_{n \to \infty} A_n = \bigcap_{n=1}^\infty A_n$.
+\end{enumerate}
+\end{proposicion}
+
+\begin{demostracion}
+Demostramos ambas posibilidades:
+\begin{enumerate}[label=\alph*)]
+    \item Supongamos que $A_n \uparrow$. Entonces $A_1 \subseteq A_2 \subseteq A_3 \subseteq \dots$
+    Por un lado, $\delta_n = \bigcap_{j=n}^\infty A_j = A_n$. En consecuencia, $\varliminf A_n = \bigcup_{n=1}^\infty \delta_n = \bigcup_{n=1}^\infty A_n$.
+    Por otro lado, $\sigma_n = \bigcup_{j=n}^\infty A_j = \bigcup_{j=1}^\infty A_j$ (constante para todo $n$). Por ende, $\varlimsup A_n = \bigcap_{n=1}^\infty \sigma_n = \bigcup_{j=1}^\infty A_j$.
+    Como $\varliminf A_n = \varlimsup A_n = \bigcup_{n=1}^\infty A_n$, la sucesión es convergente y su límite es dicha unión.
+
+    \item Supongamos que $A_n \downarrow$. De manera completamente análoga, $A_1 \supseteq A_2 \supseteq A_3 \dots$
+    Se tiene $\delta_n = \bigcap_{j=n}^\infty A_j = \bigcap_{j=1}^\infty A_j$ (constante) y $\sigma_n = \bigcup_{j=n}^\infty A_j = A_n$.
+    Así, $\varliminf A_n = \bigcap_{j=1}^\infty A_j$ y $\varlimsup A_n = \bigcap_{n=1}^\infty A_n$. Ambos coinciden, resultando $\lim A_n = \bigcap_{n=1}^\infty A_n$.
+\end{enumerate}
+\end{demostracion}
+
+---
+
+\begin{proposicion}{Límites de operaciones finitas de sucesiones}{prop:prop2}
+Sean $\{A_n^1\}, \dots, \{A_n^k\}$ un número finito $k$ de sucesiones de conjuntos de $\Omega$. Se verifica:
+\begin{enumerate}[label=\alph*)]
+    \item Límite superior de la unión finita:
+    \[
+        \varlimsup_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right) = \bigcup_{i=1}^k \varlimsup_{n \to \infty} A_n^i
+    \]
+    \item Límite inferior de la intersección finita:
+    \[
+        \varliminf_{n \to \infty} \left( \bigcap_{i=1}^k A_n^i \right) = \bigcap_{i=1}^k \varliminf_{n \to \infty} A_n^i
+    \]
+\end{enumerate}
+\end{proposicion}
+
+\begin{demostracion}
+Demostramos cada uno de los apartados:
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Demostración de $\displaystyle \varlimsup_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right) = \bigcup_{i=1}^k \varlimsup_{n \to \infty} A_n^i$:}
+    
+    \begin{itemize}
+        \item ($\subseteq$): Sea $\omega \in \varlimsup_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right)$. Por definición, $\omega$ pertenece a la unión $\bigcup_{i=1}^k A_n^i$ para infinitos índices $n$. 
+        
+        Razonando por contradicción, supongamos que $\omega \notin \bigcup_{i=1}^k \varlimsup_{n \to \infty} A_n^i$. Entonces, para todo $i \in \{1, \dots, k\}$, se tendría $\omega \notin \varlimsup_{n \to \infty} A_n^i$, lo que implica que $\omega$ pertenece a $A_n^i$ solo para un número finito de subíndices $n$. Sea $F_i \subset \mathbb{N}$ el conjunto finito de dichos índices para la sucesión $i$-ésima. 
+        
+        Por tanto, el conjunto de subíndices $n$ para los cuales $\omega \in \bigcup_{i=1}^k A_n^i$ coincide con la unión $\bigcup_{i=1}^k F_i$. Al ser una unión finita de conjuntos finitos, $\bigcup_{i=1}^k F_i$ es un conjunto finito, lo cual contradice que $\omega$ perteneciera a la unión para infinitos $n$. 
+        
+        En consecuencia, existe al menos un subíndice $i \in \{1, \dots, k\}$ tal que $\omega \in \varlimsup_{n \to \infty} A_n^i$, por lo que $\omega \in \bigcup_{i=1}^k \varlimsup_{n \to \infty} A_n^i$.
+
+        \item ($\supseteq$): Sea $\omega \in \bigcup_{i=1}^k \varlimsup_{n \to \infty} A_n^i$. Existe algún $i_0 \in \{1, \dots, k\}$ tal que $\omega \in \varlimsup_{n \to \infty} A_n^{i_0}$. Por tanto, $\omega \in A_n^{i_0}$ para un número infinito de índices $n$. Como $A_n^{i_0} \subseteq \bigcup_{i=1}^k A_n^i$ para todo $n \in \mathbb{N}$, se deduce inmediatamente que $\omega \in \bigcup_{i=1}^k A_n^i$ para infinitos $n$, luego $\omega \in \varlimsup_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right)$.
+    \end{itemize}
+
+    \item \textbf{Demostración de $\displaystyle \varliminf_{n \to \infty} \left( \bigcap_{i=1}^k A_n^i \right) = \bigcap_{i=1}^k \varliminf_{n \to \infty} A_n^i$:}
+    
+    \begin{itemize}
+        \item ($\subseteq$): Sea $\omega \in \varliminf_{n \to \infty} \left( \bigcap_{i=1}^k A_n^i \right)$. Por definición, $\omega$ pertenece a $\bigcap_{i=1}^k A_n^i$ para todos los subíndices salvo un número finito. Por consiguiente, para cada sucesión $i$-ésima ($i=1, \dots, k$), $\omega$ sólo puede fallar en a lo sumo ese mismo número finito de índices, lo que garantiza que $\omega \in \varliminf_{n \to \infty} A_n^i$ para todo $i \in \{1, \dots, k\}$. Así pues, $\omega \in \bigcap_{i=1}^k \varliminf_{n \to \infty} A_n^i$.
+
+        \item ($\supseteq$): Sea $\omega \in \bigcap_{i=1}^k \varliminf_{n \to \infty} A_n^i$. Entonces, para cada $i \in \{1, \dots, k\}$, se cumple $\omega \in \varliminf_{n \to \infty} A_n^i$, es decir, $\omega$ no pertenece a $A_n^i$ a lo sumo para un conjunto finito de índices $F_i \subset \mathbb{N}$. 
+        
+        El conjunto de índices $n$ para los cuales $\omega \notin \bigcap_{i=1}^k A_n^i$ es exactamente la unión de las excepciones, $\bigcup_{i=1}^k F_i$. Dado que cada $F_i$ es finito y la unión es sobre un número finito $k$ de conjuntos, la unión $\bigcup_{i=1}^k F_i$ es un conjunto finito. 
+        
+        Por tanto, $\omega$ pertenece a la intersección $\bigcap_{i=1}^k A_n^i$ para todos los subíndices salvo un número finito, concluyendo que $\omega \in \varliminf_{n \to \infty} \left( \bigcap_{i=1}^k A_n^i \right)$.
+    \end{itemize}
+\end{enumerate}
+\end{demostracion}
+
+\begin{observacion}[Propiedades duales para unión e intersección]
+De manera análoga se deducen las propiedades duales de contención para uniones e intersecciones finitas:
+\[
+    \varliminf_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right) \supseteq \bigcup_{i=1}^k \varliminf_{n \to \infty} A_n^i \quad \text{y} \quad \varlimsup_{n \to \infty} \left( \bigcap_{i=1}^k A_n^i \right) \subseteq \bigcap_{i=1}^k \varlimsup_{n \to \infty} A_n^i
+\]
+\end{observacion}
+
+% ------------------------------------------------------------------------------
+% PROPOSICIÓN 3 (PROBLEMA 6)
+% ------------------------------------------------------------------------------
+\begin{proposicion}{Convergencia de sucesiones monótonas}{prop:prop3}
+Si una sucesión de conjuntos $\{A_n\}_{n \in \mathbb{N}}$ de $\Omega$ es monótona, entonces es convergente. Además:
+\begin{enumerate}[label=\alph*)]
+    \item Si $\{A_n\}$ es creciente ($A_n \uparrow$), entonces $\displaystyle \lim_{n \to \infty} A_n = \bigcup_{n=1}^\infty A_n$.
+    \item Si $\{A_n\}$ es decreciente ($A_n \downarrow$), entonces $\displaystyle \lim_{n \to \infty} A_n = \bigcap_{n=1}^\infty A_n$.
+\end{enumerate}
+\end{proposicion}
+
+\begin{demostracion}
+Analizamos los dos casos de monotonía:
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Sea $\{A_n\}_{n \in \mathbb{N}}$ una sucesión creciente ($A_1 \subseteq A_2 \subseteq A_3 \subseteq \dots$):}
+    
+    \begin{itemize}
+        \item \textit{Cálculo del Límite Superior:} 
+        Sabemos que $\displaystyle \varlimsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j = \bigcap_{n=1}^\infty \sigma_n$, donde $\sigma_n = \bigcup_{j=n}^\infty A_j$. 
+        Para todo $n \in \mathbb{N}$, podemos escribir $\sigma_n = A_n \cup \sigma_{n+1}$. Como la sucesión es creciente, $A_n \subseteq A_{n+1} \subseteq \sigma_{n+1}$, por lo que $A_n \cup \sigma_{n+1} = \sigma_{n+1}$. 
+        Por tanto, se verifica la cadena de igualdades:
+        \[
+            \sigma_1 = \sigma_2 = \dots = \sigma_n = \dots = \bigcup_{j=1}^\infty A_j
+        \]
+        En consecuencia:
+        \[
+            \varlimsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty \sigma_n = \sigma_1 = \bigcup_{n=1}^\infty A_n
+        \]
+
+        \item \textit{Cálculo del Límite Inferior:}
+        Sabemos que $\displaystyle \varliminf_{n \to \infty} A_n = \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j = \bigcup_{n=1}^\infty \delta_n$, donde $\delta_n = \bigcap_{j=n}^\infty A_j$.
+        Dado que $\{A_n\}$ es creciente, para todo $j \ge n$ se tiene $A_n \subseteq A_j$. Así pues, la intersección infinita se reduce al término inicial: $\delta_n = \bigcap_{j=n}^\infty A_j = A_n$ para todo $n \in \mathbb{N}$. 
+        Por ende:
+        \[
+            \varliminf_{n \to \infty} A_n = \bigcup_{n=1}^\infty \delta_n = \bigcup_{n=1}^\infty A_n
+        \]
+    \end{itemize}
+    Como $\varliminf_{n \to \infty} A_n = \varlimsup_{n \to \infty} A_n = \bigcup_{n=1}^\infty A_n$, la sucesión $\{A_n\}$ es convergente y su límite coincide con la unión de todos sus términos.
+
+    \item \textbf{Sea $\{A_n\}_{n \in \mathbb{N}}$ una sucesión decreciente ($A_1 \supseteq A_2 \supseteq A_3 \supseteq \dots$):}
+    
+    \begin{itemize}
+        \item \textit{Cálculo del Límite Superior:}
+        Dado que $A_j \subseteq A_n$ para todo $j \ge n$, la unión infinita $\sigma_n = \bigcup_{j=n}^\infty A_j$ se reduce a $\sigma_n = A_n$ para todo $n \in \mathbb{N}$. 
+        En consecuencia:
+        \[
+            \varlimsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty \sigma_n = \bigcap_{n=1}^\infty A_n
+        \]
+
+        \item \textit{Cálculo del Límite Inferior:}
+        Para $\delta_n = \bigcap_{j=n}^\infty A_j$, podemos escribir $\delta_n = A_n \cap \delta_{n+1}$. Como la sucesión es decreciente, $A_n \supseteq A_{n+1} \supseteq \delta_{n+1}$, de modo que $A_n \cap \delta_{n+1} = \delta_{n+1}$. 
+        Así obtenemos la cadena constante:
+        \[
+            \delta_1 = \delta_2 = \dots = \delta_n = \dots = \bigcap_{j=1}^\infty A_j
+        \]
+        Por consiguiente:
+        \[
+            \varliminf_{n \to \infty} A_n = \bigcup_{n=1}^\infty \delta_n = \delta_1 = \bigcap_{n=1}^\infty A_n
+        \]
+    \end{itemize}
+    Como $\varliminf_{n \to \infty} A_n = \varlimsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty A_n$, la sucesión $\{A_n\}$ es convergente y su límite coincide con la intersección de todos sus términos.
+\end{enumerate}
+\end{demostracion}
+
+---
+
+\section{Estructuras fundamentales}
+
+\begin{definicion}{Semiálgebra de conjuntos}{semialgebra}
+Dado un conjunto $\Omega$, una clase $\mathcal{S}$ de subconjuntos de $\Omega$ tiene estructura de **semiálgebra** si verifica:
+\begin{enumerate}
+    \item $\Omega \in \mathcal{S}$
+    \item Si $A, B \in \mathcal{S} \implies A \cap B \in \mathcal{S}$
+    \item Para todo $A \in \mathcal{S}$, su complemento $A^c$ se puede expresar como la unión finita de conjuntos de $\mathcal{S}$ disjuntos dos a dos ($B_i \cap B_j = \varnothing, \, i \neq j$):
+    \[
+        A^c = \bigcup_{i=1}^n B_i, \quad B_i \in \mathcal{S}
+    \]
+\end{enumerate}
+\end{definicion}
+
+\begin{definicion}{Álgebra de conjuntos}{algebra}
+Una clase $\mathcal{Q}$ de subconjuntos de $\Omega$ tiene estructura de **álgebra** si verifica:
+\begin{enumerate}
+    \item $\Omega \in \mathcal{Q}$
+    \item Si $A \in \mathcal{Q} \implies A^c \in \mathcal{Q}$
+    \item Si $A, B \in \mathcal{Q} \implies A \cup B \in \mathcal{Q}$
+\end{enumerate}
+\end{definicion}
+
+\begin{observacion}[Propiedades elementales de las álgebras]
+Un álgebra es una semiálgebra cerrada por uniones finitas. Además, como $A \in \mathcal{Q} \implies A^c \in \mathcal{Q}$, se verifica que $\varnothing \in \mathcal{Q}$ y que es cerrada por intersecciones finitas ($A \cap B = (A^c \cup B^c)^c \in \mathcal{Q}$).
+\end{observacion}
+
+\begin{definicion}{$\sigma$-álgebra de conjuntos}{sigma_algebra}
+Una clase $\mathcal{G}$ de subconjuntos de $\Omega$ tiene estructura de **$\sigma$-álgebra** si verifica:
+\begin{enumerate}
+    \item $\Omega \in \mathcal{G}$
+    \item Si $A \in \mathcal{G} \implies A^c \in \mathcal{G}$
+    \item Si $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G} \implies \bigcup_{n=1}^\infty A_n \in \mathcal{G}$
+\end{enumerate}
+\end{definicion}
+
+\begin{observacion}[Puntualizaciones sobre $\sigma$-álgebras]
+Una $\sigma$-álgebra es un álgebra cerrada para la unión numerable (y por las leyes de De Morgan, también para la intersección numerable). Si $\Omega$ es un conjunto finito, toda álgebra sobre $\Omega$ es también una $\sigma$-álgebra.
+\end{observacion}
+
+\begin{definicion}{Estructuras generadas}{estructuras_generadas}
+Dada una clase arbitraria $\mathcal{C} \subseteq \mathcal{P}(\Omega)$, llamaremos **semiálgebra generada** $\mathcal{S}(\mathcal{C})$, **álgebra generada** $\mathcal{Q}(\mathcal{C})$ y **$\sigma$-álgebra generada** $\sigma(\mathcal{C})$, a la menor semiálgebra, álgebra y $\sigma$-álgebra (respectivamente) que contiene a la clase $\mathcal{C}$.
+\end{definicion}
+
+---
+
+\section{Caracterización de la $\sigma$-álgebra de Borel de $\mathbb{R}$}
+
+\begin{definicion}{$\sigma$-álgebra de Borel}{borel}
+Dado un espacio topológico $(\Omega, \mathcal{T})$, la **$\sigma$-álgebra de Borel** de $\Omega$, denotada por $\mathcal{B}$, es la $\sigma$-álgebra generada por la clase de todos los abiertos de la topología $\mathcal{T}$. A sus elementos se les denomina **borelianos**.
+
+En $\mathbb{R}$ con la topología usual, la $\sigma$-álgebra de Borel viene dada por:
+\[
+    \mathcal{B} = \sigma(\mathcal{A}), \quad \text{siendo } \mathcal{A} = \{ (a,b) \mid a,b \in \mathbb{R}, \, a < b \}
+\]
+\end{definicion}
+
+\begin{proposicion}{Semiálgebra básica de intervalos en $\mathbb{R}$}{prop4}
+La clase de subconjuntos de $\mathbb{R}$ definida por:
+\[
+    \mathcal{Y} = \{ \varnothing, \mathbb{R}, (x,y], (-\infty,z], (z,\infty) \mid x,y,z \in \mathbb{R}, \, x < y \}
+\]
+tiene estructura de semiálgebra.
+\end{proposicion}
+
+\begin{demostracion}
+Verificamos las tres condiciones de semiálgebra:
+\begin{enumerate}
+    \item $\mathbb{R} \in \mathcal{Y}$ por construcción.
+    \item Intersección finita: La intersección de dos intervalos de $\mathcal{Y}$ vuelve a ser un intervalo del mismo tipo o la nada ($\varnothing$). Por ejemplo, $(x_1, y_1] \cap (x_2, y_2] = (\max(x_1,x_2), \min(y_1,y_2)]$ si $\max(x_1,x_2) < \min(y_1,y_2)$, o $\varnothing$ en caso contrario. Igualmente, $(x,y] \cap (-\infty, z] = (x, \min(y,z)] \in \mathcal{Y}$.
+    \item Complementación: El complemento de cualquier elemento es unión finita disjunta de elementos de $\mathcal{Y}$. En efecto: $(x,y]^c = (-\infty, x] \cup (y, \infty)$, que son dos elementos de $\mathcal{Y}$ disjuntos. Análogamente, $(-\infty, z]^c = (z, \infty) \in \mathcal{Y}$.
+\end{enumerate}
+\end{demostracion}
+
+\begin{proposicion}{Clases equivalentes generadoras en $\mathbb{R}$}{prop5}
+Las clases de subconjuntos de $\mathbb{R}$:
+\[
+    \mathcal{G} = \{ (x,y] \mid x < y, \, x,y \in \mathbb{R} \} \quad \text{y} \quad \mathcal{C} = \{ (-\infty,z] \mid z \in \mathbb{R} \}
+\]
+generan la misma semiálgebra $\mathcal{S}(\mathcal{G}) = \mathcal{S}(\mathcal{C}) = \mathcal{Y}$. Por consiguiente, generan las mismas álgebras y $\sigma$-álgebras:
+\[
+    \mathcal{Q}(\mathcal{G}) = \mathcal{Q}(\mathcal{C}) = \mathcal{Q}(\mathcal{Y}) \quad \text{y} \quad \sigma(\mathcal{G}) = \sigma(\mathcal{C}) = \sigma(\mathcal{Y})
+\]
+\end{proposicion}
+
+\begin{demostracion}
+Como $\mathcal{Y}$ es una semiálgebra que contiene a $\mathcal{G}$, se cumple $\mathcal{S}(\mathcal{G}) \subseteq \mathcal{Y}$. Además, los complementos de elementos de $\mathcal{G}$ generan las semirrectas $(-\infty, x]$ e $(y, \infty)$, luego $\mathcal{Y} \subseteq \mathcal{S}(\mathcal{G})$.
+Por otra parte, $(x,y] = (-\infty, y] \cap (-\infty, x]^c = (-\infty, y] \cap (x, \infty) \in \mathcal{S}(\mathcal{C})$, de donde $\mathcal{G} \subseteq \mathcal{S}(\mathcal{C})$ e igualamos las semiálgebras. Al tomar las $\sigma$-álgebras generadas por clases iguales, las estructuras generadas son idénticas.
+\end{demostracion}
+
+\begin{proposicion}{Caracterización de la $\sigma$-álgebra de Borel}{prop6}
+La $\sigma$-álgebra de Borel $\mathcal{B}$ de $\mathbb{R}$ coincide con la $\sigma$-álgebra generada por las semirrectas cerradas $\mathcal{C} = \{ (-\infty,a] \mid a \in \mathbb{R} \}$:
+\[
+    \mathcal{B} = \sigma(\mathcal{C}) = \sigma(\mathcal{G}) = \sigma(\mathcal{Y})
+\]
+\end{proposicion}
+
+\begin{demostracion}
+Debemos probar que $\sigma(\mathcal{A}) = \sigma(\mathcal{G})$:
+\begin{itemize}
+    \item ($\sigma(\mathcal{G}) \subseteq \mathcal{B}$): Todo intervalo semiabierto es intersección numerable de abiertos:
+    \[
+        (x,y] = \bigcap_{n=1}^\infty \left(x, y + \frac{1}{n}\right) \in \sigma(\mathcal{A}) = \mathcal{B}
+    \]
+    \item ($\mathcal{B} \subseteq \sigma(\mathcal{G})$): Todo intervalo abierto es unión numerable de intervalos semiabiertos:
+    \[
+        (a,b) = \bigcup_{n=n_0}^\infty \left(a, b - \frac{1}{n}\right] \in \sigma(\mathcal{G})
+    \]
+\end{itemize}
+Por tanto, $\mathcal{B} = \sigma(\mathcal{G})$, y por la Proposición \ref{prop:prop5}, $\mathcal{B} = \sigma(\mathcal{C}) = \sigma(\mathcal{Y})$.
+\end{demostracion}
+
+\paragraph{Comprobación explícita de tipos de intervalos en $\sigma(\mathcal{C})$:}
+\begin{enumerate}
+    \item Semirrecta cerrada por la derecha: $(-\infty,a] \in \sigma(\mathcal{C})$.
+    \item Semirrecta abierta por la izquierda: $(a,\infty) = (-\infty,a]^c \in \sigma(\mathcal{C})$.
+    \item Intervalo semiabierto por la derecha: $(a,b] = (a,\infty) \cap (-\infty,b] \in \sigma(\mathcal{C})$.
+    \item Puntos individuales (singleton): $\{a\} = \bigcap_{n=1}^\infty \left(a-\frac{1}{n}, a\right] \in \sigma(\mathcal{C})$.
+    \item Semirrecta cerrada por la izquierda: $[a,\infty) = (a,\infty) \cup \{a\} \in \sigma(\mathcal{C})$.
+    \item Semirrecta abierta por la derecha: $(-\infty,a) = [a,\infty)^c \in \sigma(\mathcal{C})$.
+    \item Intervalo cerrado: $[a,b] = (a,b] \cup \{a\} \in \sigma(\mathcal{C})$.
+    \item Intervalo abierto: $(a,b) = (a,\infty) \cap (-\infty,b) \in \sigma(\mathcal{C})$.
+    \item Intervalo semiabierto por la izquierda: $[a,b) = (a,b) \cup \{a\} \in \sigma(\mathcal{C})$.
+\end{enumerate}
+
+---
+
+\section{Estructuras generadas y clases monótonas}
+
+\begin{teorema}{Teorema referencial (de la traza)}{teo1}
+Sea $E \subseteq \Omega$ y $\mathcal{C} \subseteq \mathcal{P}(\Omega)$. Se verifica:
+\[
+    \sigma_\Omega(\mathcal{C}) \cap E = \sigma_E(\mathcal{C} \cap E)
+\]
+donde $\sigma_\Omega(\mathcal{C}) \cap E = \{ B \cap E \mid B \in \sigma_\Omega(\mathcal{C}) \}$ representa la traza de $\sigma_\Omega(\mathcal{C})$ sobre $E$, y $\sigma_E(\mathcal{C} \cap E)$ es la $\sigma$-álgebra generada por $\mathcal{C} \cap E$ en el espacio universal $E$.
+\end{teorema}
+
+\begin{demostracion}
+Demostramos ambas inclusiones:
+\begin{enumerate}
+    \item ($\subseteq$): Consideremos la clase $\mathcal{H} = \{ A \subseteq \Omega \mid A \cap E \in \sigma_E(\mathcal{C} \cap E) \}$. Se comprueba fácilmente que $\mathcal{H}$ es una $\sigma$-álgebra sobre $\Omega$. Además, para todo $C \in \mathcal{C}$, $C \cap E \in \mathcal{C} \cap E \subseteq \sigma_E(\mathcal{C} \cap E)$, de modo que $\mathcal{C} \subseteq \mathcal{H}$. Por tanto, $\sigma_\Omega(\mathcal{C}) \subseteq \mathcal{H}$, lo que implica que para todo $B \in \sigma_\Omega(\mathcal{C})$, $B \cap E \in \sigma_E(\mathcal{C} \cap E)$.
+
+    \item ($\supseteq$): La traza $\mathcal{T} = \sigma_\Omega(\mathcal{C}) \cap E$ es siempre una $\sigma$-álgebra sobre $E$. Como $\mathcal{C} \subseteq \sigma_\Omega(\mathcal{C})$, se tiene que $\mathcal{C} \cap E \subseteq \mathcal{T}$. Al ser $\sigma_E(\mathcal{C} \cap E)$ la menor $\sigma$-álgebra sobre $E$ que contiene a $\mathcal{C} \cap E$, resulta $\sigma_E(\mathcal{C} \cap E) \subseteq \mathcal{T}$.
+\end{enumerate}
+\end{demostracion}
+
+\begin{proposicion}{Álgebra generada por una semiálgebra}{prop7}
+Si $\mathcal{S}$ es una semiálgebra, el álgebra generada $\mathcal{Q}(\mathcal{S})$ es la colección de todas las uniones finitas de conjuntos de $\mathcal{S}$ disjuntos dos a dos:
+\[
+    \mathcal{Q}(\mathcal{S}) = \left\{ E \in \mathcal{P}(\Omega) \,\,\middle|\,\, E = \bigcup_{i=1}^r A_i, \text{ con } A_i \in \mathcal{S}, \, A_i \cap A_j = \varnothing \, (i \neq j) \right\}
+\]
+\end{proposicion}
+
+\begin{demostracion}
+Sea $\mathcal{H}$ dicha clase de uniones finitas disjuntas. Claramente $\mathcal{S} \subseteq \mathcal{H}$ y $\Omega \in \mathcal{H}$.
+Si $E = \bigcup_{i=1}^r A_i \in \mathcal{H}$, su complemento $E^c = \bigcap_{i=1}^r A_i^c$. Dado que cada $A_i^c$ es unión finita disjunta de elementos de $\mathcal{S}$, al intersecar uniones finitas y aplicar la propiedad de cierre por intersección de $\mathcal{S}$, resulta que $E^c$ es una unión finita disjunta de elementos de $\mathcal{S}$, luego $E^c \in \mathcal{H}$.
+Finalmente, la unión de dos elementos de $\mathcal{H}$ se puede descomponer en partes disjuntas, perteneciendo a $\mathcal{H}$. Así pues, $\mathcal{H}$ es un álgebra que contiene a $\mathcal{S}$, por lo que $\mathcal{H} = \mathcal{Q}(\mathcal{S})$.
+\end{demostracion}
+
+\begin{definicion}{Clase monótona}{clase_monotona}
+Una clase $\mathcal{M} \subseteq \mathcal{P}(\Omega)$ es una **clase monótona** si es cerrada bajo el paso al límite para sucesiones monótonas de conjuntos (si $\{A_n\} \subseteq \mathcal{M}$ es monótona, entonces $\lim_{n \to \infty} A_n \in \mathcal{M}$).
+
+Dada una clase $\mathcal{C}$, denotamos por $\mathcal{M}(\mathcal{C})$ a la **clase monótona generada por $\mathcal{C}$** (la menor clase monótona que contiene a $\mathcal{C}$).
+\end{definicion}
+
+\begin{proposicion}{Propiedades de las clases monótonas}{prop8}
+Se verifican las siguientes propiedades:
+\begin{enumerate}
+    \item Toda $\sigma$-álgebra es una clase monótona.
+    \item Toda clase monótona que sea álgebra es una $\sigma$-álgebra.
+    \item La clase monótona generada por un álgebra es un álgebra.
+\end{enumerate}
+\end{proposicion}
+
+\begin{demostracion}
+Demostramos cada punto:
+\begin{enumerate}
+    \item Si $\mathcal{G}$ es $\sigma$-álgebra y $A_n \uparrow$, $\lim A_n = \bigcup A_n \in \mathcal{G}$. Si $A_n \downarrow$, $\lim A_n = \bigcap A_n \in \mathcal{G}$.
+    \item Sea $\mathcal{M}$ un álgebra y clase monótona. Para cualquier $\{A_n\} \subseteq \mathcal{M}$, la sucesión $B_N = \bigcup_{n=1}^N A_n \in \mathcal{M}$ por ser álgebra. Como $B_N \uparrow \bigcup_{n=1}^\infty A_n$ y $\mathcal{M}$ es clase monótona, $\bigcup_{n=1}^\infty A_n \in \mathcal{M}$, luego es $\sigma$-álgebra.
+    \item Para cada $A \in \mathcal{M}(\mathcal{Q})$, se define $\mathcal{M}_A = \{ B \in \mathcal{M}(\mathcal{Q}) \mid A \cup B, A \setminus B, B \setminus A \in \mathcal{M}(\mathcal{Q}) \}$. Se comprueba que $\mathcal{M}_A$ es clase monótona. Como $\mathcal{Q}$ es álgebra, $\mathcal{Q} \subseteq \mathcal{M}_A$, lo que implica $\mathcal{M}_A = \mathcal{M}(\mathcal{Q})$, deduciéndose que $\mathcal{M}(\mathcal{Q})$ es cerrada bajo uniones finitas y complementos.
+\end{enumerate}
+\end{demostracion}
+
+\begin{teorema}{Teorema de las clases monótonas}{teo2}
+Si $\mathcal{Q}$ es un álgebra, la clase monótona generada por $\mathcal{Q}$ coincide con la $\sigma$-álgebra generada por $\mathcal{Q}$:
+\[
+    \mathcal{M}(\mathcal{Q}) = \sigma(\mathcal{Q})
+\]
+\end{teorema}
+
+\begin{demostracion}
+Como $\sigma(\mathcal{Q})$ es una $\sigma$-álgebra, por la Propiedad \ref{prop:prop8}.1 es una clase monótona que contiene a $\mathcal{Q}$, de donde $\mathcal{M}(\mathcal{Q}) \subseteq \sigma(\mathcal{Q})$.
+Por la Propiedad \ref{prop:prop8}.3, $\mathcal{M}(\mathcal{Q})$ es un álgebra, y por la Propiedad \ref{prop:prop8}.2, es una $\sigma$-álgebra que contiene a $\mathcal{Q}$, luego $\sigma(\mathcal{Q}) \subseteq \mathcal{M}(\mathcal{Q})$. Concluimos la igualdad.
+\end{demostracion}
+
+---
+
+\section{Imagen directa e inversa de una aplicación}
+
+Sean $\Omega_1$ y $\Omega_2$ dos conjuntos y $f: \Omega_1 \to \Omega_2$ una aplicación:
+\begin{itemize}
+    \item **Imagen directa de $A \subseteq \Omega_1$:** $f(A) = \{ \omega_2 \in \Omega_2 \mid \exists \omega_1 \in A \text{ con } f(\omega_1) = \omega_2 \}$.
+    \item **Imagen inversa de $B \subseteq \Omega_2$:** $f^{-1}(B) = \{ \omega_1 \in \Omega_1 \mid f(\omega_1) \in B \}$.
+\end{itemize}
+
+\begin{observacion}[Propiedades de la imagen inversa]
+Para cualquier aplicación $f: \Omega_1 \to \Omega_2$ y subconjuntos $B, B_i \subseteq \Omega_2$:
+\begin{enumerate}[label=\arabic*)]
+    \item $f^{-1}(\varnothing) = \varnothing$ y $f^{-1}(\Omega_2) = \Omega_1$
+    \item $f^{-1}(B^c) = (f^{-1}(B))^c$
+    \item $B_1 \subseteq B_2 \implies f^{-1}(B_1) \subseteq f^{-1}(B_2)$
+    \item $\displaystyle f^{-1}\left( \bigcup_{i \in I} B_i \right) = \bigcup_{i \in I} f^{-1}(B_i)$
+    \item $\displaystyle f^{-1}\left( \bigcap_{i \in I} B_i \right) = \bigcap_{i \in I} f^{-1}(B_i)$
+\end{enumerate}
+\end{observacion}
+
+\begin{proposicion}{Preservación de $\sigma$-álgebras por imagen inversa}{prop9}
+Dada una aplicación $f: \Omega_1 \to \Omega_2$, si $\mathcal{G}$ es una $\sigma$-álgebra sobre $\Omega_2$, la clase de las antiimágenes $f^{-1}(\mathcal{G}) = \{ f^{-1}(B) \mid B \in \mathcal{G} \}$ es una $\sigma$-álgebra sobre $\Omega_1$.
+\end{proposicion}
+
+\begin{demostracion}
+Verificamos las condiciones:
+\begin{enumerate}
+    \item $\Omega_2 \in \mathcal{G} \implies f^{-1}(\Omega_2) = \Omega_1 \in f^{-1}(\mathcal{G})$.
+    \item Si $A \in f^{-1}(\mathcal{G})$, existe $B \in \mathcal{G}$ tal que $A = f^{-1}(B)$. Su complemento $A^c = (f^{-1}(B))^c = f^{-1}(B^c) \in f^{-1}(\mathcal{G})$ porque $B^c \in \mathcal{G}$.
+    \item Si $\{A_n\} \subseteq f^{-1}(\mathcal{G})$, con $A_n = f^{-1}(B_n)$ y $B_n \in \mathcal{G}$, la unión $\bigcup A_n = \bigcup f^{-1}(B_n) = f^{-1}\left(\bigcup B_n\right) \in f^{-1}(\mathcal{G})$ porque $\bigcup B_n \in \mathcal{G}$.
+\end{enumerate}
+\end{demostracion}
+
+\begin{teorema}{Teorema de los buenos conjuntos}{teo3}
+Si $f: \Omega_1 \to \Omega_2$ es una aplicación y $\mathcal{C}$ es una clase cualquiera de subconjuntos de $\Omega_2$, se verifica:
+\[
+    \sigma(f^{-1}(\mathcal{C})) = f^{-1}(\sigma(\mathcal{C}))
+\]
+\end{teorema}
+
+\begin{demostracion}
+Demostramos ambas inclusiones:
+\begin{enumerate}
+    \item ($\subseteq$): Como $\mathcal{C} \subseteq \sigma(\mathcal{C})$, aplicando la imagen inversa resulta $f^{-1}(\mathcal{C}) \subseteq f^{-1}(\sigma(\mathcal{C}))$. Por la Proposición \ref{prop:prop9}, $f^{-1}(\sigma(\mathcal{C}))$ es una $\sigma$-álgebra en $\Omega_1$. Dado que $\sigma(f^{-1}(\mathcal{C}))$ es la menor $\sigma$-álgebra que contiene a $f^{-1}(\mathcal{C})$, se tiene $\sigma(f^{-1}(\mathcal{C})) \subseteq f^{-1}(\sigma(\mathcal{C}))$.
+
+    \item ($\supseteq$): Definamos la clase de "buenos conjuntos" en $\Omega_2$:
+    \[
+        \mathcal{H} = \{ B \subseteq \Omega_2 \mid f^{-1}(B) \in \sigma(f^{-1}(\mathcal{C})) \}
+    \]
+    $\mathcal{H}$ es una $\sigma$-álgebra en $\Omega_2$ porque preserva complementos y uniones numerables por las propiedades de la imagen inversa.
+    Además, para todo $C \in \mathcal{C}$, $f^{-1}(C) \in f^{-1}(\mathcal{C}) \subseteq \sigma(f^{-1}(\mathcal{C}))$, luego $\mathcal{C} \subseteq \mathcal{H}$.
+    Como $\sigma(\mathcal{C})$ es la menor $\sigma$-álgebra que contiene a $\mathcal{C}$, resulta $\sigma(\mathcal{C}) \subseteq \mathcal{H}$. Esto significa que para todo $B \in \sigma(\mathcal{C})$, $f^{-1}(B) \in \sigma(f^{-1}(\mathcal{C}))$, es decir, $f^{-1}(\sigma(\mathcal{C})) \subseteq \sigma(f^{-1}(\mathcal{C}))$.
+\end{enumerate}
+\end{demostracion}
+
+---
+
+\begin{problema}{Cálculo de límites mediante subcadenas monótonas}{prob:limites_subcadenas_monotonas}
+Recalcular los límites superior e inferior de las siguientes sucesiones de conjuntos de $\mathbb{R}$ descomponiéndolas en sus subcadenas pares e impares y aplicando los resultados de monotonía y de operaciones con límites (Proposiciones \ref{prop:prop2} y \ref{prop:prop3}):
+
+\begin{enumerate}[label=\arabic*)]
+    % -------------------------------------------------------------------------
+    % APARTADO 1 (PROBLEMA 3)
+    % -------------------------------------------------------------------------
+    \item Sea $\{A_n\}_{n \in \mathbb{N}}$ la sucesión dada por:
+    \[
+        A_{2n-1} = \left( 0, \, \frac{2n-2}{2n-1} \right] \quad \text{y} \quad A_{2n} = \left[ \frac{1}{2n}, \, 1 \right), \quad \forall n \in \mathbb{N}
+    \]
+
+    \paragraph{Solución:}
+    Estudiamos el comportamiento de la sucesión analizando por separado sus dos subsucesiones:
+
+    \begin{itemize}
+        \item \textbf{Subcadena de índices impares $\{A_{2n-1}\}$:}
+        Los términos de la subcadena son $A_1 = (0,0] = \varnothing$, $A_3 = (0, 2/3]$, $A_5 = (0, 4/5]$, etc.
+        Dado que $\frac{2n-2}{2n-1} = 1 - \frac{1}{2n-1}$ es una sucesión estrictamente creciente de números reales que tiende a $1$, la sucesión de conjuntos es creciente ($A_{2n-1} \uparrow$). Por la Proposición \ref{prop:prop3}, es convergente y su límite es la unión:
+        \[
+            \varlimsup_{n \to \infty} A_{2n-1} = \varliminf_{n \to \infty} A_{2n-1} = \lim_{n \to \infty} A_{2n-1} = \bigcup_{n=1}^\infty \left( 0, \, 1 - \frac{1}{2n-1} \right] = (0, 1)
+        \]
+
+        \item \textbf{Subcadena de índices pares $\{A_{2n}\}$:}
+        Los términos son $A_2 = [1/2, 1)$, $A_4 = [1/4, 1)$, $A_6 = [1/6, 1)$, etc.
+        Dado que $\frac{1}{2n} \downarrow 0$, los intervalos se ensanchar por la izquierda de forma monótona creciente ($A_{2n} \uparrow$). Por la Proposición \ref{prop:prop3}:
+        \[
+            \varlimsup_{n \to \infty} A_{2n} = \varliminf_{n \to \infty} A_{2n} = \lim_{n \to \infty} A_{2n} = \bigcup_{n=1}^\infty \left[ \frac{1}{2n}, \, 1 \right) = (0, 1)
+        \]
+    \end{itemize}
+
+    Combinando los resultados de ambas subcadenas (Proposición \ref{prop:prop2}):
+    \begin{align*}
+        \varlimsup_{n \to \infty} A_n &= \varlimsup_{n \to \infty} A_{2n-1} \cup \varlimsup_{n \to \infty} A_{2n} = (0, 1) \cup (0, 1) = (0, 1) \\
+        \varliminf_{n \to \infty} A_n &= \varliminf_{n \to \infty} A_{2n-1} \cap \varliminf_{n \to \infty} A_{2n} = (0, 1) \cap (0, 1) = (0, 1)
+    \end{align*}
+    Como $\varliminf_{n \to \infty} A_n = \varlimsup_{n \to \infty} A_n = (0, 1)$, la sucesión $\{A_n\}$ \textbf{es convergente} y su límite es:
+    \[
+        \lim_{n \to \infty} A_n = (0, 1)
+    \]
+
+    \vspace{0.5em}
+    % -------------------------------------------------------------------------
+    % APARTADO 2 (PROBLEMA 4)
+    % -------------------------------------------------------------------------
+    \item Sea $\{A_n\}_{n \in \mathbb{N}}$ la sucesión dada por:
+    \[
+        A_{2n-1} = \left( -2, \, \frac{4n-2}{6n} \right] \quad \text{y} \quad A_{2n} = \left[ -\frac{1}{4n}, \, 2 \right), \quad \forall n \in \mathbb{N}
+    \]
+
+    \paragraph{Solución:}
+    Analizamos la monotonía de cada subcadena:
+
+    \begin{itemize}
+        \item \textbf{Subcadena de índices impares $\{A_{2n-1}\}$:}
+        Reescribimos el cota superior como $\frac{4n-2}{6n} = \frac{2}{3} - \frac{1}{3n}$.
+        Como $-\frac{1}{3n}$ aumenta con $n$, el extremo superior crece hacia $2/3$. Por tanto, la sucesión es **creciente** ($A_{2n-1} \uparrow$) y, por la Proposición \ref{prop:prop3}:
+        \[
+            \lim_{n \to \infty} A_{2n-1} = \bigcup_{n=1}^\infty \left( -2, \, \frac{2}{3} - \frac{1}{3n} \right] = \left( -2, \, \frac{2}{3} \right)
+        \]
+        *(Obsérvese que el extremo derecho pasa a ser abierto $(2/3)$ porque ningún término de la sucesión llega a alcanzar el valor $2/3$)*.
+
+        \item \textbf{Subcadena de índices pares $\{A_{2n}\}$:}
+        El extremo inferior es $-\frac{1}{4n}$. Conforme $n \to \infty$, $-\frac{1}{4n}$ aumenta hacia $0$ por la izquierda, por lo que el intervalo se contrae: $A_2 \supseteq A_4 \supseteq A_6 \dots$
+        Así pues, la sucesión es **decreciente** ($A_{2n} \downarrow$) y, por la Proposición \ref{prop:prop3}:
+        \[
+            \lim_{n \to \infty} A_{2n} = \bigcap_{n=1}^\infty \left[ -\frac{1}{4n}, \, 2 \right) = [0, 2)
+        \]
+        *(El valor $0$ queda incluido en la intersección puesto que $0 \in [-\frac{1}{4n}, 2)$ para todo $n \in \mathbb{N}$)*.
+    \end{itemize}
+
+    Combinando los límites de ambas subcadenas:
+    \begin{align*}
+        \varlimsup_{n \to \infty} A_n &= \varlimsup_{n \to \infty} A_{2n-1} \cup \varlimsup_{n \to \infty} A_{2n} = \left( -2, \, \frac{2}{3} \right) \cup [0, 2) = (-2, 2) \\
+        \varliminf_{n \to \infty} A_n &= \varliminf_{n \to \infty} A_{2n-1} \cap \varliminf_{n \to \infty} A_{2n} = \left( -2, \, \frac{2}{3} \right) \cap [0, 2) = \left[ 0, \, \frac{2}{3} \right)
+    \end{align*}
+    Como $\varliminf_{n \to \infty} A_n = [0, 2/3) \neq (-2, 2) = \varlimsup_{n \to \infty} A_n$, la sucesión $\{A_n\}$ **no es convergente**.
+\end{enumerate}
+\end{problema}
