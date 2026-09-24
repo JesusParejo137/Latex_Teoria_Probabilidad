@@ -21,11 +21,11 @@ Sea $\{A_n\}_{n \in \mathbb{N}}$ una colección o sucesión de subconjuntos de $
 \begin{definicion}{Límites superior e inferior de una sucesión}{limites_conjuntos}
 Dada una sucesión $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{P}(\Omega)$:
 \begin{enumerate}
-    \item Llamaremos \textbf{límite superior} de $\{A_n\}$, denotado por $\varlimsup_{n \to \infty} A_n$ o $\operatorname{Lim}(A_n)$, al conjunto de los elementos de $\Omega$ que pertenecen a infinitos conjuntos de la sucesión $\{A_n\}$:
+    \item Llamaremos \textbf{límite superior} de $\{A_n\}$, denotado por $\varlimsup_{n \to \infty} A_n$, al conjunto de los elementos de $\Omega$ que pertenecen a infinitos conjuntos de la sucesión $\{A_n\}$:
     \[
         \varlimsup_{n \to \infty} A_n = \{ \omega \in \Omega \mid \omega \in A_n \text{ para infinitos subíndices } n \}
     \]
-    \item Llamaremos \textbf{límite inferior} de $\{A_n\}$, denotado por $\varliminf_{n \to \infty} A_n$ o $\operatorname{Lim}(A_n)$, al conjunto de los elementos de $\Omega$ que pertenecen a todos salvo un número finito de conjuntos de la sucesión $\{A_n\}$:
+    \item Llamaremos \textbf{límite inferior} de $\{A_n\}$, denotado por $\varliminf_{n \to \infty} A_n$, al conjunto de los elementos de $\Omega$ que pertenecen a todos salvo un número finito de conjuntos de la sucesión $\{A_n\}$:
     \[
         \varliminf_{n \to \infty} A_n = \{ \omega \in \Omega \mid \omega \in A_n \text{ para todos salvo un número finito de } n \}
     \]
@@ -36,9 +36,14 @@ Dada una sucesión $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{P}(\Omega)$:
 Por la propia definición de $\varlimsup_{n \to \infty} A_n$ y $\varliminf_{n \to \infty} A_n$, ambos límites existen siempre para cualquier sucesión de conjuntos.
 \end{observacion}
 
+\newpage
+
 % ------------------------------------------------------------------------------
 % DIAGRAMA CONCEPTUAL
 % ------------------------------------------------------------------------------
+\noindent
+A continuación, se representa un diagrama de pertenencia secuencial. Cada círculo no representa un conjnuto ``diferente'' en el espacio, sino la evolución del estado de un conjunto en el tiempo. Un mismo elemento ($\omega_1$ y $\omega_2$) aparece replicado a lo largo de los distintos estados de la sucesión para representar su presencia en cada $A_n$.
+
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[scale=0.98, >=Stealth]
@@ -81,31 +86,57 @@ Por la propia definición de $\varlimsup_{n \to \infty} A_n$ y $\varliminf_{n \t
     \item \textbf{Comportamiento de $\omega_2$ (Límite superior):} Alterna entre pertenencia en subconjuntos impares y ausencia en pares. Reaparece en \textbf{infinitos} conjuntos, asegurando que $\omega_2 \in \varlimsup_{n \to \infty} A_n$.
 \end{itemize}
 
+% ------------------------------------------------------------------------------
+% NOTACIÓN DE SUCESIONES DE CONJUNTOS ASOCIADAS (\sigma_n y \delta_n)
+% ------------------------------------------------------------------------------
+\paragraph{Notación de las colecciones colapsadas $\sigma_n$ y $\delta_n$:}
+Dada una sucesión arbitraria de conjuntos $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{P}(\Omega)$, definimos las dos sucesiones auxiliares asociadas:
+\begin{enumerate}
+    \item La sucesión de \textbf{uniones de la cola} $\{\sigma_n\}_{n \in \mathbb{N}}$, definida por:
+    \[
+        \sigma_n = \bigcup_{j=n}^\infty A_j = A_n \cup A_{n+1} \cup A_{n+2} \cup \dots
+    \]
+    La colección $\{\sigma_n\}$ es una sucesión decreciente de conjuntos ($\sigma_n \supseteq \sigma_{n+1}$ para todo $n \in \mathbb{N}$).
+
+    \item La sucesión de \textbf{intersecciones de la cola} $\{\delta_n\}_{n \in \mathbb{N}}$, definida por:
+    \[
+        \delta_n = \bigcap_{j=n}^\infty A_j = A_n \cap A_{n+1} \cap A_{n+2} \cap \dots
+    \]
+    La colección $\{\delta_n\}$ es una sucesión creciente de conjuntos ($\delta_n \subseteq \delta_{n+1}$ para todo $n \in \mathbb{N}$).
+\end{enumerate}
+
+Usando esta notación, el límite superior coincide con la intersección de las uniones acumuladas ($\varlimsup A_n = \bigcap_{n=1}^\infty \sigma_n$), y el límite inferior coincide con la unión de las intersecciones acumuladas ($\varliminf A_n = \bigcup_{n=1}^\infty \delta_n$).
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROPOSICIÓN 1
+% ------------------------------------------------------------------------------
 \begin{proposicion}{Caracterización de los límites superior e inferior}{prop1}
 Para cualquier sucesión de conjuntos $\{A_n\}_{n \in \mathbb{N}}$ de $\Omega$, se verifica:
 \begin{enumerate}[label=\alph*)]
     \item $\displaystyle \varliminf_{n \to \infty} A_n \subseteq \varlimsup_{n \to \infty} A_n$
-    \item $\displaystyle \varliminf_{n \to \infty} A_n = \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j$
-    \item $\displaystyle \varlimsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j$
+    \item $\displaystyle \varliminf_{n \to \infty} A_n = \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j = \bigcup_{n=1}^\infty \delta_n$
+    \item $\displaystyle \varlimsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j = \bigcap_{n=1}^\infty \sigma_n$
 \end{enumerate}
 \end{proposicion}
 
 \begin{demostracion}
-Demostramos cada uno de los apartados:
-\begin{enumerate}[label=\alph*)]
-    \item \textbf{Demostración de $\varliminf A_n \subseteq \varlimsup A_n$:}
-    Sea $\omega \in \varliminf A_n$. Por definición, $\omega$ pertenece a todos los $A_n$ salvo a lo sumo un número finito. Esto implica que existe un índice $n_0 \in \mathbb{N}$ tal que $\omega \in A_n$ para todo $n \ge n_0$. Por tanto, el conjunto de subíndices $n$ para los cuales $\omega \in A_n$ es infinito, lo que prueba que $\omega \in \varlimsup A_n$.
+Demostramos cada uno de los apartados combinando las definiciones originales y la notación abreviada de $\delta_n$ y $\sigma_n$:
 
-    \item \textbf{Demostración de $\varliminf A_n = \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j$:}
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Demostración de $\varliminf_{n \to \infty} A_n \subseteq \varlimsup_{n \to \infty} A_n$:} Sea $\omega \in \varliminf A_n$. Por definición, $\omega$ pertenece a todos los $A_n$ salvo a lo sumo un número finito de ellos. Esto implica la existencia de un índice $n_0 \in \mathbb{N}$ tal que $\omega \in A_n$ para todo $n \ge n_0$. Por lo tanto, el conjunto de subíndices $n$ para los cuales $\omega \in A_n$ es infinito, lo que prueba que $\omega \in \varlimsup A_n$.
+
+    \item \textbf{Demostración de $\displaystyle \varliminf_{n \to \infty} A_n = \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j = \bigcup_{n=1}^\infty \delta_n$:}
     \begin{itemize}
-        \item ($\subseteq$): Sea $\omega \in \varliminf A_n$. Existe $n_0 \in \mathbb{N}$ tal que $\omega \in A_j$ para todo $j \ge n_0$. Esto equivale a afirmar que $\omega \in \bigcap_{j=n_0}^\infty A_j$. En consecuencia, $\omega \in \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j$.
-        \item ($\supseteq$): Sea $\omega \in \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j$. Entonces existe un subíndice $s \in \mathbb{N}$ tal que $\omega \in \bigcap_{j=s}^\infty A_j$, lo cual implica que $\omega \in A_j$ para todo $j \ge s$. Por tanto, $\omega$ sólo puede fallar en los conjuntos de índice menor que $s$ (a lo sumo $s-1$ conjuntos, que es un número finito). Por ende, $\omega \in \varliminf A_n$.
+        \item ($\subseteq$): Sea $\omega \in \varliminf A_n$. Existe $n_0 \in \mathbb{N}$ tal que $\omega \in A_j$ para todo $j \ge n_0$. Esto equivale a que $\omega \in \bigcap_{j=n_0}^\infty A_j = \delta_{n_0}$. Por lo tanto, $\omega \in \bigcup_{n=1}^\infty \delta_n = \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j$.
+        \item ($\supseteq$): Sea $\omega \in \bigcup_{n=1}^\infty \delta_n = \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j$. Entonces existe un subíndice $s \in \mathbb{N}$ tal que $\omega \in \delta_s = \bigcap_{j=s}^\infty A_j$, lo cual implica que $\omega \in A_j$ para todo $j \ge s$. Por tanto, $\omega$ sólo puede fallar en los conjuntos de índice estrictamente menor que $s$ (a lo sumo $s-1$ conjuntos, que es un número finito). Por ende, $\omega \in \varliminf A_n$.
     \end{itemize}
 
-    \item \textbf{Demostración de $\varlimsup A_n = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j$:}
+    \item \textbf{Demostración de $\displaystyle \varlimsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j = \bigcap_{n=1}^\infty \sigma_n$:}
     \begin{itemize}
-        \item ($\subseteq$): Sea $\omega \in \varlimsup A_n$. Entonces $\omega \in A_j$ para un número infinito de índices $j$. Fijado cualquier $n \in \mathbb{N}$, debe existir algún subíndice $j \ge n$ tal que $\omega \in A_j$. Por consiguiente, $\omega \in \bigcup_{j=n}^\infty A_j$ para todo $n \in \mathbb{N}$, de donde $\omega \in \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j$.
-        \item ($\supseteq$): Sea $\omega \in \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j$. Entonces, para cada $n \in \mathbb{N}$, se tiene $\omega \in \bigcup_{j=n}^\infty A_j$. Supongamos por contradicción que $\omega$ perteneciera únicamente a un número finito de conjuntos $A_n$, y sea $n_0$ el máximo subíndice tal que $\omega \in A_{n_0}$. Para todo $n \ge n_0 + 1$, se tendría $\omega \notin A_j$ para cualquier $j \ge n$, lo cual contradice que $\omega \in \bigcup_{j=n}^\infty A_j$. Por lo tanto, $\omega$ pertenece a infinitos $A_n$, de modo que $\omega \in \varlimsup A_n$.
+        \item ($\subseteq$): Sea $\omega \in \varlimsup A_n$. Por definición, $\omega \in A_j$ para un número infinito de índices $j$. Fijado cualquier $n \in \mathbb{N}$, debe existir al menos un subíndice $j \ge n$ tal que $\omega \in A_j$. Esto garantiza que $\omega \in \bigcup_{j=n}^\infty A_j = \sigma_n$ para todo $n \in \mathbb{N}$. De aquí se concluye que $\omega \in \bigcap_{n=1}^\infty \sigma_n = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j$.
+        \item ($\supseteq$): Sea $\omega \in \bigcap_{n=1}^\infty \sigma_n = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j$. Entonces, para cada $n \in \mathbb{N}$, se verifica $\omega \in \sigma_n = \bigcup_{j=n}^\infty A_j$. Supongamos por reducción al absurdo que $\omega$ perteneciera únicamente a un número finito de conjuntos $A_n$, y sea $n_0$ el máximo subíndice tal que $\omega \in A_{n_0}$. Para todo $n \ge n_0 + 1$, se tendría que $\omega \notin A_j$ para cualquier $j \ge n$, lo cual implica $\omega \notin \sigma_{n_0 + 1}$, contradiciendo que $\omega \in \bigcap_{n=1}^\infty \sigma_n$. Por tanto, $\omega$ pertenece a infinitos $A_n$, es decir, $\omega \in \varlimsup A_n$.
     \end{itemize}
 \end{enumerate}
 \end{demostracion}
@@ -130,8 +161,12 @@ Calcular los límites inferior y superior, y determinar su convergencia.
     \item \textbf{Límite superior ($\varlimsup A_n = \mathbb{N}$):} Todo impar $m = 2k-1$ pertenece a $A_{2j-1}$ para todo $j \ge k$ (infinitos conjuntos). Del mismo modo, todo par $m = 2k$ pertenece a infinitos conjuntos pares $A_{2j}$. Así pues, $\varlimsup_{n \to \infty} A_n = \mathbb{N}$.
     \item \textbf{Límite inferior ($\varliminf A_n = \varnothing$):} Ningún impar pertenece a ningún conjunto par $A_{2k}$ (falla en infinitos conjuntos). Análogamente, ningún par pertenece a los conjuntos impares. Por ende, $\varliminf_{n \to \infty} A_n = \varnothing$.
 \end{enumerate}
-Como $\varliminf A_n = \varnothing \neq \mathbb{N} = \varlimsup A_n$, la sucesión **no converge**.
+Como $\varliminf A_n = \varnothing \neq \mathbb{N} = \varlimsup A_n$, la sucesión no converge.
 \end{ejemplo}
+
+\vspace{1cm}
+\noindent
+A continuación, se representa un diagrama de evolución pertenencia secuencial. Obsérvese cómo el elemento $1$ pertenece a un número infinito de subconjuntos ($A_1,A_3,A_5,\hdots$), con lo cual es un elemento del límite superior. Pero falla en un número infinito de subconjuntos ($A_2,A_4,A_6\hdots$), por lo que no puede estar en el límite inferior. El caso del $2$ es análogo.
 
 \begin{figure}[htbp]
 \centering
@@ -173,113 +208,81 @@ Como $\varliminf A_n = \varnothing \neq \mathbb{N} = \varlimsup A_n$, la sucesi�
 \label{fig:ejemplo_naturales_limites}
 \end{figure}
 
+\newpage
+
 \begin{proposicion}{Límite de la unión e intersección finita de sucesiones}{prop2}
 Sean $\{A_n^1\}, \dots, \{A_n^k\}$ un número finito $k$ de sucesiones de conjuntos de $\Omega$. Se verifica:
 \begin{enumerate}[label=\alph*)]
-    \item $\displaystyle \varlimsup_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right) = \bigcup_{i=1}^k \varlimsup_{n \to \infty} A_n^i$
-    \item $\displaystyle \varliminf_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right) \supseteq \bigcup_{i=1}^k \varliminf_{n \to \infty} A_n^i \quad \text{y} \quad \varliminf_{n \to \infty} \left( \bigcap_{i=1}^k A_n^i \right) = \bigcap_{i=1}^k \varliminf_{n \to \infty} A_n^i$
+    \item Límite superior de la unión finita:
+    \[
+        \varlimsup_{n \to \infty} \left( \bigcup_{j=1}^k A_n^j \right) = \bigcup_{j=1}^k \varlimsup_{n \to \infty} A_n^j
+    \]
+    \item Límite inferior de la intersección finita:
+    \[
+        \varliminf_{n \to \infty} \left( \bigcap_{j=1}^k A_n^j \right) = \bigcap_{j=1}^k \varliminf_{n \to \infty} A_n^j
+    \]
 \end{enumerate}
 \end{proposicion}
 
-\begin{demostracion}
+% ------------------------------------------------------------------------------
+% PRIMERA DEMOSTRACIÓN (VÍA SUCESIONES ASOCIADAS)
+% ------------------------------------------------------------------------------
+\begin{demostracion}[Demostración 1 (Vía álgebras de conjuntos y sucesiones $\sigma_n$ y $\delta_n$)]
 Probemos el caso $k=2$ ($A_n = A_n^1 \cup A_n^2$); por inducción finita se extiende a cualquier $k \in \mathbb{N}$:
 \begin{enumerate}[label=\alph*)]
     \item Usando la caracterización de $\varlimsup$:
     \[
         \varlimsup_{n \to \infty} (A_n^1 \cup A_n^2) = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty (A_j^1 \cup A_j^2) = \bigcap_{n=1}^\infty \left( \left( \bigcup_{j=n}^\infty A_j^1 \right) \cup \left( \bigcup_{j=n}^\infty A_j^2 \right) \right)
     \]
-    Sean $\sigma_n^1 = \bigcup_{j=n}^\infty A_j^1$ y $\sigma_n^2 = \bigcup_{j=n}^\infty A_j^2$. Son sucesiones decrecientes. Dado que en conjuntos la intersección distribuye sobre la unión de sucesiones decrecientes, se deduce directamente que $\bigcap_{n=1}^\infty (\sigma_n^1 \cup \sigma_n^2) = \left(\bigcap_{n=1}^\infty \sigma_n^1\right) \cup \left(\bigcap_{n=1}^\infty \sigma_n^2\right) = \varlimsup A_n^1 \cup \varlimsup A_n^2$.
+    Sean $\sigma_n^1 = \bigcup_{j=n}^\infty A_j^1$ y $\sigma_n^2 = \bigcup_{j=n}^\infty A_j^2$, las cuales son sucesiones decrecientes. Dado que en conjuntos la intersección distribuye sobre la unión de sucesiones decrecientes, se deduce directamente:
+    \[
+        \bigcap_{n=1}^\infty (\sigma_n^1 \cup \sigma_n^2) = \left(\bigcap_{n=1}^\infty \sigma_n^1\right) \cup \left(\bigcap_{n=1}^\infty \sigma_n^2\right) = \varlimsup_{n \to \infty} A_n^1 \cup \varlimsup_{n \to \infty} A_n^2
+    \]
 
-    \item Para el límite inferior, sea $\omega \in \varliminf A_n^1 \cup \varliminf A_n^2$. Si $\omega \in \varliminf A_n^1$, pertenece a $A_n^1$ salvo finitos $n$, luego pertenece a $A_n^1 \cup A_n^2$ salvo finitos $n$, es decir, $\omega \in \varliminf (A_n^1 \cup A_n^2)$.
-    Análogamente, para intersecciones finitas $\delta_n^1 \cap \delta_n^2 = (\bigcap_{j=n}^\infty A_j^1) \cap (\bigcap_{j=n}^\infty A_j^2) = \bigcap_{j=n}^\infty (A_j^1 \cap A_j^2)$, de donde se obtiene la igualdad exacta para $\varliminf (A_n^1 \cap A_n^2)$.
+    \item Para el límite inferior de la intersección, observemos que $\delta_n^1 \cap \delta_n^2 = \left(\bigcap_{j=n}^\infty A_j^1\right) \cap \left(\bigcap_{j=n}^\infty A_j^2\right) = \bigcap_{j=n}^\infty (A_j^1 \cap A_j^2)$, de donde se deduce directamente la igualdad exacta para $\varliminf_{n \to \infty} (A_n^1 \cap A_n^2)$.
 \end{enumerate}
 \end{demostracion}
 
+% ------------------------------------------------------------------------------
+% DEMOSTRACIÓN ALTERNATIVA (VÍA PERTENENCIA DIRECTA)
+% ------------------------------------------------------------------------------
+\begin{demostracion}[Demostración 2 (Demostración alternativa vía pertenencia elemental)]
+Analizamos la condición de pertenencia puntual de cualquier elemento $x \in \Omega$:
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Límite superior de la unión ($A_n = \bigcup_{j=1}^k A_n^j$):}
+    \begin{itemize}
+        \item ($\supseteq$): Si $x \in \bigcup_{j=1}^k \varlimsup_{n \to \infty} A_n^j \implies x \in \varlimsup_{n \to \infty} A_n^j$ para algún $j \in \{1, \dots, k\} \implies x$ pertenece a infinitos $A_n^j$ para algún $j \implies x$ pertenece a infinitos $A_n \implies x \in \varlimsup_{n \to \infty} A_n$.
+
+        \item ($\subseteq$): Si $x \in \varlimsup_{n \to \infty} A_n \implies x$ pertenece a infinitos $A_n$. Procedemos por reducción al absurdo: supongamos que $x$ pertenece a un número finito de conjuntos $A_n^j$ para todo $j \in \{1, \dots, k\}$. Entonces $x \in \bigcup_{j=1}^k (\text{número finito de } A_n^j) = \text{número finito de } A_n$, lo cual contradice que perteneciera a infinitos $A_n$. Por tanto, $x$ pertenece a infinitos $A_n^j$ para algún $j \implies x \in \varlimsup_{n \to \infty} A_n^j$ para algún $j \implies x \in \bigcup_{j=1}^k \varlimsup_{n \to \infty} A_n^j$.
+    \end{itemize}
+
+    \item \textbf{Límite inferior de la intersección ($A_n = \bigcap_{j=1}^k A_n^j$):}
+    \begin{itemize}
+        \item ($\subseteq$): Si $x \in \bigcap_{j=1}^k \varliminf_{n \to \infty} A_n^j \implies x \in \varliminf_{n \to \infty} A_n^j$ para todo $j \implies x$ pertenece a todos salvo un número finito de $A_n^j$ para todo $j \implies x \notin \bigcup_{j=1}^k (\text{número finito de } A_n^j) \implies x$ no pertenece únicamente a un número finito de $A_n \implies x$ pertenece a todos salvo un número finito de $A_n \implies x \in \varliminf_{n \to \infty} A_n$.
+
+        \item ($\supseteq$): Si $x \in \varliminf_{n \to \infty} A_n \implies x$ pertenece a todos salvo un número finito de $A_n \implies x$ no puede no pertenecer a infinitos $A_n^j$ para ningún $j \implies x$ pertenece a todos salvo un número finito de $A_n^j$ para todo $j \implies x \in \varliminf_{n \to \infty} A_n^j$ para todo $j \implies x \in \bigcap_{j=1}^k \varliminf_{n \to \infty} A_n^j$.
+    \end{itemize}
+\end{enumerate}
+\end{demostracion}
+
+% ------------------------------------------------------------------------------
+% RESUMEN FINAL
+% ------------------------------------------------------------------------------
+\begin{observacion}[Resumen final]
+Denotando la sucesión $\{A_n\}_{n \in \mathbb{N}}$ como la unión de las $k$ sucesiones, $\{A_n\} = \{A_n^1\} \cup \dots \cup \{A_n^k\}$, tenemos[cite: 3]:
+\begin{enumerate}[label=\alph*)]
+    \item $\displaystyle \varlimsup_{n \to \infty} A_n = \bigcup_{j=1}^k \varlimsup_{n \to \infty} A_n^j$
+    \item $\displaystyle \varliminf_{n \to \infty} A_n = \bigcap_{j=1}^k \varliminf_{n \to \infty} A_n^j$
+\end{enumerate}
+\end{observacion}
+
+\newpage
 \begin{proposicion}{Convergencia de sucesiones monótonas}{prop3}
 Si una sucesión de conjuntos $\{A_n\}_{n \in \mathbb{N}}$ de $\Omega$ es monótona, entonces es convergente. Además:
 \begin{enumerate}[label=\alph*)]
     \item Si $A_n \uparrow$ (creciente), entonces $\displaystyle \lim_{n \to \infty} A_n = \bigcup_{n=1}^\infty A_n$.
     \item Si $A_n \downarrow$ (decreciente), entonces $\displaystyle \lim_{n \to \infty} A_n = \bigcap_{n=1}^\infty A_n$.
-\end{enumerate}
-\end{proposicion}
-
-\begin{demostracion}
-Demostramos ambas posibilidades:
-\begin{enumerate}[label=\alph*)]
-    \item Supongamos que $A_n \uparrow$. Entonces $A_1 \subseteq A_2 \subseteq A_3 \subseteq \dots$
-    Por un lado, $\delta_n = \bigcap_{j=n}^\infty A_j = A_n$. En consecuencia, $\varliminf A_n = \bigcup_{n=1}^\infty \delta_n = \bigcup_{n=1}^\infty A_n$.
-    Por otro lado, $\sigma_n = \bigcup_{j=n}^\infty A_j = \bigcup_{j=1}^\infty A_j$ (constante para todo $n$). Por ende, $\varlimsup A_n = \bigcap_{n=1}^\infty \sigma_n = \bigcup_{j=1}^\infty A_j$.
-    Como $\varliminf A_n = \varlimsup A_n = \bigcup_{n=1}^\infty A_n$, la sucesión es convergente y su límite es dicha unión.
-
-    \item Supongamos que $A_n \downarrow$. De manera completamente análoga, $A_1 \supseteq A_2 \supseteq A_3 \dots$
-    Se tiene $\delta_n = \bigcap_{j=n}^\infty A_j = \bigcap_{j=1}^\infty A_j$ (constante) y $\sigma_n = \bigcup_{j=n}^\infty A_j = A_n$.
-    Así, $\varliminf A_n = \bigcap_{j=1}^\infty A_j$ y $\varlimsup A_n = \bigcap_{n=1}^\infty A_n$. Ambos coinciden, resultando $\lim A_n = \bigcap_{n=1}^\infty A_n$.
-\end{enumerate}
-\end{demostracion}
-
----
-
-\begin{proposicion}{Límites de operaciones finitas de sucesiones}{prop:prop2}
-Sean $\{A_n^1\}, \dots, \{A_n^k\}$ un número finito $k$ de sucesiones de conjuntos de $\Omega$. Se verifica:
-\begin{enumerate}[label=\alph*)]
-    \item Límite superior de la unión finita:
-    \[
-        \varlimsup_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right) = \bigcup_{i=1}^k \varlimsup_{n \to \infty} A_n^i
-    \]
-    \item Límite inferior de la intersección finita:
-    \[
-        \varliminf_{n \to \infty} \left( \bigcap_{i=1}^k A_n^i \right) = \bigcap_{i=1}^k \varliminf_{n \to \infty} A_n^i
-    \]
-\end{enumerate}
-\end{proposicion}
-
-\begin{demostracion}
-Demostramos cada uno de los apartados:
-
-\begin{enumerate}[label=\alph*)]
-    \item \textbf{Demostración de $\displaystyle \varlimsup_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right) = \bigcup_{i=1}^k \varlimsup_{n \to \infty} A_n^i$:}
-    
-    \begin{itemize}
-        \item ($\subseteq$): Sea $\omega \in \varlimsup_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right)$. Por definición, $\omega$ pertenece a la unión $\bigcup_{i=1}^k A_n^i$ para infinitos índices $n$. 
-        
-        Razonando por contradicción, supongamos que $\omega \notin \bigcup_{i=1}^k \varlimsup_{n \to \infty} A_n^i$. Entonces, para todo $i \in \{1, \dots, k\}$, se tendría $\omega \notin \varlimsup_{n \to \infty} A_n^i$, lo que implica que $\omega$ pertenece a $A_n^i$ solo para un número finito de subíndices $n$. Sea $F_i \subset \mathbb{N}$ el conjunto finito de dichos índices para la sucesión $i$-ésima. 
-        
-        Por tanto, el conjunto de subíndices $n$ para los cuales $\omega \in \bigcup_{i=1}^k A_n^i$ coincide con la unión $\bigcup_{i=1}^k F_i$. Al ser una unión finita de conjuntos finitos, $\bigcup_{i=1}^k F_i$ es un conjunto finito, lo cual contradice que $\omega$ perteneciera a la unión para infinitos $n$. 
-        
-        En consecuencia, existe al menos un subíndice $i \in \{1, \dots, k\}$ tal que $\omega \in \varlimsup_{n \to \infty} A_n^i$, por lo que $\omega \in \bigcup_{i=1}^k \varlimsup_{n \to \infty} A_n^i$.
-
-        \item ($\supseteq$): Sea $\omega \in \bigcup_{i=1}^k \varlimsup_{n \to \infty} A_n^i$. Existe algún $i_0 \in \{1, \dots, k\}$ tal que $\omega \in \varlimsup_{n \to \infty} A_n^{i_0}$. Por tanto, $\omega \in A_n^{i_0}$ para un número infinito de índices $n$. Como $A_n^{i_0} \subseteq \bigcup_{i=1}^k A_n^i$ para todo $n \in \mathbb{N}$, se deduce inmediatamente que $\omega \in \bigcup_{i=1}^k A_n^i$ para infinitos $n$, luego $\omega \in \varlimsup_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right)$.
-    \end{itemize}
-
-    \item \textbf{Demostración de $\displaystyle \varliminf_{n \to \infty} \left( \bigcap_{i=1}^k A_n^i \right) = \bigcap_{i=1}^k \varliminf_{n \to \infty} A_n^i$:}
-    
-    \begin{itemize}
-        \item ($\subseteq$): Sea $\omega \in \varliminf_{n \to \infty} \left( \bigcap_{i=1}^k A_n^i \right)$. Por definición, $\omega$ pertenece a $\bigcap_{i=1}^k A_n^i$ para todos los subíndices salvo un número finito. Por consiguiente, para cada sucesión $i$-ésima ($i=1, \dots, k$), $\omega$ sólo puede fallar en a lo sumo ese mismo número finito de índices, lo que garantiza que $\omega \in \varliminf_{n \to \infty} A_n^i$ para todo $i \in \{1, \dots, k\}$. Así pues, $\omega \in \bigcap_{i=1}^k \varliminf_{n \to \infty} A_n^i$.
-
-        \item ($\supseteq$): Sea $\omega \in \bigcap_{i=1}^k \varliminf_{n \to \infty} A_n^i$. Entonces, para cada $i \in \{1, \dots, k\}$, se cumple $\omega \in \varliminf_{n \to \infty} A_n^i$, es decir, $\omega$ no pertenece a $A_n^i$ a lo sumo para un conjunto finito de índices $F_i \subset \mathbb{N}$. 
-        
-        El conjunto de índices $n$ para los cuales $\omega \notin \bigcap_{i=1}^k A_n^i$ es exactamente la unión de las excepciones, $\bigcup_{i=1}^k F_i$. Dado que cada $F_i$ es finito y la unión es sobre un número finito $k$ de conjuntos, la unión $\bigcup_{i=1}^k F_i$ es un conjunto finito. 
-        
-        Por tanto, $\omega$ pertenece a la intersección $\bigcap_{i=1}^k A_n^i$ para todos los subíndices salvo un número finito, concluyendo que $\omega \in \varliminf_{n \to \infty} \left( \bigcap_{i=1}^k A_n^i \right)$.
-    \end{itemize}
-\end{enumerate}
-\end{demostracion}
-
-\begin{observacion}[Propiedades duales para unión e intersección]
-De manera análoga se deducen las propiedades duales de contención para uniones e intersecciones finitas:
-\[
-    \varliminf_{n \to \infty} \left( \bigcup_{i=1}^k A_n^i \right) \supseteq \bigcup_{i=1}^k \varliminf_{n \to \infty} A_n^i \quad \text{y} \quad \varlimsup_{n \to \infty} \left( \bigcap_{i=1}^k A_n^i \right) \subseteq \bigcap_{i=1}^k \varlimsup_{n \to \infty} A_n^i
-\]
-\end{observacion}
-
-% ------------------------------------------------------------------------------
-% PROPOSICIÓN 3 (PROBLEMA 6)
-% ------------------------------------------------------------------------------
-\begin{proposicion}{Convergencia de sucesiones monótonas}{prop:prop3}
-Si una sucesión de conjuntos $\{A_n\}_{n \in \mathbb{N}}$ de $\Omega$ es monótona, entonces es convergente. Además:
-\begin{enumerate}[label=\alph*)]
-    \item Si $\{A_n\}$ es creciente ($A_n \uparrow$), entonces $\displaystyle \lim_{n \to \infty} A_n = \bigcup_{n=1}^\infty A_n$.
-    \item Si $\{A_n\}$ es decreciente ($A_n \downarrow$), entonces $\displaystyle \lim_{n \to \infty} A_n = \bigcap_{n=1}^\infty A_n$.
 \end{enumerate}
 \end{proposicion}
 
@@ -337,12 +340,12 @@ Analizamos los dos casos de monotonía:
 \end{enumerate}
 \end{demostracion}
 
----
+\newpage
 
 \section{Estructuras fundamentales}
 
 \begin{definicion}{Semiálgebra de conjuntos}{semialgebra}
-Dado un conjunto $\Omega$, una clase $\mathcal{S}$ de subconjuntos de $\Omega$ tiene estructura de **semiálgebra** si verifica:
+Dado un conjunto $\Omega$, una clase $\mathcal{S}$ de subconjuntos de $\Omega$ tiene estructura de \textbf{semiálgebra} si verifica:
 \begin{enumerate}
     \item $\Omega \in \mathcal{S}$
     \item Si $A, B \in \mathcal{S} \implies A \cap B \in \mathcal{S}$
@@ -354,7 +357,7 @@ Dado un conjunto $\Omega$, una clase $\mathcal{S}$ de subconjuntos de $\Omega$ t
 \end{definicion}
 
 \begin{definicion}{Álgebra de conjuntos}{algebra}
-Una clase $\mathcal{Q}$ de subconjuntos de $\Omega$ tiene estructura de **álgebra** si verifica:
+Una clase $\mathcal{Q}$ de subconjuntos de $\Omega$ tiene estructura de \textbf{álgebra} si verifica:
 \begin{enumerate}
     \item $\Omega \in \mathcal{Q}$
     \item Si $A \in \mathcal{Q} \implies A^c \in \mathcal{Q}$
@@ -366,8 +369,82 @@ Una clase $\mathcal{Q}$ de subconjuntos de $\Omega$ tiene estructura de **álgeb
 Un álgebra es una semiálgebra cerrada por uniones finitas. Además, como $A \in \mathcal{Q} \implies A^c \in \mathcal{Q}$, se verifica que $\varnothing \in \mathcal{Q}$ y que es cerrada por intersecciones finitas ($A \cap B = (A^c \cup B^c)^c \in \mathcal{Q}$).
 \end{observacion}
 
+% ------------------------------------------------------------------------------
+% EJEMPLO Y REPRESENTACIÓN GRÁFICA: SEMIÁLGEBRA VS ÁLGEBRA
+% ------------------------------------------------------------------------------
+\begin{ejemplo}{Diferencia estructural entre semiálgebra y álgebra}{semialgebra_vs_algebra}
+Consideremos el espacio universal $\Omega = (0, 1]$ y la colección $\mathcal{S}$ formada por el conjunto vacío y todos los intervalos semiabiertos por la izquierda contenidos en $\Omega$:
+\[
+    \mathcal{S} = \{ \varnothing \} \cup \{ (a, b] \mid 0 \le a \le b \le 1 \}
+\]
+
+\begin{itemize}
+    \item \textbf{$\mathcal{S}$ tiene estructura de semiálgebra:}
+    \begin{enumerate}
+        \item $\Omega = (0, 1] \in \mathcal{S}$ (tomando $a=0, b=1$).
+        \item La intersección de dos intervalos es otro intervalo de la misma forma o el conjunto vacío:
+        \[
+            (a_1, b_1] \cap (a_2, b_2] = (\max(a_1, a_2), \, \min(b_1, b_2)] \in \mathcal{S}
+        \]
+        \item Dado un elemento $A = (a, b] \in \mathcal{S}$, su complemento $A^c$ no es un único intervalo, pero se descompone como la unión de dos intervalos disjuntos pertenecientes a $\mathcal{S}$:
+        \[
+            A^c = (0, a] \cup (b, 1], \quad \text{con } (0, a], (b, 1] \in \mathcal{S} \quad \text{y} \quad (0, a] \cap (b, 1] = \varnothing
+        \]
+    \end{enumerate}
+
+    \item \textbf{$\mathcal{S}$ NO tiene estructura de álgebra:}
+    $\mathcal{S}$ no es cerrada bajo complementos ni uniones en general. Por ejemplo, si tomamos $A = (1/4, 1/2] \in \mathcal{S}$, su complemento es:
+    \[
+        A^c = \left(0, \frac{1}{4}\right] \cup \left(\frac{1}{2}, 1\right] \notin \mathcal{S}
+    \]
+    ya que consta de dos intervalos disjuntos y no se puede expresar como un único intervalo de la forma $(a, b]$. 
+
+    Para formar el \textbf{álgebra generada} $\mathcal{Q}(\mathcal{S})$, debemos añadir a $\mathcal{S}$ todas las uniones finitas de intervalos disjuntos de esta forma (Proposición \ref{prop:prop7}).
+\end{itemize}
+\end{ejemplo}
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[scale=7, >=Stealth]
+    % Espacio Universal Omega = (0, 1]
+    \draw[thick, gray!60] (0, 0) -- (1, 0);
+    \draw[gray!60, fill=white] (0,0) circle (0.4pt) node[below=3pt, font=\small, color=black] {$0$};
+    \fill[gray!60] (1,0) circle (0.4pt) node[below=3pt, font=\small, color=black] {$1$};
+    \node[anchor=east, font=\bfseries\small, color=gray!80!black] at (-0.04, 0) {$\Omega = (0,1]$};
+
+    % Elemento A = (1/4, 1/2] \in \mathcal{S}
+    \draw[ultra thick, blue!80!black] (0.25, 0.12) -- (0.5, 0.12);
+    \draw[blue!80!black, fill=white, thick] (0.25, 0.12) circle (0.4pt);
+    \fill[blue!80!black] (0.5, 0.12) circle (0.4pt);
+    \node[above=2pt, font=\small\bfseries, color=blue!80!black] at (0.375, 0.12) {$A = (1/4, 1/2] \in \mathcal{S}$};
+    
+    \draw[dashed, gray!50] (0.25, 0) -- (0.25, 0.12) node[pos=0, below, font=\tiny, color=black] {$1/4$};
+    \draw[dashed, gray!50] (0.5, 0) -- (0.5, 0.12) node[pos=0, below, font=\tiny, color=black] {$1/2$};
+
+    % Componentes de A^c
+    % B_1 = (0, 1/4]
+    \draw[ultra thick, red!75!black] (0, -0.12) -- (0.25, -0.12);
+    \draw[red!75!black, fill=white, thick] (0, -0.12) circle (0.4pt);
+    \fill[red!75!black] (0.25, -0.12) circle (0.4pt);
+    \node[below=2pt, font=\small\bfseries, color=red!75!black] at (0.125, -0.12) {$B_1 = (0, 1/4] \in \mathcal{S}$};
+
+    % B_2 = (1/2, 1]
+    \draw[ultra thick, red!75!black] (0.5, -0.12) -- (1, -0.12);
+    \draw[red!75!black, fill=white, thick] (0.5, -0.12) circle (0.4pt);
+    \fill[red!75!black] (1, -0.12) circle (0.4pt);
+    \node[below=2pt, font=\small\bfseries, color=red!75!black] at (0.75, -0.12) {$B_2 = (1/2, 1] \in \mathcal{S}$};
+
+    % Cuadro explicativo / Etiqueta de A^c
+    \node[draw=red!75!black, fill=red!4!white, rounded corners=4pt, inner sep=4pt, font=\small] at (0.5, -0.32) {
+        $A^c = B_1 \cup B_2 \mathbf{\notin \mathcal{S}}$ \quad ($\mathcal{S}$ no es cerrada por uniones $\implies$ \textbf{No es álgebra})
+    };
+\end{tikzpicture}
+\caption{Visualización del comportamiento de una semiálgebra frente al complemento en $\Omega = (0, 1]$.}
+\label{fig:semialgebra_vs_algebra}
+\end{figure}
+
 \begin{definicion}{$\sigma$-álgebra de conjuntos}{sigma_algebra}
-Una clase $\mathcal{G}$ de subconjuntos de $\Omega$ tiene estructura de **$\sigma$-álgebra** si verifica:
+Una clase $\mathcal{G}$ de subconjuntos de $\Omega$ tiene estructura de \textbf{$\sigma$-álgebra} si verifica:
 \begin{enumerate}
     \item $\Omega \in \mathcal{G}$
     \item Si $A \in \mathcal{G} \implies A^c \in \mathcal{G}$
@@ -379,16 +456,64 @@ Una clase $\mathcal{G}$ de subconjuntos de $\Omega$ tiene estructura de **$\sigm
 Una $\sigma$-álgebra es un álgebra cerrada para la unión numerable (y por las leyes de De Morgan, también para la intersección numerable). Si $\Omega$ es un conjunto finito, toda álgebra sobre $\Omega$ es también una $\sigma$-álgebra.
 \end{observacion}
 
+\newpage
+
 \begin{definicion}{Estructuras generadas}{estructuras_generadas}
-Dada una clase arbitraria $\mathcal{C} \subseteq \mathcal{P}(\Omega)$, llamaremos **semiálgebra generada** $\mathcal{S}(\mathcal{C})$, **álgebra generada** $\mathcal{Q}(\mathcal{C})$ y **$\sigma$-álgebra generada** $\sigma(\mathcal{C})$, a la menor semiálgebra, álgebra y $\sigma$-álgebra (respectivamente) que contiene a la clase $\mathcal{C}$.
+Dada una clase arbitraria $\mathcal{C} \subseteq \mathcal{P}(\Omega)$, llamaremos \textbf{semiálgebra generada} $\mathcal{S}(\mathcal{C})$, \textbf{álgebra generada} $\mathcal{Q}(\mathcal{C})$ y \textbf{$\sigma$-álgebra generada} $\sigma(\mathcal{C})$, a la menor semiálgebra, álgebra y $\sigma$-álgebra (respectivamente) que contiene a la clase $\mathcal{C}$.
 \end{definicion}
 
----
+\begin{ejemplo}{Construcción explícita de una $\sigma$-álgebra generada}{sigma_generada_explicita}
+Sea el conjunto universal finito $\Omega = \{1, 2, 3, 4\}$ y consideremos la clase inicial de subconjuntos:
+\[
+    \mathcal{C} = \bigl\{ \{1\}, \, \{2, 3\} \bigr\}
+\]
+La clase $\mathcal{C}$ no tiene estructura de $\sigma$-álgebra porque carece de $\Omega$, de $\varnothing$, de los complementarios de sus elementos y de sus uniones. Para obtener la \textbf{$\sigma$-álgebra generada} $\sigma(\mathcal{C})$, agregamos de forma sistemática el mínimo número de subconjuntos necesarios hasta satisfacer todos los axiomas.
 
-\section{Caracterización de la $\sigma$-álgebra de Borel de $\mathbb{R}$}
+\paragraph{Proceso de generación paso a paso:}
+\begin{enumerate}
+    \item \textbf{Axiomas de espacio y vacío:}
+    Deben pertenecer el conjunto vacío y el universal:
+    \[
+        \varnothing, \, \Omega \in \sigma(\mathcal{C})
+    \]
+
+    \item \textbf{Generadores iniciales y sus complementarios:}
+    \begin{itemize}
+        \item Elementos iniciales: $\{1\} \in \sigma(\mathcal{C})$ y $\{2, 3\} \in \sigma(\mathcal{C})$.
+        \item Sus complementarios respecto a $\Omega$:
+        \[
+            \{1\}^c = \{2, 3, 4\} \in \sigma(\mathcal{C}), \quad \{2, 3\}^c = \{1, 4\} \in \sigma(\mathcal{C})
+        \]
+    \end{itemize}
+
+    \item \textbf{Uniones e intersecciones de los conjuntos obtenidos:}
+    \begin{itemize}
+        \item Unión de $\{1\}$ y $\{2, 3\}$:
+        \[
+            \{1\} \cup \{2, 3\} = \{1, 2, 3\} \in \sigma(\mathcal{C})
+        \]
+        \item Complementario de $\{1, 2, 3\}$ (o intersección $\{1\}^c \cap \{2, 3\}^c$):
+        \[
+            \{1, 2, 3\}^c = \{4\} \in \sigma(\mathcal{C})
+        \]
+    \end{itemize}
+\end{enumerate}
+
+\paragraph{Resultado e interpretación por átomos:}
+La acción de generar la $\sigma$-álgebra descompone el espacio universal en una partición de bloques minimales disjuntos o \textbf{átomos}:
+\[
+    A_1 = \{1\}, \quad A_2 = \{2, 3\}, \quad A_3 = \{4\}
+\]
+La $\sigma$-álgebra generada $\sigma(\mathcal{C})$ consiste exactamente en todas las uniones posibles de estos 3 átomos (obteniendo $2^3 = 8$ elementos):
+\[
+    \sigma(\mathcal{C}) = \bigl\{ \varnothing, \, \{1\}, \, \{2, 3\}, \, \{4\}, \, \{1, 2, 3\}, \, \{1, 4\}, \, \{2, 3, 4\}, \, \Omega \bigr\}
+\]
+\end{ejemplo}
+
+\section{Caracterización de la \texorpdfstring{$\sigma$}{sigma}-álgebra de Borel de \texorpdfstring{$\mathbb{R}$}{R}}
 
 \begin{definicion}{$\sigma$-álgebra de Borel}{borel}
-Dado un espacio topológico $(\Omega, \mathcal{T})$, la **$\sigma$-álgebra de Borel** de $\Omega$, denotada por $\mathcal{B}$, es la $\sigma$-álgebra generada por la clase de todos los abiertos de la topología $\mathcal{T}$. A sus elementos se les denomina **borelianos**.
+Dado un espacio topológico $(\Omega, \mathcal{T})$, la \textbf{$\sigma$-álgebra de Borel} de $\Omega$, denotada por $\mathcal{B}$, es la $\sigma$-álgebra generada por la clase de todos los abiertos de la topología $\mathcal{T}$. A sus elementos se les denomina \textbf{borelianos}.
 
 En $\mathbb{R}$ con la topología usual, la $\sigma$-álgebra de Borel viene dada por:
 \[
@@ -405,13 +530,82 @@ tiene estructura de semiálgebra.
 \end{proposicion}
 
 \begin{demostracion}
-Verificamos las tres condiciones de semiálgebra:
+Comprobamos explícitamente las tres condiciones de la definición de semiálgebra para la clase $\mathcal{Y}$:
+
 \begin{enumerate}
-    \item $\mathbb{R} \in \mathcal{Y}$ por construcción.
-    \item Intersección finita: La intersección de dos intervalos de $\mathcal{Y}$ vuelve a ser un intervalo del mismo tipo o la nada ($\varnothing$). Por ejemplo, $(x_1, y_1] \cap (x_2, y_2] = (\max(x_1,x_2), \min(y_1,y_2)]$ si $\max(x_1,x_2) < \min(y_1,y_2)$, o $\varnothing$ en caso contrario. Igualmente, $(x,y] \cap (-\infty, z] = (x, \min(y,z)] \in \mathcal{Y}$.
-    \item Complementación: El complemento de cualquier elemento es unión finita disjunta de elementos de $\mathcal{Y}$. En efecto: $(x,y]^c = (-\infty, x] \cup (y, \infty)$, que son dos elementos de $\mathcal{Y}$ disjuntos. Análogamente, $(-\infty, z]^c = (z, \infty) \in \mathcal{Y}$.
+    \item \textbf{Pertenencia del conjunto universal:}
+    \[
+        \mathbb{R} \in \mathcal{Y}
+    \]
+
+    \item \textbf{Cierre por intersecciones finitas:}
+    Evaluamos el producto vectorial de intersecciones entre todos los tipos de conjuntos de la clase $\mathcal{Y}$:
+
+    \begin{itemize}
+        \item Intersecciones con el conjunto vacío y con $\mathbb{R}$:
+        \begin{align*}
+            \varnothing \cap \mathbb{R} &= \varnothing \in \mathcal{Y} \\
+            \varnothing \cap (x,y] &= \varnothing \in \mathcal{Y} \\
+            \varnothing \cap (-\infty,z] &= \varnothing \in \mathcal{Y} \\
+            \varnothing \cap (z,\infty) &= \varnothing \in \mathcal{Y} \\[0.4em]
+            \mathbb{R} \cap (x,y] &= (x,y] \in \mathcal{Y} \\
+            \mathbb{R} \cap (-\infty,z] &= (-\infty,z] \in \mathcal{Y} \\
+            \mathbb{R} \cap (z,\infty) &= (z,\infty) \in \mathcal{Y}
+        \end{align*}
+
+        \item Intersección de dos intervalos acotados $(x,y], (s,t] \in \mathcal{Y}$:
+        \[
+            (x,y] \cap (s,t] = \begin{cases}
+                (\max(x,s), \min(y,t)] & \text{si } y > s \text{ e } x < t \\
+                \varnothing & \text{si } y \le s \text{ o } x \ge t
+            \end{cases} \quad \in \mathcal{Y}
+        \]
+
+        \item Intersección de un intervalo acotado $(x,y]$ con las semirrectas $(-\infty,z]$ y $(z,\infty)$:
+        \[
+            (x,y] \cap (-\infty,z] = \begin{cases}
+                \varnothing & \text{si } z \le x \\
+                (x,z] & \text{si } x < z \le y \\
+                (x,y] & \text{si } z > y
+            \end{cases} \quad \in \mathcal{Y}
+        \]
+        \[
+            (x,y] \cap (z,\infty) = \begin{cases}
+                (x,y] & \text{si } z \le x \\
+                (z,y] & \text{si } x < z < y \\
+                \varnothing & \text{si } z \ge y
+            \end{cases} \quad \in \mathcal{Y}
+        \]
+
+        \item Intersecciones entre semirrectas:
+        \[
+            (-\infty,x] \cap (-\infty,z] = (-\infty, \min(x,z)] \in \mathcal{Y}
+        \]
+        \[
+            (-\infty,x] \cap (z,\infty) = \begin{cases}
+                \varnothing & \text{si } x \le z \\
+                (z,x] & \text{si } z < x
+            \end{cases} \quad \in \mathcal{Y}
+        \]
+        \[
+            (x,\infty) \cap (z,\infty) = (\max(x,z), \infty) \in \mathcal{Y}
+        \]
+    \end{itemize}
+
+    \item \textbf{Descomposición del complemento en uniones finitas disjuntas:}
+    Para todo elemento $A \in \mathcal{Y}$, su complementario $A^c$ se expresa como elemento único o como unión finita de elementos disjuntos dos a dos pertenencientes a $\mathcal{Y}$:
+    \begin{align*}
+        \varnothing^c &= \mathbb{R} \in \mathcal{Y} \\
+        \mathbb{R}^c &= \varnothing \in \mathcal{Y} \\
+        (x,y]^c &= (-\infty,x] \cup (y,\infty) \in \mathcal{Y} \quad \text{con } (-\infty,x] \cap (y,\infty) = \varnothing \\
+        (-\infty,z]^c &= (z,\infty) \in \mathcal{Y} \\
+        (z,\infty)^c &= (-\infty,z] \in \mathcal{Y}
+    \end{align*}
 \end{enumerate}
+Por consiguiente, la clase $\mathcal{Y}$ satisface todas las condiciones y tiene estructura de semiálgebra.
 \end{demostracion}
+
+\vspace{1cm}
 
 \begin{proposicion}{Clases equivalentes generadoras en $\mathbb{R}$}{prop5}
 Las clases de subconjuntos de $\mathbb{R}$:
@@ -425,46 +619,169 @@ generan la misma semiálgebra $\mathcal{S}(\mathcal{G}) = \mathcal{S}(\mathcal{C
 \end{proposicion}
 
 \begin{demostracion}
-Como $\mathcal{Y}$ es una semiálgebra que contiene a $\mathcal{G}$, se cumple $\mathcal{S}(\mathcal{G}) \subseteq \mathcal{Y}$. Además, los complementos de elementos de $\mathcal{G}$ generan las semirrectas $(-\infty, x]$ e $(y, \infty)$, luego $\mathcal{Y} \subseteq \mathcal{S}(\mathcal{G})$.
-Por otra parte, $(x,y] = (-\infty, y] \cap (-\infty, x]^c = (-\infty, y] \cap (x, \infty) \in \mathcal{S}(\mathcal{C})$, de donde $\mathcal{G} \subseteq \mathcal{S}(\mathcal{C})$ e igualamos las semiálgebras. Al tomar las $\sigma$-álgebras generadas por clases iguales, las estructuras generadas son idénticas.
+Para demostrar que ambas clases generan la semiálgebra $\mathcal{Y}$, construimos secuencialmente la menor semiálgebra que contiene a cada una de ellas imponiendo las tres condiciones fundamentales de semiálgebra:
+
+\begin{enumerate}[label=\arabic*)]
+    \item \textbf{Construcción de la semiálgebra generada por $\mathcal{G}$, $\mathcal{S}(\mathcal{G})$:}
+    Partimos de la clase inicial $\mathcal{G} = \{ (x,y] \mid x < y; \, x,y \in \mathbb{R} \}$:
+    \begin{itemize}
+        \item \textit{Pertenencia del conjunto universal (Condición 1):} Debe incluirse el espacio completo $\mathbb{R}$.
+        \[
+            \mathcal{G} \cup \{ \mathbb{R} \}
+        \]
+        \item \textit{Cierre por intersecciones finitas (Condición 2):}
+        Evaluamos las intersecciones entre elementos de la clase:
+        \begin{align*}
+            \mathbb{R} \cap (x,y] &= (x,y] \in \mathcal{G} \\
+            (x,y] \cap (s,t] &= \begin{cases}
+                (\max(x,s), \min(y,t)] & \text{si } y > s \text{ e } x < t \\
+                \varnothing & \text{si } y \le s \text{ o } x \ge t
+            \end{cases}
+        \end{align*}
+        Al aparecer el conjunto vacío, debemos incorporarlo:
+        \[
+            \mathcal{G} \cup \{ \mathbb{R}, \varnothing \}
+        \]
+        Verificamos que las intersecciones con $\varnothing$ permanecen cerradas: $\varnothing \cap \mathbb{R} = \varnothing$ y $\varnothing \cap (x,y] = \varnothing$.
+
+        \item \textit{Descomposición del complemento en uniones finitas disjuntas (Condición 3):}
+        Calculamos los complementos de los conjuntos añadidos:
+        \begin{align*}
+            \varnothing^c &= \mathbb{R} \\
+            \mathbb{R}^c &= \varnothing \\
+            (x,y]^c &= (-\infty,x] \cup (y,\infty) \quad \text{con } (-\infty,x] \cap (y,\infty) = \varnothing
+        \end{align*}
+        Para que la descomposición sea posible, las semirrectas $(-\infty,x]$ y $(y,\infty)$ deben pertenecer a la estructura. Incorporando todos estos elementos generados se obtiene la clase completa:
+        \[
+            \mathcal{S}(\mathcal{G}) = \mathcal{G} \cup \{ \mathbb{R}, \varnothing \} \cup \{ (-\infty,x], (y,\infty) \mid x,y \in \mathbb{R} \} = \mathcal{Y}
+        \]
+        Dado que $\mathcal{Y}$ es una semiálgebra (Proposición \ref{prop:prop4}), concluimos que $\mathcal{S}(\mathcal{G}) = \mathcal{Y}$.
+    \end{itemize}
+
+    \vspace{0.5em}
+    \item \textbf{Construcción de la semiálgebra generada por $\mathcal{C}$, $\mathcal{S}(\mathcal{C})$:}
+    Partimos de la clase inicial de semirrectas cerradas $\mathcal{C} = \{ (-\infty,z] \mid z \in \mathbb{R} \}$:
+    \begin{itemize}
+        \item \textit{Pertenencia del conjunto universal (Condición 1):} Incluimos $\mathbb{R}$:
+        \[
+            \mathcal{C} \cup \{ \mathbb{R} \}
+        \]
+        \item \textit{Cierre por intersecciones finitas (Condición 2):}
+        \begin{align*}
+            \mathbb{R} \cap (-\infty,z] &= (-\infty,z] \in \mathcal{C} \\
+            (-\infty,z] \cap (-\infty,x] &= (-\infty, \min(x,z)] \in \mathcal{C}
+        \end{align*}
+        
+        \item \textit{Descomposición del complemento en uniones finitas disjuntas (Condición 3):}
+        \begin{align*}
+            \mathbb{R}^c &= \varnothing \\
+            (-\infty,z]^c &= (z,\infty)
+        \end{align*}
+        Añadimos $\varnothing$ y las semirrectas abiertas por la izquierda $(z,\infty)$:
+        \[
+            \mathcal{C} \cup \{ \mathbb{R}, \varnothing \} \cup \{ (z,\infty) \mid z \in \mathbb{R} \}
+        \]
+        
+        \item \textit{Reevaluación de las intersecciones con los nuevos elementos generados:}
+        Intersecando las semirrectas opuestas $(z,\infty)$ y $(-\infty,x]$:
+        \[
+            (z,\infty) \cap (-\infty,x] = \begin{cases}
+                \varnothing & \text{si } x \le z \\
+                (z,x] & \text{si } z < x
+            \end{cases}
+        \]
+        Esta operación introduce necesariamente los intervalos semiabiertos acotados $(z,x]$. Uniendo todas las piezas generadas:
+        \[
+            \mathcal{S}(\mathcal{C}) = \mathcal{C} \cup \{ \mathbb{R}, \varnothing \} \cup \{ (z,\infty) \mid z \in \mathbb{R} \} \cup \{ (z,x] \mid z < x \} = \mathcal{Y}
+        \]
+        Por tanto, $\mathcal{S}(\mathcal{C}) = \mathcal{Y}$.
+    \end{itemize}
+\end{enumerate}
+
+\paragraph{Conclusión sobre álgebras y $\sigma$-álgebras generadas:}
+Al haber probado que $\mathcal{S}(\mathcal{G}) = \mathcal{S}(\mathcal{C}) = \mathcal{Y}$, la aplicación sucesiva de los operadores de generación de álgebra $\mathcal{Q}(\cdot)$ y de $\sigma$-álgebra $\sigma(\cdot)$ sobre clases idénticas preserva la igualdad:
+\[
+    \mathcal{S}(\mathcal{G}) = \mathcal{S}(\mathcal{C}) = \mathcal{Y} \implies \mathcal{Q}(\mathcal{G}) = \mathcal{Q}(\mathcal{C}) = \mathcal{Q}(\mathcal{Y}) \implies \sigma(\mathcal{G}) = \sigma(\mathcal{C}) = \sigma(\mathcal{Y})
+\]
 \end{demostracion}
 
-\begin{proposicion}{Caracterización de la $\sigma$-álgebra de Borel}{prop6}
-La $\sigma$-álgebra de Borel $\mathcal{B}$ de $\mathbb{R}$ coincide con la $\sigma$-álgebra generada por las semirrectas cerradas $\mathcal{C} = \{ (-\infty,a] \mid a \in \mathbb{R} \}$:
+\begin{proposicion}{Caracterización de la \texorpdfstring{$\sigma$}{sigma}-álgebra de Borel mediante semirrectas}{prop6}
+La $\sigma$-álgebra de Borel $\mathcal{B}$ de $\mathbb{R}$ coincide con la $\sigma$-álgebra generada por la clase de semirrectas cerradas por la derecha $\mathcal{C} = \{ (-\infty, a] \mid a \in \mathbb{R} \}$:
 \[
-    \mathcal{B} = \sigma(\mathcal{C}) = \sigma(\mathcal{G}) = \sigma(\mathcal{Y})
+    \mathcal{B} = \sigma(\mathcal{C})
 \]
 \end{proposicion}
 
 \begin{demostracion}
-Debemos probar que $\sigma(\mathcal{A}) = \sigma(\mathcal{G})$:
-\begin{itemize}
-    \item ($\sigma(\mathcal{G}) \subseteq \mathcal{B}$): Todo intervalo semiabierto es intersección numerable de abiertos:
-    \[
-        (x,y] = \bigcap_{n=1}^\infty \left(x, y + \frac{1}{n}\right) \in \sigma(\mathcal{A}) = \mathcal{B}
-    \]
-    \item ($\mathcal{B} \subseteq \sigma(\mathcal{G})$): Todo intervalo abierto es unión numerable de intervalos semiabiertos:
-    \[
-        (a,b) = \bigcup_{n=n_0}^\infty \left(a, b - \frac{1}{n}\right] \in \sigma(\mathcal{G})
-    \]
-\end{itemize}
-Por tanto, $\mathcal{B} = \sigma(\mathcal{G})$, y por la Proposición \ref{prop:prop5}, $\mathcal{B} = \sigma(\mathcal{C}) = \sigma(\mathcal{Y})$.
-\end{demostracion}
+Recordemos que la $\sigma$-álgebra de Borel $\mathcal{B}$ en $\mathbb{R}$ se define como la $\sigma$-álgebra generada por la clase $\mathcal{A}$ de todos los intervalos abiertos de $\mathbb{R}$:
+\[
+    \mathcal{B} = \sigma(\mathcal{A}), \quad \text{donde } \mathcal{A} = \{ (x,y) \mid x,y \in \mathbb{R} \cup \{-\infty, +\infty\}, \, x < y \}
+\]
+Para probar la igualdad $\mathcal{B} = \sigma(\mathcal{C})$, demostramos formalmente ambas inclusiones:
 
-\paragraph{Comprobación explícita de tipos de intervalos en $\sigma(\mathcal{C})$:}
 \begin{enumerate}
-    \item Semirrecta cerrada por la derecha: $(-\infty,a] \in \sigma(\mathcal{C})$.
-    \item Semirrecta abierta por la izquierda: $(a,\infty) = (-\infty,a]^c \in \sigma(\mathcal{C})$.
-    \item Intervalo semiabierto por la derecha: $(a,b] = (a,\infty) \cap (-\infty,b] \in \sigma(\mathcal{C})$.
-    \item Puntos individuales (singleton): $\{a\} = \bigcap_{n=1}^\infty \left(a-\frac{1}{n}, a\right] \in \sigma(\mathcal{C})$.
-    \item Semirrecta cerrada por la izquierda: $[a,\infty) = (a,\infty) \cup \{a\} \in \sigma(\mathcal{C})$.
-    \item Semirrecta abierta por la derecha: $(-\infty,a) = [a,\infty)^c \in \sigma(\mathcal{C})$.
-    \item Intervalo cerrado: $[a,b] = (a,b] \cup \{a\} \in \sigma(\mathcal{C})$.
-    \item Intervalo abierto: $(a,b) = (a,\infty) \cap (-\infty,b) \in \sigma(\mathcal{C})$.
-    \item Intervalo semiabierto por la izquierda: $[a,b) = (a,b) \cup \{a\} \in \sigma(\mathcal{C})$.
+    \item \textbf{Inclusión $\sigma(\mathcal{C}) \subseteq \mathcal{B}$:}
+    
+    Basta probar que la clase generadora $\mathcal{C}$ está contenida en la $\sigma$-álgebra de Borel $\mathcal{B}$ ($\mathcal{C} \subseteq \mathcal{B}$).
+    
+    Sea $(-\infty, a] \in \mathcal{C}$ un elemento genérico con $a \in \mathbb{R}$. Podemos expresar dicha semirrecta cerrada como una intersección numerable decreciente de semirrectas abiertas:
+    \[
+        (-\infty, a] = \bigcap_{n=1}^\infty \left( -\infty, a + \frac{1}{n} \right)
+    \]
+    Para cada $n \in \mathbb{N}$, el intervalo abierto $\left( -\infty, a + \frac{1}{n} \right)$ pertenece a la clase $\mathcal{A} \subseteq \mathcal{B}$. Dado que $\mathcal{B}$ es una $\sigma$-álgebra, es cerrada bajo intersecciones numerables, por lo que:
+    \[
+        (-\infty, a] = \bigcap_{n=1}^\infty \left( -\infty, a + \frac{1}{n} \right) \in \mathcal{B}
+    \]
+    Al ser $(-\infty, a]$ un elemento arbitrario de $\mathcal{C}$, se deduce que $\mathcal{C} \subseteq \mathcal{B}$. Por las propiedades del operador de generación de $\sigma$-álgebras, concluimos:
+    \[
+        \sigma(\mathcal{C}) \subseteq \sigma(\mathcal{B}) = \mathcal{B}
+    \]
+
+    \item \textbf{Inclusión $\mathcal{B} \subseteq \sigma(\mathcal{C})$:}
+    
+    Basta demostrar que la clase de abiertos $\mathcal{A}$ está contenida en $\sigma(\mathcal{C})$ ($\mathcal{A} \subseteq \sigma(\mathcal{C})$).
+    
+    Sea $(x,y) \in \mathcal{A}$ un intervalo abierto acotado cualquiera ($x, y \in \mathbb{R}$ con $x < y$). Analizamos sus componentes utilizando la clase $\mathcal{C}$:
+    
+    \begin{itemize}
+        \item Por un lado, la semirrecta cerrada $(-\infty, x] \in \mathcal{C} \subseteq \sigma(\mathcal{C})$.
+        
+        \item Por otro lado, consideremos la semirrecta abierta $(-\infty, y)$. Podemos escribirla como la unión numerable creciente de semirrectas cerradas de $\mathcal{C}$:
+        \[
+            (-\infty, y) = \bigcup_{n=1}^\infty \left( -\infty, y - \frac{1}{n} \right]
+        \]
+        Como $\left( -\infty, y - \frac{1}{n} \right] \in \mathcal{C} \subseteq \sigma(\mathcal{C})$ para todo $n \in \mathbb{N}$, y $\sigma(\mathcal{C})$ es cerrada por uniones numerables, se tiene que $(-\infty, y) \in \sigma(\mathcal{C})$.
+        
+        \item Su complementario en $\mathbb{R}$, la semirrecta cerrada por la izquierda $[y, \infty)$, también pertenece a $\sigma(\mathcal{C})$ por el cierre bajo complementación:
+        \[
+            [y, \infty) = (-\infty, y)^c \in \sigma(\mathcal{C})
+        \]
+    \end{itemize}
+    
+    Uniendo ambos conjuntos cerrados, $(-\infty, x] \in \sigma(\mathcal{C})$ y $[y, \infty) \in \sigma(\mathcal{C})$, su unión pertenece a $\sigma(\mathcal{C})$ por ser una $\sigma$-álgebra:
+    \[
+        (x,y)^c = (-\infty, x] \cup [y, \infty) \in \sigma(\mathcal{C})
+    \]
+    Tomando de nuevo el complementario respecto a $\mathbb{R}$, obtenemos el intervalo abierto original:
+    \[
+        (x,y) = \left( (x,y)^c \right)^c = \left( (-\infty, x] \cup [y, \infty) \right)^c \in \sigma(\mathcal{C})
+    \]
+    
+    \textit{Nota sobre la construcción directa:} Alternativamente, el intervalo abierto $(x,y)$ se puede expresar de forma directa como la intersección de la semirrecta $(-\infty, y)$ con el complementario de $(-\infty, x]$:
+    \[
+        (x,y) = (-\infty, y) \cap (-\infty, x]^c = \left( \bigcup_{n=1}^\infty \left(-\infty, y - \frac{1}{n}\right] \right) \cap (-\infty, x]^c \in \sigma(\mathcal{C})
+    \]
+    
+    De este modo se demuestra que todo intervalo abierto $(x,y) \in \mathcal{A}$ pertenece a $\sigma(\mathcal{C})$, por lo que $\mathcal{A} \subseteq \sigma(\mathcal{C})$. Aplicando el operador de generación:
+    \[
+        \mathcal{B} = \sigma(\mathcal{A}) \subseteq \sigma(\sigma(\mathcal{C})) = \sigma(\mathcal{C})
+    \]
 \end{enumerate}
 
----
+Al haberse verificado ambas inclusiones, queda probado que $\mathcal{B} = \sigma(\mathcal{C})$.
+\end{demostracion}
+
+\newpage
 
 \section{Estructuras generadas y clases monótonas}
 
@@ -475,6 +792,86 @@ Sea $E \subseteq \Omega$ y $\mathcal{C} \subseteq \mathcal{P}(\Omega)$. Se verif
 \]
 donde $\sigma_\Omega(\mathcal{C}) \cap E = \{ B \cap E \mid B \in \sigma_\Omega(\mathcal{C}) \}$ representa la traza de $\sigma_\Omega(\mathcal{C})$ sobre $E$, y $\sigma_E(\mathcal{C} \cap E)$ es la $\sigma$-álgebra generada por $\mathcal{C} \cap E$ en el espacio universal $E$.
 \end{teorema}
+
+\begin{demostracion}
+Demostramos formalmente ambas inclusiones para establecer la igualdad:
+
+\begin{enumerate}
+    \item \textbf{Inclusión $\subseteq$ ($\sigma_\Omega(\mathcal{C}) \cap E \subseteq \sigma_E(\mathcal{C} \cap E)$):}
+    
+    Definimos la siguiente clase auxiliar de subconjuntos del espacio universal $\Omega$:
+    \[
+        \mathcal{G} = \{ B \subseteq \Omega \mid B \cap E \in \sigma_E(\mathcal{C} \cap E) \}
+    \]
+
+    Comprobamos en primer lugar que $\mathcal{G}$ satisface la estructura de $\sigma$-álgebra sobre $\Omega$:
+    \begin{enumerate}[label=\alph*)]
+        \item \textit{Pertenencia del conjunto vacío:} Dado que $\varnothing \cap E = \varnothing$ y la traza $\sigma_E(\mathcal{C} \cap E)$ es una $\sigma$-álgebra sobre $E$, se tiene que $\varnothing \cap E = \varnothing \in \sigma_E(\mathcal{C} \cap E)$, lo cual implica $\varnothing \in \mathcal{G}$.
+        
+        \item \textit{Cierre por complementarios en $\Omega$:} Sea $B \in \mathcal{G}$. Por definición de la clase, $B \cap E \in \sigma_E(\mathcal{C} \cap E)$. Al ser $\sigma_E(\mathcal{C} \cap E)$ una $\sigma$-álgebra sobre $E$, su complementario relativo al universo $E$ pertenece a la estructura, es decir, $(B \cap E)^{c_E} \in \sigma_E(\mathcal{C} \cap E)$.
+        Desarrollando esta operación mediante álgebra de conjuntos:
+        \[
+        \begin{array}{rl}
+            \displaystyle (B \cap E)^{c_E} & \displaystyle = E \setminus (B \cap E) = E \cap (B \cap E)^c = E \cap (B^c \cup E^c) =  \\[8pt]
+             & \displaystyle = (E \cap B^c) \cup (E \cap E^c) = (B^c \cap E) \cup \varnothing = B^c \cap E
+        \end{array}
+        \]
+        Como $B^c \cap E \in \sigma_E(\mathcal{C} \cap E)$, se concluye que $B^c \in \mathcal{G}$.
+
+        \item \textit{Cierre por uniones numerables:} Sea $\{B_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$, lo que implica que $B_n \cap E \in \sigma_E(\mathcal{C} \cap E)$ para todo $n \in \mathbb{N}$. Por ser $\sigma_E(\mathcal{C} \cap E)$ cerrada bajo uniones numerables:
+        \[
+            \left( \bigcup_{n=1}^\infty B_n \right) \cap E = \bigcup_{n=1}^\infty (B_n \cap E) \in \sigma_E(\mathcal{C} \cap E)
+        \]
+        Por consiguiente, $\bigcup_{n=1}^\infty B_n \in \mathcal{G}$.
+    \end{enumerate}
+    Queda verificado que $\mathcal{G}$ es una $\sigma$-álgebra sobre $\Omega$.
+
+    Por otra parte, para todo conjunto $B \in \mathcal{C}$, se cumple que $B \cap E \in \mathcal{C} \cap E \subseteq \sigma_E(\mathcal{C} \cap E)$, de donde $B \in \mathcal{G}$ y por ende $\mathcal{C} \subseteq \mathcal{G}$.
+    
+    Como $\sigma_\Omega(\mathcal{C})$ es la menor $\sigma$-álgebra sobre $\Omega$ que contiene a la clase $\mathcal{C}$, y $\mathcal{G}$ es una $\sigma$-álgebra sobre $\Omega$ que contiene a $\mathcal{C}$, se deduce la inclusión:
+    \[
+        \sigma_\Omega(\mathcal{C}) \subseteq \mathcal{G}
+    \]
+    Así pues, para todo conjunto $B \in \sigma_\Omega(\mathcal{C})$, se tiene $B \in \mathcal{G} \implies B \cap E \in \sigma_E(\mathcal{C} \cap E)$, probando la primera inclusión:
+    \[
+        \sigma_\Omega(\mathcal{C}) \cap E \subseteq \sigma_E(\mathcal{C} \cap E)
+    \]
+
+    \item \textbf{Inclusión $\supseteq$ ($\sigma_E(\mathcal{C} \cap E) \subseteq \sigma_\Omega(\mathcal{C}) \cap E$):}
+    
+    Demostramos que la clase traza $\sigma_\Omega(\mathcal{C}) \cap E$ constituye una $\sigma$-álgebra definida sobre el espacio $E$:
+    \begin{enumerate}[label=\alph*)]
+        \item \textit{Pertenencia de los conjuntos vacíos y universales de $E$:} Como $\varnothing \in \sigma_\Omega(\mathcal{C})$ por ser $\sigma$-álgebra en $\Omega$, se verifica $\varnothing \cap E = \varnothing \in \sigma_\Omega(\mathcal{C}) \cap E$. Del mismo modo, $\Omega \in \sigma_\Omega(\mathcal{C}) \implies \Omega \cap E = E \in \sigma_\Omega(\mathcal{C}) \cap E$.
+        
+        \item \textit{Cierre por complementarios en $E$:} Sea $B \in \sigma_\Omega(\mathcal{C}) \cap E$. Existe por definición un elemento $B_0 \in \sigma_\Omega(\mathcal{C})$ tal que $B = B_0 \cap E$.
+        Puesto que $\sigma_\Omega(\mathcal{C})$ es $\sigma$-álgebra sobre $\Omega$, el complemento $B_0^c \in \sigma_\Omega(\mathcal{C})$, por lo que $B_0^c \cap E \in \sigma_\Omega(\mathcal{C}) \cap E$.
+        Calculando el complementario de $B$ respecto a $E$:
+        
+        \[
+            \begin{array}{rl}
+                \displaystyle B^{c_E} & \displaystyle = E \setminus B = E \setminus (B_0 \cap E) = E \cap (B_0 \cap E)^c = E \cap (B_0^c \cup E^c) \\[8pt]
+                & \displaystyle = (E \cap B_0^c) \cup (E \cap E^c) = B_0^c \cap E
+            \end{array}    
+        \]
+        Como $B_0^c \cap E \in \sigma_\Omega(\mathcal{C}) \cap E$, se deduce que $B^{c_E} \in \sigma_\Omega(\mathcal{C}) \cap E$.
+
+        \item \textit{Cierre por uniones numerables:} Sea $\{B_n\}_{n \in \mathbb{N}} \subseteq \sigma_\Omega(\mathcal{C}) \cap E$. Para cada subíndice $n \in \mathbb{N}$, existe $B_{n0} \in \sigma_\Omega(\mathcal{C})$ tal que $B_n = B_{n0} \cap E$.
+        Al ser $\sigma_\Omega(\mathcal{C})$ una $\sigma$-álgebra sobre $\Omega$, la unión numerable satisface $\bigcup_{n=1}^\infty B_{n0} \in \sigma_\Omega(\mathcal{C})$, y por tanto:
+        \[
+            \bigcup_{n=1}^\infty B_n = \bigcup_{n=1}^\infty (B_{n0} \cap E) = \left( \bigcup_{n=1}^\infty B_{n0} \right) \cap E \in \sigma_\Omega(\mathcal{C}) \cap E
+        \]
+    \end{enumerate}
+    Queda verificado que $\sigma_\Omega(\mathcal{C}) \cap E$ es una $\sigma$-álgebra sobre $E$.
+
+    Finalmente, dado que $\mathcal{C} \subseteq \sigma_\Omega(\mathcal{C})$, se tiene de forma inmediata que $\mathcal{C} \cap E \subseteq \sigma_\Omega(\mathcal{C}) \cap E$. 
+    Puesto que $\sigma_E(\mathcal{C} \cap E)$ es la menor $\sigma$-álgebra sobre $E$ que contiene a la clase de generadores $\mathcal{C} \cap E$, y habiendo probado que $\sigma_\Omega(\mathcal{C}) \cap E$ es una $\sigma$-álgebra sobre $E$ que la contiene, resulta:
+    \[
+        \sigma_E(\mathcal{C} \cap E) \subseteq \sigma_\Omega(\mathcal{C}) \cap E
+    \]
+\end{enumerate}
+
+De la combinación de ambas inclusiones se obtiene la igualdad deseada $\sigma_\Omega(\mathcal{C}) \cap E = \sigma_E(\mathcal{C} \cap E)$.
+\end{demostracion}
 
 \begin{demostracion}
 Demostramos ambas inclusiones:
@@ -491,6 +888,76 @@ Si $\mathcal{S}$ es una semiálgebra, el álgebra generada $\mathcal{Q}(\mathcal
     \mathcal{Q}(\mathcal{S}) = \left\{ E \in \mathcal{P}(\Omega) \,\,\middle|\,\, E = \bigcup_{i=1}^r A_i, \text{ con } A_i \in \mathcal{S}, \, A_i \cap A_j = \varnothing \, (i \neq j) \right\}
 \]
 \end{proposicion}
+\begin{demostracion}
+Denotemos por $\mathcal{C}$ a la colección de todas las uniones finitas de conjuntos de $S$ disjuntos dos a dos:
+\[
+    \mathcal{C} = \left\{ E \in \mathcal{P}(\Omega) \,\,\middle|\,\, E = \bigcup_{n=1}^r A_n \text{ para algún } r \in \mathbb{N}, \text{ con } A_n \in S \text{ y } A_i \cap A_j = \varnothing \, (i \neq j) \right\}
+\]
+Queremos probar la igualdad $\mathcal{Q}(S) = \mathcal{C}$ mediante la doble inclusión:
+
+\begin{enumerate}
+    \item \textbf{Demostración de $\mathcal{Q}(S) \subseteq \mathcal{C}$:}
+
+    Para probar esta inclusión, demostraremos que $S \subseteq \mathcal{C}$ y que $\mathcal{C}$ tiene estructura de álgebra. Al ser $\mathcal{Q}(S)$ la menor álgebra que contiene a $S$, se deducirá automáticamente que $\mathcal{Q}(S) \subseteq \mathcal{C}$.
+
+    \begin{itemize}
+        \item \textit{Inclusión $S \subseteq \mathcal{C}$:}
+        Todo elemento $A \in S$ puede expresarse trivialmente como una unión finita de $r=1$ elementos de $S$. Por tanto, $S \subseteq \mathcal{C}$.
+
+        \item \textit{Comprobación de que $\mathcal{C}$ es un álgebra:}
+        \begin{enumerate}[label=\arabic*)]
+            \item \textit{Pertenencia del universo:} Como $S$ es una semiálgebra, $\Omega \in S$. Dado que $\Omega = \bigcup_{n=1}^1 \Omega$, se tiene directamente que $\Omega \in \mathcal{C}$.
+
+            \item \textit{Cierre por intersecciones finitas:}
+            Sean $B_1, B_2 \in \mathcal{C}$. Por definición, existen representaciones finitas en conjuntos disjuntos de $S$:
+            \[
+                B_1 = \bigcup_{n=1}^{r_1} A_{1n} \quad \text{y} \quad B_2 = \bigcup_{m=1}^{r_2} A_{2m}
+            \]
+            donde $A_{1n} \in S$ son disjuntos dos a dos entre sí, y $A_{2m} \in S$ son disjuntos dos a dos entre sí.
+            
+            Calculamos la intersección aplicando la propiedad distributiva:
+            \[
+                B_1 \cap B_2 = \left( \bigcup_{n=1}^{r_1} A_{1n} \right) \cap \left( \bigcup_{m=1}^{r_2} A_{2m} \right) = \bigcup_{n=1}^{r_1} \bigcup_{m=1}^{r_2} (A_{1n} \cap A_{2m})
+            \]
+            Puesto que $S$ es semiálgebra, es cerrada por intersecciones finitas, luego $A_{1n} \cap A_{2m} \in S$ para todo $n, m$. Además, la colección de conjuntos $\{A_{1n} \cap A_{2m}\}$ consta de conjuntos disjuntos dos a dos, pues si $(n,m) \neq (n',m')$, bien $n \neq n'$ (y $A_{1n} \cap A_{1n'} = \varnothing$) o bien $m \neq m'$ (y $A_{2m} \cap A_{2m'} = \varnothing$).
+            
+            En consecuencia, $B_1 \cap B_2$ se ha escrito como una unión finita de conjuntos de $S$ disjuntos dos a dos, por lo que $B_1 \cap B_2 \in \mathcal{C}$.
+
+            \item \textit{Cierre por complementación:}
+            Sea $B \in \mathcal{C}$ expresado como $B = \bigcup_{n=1}^r A_n$ con $A_n \in S$ disjuntos dos a dos.
+            Por la definición de semiálgebra, el complemento de cualquier elemento $A_n \in S$ se descompone como unión finita disjunta de elementos de $S$:
+            \[
+                A_n^c = \bigsqcup_{k=1}^{l_n} B_{nk}, \quad \text{con } B_{nk} \in S \text{ disjuntos dos a dos}
+            \]
+            Dado que $A_n^c \in \mathcal{C}$ para todo $n=1,\dots,r$, aplicamos las leyes de De Morgan para el complemento de $B$:
+            \[
+                B^c = \left( \bigcup_{n=1}^r A_n \right)^c = \bigcap_{n=1}^r A_n^c
+            \]
+            Como ya hemos demostrado que $\mathcal{C}$ es cerrada bajo intersecciones finitas, la intersección finita de los conjuntos $A_n^c \in \mathcal{C}$ pertenece a $\mathcal{C}$, concluyendo que $B^c \in \mathcal{C}$.
+        \end{enumerate}
+        Habiendo verificado las tres propiedades, concluimos que $\mathcal{C}$ es un álgebra sobre $\Omega$.
+    \end{itemize}
+
+    Puesto que $\mathcal{C}$ es un álgebra que contiene a $S$, y $\mathcal{Q}(S)$ es por definición la menor álgebra que contiene a $S$, se tiene:
+    \[
+        \mathcal{Q}(S) \subseteq \mathcal{C}
+    \]
+
+    \item \textbf{Demostración de $\mathcal{C} \subseteq \mathcal{Q}(S)$:}
+
+    Sea $\mathcal{G}$ cualquier álgebra sobre $\Omega$ que contenga a $S$ ($S \subseteq \mathcal{G}$).
+    Al ser $\mathcal{G}$ un álgebra, debe ser cerrada bajo uniones finitas de sus elementos. En particular, contiene a todas las uniones finitas de conjuntos disjuntos de $S$. Por consiguiente:
+    \[
+        \mathcal{C} \subseteq \mathcal{G}
+    \]
+    Puesto que esta inclusión se cumple para toda álgebra $\mathcal{G}$ que contenga a $S$, en particular se verifica para $\mathcal{G} = \mathcal{Q}(S)$, obteniendo:
+    \[
+        \mathcal{C} \subseteq \mathcal{Q}(S)
+    \]
+\end{enumerate}
+
+De ambas inclusiones se deduce formalmente la igualdad $\mathcal{Q}(S) = \mathcal{C}$.
+\end{demostracion}
 
 \begin{demostracion}
 Sea $\mathcal{H}$ dicha clase de uniones finitas disjuntas. Claramente $\mathcal{S} \subseteq \mathcal{H}$ y $\Omega \in \mathcal{H}$.
@@ -498,10 +965,12 @@ Si $E = \bigcup_{i=1}^r A_i \in \mathcal{H}$, su complemento $E^c = \bigcap_{i=1
 Finalmente, la unión de dos elementos de $\mathcal{H}$ se puede descomponer en partes disjuntas, perteneciendo a $\mathcal{H}$. Así pues, $\mathcal{H}$ es un álgebra que contiene a $\mathcal{S}$, por lo que $\mathcal{H} = \mathcal{Q}(\mathcal{S})$.
 \end{demostracion}
 
-\begin{definicion}{Clase monótona}{clase_monotona}
-Una clase $\mathcal{M} \subseteq \mathcal{P}(\Omega)$ es una **clase monótona** si es cerrada bajo el paso al límite para sucesiones monótonas de conjuntos (si $\{A_n\} \subseteq \mathcal{M}$ es monótona, entonces $\lim_{n \to \infty} A_n \in \mathcal{M}$).
+\newpage
 
-Dada una clase $\mathcal{C}$, denotamos por $\mathcal{M}(\mathcal{C})$ a la **clase monótona generada por $\mathcal{C}$** (la menor clase monótona que contiene a $\mathcal{C}$).
+\begin{definicion}{Clase monótona}{clase_monotona}
+Una clase $\mathcal{M} \subseteq \mathcal{P}(\Omega)$ es una clase monótona si es cerrada bajo el paso al límite para sucesiones monótonas de conjuntos (si $\{A_n\} \subseteq \mathcal{M}$ es monótona, entonces $\lim_{n \to \infty} A_n \in \mathcal{M}$).
+
+Dada una clase $\mathcal{C}$, denotamos por $\mathcal{M}(\mathcal{C})$ a la clase monótona generada por $\mathcal{C}$ (la menor clase monótona que contiene a $\mathcal{C}$).
 \end{definicion}
 
 \begin{proposicion}{Propiedades de las clases monótonas}{prop8}
@@ -522,26 +991,163 @@ Demostramos cada punto:
 \end{enumerate}
 \end{demostracion}
 
-\begin{teorema}{Teorema de las clases monótonas}{teo2}
-Si $\mathcal{Q}$ es un álgebra, la clase monótona generada por $\mathcal{Q}$ coincide con la $\sigma$-álgebra generada por $\mathcal{Q}$:
+\begin{lema}{Toda \texorpdfstring{$\sigma$}{sigma}-álgebra es clase monótona}{lema1}
+Sea $\mathcal{G}$ una $\sigma$-álgebra sobre $\Omega$. Entonces $\mathcal{G}$ tiene estructura de clase monótona.
+\end{lema}
+
+\begin{demostracion}
+Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión monótona de conjuntos de $\mathcal{G}$:
+\begin{itemize}
+    \item Si $\{A_n\}_{n \in \mathbb{N}}$ es una sucesión creciente ($A_n \uparrow$), su límite coincide con la unión numerable de sus términos:
+    \[
+        \lim_{n \to \infty} A_n = \bigcup_{n=1}^\infty A_n
+    \]
+    Puesto que $\mathcal{G}$ es una $\sigma$-álgebra, es cerrada por uniones numerables, luego $\displaystyle \lim_{n \to \infty} A_n = \bigcup_{n=1}^\infty A_n \in \mathcal{G}$.
+
+    \item Si $\{A_n\}_{n \in \mathbb{N}}$ es una sucesión decreciente ($A_n \downarrow$), su límite coincide con la intersección numerable de sus términos:
+    \[
+        \lim_{n \to \infty} A_n = \bigcap_{n=1}^\infty A_n
+    \]
+    Puesto que $\mathcal{G}$ es una $\sigma$-álgebra, es cerrada por intersecciones numerables, luego $\displaystyle \lim_{n \to \infty} A_n = \bigcap_{n=1}^\infty A_n \in \mathcal{G}$.
+\end{itemize}
+En ambos casos, el límite de la sucesión monótona pertenece a $\mathcal{G}$. Por lo tanto, toda $\sigma$-álgebra $\mathcal{G}$ es una clase monótona.
+\end{demostracion}
+
+\begin{lema}{Toda clase monótona que es álgebra es \texorpdfstring{$\sigma$}{sigma}-álgebra}{lema2}
+Sea $\mathcal{M}$ una clase monótona sobre $\Omega$. Si $\mathcal{M}$ es un álgebra, entonces $\mathcal{M}$ es una $\sigma$-álgebra.
+\end{lema}
+
+\begin{demostracion}
+Para probar que el álgebra $\mathcal{M}$ es una $\sigma$-álgebra, únicamente debemos verificar que es cerrada frente a la unión numerable arbitraria.
+
+Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{M}$ una sucesión numerable de conjuntos. Definimos para cada $k \in \mathbb{N}$ la sucesión de uniones finitas:
 \[
-    \mathcal{M}(\mathcal{Q}) = \sigma(\mathcal{Q})
+    B_k = \bigcup_{n=1}^k A_n
+\]
+Al ser $\mathcal{M}$ un álgebra, es cerrada por uniones finitas, de modo que $B_k \in \mathcal{M}$ para todo $k \in \mathbb{N}$. Además, la sucesión $\{B_k\}_{k \in \mathbb{N}}$ es por construcción monótona creciente ($B_k \subseteq B_{k+1}$).
+
+Dado que $\mathcal{M}$ es una clase monótona, debe contener al límite de cualquier sucesión monótona de sus elementos. Por tanto:
+\[
+    \bigcup_{n=1}^\infty A_n = \bigcup_{k=1}^\infty B_k = \lim_{k \to \infty} B_k \in \mathcal{M}
+\]
+Por consiguiente, $\mathcal{M}$ es cerrada bajo uniones numerables y constituye una $\sigma$-álgebra.
+\end{demostracion}
+
+\begin{lema}{La clase monótona generada por un álgebra es un álgebra}{lema3}
+Sea $\mathcal{G}$ un álgebra sobre $\Omega$. La clase monótona generada por $\mathcal{G}$, denotada por $\mathcal{M}(\mathcal{G})$, es un álgebra.
+\end{lema}
+
+\begin{demostracion}
+Comprobamos secuencialmente que $\mathcal{M}(\mathcal{G})$ satisface las tres propiedades de álgebra:
+
+\begin{enumerate}
+    \item \textbf{Pertenencia del universo:}
+    Como $\mathcal{G}$ es un álgebra, $\Omega \in \mathcal{G}$. Dado que la clase monótona generada contiene a la clase original ($\mathcal{G} \subseteq \mathcal{M}(\mathcal{G})$), se deduce que $\Omega \in \mathcal{M}(\mathcal{G})$.
+
+    \item \textbf{Cierre por complementación:}
+    Consideremos la colección de conjuntos de $\mathcal{M}(\mathcal{G})$ cuyos complementarios también permanecen en $\mathcal{M}(\mathcal{G})$:
+    \[
+        \mathcal{F} = \{ A \in \mathcal{M}(\mathcal{G}) \mid A^c \in \mathcal{M}(\mathcal{G}) \} \subseteq \mathcal{M}(\mathcal{G})
+    \]
+    \begin{itemize}
+        \item Para todo $A \in \mathcal{G} \subseteq \mathcal{M}(\mathcal{G})$, al ser $\mathcal{G}$ álgebra se tiene $A^c \in \mathcal{G} \subseteq \mathcal{M}(\mathcal{G})$, luego $A \in \mathcal{F}$, lo que prueba que $\mathcal{G} \subseteq \mathcal{F}$.
+        \item Probamos que $\mathcal{F}$ es una clase monótona. Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{F}$:
+        \begin{itemize}
+            \item Si $A_n \uparrow$, como $A_n \in \mathcal{M}(\mathcal{G})$ para todo $n$ y $\mathcal{M}(\mathcal{G})$ es clase monótona, $\displaystyle \lim_{n \to \infty} A_n = \bigcup_{n=1}^\infty A_n \in \mathcal{M}(\mathcal{G})$. Para su complementario:
+            \[
+                \left( \lim_{n \to \infty} A_n \right)^c = \left( \bigcup_{n=1}^\infty A_n \right)^c = \bigcap_{n=1}^\infty A_n^c = \lim_{n \to \infty} A_n^c
+            \]
+            Como $A_n \in \mathcal{F} \implies A_n^c \in \mathcal{M}(\mathcal{G})$ y la sucesión $\{A_n^c\}$ es decreciente ($A_n^c \downarrow$), por ser $\mathcal{M}(\mathcal{G})$ clase monótona se cumple $\displaystyle \lim_{n \to \infty} A_n^c \in \mathcal{M}(\mathcal{G})$. Así, $\left(\lim A_n\right)^c \in \mathcal{M}(\mathcal{G})$, luego $\lim A_n \in \mathcal{F}$.
+
+            \item Si $A_n \downarrow$, de manera análoga $\displaystyle \lim_{n \to \infty} A_n = \bigcap_{n=1}^\infty A_n \in \mathcal{M}(\mathcal{G})$, y su complementario $\displaystyle \left( \lim_{n \to \infty} A_n \right)^c = \bigcup_{n=1}^\infty A_n^c = \lim_{n \to \infty} A_n^c \in \mathcal{M}(\mathcal{G})$ (pues $A_n^c \uparrow$ en $\mathcal{M}(\mathcal{G})$). Luego $\lim A_n \in \mathcal{F}$.
+        \end{itemize}
+    \end{itemize}
+    Puesto que $\mathcal{F}$ es una clase monótona que contiene a $\mathcal{G}$, y $\mathcal{M}(\mathcal{G})$ es la minimal entre las clases monótonas que contienen a $\mathcal{G}$, se concluye que $\mathcal{M}(\mathcal{G}) \subseteq \mathcal{F}$. Por ende, $\mathcal{M}(\mathcal{G}) = \mathcal{F}$, lo que demuestra que $\mathcal{M}(\mathcal{G})$ es cerrada por complementarios.
+
+    \item \textbf{Cierre por uniones finitas:}
+    Dado un conjunto fijo $A \in \mathcal{M}(\mathcal{G})$, definimos la clase auxiliar:
+    \[
+        \mathcal{F}_A = \{ B \in \mathcal{M}(\mathcal{G}) \mid A \cup B \in \mathcal{M}(\mathcal{G}) \} \subseteq \mathcal{M}(\mathcal{G})
+    \]
+    Veamos primeramente que $\mathcal{F}_A$ es siempre una clase monótona para cualquier $A \in \mathcal{M}(\mathcal{G})$. Sea $\{B_n\}_{n \in \mathbb{N}} \subseteq \mathcal{F}_A$:
+    \begin{itemize}
+        \item Si $B_n \uparrow$, entonces $\{A \cup B_n\} \uparrow$ es una sucesión creciente en $\mathcal{M}(\mathcal{G})$. Al ser $\mathcal{M}(\mathcal{G})$ clase monótona:
+        \[
+            A \cup \lim_{n \to \infty} B_n = A \cup \left( \bigcup_{n=1}^\infty B_n \right) = \bigcup_{n=1}^\infty (A \cup B_n) = \lim_{n \to \infty} (A \cup B_n) \in \mathcal{M}(\mathcal{G})
+        \]
+        Luego $\lim_{n \to \infty} B_n \in \mathcal{F}_A$.
+
+        \item Si $B_n \downarrow$, entonces $\{A \cup B_n\} \downarrow$ en $\mathcal{M}(\mathcal{G})$, luego:
+        \[
+            A \cup \lim_{n \to \infty} B_n = A \cup \left( \bigcap_{n=1}^\infty B_n \right) = \bigcap_{n=1}^\infty (A \cup B_n) = \lim_{n \to \infty} (A \cup B_n) \in \mathcal{M}(\mathcal{G})
+        \]
+        Luego $\lim_{n \to \infty} B_n \in \mathcal{F}_A$.
+    \end{itemize}
+
+    Procedemos en dos pasos para completar la demostración:
+    \begin{itemize}
+        \item \textit{Paso 1 (Fijando $B \in \mathcal{G}$):} Para todo $C \in \mathcal{G}$, por ser $\mathcal{G}$ un álgebra, $B \cup C \in \mathcal{G} \subseteq \mathcal{M}(\mathcal{G})$, de donde $C \in \mathcal{F}_B$. Por tanto, $\mathcal{G} \subseteq \mathcal{F}_B$.
+        Al ser $\mathcal{F}_B$ una clase monótona que contiene a $\mathcal{G}$, se verifica $\mathcal{M}(\mathcal{G}) \subseteq \mathcal{F}_B$. Esto implica que para todo $B \in \mathcal{G}$ y todo $A \in \mathcal{M}(\mathcal{G})$, se cumple $A \cup B \in \mathcal{M}(\mathcal{G})$.
+
+        \item \textit{Paso 2 (Fijando $A \in \mathcal{M}(\mathcal{G})$ arbitrario):} Por el Paso 1, para cualquier $B \in \mathcal{G}$ se satisface $A \cup B \in \mathcal{M}(\mathcal{G})$, lo cual equivale a decir que $B \in \mathcal{F}_A$.
+        En consecuencia, $\mathcal{G} \subseteq \mathcal{F}_A$. Dado que $\mathcal{F}_A$ es clase monótona, se concluye que $\mathcal{M}(\mathcal{G}) \subseteq \mathcal{F}_A$.
+    \end{itemize}
+    Esto demuestra que para todo par de elementos $A, B \in \mathcal{M}(\mathcal{G})$, su unión $A \cup B \in \mathcal{M}(\mathcal{G})$.
+\end{enumerate}
+
+Al cumplirse las tres condiciones, $\mathcal{M}(\mathcal{G})$ tiene estructura de álgebra.
+\end{demostracion}
+
+\newpage
+
+\begin{teorema}{Teorema de las clases monótonas}{teo2}
+Sea $Q$ un álgebra sobre $\Omega$. La clase monótona generada por $Q$ coincide con la $\sigma$-álgebra generada por $Q$:
+\[
+    \mathcal{M}(Q) = \sigma(Q)
 \]
 \end{teorema}
 
 \begin{demostracion}
-Como $\sigma(\mathcal{Q})$ es una $\sigma$-álgebra, por la Propiedad \ref{prop:prop8}.1 es una clase monótona que contiene a $\mathcal{Q}$, de donde $\mathcal{M}(\mathcal{Q}) \subseteq \sigma(\mathcal{Q})$.
-Por la Propiedad \ref{prop:prop8}.3, $\mathcal{M}(\mathcal{Q})$ es un álgebra, y por la Propiedad \ref{prop:prop8}.2, es una $\sigma$-álgebra que contiene a $\mathcal{Q}$, luego $\sigma(\mathcal{Q}) \subseteq \mathcal{M}(\mathcal{Q})$. Concluimos la igualdad.
+Para demostrar la igualdad $\mathcal{M}(Q) = \sigma(Q)$, probamos formalmente ambas inclusiones:
+
+\begin{enumerate}
+    \item \textbf{Inclusión $\mathcal{M}(Q) \subseteq \sigma(Q)$:}
+    
+    Por el Lema 1, toda $\sigma$-álgebra es una clase monótona. En particular, la $\sigma$-álgebra generada $\sigma(Q)$ es una clase monótona que contiene a $Q$.
+    
+    Puesto que $\mathcal{M}(Q)$ es la menor clase monótona que contiene a $Q$, se deduce de forma inmediata que:
+    \[
+        \mathcal{M}(Q) \subseteq \mathcal{M}(\sigma(Q)) = \sigma(Q)
+    \]
+
+    \item \textbf{Inclusión $\sigma(Q) \subseteq \mathcal{M}(Q)$:}
+    
+    Analizamos la estructura algebraica de la clase monótona generada $\mathcal{M}(Q)$:
+    \begin{itemize}
+        \item Como $Q$ es un álgebra, por el Lema 3 la clase monótona generada $\mathcal{M}(Q)$ es también un álgebra.
+        \item Al ser $\mathcal{M}(Q)$ un álgebra que además es clase monótona, el Lema 2 garantiza que $\mathcal{M}(Q)$ es una $\sigma$-álgebra sobre $\Omega$.
+    \end{itemize}
+    
+    Dado que $\mathcal{M}(Q)$ es una $\sigma$-álgebra que contiene a $Q$ ($Q \subseteq \mathcal{M}(Q)$), y $\sigma(Q)$ es la menor $\sigma$-álgebra que contiene a $Q$, concluimos que:
+    \[
+        \sigma(Q) \subseteq \sigma(\mathcal{M}(Q)) = \mathcal{M}(Q)
+    \]
+\end{enumerate}
+
+De la combinación de ambas inclusiones se obtiene la igualdad deseada:
+\[
+    \mathcal{M}(Q) = \sigma(Q)
+\]
 \end{demostracion}
 
----
+\newpage
 
 \section{Imagen directa e inversa de una aplicación}
 
 Sean $\Omega_1$ y $\Omega_2$ dos conjuntos y $f: \Omega_1 \to \Omega_2$ una aplicación:
 \begin{itemize}
-    \item **Imagen directa de $A \subseteq \Omega_1$:** $f(A) = \{ \omega_2 \in \Omega_2 \mid \exists \omega_1 \in A \text{ con } f(\omega_1) = \omega_2 \}$.
-    \item **Imagen inversa de $B \subseteq \Omega_2$:** $f^{-1}(B) = \{ \omega_1 \in \Omega_1 \mid f(\omega_1) \in B \}$.
+    \item Imagen directa de $A \subseteq \Omega_1$: $f(A) = \{ \omega_2 \in \Omega_2 \mid \exists \omega_1 \in A \text{ con } f(\omega_1) = \omega_2 \}$.
+    \item Imagen inversa de $B \subseteq \Omega_2$: $f^{-1}(B) = \{ \omega_1 \in \Omega_1 \mid f(\omega_1) \in B \}$.
 \end{itemize}
 
 \begin{observacion}[Propiedades de la imagen inversa]
@@ -589,8 +1195,6 @@ Demostramos ambas inclusiones:
     Como $\sigma(\mathcal{C})$ es la menor $\sigma$-álgebra que contiene a $\mathcal{C}$, resulta $\sigma(\mathcal{C}) \subseteq \mathcal{H}$. Esto significa que para todo $B \in \sigma(\mathcal{C})$, $f^{-1}(B) \in \sigma(f^{-1}(\mathcal{C}))$, es decir, $f^{-1}(\sigma(\mathcal{C})) \subseteq \sigma(f^{-1}(\mathcal{C}))$.
 \end{enumerate}
 \end{demostracion}
-
----
 
 \begin{problema}{Cálculo de límites mediante subcadenas monótonas}{prob:limites_subcadenas_monotonas}
 Recalcular los límites superior e inferior de las siguientes sucesiones de conjuntos de $\mathbb{R}$ descomponiéndolas en sus subcadenas pares e impares y aplicando los resultados de monotonía y de operaciones con límites (Proposiciones \ref{prop:prop2} y \ref{prop:prop3}):
@@ -648,7 +1252,7 @@ Recalcular los límites superior e inferior de las siguientes sucesiones de conj
     \begin{itemize}
         \item \textbf{Subcadena de índices impares $\{A_{2n-1}\}$:}
         Reescribimos el cota superior como $\frac{4n-2}{6n} = \frac{2}{3} - \frac{1}{3n}$.
-        Como $-\frac{1}{3n}$ aumenta con $n$, el extremo superior crece hacia $2/3$. Por tanto, la sucesión es **creciente** ($A_{2n-1} \uparrow$) y, por la Proposición \ref{prop:prop3}:
+        Como $-\frac{1}{3n}$ aumenta con $n$, el extremo superior crece hacia $2/3$. Por tanto, la sucesión es creciente ($A_{2n-1} \uparrow$) y, por la Proposición \ref{prop:prop3}:
         \[
             \lim_{n \to \infty} A_{2n-1} = \bigcup_{n=1}^\infty \left( -2, \, \frac{2}{3} - \frac{1}{3n} \right] = \left( -2, \, \frac{2}{3} \right)
         \]
@@ -656,7 +1260,7 @@ Recalcular los límites superior e inferior de las siguientes sucesiones de conj
 
         \item \textbf{Subcadena de índices pares $\{A_{2n}\}$:}
         El extremo inferior es $-\frac{1}{4n}$. Conforme $n \to \infty$, $-\frac{1}{4n}$ aumenta hacia $0$ por la izquierda, por lo que el intervalo se contrae: $A_2 \supseteq A_4 \supseteq A_6 \dots$
-        Así pues, la sucesión es **decreciente** ($A_{2n} \downarrow$) y, por la Proposición \ref{prop:prop3}:
+        Así pues, la sucesión es decreciente ($A_{2n} \downarrow$) y, por la Proposición \ref{prop:prop3}:
         \[
             \lim_{n \to \infty} A_{2n} = \bigcap_{n=1}^\infty \left[ -\frac{1}{4n}, \, 2 \right) = [0, 2)
         \]
@@ -668,6 +1272,380 @@ Recalcular los límites superior e inferior de las siguientes sucesiones de conj
         \varlimsup_{n \to \infty} A_n &= \varlimsup_{n \to \infty} A_{2n-1} \cup \varlimsup_{n \to \infty} A_{2n} = \left( -2, \, \frac{2}{3} \right) \cup [0, 2) = (-2, 2) \\
         \varliminf_{n \to \infty} A_n &= \varliminf_{n \to \infty} A_{2n-1} \cap \varliminf_{n \to \infty} A_{2n} = \left( -2, \, \frac{2}{3} \right) \cap [0, 2) = \left[ 0, \, \frac{2}{3} \right)
     \end{align*}
-    Como $\varliminf_{n \to \infty} A_n = [0, 2/3) \neq (-2, 2) = \varlimsup_{n \to \infty} A_n$, la sucesión $\{A_n\}$ **no es convergente**.
+    Como $\varliminf_{n \to \infty} A_n = [0, 2/3) \neq (-2, 2) = \varlimsup_{n \to \infty} A_n$, la sucesión $\{A_n\}$ no es convergente.
 \end{enumerate}
+\end{problema}
+
+\newpage
+
+% ==============================================================================
+% SECCIÓN DE PROBLEMAS RESUELTOS DEL TEMA 1
+% ==============================================================================
+\section{Problemas resueltos}
+% ------------------------------------------------------------------------------
+% PROBLEMA 8
+% ------------------------------------------------------------------------------
+\begin{problema}{Límite superior de semirrectas abiertas}{prob:lim_semirrectas}
+Sea el espacio universal $\Omega = \mathbb{R}$ y sea $\{a_n\}_{n \in \mathbb{N}}$ una sucesión arbitraria de números reales con límite superior:
+\[
+    a = \varlimsup_{n \to \infty} a_n = \inf_{k \ge 1} \sup_{n \ge k} a_n
+\]
+Consideramos la sucesión de subconjuntos de $\mathbb{R}$ dada por $A_n = (-\infty, a_n)$. Determinar la relación entre el conjunto $\varlimsup_{n \to \infty} A_n$ y los intervalos $(-\infty, a)$ y $(-\infty, a]$.
+
+\paragraph{Solución:}
+Definimos la sucesión numérica de supremos $s_k = \sup_{n \ge k} a_n$. Dado que el conjunto sobre el que se calcula el supremo es cada vez menor, $\{s_k\}_{k \in \mathbb{N}}$ es una sucesión monótona decreciente ($s_k \downarrow a$).
+
+Expresamos la unión de las colas $\sigma_k = \bigcup_{j=k}^\infty A_j = \bigcup_{j=k}^\infty (-\infty, a_j)$. Para cada $k \in \mathbb{N}$:
+\[
+    \sigma_k = \bigcup_{j=k}^\infty (-\infty, a_j) = (-\infty, s_k)
+\]
+Como $\{s_k\}$ es decreciente, la sucesión de conjuntos $\{\sigma_k\}$ es monótona decreciente ($\sigma_k \downarrow$). Por la Proposición \ref{prop:prop1}, el límite superior viene dado por la intersección infinita:
+\[
+    \varlimsup_{n \to \infty} A_n = \bigcap_{k=1}^\infty \sigma_k = \bigcap_{k=1}^\infty (-\infty, s_k)
+\]
+
+Analizamos el comportamiento de la intersección según el modo en que $\{s_k\}$ alcanza su ínfimo $a$:
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Caso 1: El ínfimo no se alcanza en ningún paso finito ($s_k > a, \, \forall k \in \mathbb{N}$):}
+    La sucesión $s_k$ decrece estrictamente hacia $a$. Para todo $k$, $a < s_k$, por lo que $a \in (-\infty, s_k)$ para todo $k \in \mathbb{N}$. En consecuencia, $a \in \bigcap_{k=1}^\infty (-\infty, s_k)$, obteniendo:
+    \[
+        \varlimsup_{n \to \infty} A_n = (-\infty, a]
+    \]
+    \textit{Ejemplo:} Si $a_n = 1 + \frac{1}{n}$, entonces $s_k = 1 + \frac{1}{k} > 1$ y $a = \inf s_k = 1$. Los conjuntos son $\sigma_k = \left(-\infty, 1 + \frac{1}{k}\right)$, cuya intersección resulta en $\varlimsup A_n = (-\infty, 1]$.
+
+    \item \textbf{Caso 2: El ínfimo se alcanza a partir de un subíndice finito $k_0 \in \mathbb{N}$ ($s_k = a, \, \forall k \ge k_0$):}
+    En este caso, para todo $k \ge k_0$ se tiene $\sigma_k = (-\infty, a)$. La intersección infinita colapsa a:
+    \[
+        \varlimsup_{n \to \infty} A_n = \bigcap_{k=1}^\infty (-\infty, s_k) = (-\infty, a)
+    \]
+    \textit{Ejemplo:} Si $a_n = 1$ para todo $n \in \mathbb{N}$, entonces $s_k = 1$ para todo $k \ge 1$. Por tanto, $\sigma_k = (-\infty, 1)$ para todo $k$, resultando $\varlimsup A_n = (-\infty, 1)$.
+\end{enumerate}
+
+\paragraph{Conclusión:}
+En general se verifica la inclusión en cadena:
+\[
+    (-\infty, a) \subseteq \varlimsup_{n \to \infty} A_n \subseteq (-\infty, a]
+\]
+coincidiendo con $(-\infty, a]$ si $s_k > a$ para todo $k$, y con $(-\infty, a)$ si $s_k = a$ a partir de algún término.
+\end{problema}
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 9
+% ------------------------------------------------------------------------------
+\begin{problema}{Estudio de semiálgebra sobre un conjunto finito}{prob:semialgebra_finitos}
+Sea el conjunto universal $\Omega = \{1, 2, 3, 4, 5, 6\}$. Comprobar si la siguiente clase de subconjuntos tiene estructura de semiálgebra:
+\[
+    \mathcal{S} = \{ \varnothing, \Omega, \{1,2\}, \{3,4\}, \{5,6\}, \{1,2,5,6\} \}
+\]
+
+\paragraph{Solución:}
+Denotemos la partición atómica básica por $A = \{1,2\}$, $B = \{3,4\}$ y $C = \{5,6\}$. Observamos que $\Omega = A \cup B \cup C$ y la clase se puede escribir de forma simplificada como:
+\[
+    \mathcal{S} = \{ \varnothing, \Omega, A, B, C, A \cup C \}
+\]
+Comprobamos secuencialmente las tres condiciones de la Definición \ref{def:semialgebra}:
+
+\begin{enumerate}
+    \item \textbf{Pertenencia de $\Omega$:}
+    $\Omega \in \mathcal{S}$ de forma explícita por definición de la clase.
+
+    \item \textbf{Cierre por intersecciones finitas:}
+    Calculamos las intersecciones de todas las parejas no triviales de elementos de $\mathcal{S}$:
+    \begin{align*}
+        A \cap B &= \varnothing \in \mathcal{S}, & B \cap C &= \varnothing \in \mathcal{S}, & A \cap C &= \varnothing \in \mathcal{S} \\
+        A \cap (A \cup C) &= A \in \mathcal{S}, & B \cap (A \cup C) &= \varnothing \in \mathcal{S}, & C \cap (A \cup C) &= C \in \mathcal{S}
+    \end{align*}
+    Las intersecciones con $\varnothing$ y $\Omega$ se cumplen de forma trivial. Por tanto, $\mathcal{S}$ es cerrada por intersecciones finitas.
+
+    \item \textbf{Descomposición del complemento en uniones finitas disjuntas:}
+    Calculamos el complementario de cada elemento de $\mathcal{S}$:
+    \begin{itemize}
+        \item $\varnothing^c = \Omega \in \mathcal{S}$ y $\Omega^c = \varnothing \in \mathcal{S}$.
+        \item $A^c = \{3,4,5,6\} = B \cup C$. Como $B, C \in \mathcal{S}$ y $B \cap C = \varnothing$, $A^c$ es unión finita disjunta de elementos de $\mathcal{S}$.
+        \item $B^c = \{1,2,5,6\} = A \cup C \in \mathcal{S}$ (pertenece a la clase como un único elemento).
+        \item $C^c = \{1,2,3,4\} = A \cup B$. Como $A, B \in \mathcal{S}$ y $A \cap B = \varnothing$, $C^c$ es unión finita disjunta de elementos de $\mathcal{S}$.
+        \item $(A \cup C)^c = \{3,4\} = B \in \mathcal{S}$.
+    \end{itemize}
+\end{enumerate}
+Dado que se satisfacen las tres propiedades, la clase $\mathcal{S}$ sí tiene estructura de semiálgebra.
+\end{problema}
+
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 10 DE LA LISTA
+% ------------------------------------------------------------------------------
+\begin{problema}{Comprobación de álgebras y semiálgebras}{prob:comprobacion_algebras}
+Sea el conjunto universal $\Omega = \{1, 2, 3, 4\}$. Comprobar si las siguientes clases de subconjuntos tienen estructura de álgebra o de semiálgebra:
+\begin{enumerate}[label=\alph*)]
+    \item $\mathcal{A} = \{ \varnothing, \Omega, \{1,2\}, \{3,4\} \}$
+    \item $\mathcal{H} = \{ \varnothing, \Omega, \{1\}, \{2\}, \{3\}, \{4\} \}$
+\end{enumerate}
+
+\paragraph{Solución:}
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Estudio de la clase $\mathcal{A}$:}
+    Comprobamos las condiciones de álgebra (Definición \ref{def:algebra}):
+    \begin{enumerate}
+        \item $\Omega \in \mathcal{A}$.
+        \item \textit{Complementarios:} $\varnothing^c = \Omega \in \mathcal{A}$, $\Omega^c = \varnothing \in \mathcal{A}$, $\{1,2\}^c = \{3,4\} \in \mathcal{A}$ y $\{3,4\}^c = \{1,2\} \in \mathcal{A}$.
+        \item \textit{Uniones finitas:} $\{1,2\} \cup \{3,4\} = \Omega \in \mathcal{A}$. Las uniones con $\varnothing$ y $\Omega$ permanecen en $\mathcal{A}$.
+    \end{enumerate}
+    La clase $\mathcal{A}$ sí es un álgebra (y por tanto también es una semiálgebra y una $\sigma$-álgebra al ser $\Omega$ finito).
+
+    \item \textbf{Estudio de la clase $\mathcal{H}$:}
+    \begin{itemize}
+        \item \textit{¿Es un álgebra?}
+        Verificamos el cierre por complementarios: para el elemento $\{1\} \in \mathcal{H}$, su complemento es $\{1\}^c = \{2,3,4\}$. Sin embargo, $\{2,3,4\} \notin \mathcal{H}$. Por tanto, $\mathcal{H}$ no es un álgebra.
+
+        \item \textit{¿Es una semiálgebra?}
+        Comprobamos las tres condiciones de semiálgebra (Definición \ref{def:semialgebra}):
+        \begin{enumerate}
+            \item $\Omega \in \mathcal{H}$.
+            \item \textit{Intersecciones finitas:} $\{i\} \cap \{j\} = \varnothing \in \mathcal{H}$ para todo $i \neq j$.
+            \item \textit{Complementación:} Para cualquier elemento puntual $\{i\} \in \mathcal{H}$, su complementario $\{i\}^c = \bigcup_{j \neq i} \{j\}$ es la unión de tres elementos de $\mathcal{H}$ que son disjuntos dos a dos.
+        \end{enumerate}
+        Por consiguiente, la clase $\mathcal{H}$ sí tiene estructura de semiálgebra.
+    \end{itemize}
+\end{enumerate}
+\end{problema}
+
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 14 DE LA LISTA
+% ------------------------------------------------------------------------------
+\begin{problema}{Estructura de álgebra en el semieje real}{prob:algebra_semieje}
+En el espacio universal $\Omega = [0,\infty)$, se consideran las siguientes clases de subconjuntos:
+\begin{enumerate}[label=\alph*)]
+    \item $C_1$, la clase de los intervalos de la forma $[0,a)$, donde $a \in \Omega$ o $a = +\infty$. Demostrar que $C_1$ no es álgebra.
+    \item $C_2$, la clase de todas las uniones finitas de intervalos de la forma $[a,b)$, donde $a,b \in \Omega$ o $b = +\infty$. Demostrar que $C_2$ es álgebra pero no $\sigma$-álgebra.
+    \item Demostrar que el álgebra generada por $C_1$ es $C_2$; es decir, $\mathcal{Q}(C_1) = C_2$.
+\end{enumerate}
+
+\paragraph{Solución:}
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Estudio de la clase $C_1 = \{ [0,a) \mid a \in [0,\infty] \}$:}
+    
+    Verificamos la satisfacción de las propiedades de álgebra:
+    \begin{enumerate}[label=\arabic*.]
+        \item \textit{Pertenencia del espacio universal:} Tomando $a = +\infty$, el conjunto $[0,+\infty) = \Omega \in C_1$.
+        \item \textit{Cierre por complementarios:} Consideremos un elemento $A = [0,a) \in C_1$ con $a \in (0,\infty)$. Su complementario respecto a $\Omega = [0,\infty)$ es:
+        \[
+            A^c = \Omega \setminus [0,a) = [a,\infty)
+        \]
+        Para cualquier $a > 0$, el conjunto $[a,\infty)$ no comienza en $0$, por lo que no puede expresarse de la forma $[0,b)$ para ningún $b \in [0,\infty]$. Por tanto, $[a,\infty) \notin C_1$.
+    \end{enumerate}
+    Al no ser cerrada bajo la operación de complementación, la clase $C_1$ \textbf{no tiene estructura de álgebra}.
+
+    \item \textbf{Estudio de la clase $C_2$:}
+    
+    La clase $C_2$ viene dada por todas las uniones finitas de intervalos semiabiertos:
+    \[
+        C_2 = \left\{ \bigcup_{i=1}^n [a_i, b_i) \,\,\middle|\,\, n \in \mathbb{N}, \, a_i, b_i \in [0,\infty] \right\}
+    \]
+    
+    Comprobamos las condiciones de álgebra:
+    \begin{enumerate}[label=\arabic*.]
+        \item \textit{Pertenencia del conjunto universal:} Para $n=1, a_1=0, b_1=+\infty$, se tiene $\Omega = [0,\infty) \in C_2$.
+        \item \textit{Cierre por complementarios:} Sea $A \in C_2$. Sin pérdida de generalidad, toda unión finita de intervalos semiabiertos se puede expresar como una unión finita disjunta:
+        \[
+            A = \bigsqcup_{i=1}^n [a_i, b_i) \quad \text{con } 0 \le a_1 < b_1 < a_2 < b_2 < \dots < a_n < b_n \le \infty
+        \]
+        Su complementario en $\Omega = [0,\infty)$ toma la forma:
+        \[
+            A^c = [0, a_1) \cup [b_1, a_2) \cup [b_2, a_3) \cup \dots \cup [b_{n-1}, a_n) \cup [b_n, \infty)
+        \]
+        Esta expresión resulta ser nuevamente una unión finita de intervalos de la forma $[a,b)$ (con la convención $[0,a_1) = \varnothing$ si $a_1=0$, y $[b_n,\infty) = \varnothing$ si $b_n=\infty$). Por consiguiente, $A^c \in C_2$.
+        \item \textit{Cierre por uniones finitas:} Sean $A, B \in C_2$. Dado que ambos son uniones finitas de intervalos de la forma $[a,b)$, la unión $A \cup B$ sigue siendo una unión finita de intervalos de dicho tipo, luego $A \cup B \in C_2$.
+    \end{enumerate}
+    Por lo tanto, la clase $C_2$ \textbf{es un álgebra}.
+
+    Sin embargo, $C_2$ \textbf{no es una $\sigma$-álgebra}. Para comprobarlo, mostramos un contraejemplo de no cierre ante uniones numerables. Consideremos la familia numerable de intervalos disjuntos pertenecientes a $C_2$:
+    \[
+        A_k = [2k, 2k+1) \in C_2, \quad \forall k \in \mathbb{N}
+    \]
+    Su unión numerable es:
+    \[
+        E = \bigcup_{k=1}^\infty [2k, 2k+1) = [2,3) \cup [4,5) \cup [6,7) \cup \dots
+    \]
+    El conjunto $E$ consta de infinitas componentes disjuntas. Dado que ninguna unión finita de intervalos de la forma $[a,b)$ puede generar infinitos tramos disjuntos, se deduce que $E \notin C_2$. Así, $C_2$ no es cerrada bajo uniones numerables y no constituye una $\sigma$-álgebra.
+
+    \item \textbf{Demostración de que $\mathcal{Q}(C_1) = C_2$:}
+    
+    Establecemos la igualdad mediante la doble inclusión:
+    \begin{itemize}
+        \item \textbf{Inclusión $\mathcal{Q}(C_1) \subseteq C_2$:}
+        Cualquier elemento $[0,a) \in C_1$ es en particular una unión finita de un único intervalo $[0,a) \in C_2$, luego $C_1 \subseteq C_2$.
+        Dado que $C_2$ es un álgebra y $\mathcal{Q}(C_1)$ representa la menor álgebra que contiene a $C_1$, se deduce inmediatamente que:
+        \[
+            \mathcal{Q}(C_1) \subseteq C_2
+        \]
+
+        \item \textbf{Inclusión $C_2 \subseteq \mathcal{Q}(C_1)$:}
+        Sea $A \in C_2$ un elemento genérico expresado como $A = \bigcup_{i=1}^n [a_i, b_i)$.
+        Cada intervalo semiabierto $[a_i, b_i)$ se puede descomponer mediante la intersección:
+        \[
+            [a_i, b_i) = [0, b_i) \cap [0, a_i)^c
+        \]
+        Analizamos la pertenencia de los términos a $\mathcal{Q}(C_1)$:
+        \begin{enumerate}[label=\arabic*)]
+            \item $[0, b_i) \in C_1 \subseteq \mathcal{Q}(C_1)$.
+            \item $[0, a_i) \in C_1 \subseteq \mathcal{Q}(C_1) \implies [0, a_i)^c \in \mathcal{Q}(C_1)$ por ser $\mathcal{Q}(C_1)$ un álgebra cerrada por complementación.
+            \item Al ser un álgebra cerrada por intersecciones finitas, $[a_i, b_i) = [0, b_i) \cap [0, a_i)^c \in \mathcal{Q}(C_1)$.
+            \item Al ser cerrada por uniones finitas, la combinación $A = \bigcup_{i=1}^n [a_i, b_i) \in \mathcal{Q}(C_1)$.
+        \end{enumerate}
+        Por tanto, $C_2 \subseteq \mathcal{Q}(C_1)$.
+    \end{itemize}
+    De ambas inclusiones se deduce formalmente la igualdad $\mathcal{Q}(C_1) = C_2$.
+\end{enumerate}
+\end{problema}
+
+\newpage
+
+\begin{problema}{\texorpdfstring{$\sigma$}{sigma}-álgebra generada por conjuntos con números primos}{prob:sigma_algebra_primos}
+Determinar la $\sigma$-álgebra de $\mathbb{N}$ que está generada por los subconjuntos de números naturales que contienen a todos los números primos. 
+¿Están en dicha $\sigma$-álgebra el subconjunto de los $\{\text{múltiplos de } 5\}$? ¿Y el de los $\{\text{múltiplos de } 6\}$?
+
+\paragraph{Solución:}
+Sea $\mathbb{P} = \{2, 3, 5, 7, 11, \dots\} \subset \mathbb{N}$ el conjunto formado por todos los números primos. La colección generadora dada en el enunciado se define como:
+\[
+    \mathcal{C} = \{ A \in \mathcal{P}(\mathbb{N}) \mid \mathbb{P} \subseteq A \}
+\]
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Construcción de la $\sigma$-álgebra generada $\sigma(\mathcal{C})$:}
+
+    Comprobamos en primer lugar que $\mathcal{C}$ no satisface la estructura de $\sigma$-álgebra:
+    \begin{enumerate}[label=\arabic*.]
+        \item $\mathbb{N} \in \mathcal{C}$ pues $\mathbb{P} \subseteq \mathbb{N}$.
+        \item Sea $A \in \mathcal{C}$, de modo que $\mathbb{P} \subseteq A$. Su complementario respecto a $\mathbb{N}$, $A^c = \mathbb{N} \setminus A$, no contiene a ningún número primo ($A^c \cap \mathbb{P} = \varnothing$). Por tanto, $A^c \notin \mathcal{C}$, lo que muestra que $\mathcal{C}$ no es cerrada bajo complementación y no es una $\sigma$-álgebra.
+    \end{enumerate}
+
+    Definimos la clase de subconjuntos de $\mathbb{N}$ que no contienen a ningún número primo:
+    \[
+        \mathcal{F} = \{ B \in \mathcal{P}(\mathbb{N}) \mid B \cap \mathbb{P} = \varnothing \}
+    \]
+    Consideramos la colección unión $\mathcal{C}_1 = \mathcal{C} \cup \mathcal{F}$, formada por los subconjuntos de $\mathbb{N}$ que contienen a todos los números primos o a ninguno de ellos:
+    \[
+        \mathcal{C}_1 = \{ A \in \mathcal{P}(\mathbb{N}) \mid \mathbb{P} \subseteq A \text{ o } A \cap \mathbb{P} = \varnothing \}
+    \]
+
+    Demostramos que $\mathcal{C}_1$ tiene estructura de $\sigma$-álgebra sobre $\mathbb{N}$:
+    \begin{enumerate}[label=\arabic*.]
+        \item \textit{Pertenencia del universo:} $\mathbb{N} \in \mathcal{C} \subseteq \mathcal{C}_1$.
+        \item \textit{Cierre por complementarios:} Sea $A \in \mathcal{C}_1$:
+        \begin{itemize}
+            \item Si $A \in \mathcal{C} \implies \mathbb{P} \subseteq A \implies A^c \cap \mathbb{P} = \varnothing \implies A^c \in \mathcal{F} \subseteq \mathcal{C}_1$.
+            \item Si $A \in \mathcal{F} \implies A \cap \mathbb{P} = \varnothing \implies \mathbb{P} \subseteq A^c \implies A^c \in \mathcal{C} \subseteq \mathcal{C}_1$.
+        \end{itemize}
+        En ambos casos se verifica $A^c \in \mathcal{C}_1$.
+        
+        \item \textit{Cierre por uniones numerables:} Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{C}_1$:
+        \begin{itemize}
+            \item Si $A_n \in \mathcal{F}$ para todo $n \in \mathbb{N}$, ningún $A_n$ contiene primos, luego $\left(\bigcup_{n=1}^\infty A_n\right) \cap \mathbb{P} = \bigcup_{n=1}^\infty (A_n \cap \mathbb{P}) = \varnothing$, por lo que $\bigcup_{n=1}^\infty A_n \in \mathcal{F} \subseteq \mathcal{C}_1$.
+            \item Si existe al menos un subíndice $n_0 \in \mathbb{N}$ tal que $A_{n_0} \in \mathcal{C}$, se cumple $\mathbb{P} \subseteq A_{n_0} \subseteq \bigcup_{n=1}^\infty A_n$, por lo que $\bigcup_{n=1}^\infty A_n \in \mathcal{C} \subseteq \mathcal{C}_1$.
+        \end{itemize}
+        Por tanto, $\bigcup_{n=1}^\infty A_n \in \mathcal{C}_1$.
+    \end{enumerate}
+
+    Puesto que cualquier $\sigma$-álgebra que contenga a $\mathcal{C}$ debe contener a sus complementarios $\mathcal{F}$ y a sus uniones, $\mathcal{C}_1$ representa la menor $\sigma$-álgebra que contiene a $\mathcal{C}$. Concluimos que:
+    \[
+        \sigma(\mathcal{C}) = \mathcal{C}_1 = \{ A \in \mathcal{P}(\mathbb{N}) \mid \mathbb{P} \subseteq A \text{ o } A \cap \mathbb{P} = \varnothing \}
+    \]
+
+    \item \textbf{Estudio de los subconjuntos de múltiplos:}
+
+    \begin{itemize}
+        \item \textbf{Múltiplos de 5 ($M_5 = \{5, 10, 15, 20, \dots\}$):}
+        El elemento $5 \in M_5$ es primo, por lo que $M_5 \cap \mathbb{P} \neq \varnothing$ ($M_5 \notin \mathcal{F}$). Por otro lado, $M_5$ no contiene a todos los números primos (por ejemplo, $2 \notin M_5$), de modo que $\mathbb{P} \not\subseteq M_5$ ($M_5 \notin \mathcal{C}$). 
+        
+        Por consiguiente, $M_5 \notin \mathcal{C}_1$, es decir, \textbf{los múltiplos de 5 no pertenecen a la $\sigma$-álgebra $\sigma(\mathcal{C})$}.
+
+        \item \textbf{Múltiplos de 6 ($M_6 = \{6, 12, 18, 24, \dots\}$):}
+        Todo elemento de $M_6$ es de la forma $6k$ con $k \ge 1$, tratándose de números compuestos estrictamente mayores que 3. Ningún elemento de $M_6$ es primo, por lo que $M_6 \cap \mathbb{P} = \varnothing$.
+        
+        Por consiguiente, $M_6 \in \mathcal{F} \subseteq \mathcal{C}_1$, es decir, \textbf{los múltiplos de 6 sí pertenecen a la $\sigma$-álgebra $\sigma(\mathcal{C})$}.
+    \end{itemize}
+\end{enumerate}
+\end{problema}
+
+\newpage
+
+\begin{problema}{(Proposición 7) Álgebra generada por una semiálgebra}{prob:algebra_generada_semialgebra}
+Sea $S$ una semiálgebra sobre $\Omega$. Demostrar que el álgebra generada por $S$ viene dada por el conjunto de todas las uniones finitas de conjuntos disjuntos de $S$; es decir:
+\[
+    \mathcal{Q}(S) = \left\{ E \in \mathcal{P}(\Omega) \,\,\middle|\,\, E = \bigcup_{i=1}^n A_i \text{ para algún } n \in \mathbb{N}, \text{ donde } A_i \in S \text{ y } A_i \cap A_j = \varnothing \, (i \neq j) \right\}
+\]
+
+\paragraph{Solución:}
+Denotemos por $\mathcal{C}$ a la colección de todas las uniones finitas de conjuntos de $S$ disjuntos dos a dos:
+\[
+    \mathcal{C} = \left\{ E \in \mathcal{P}(\Omega) \,\,\middle|\,\, E = \bigcup_{n=1}^r A_n \text{ para algún } r \in \mathbb{N}, \text{ con } A_n \in S \text{ y } A_i \cap A_j = \varnothing \, (i \neq j) \right\}
+\]
+Queremos probar la igualdad $\mathcal{Q}(S) = \mathcal{C}$ mediante la doble inclusión:
+
+\begin{enumerate}
+    \item \textbf{Demostración de $\mathcal{Q}(S) \subseteq \mathcal{C}$:}
+
+    Para probar esta inclusión, demostraremos que $S \subseteq \mathcal{C}$ y que $\mathcal{C}$ tiene estructura de álgebra. Al ser $\mathcal{Q}(S)$ la menor álgebra que contiene a $S$, se deducirá automáticamente que $\mathcal{Q}(S) \subseteq \mathcal{C}$.
+
+    \begin{itemize}
+        \item \textit{Inclusión $S \subseteq \mathcal{C}$:}
+        Todo elemento $A \in S$ puede expresarse trivialmente como una unión finita de $r=1$ elementos de $S$. Por tanto, $S \subseteq \mathcal{C}$.
+
+        \item \textit{Comprobación de que $\mathcal{C}$ es un álgebra:}
+        \begin{enumerate}[label=\arabic*)]
+            \item \textit{Pertenencia del universo:} Como $S$ es una semiálgebra, $\Omega \in S$. Dado que $\Omega = \bigcup_{n=1}^1 \Omega$, se tiene directamente que $\Omega \in \mathcal{C}$.
+
+            \item \textit{Cierre por intersecciones finitas:}
+            Sean $B_1, B_2 \in \mathcal{C}$. Por definición, existen representaciones finitas en conjuntos disjuntos de $S$:
+            \[
+                B_1 = \bigcup_{n=1}^{r_1} A_{1n} \quad \text{y} \quad B_2 = \bigcup_{m=1}^{r_2} A_{2m}
+            \]
+            donde $A_{1n} \in S$ son disjuntos dos a dos entre sí, y $A_{2m} \in S$ son disjuntos dos a dos entre sí.
+            
+            Calculamos la intersección aplicando la propiedad distributiva:
+            \[
+                B_1 \cap B_2 = \left( \bigcup_{n=1}^{r_1} A_{1n} \right) \cap \left( \bigcup_{m=1}^{r_2} A_{2m} \right) = \bigcup_{n=1}^{r_1} \bigcup_{m=1}^{r_2} (A_{1n} \cap A_{2m})
+            \]
+            Puesto que $S$ es semiálgebra, es cerrada por intersecciones finitas, luego $A_{1n} \cap A_{2m} \in S$ para todo $n, m$. Además, la colección de conjuntos $\{A_{1n} \cap A_{2m}\}$ consta de conjuntos disjuntos dos a dos, pues si $(n,m) \neq (n',m')$, bien $n \neq n'$ (y $A_{1n} \cap A_{1n'} = \varnothing$) o bien $m \neq m'$ (y $A_{2m} \cap A_{2m'} = \varnothing$).
+            
+            En consecuencia, $B_1 \cap B_2$ se ha escrito como una unión finita de conjuntos de $S$ disjuntos dos a dos, por lo que $B_1 \cap B_2 \in \mathcal{C}$.
+
+            \item \textit{Cierre por complementación:}
+            Sea $B \in \mathcal{C}$ expresado como $B = \bigcup_{n=1}^r A_n$ con $A_n \in S$ disjuntos dos a dos.
+            Por la definición de semiálgebra, el complemento de cualquier elemento $A_n \in S$ se descompone como unión finita disjunta de elementos de $S$:
+            \[
+                A_n^c = \bigsqcup_{k=1}^{l_n} B_{nk}, \quad \text{con } B_{nk} \in S \text{ disjuntos dos a dos}
+            \]
+            Dado que $A_n^c \in \mathcal{C}$ para todo $n=1,\dots,r$, aplicamos las leyes de De Morgan para el complemento de $B$:
+            \[
+                B^c = \left( \bigcup_{n=1}^r A_n \right)^c = \bigcap_{n=1}^r A_n^c
+            \]
+            Como ya hemos demostrado que $\mathcal{C}$ es cerrada bajo intersecciones finitas, la intersección finita de los conjuntos $A_n^c \in \mathcal{C}$ pertenece a $\mathcal{C}$, concluyendo que $B^c \in \mathcal{C}$.
+        \end{enumerate}
+        Habiendo verificado las tres propiedades, concluimos que $\mathcal{C}$ es un álgebra sobre $\Omega$.
+    \end{itemize}
+
+    Puesto que $\mathcal{C}$ es un álgebra que contiene a $S$, y $\mathcal{Q}(S)$ es por definición la menor álgebra que contiene a $S$, se tiene:
+    \[
+        \mathcal{Q}(S) \subseteq \mathcal{C}
+    \]
+
+    \item \textbf{Demostración de $\mathcal{C} \subseteq \mathcal{Q}(S)$:}
+
+    Sea $\mathcal{G}$ cualquier álgebra sobre $\Omega$ que contenga a $S$ ($S \subseteq \mathcal{G}$).
+    Al ser $\mathcal{G}$ un álgebra, debe ser cerrada bajo uniones finitas de sus elementos. En particular, contiene a todas las uniones finitas de conjuntos disjuntos de $S$. Por consiguiente:
+    \[
+        \mathcal{C} \subseteq \mathcal{G}
+    \]
+    Puesto que esta inclusión se cumple para toda álgebra $\mathcal{G}$ que contenga a $S$, en particular se verifica para $\mathcal{G} = \mathcal{Q}(S)$, obteniendo:
+    \[
+        \mathcal{C} \subseteq \mathcal{Q}(S)
+    \]
+\end{enumerate}
+
+De ambas inclusiones se deduce formalmente la igualdad $\mathcal{Q}(S) = \mathcal{C}$.
 \end{problema}
