@@ -65,6 +65,18 @@
     urlcolor=blue!80!black
 }
 
+% Definición de colores principales
+\definecolor{maincolor}{RGB}{0, 51, 102}      % Azul oscuro académico
+\definecolor{accentcolor}{RGB}{0, 128, 128}   % Verde azulado / Teal
+\definecolor{boxbg}{RGB}{245, 247, 250}       % Fondo claro para cajas
+
+\newcounter{problemacontador}[chapter]
+
+\newcommand{\seccionproblemas}[1][Problemas resueltos]{%
+  \section{#1}%
+  \setcounter{problemacontador}{1}%
+}
+
 % ------------------------------------------------------------------------------
 % Entornos Estilizados (Encabezado propio con título blanco y texto en la línea siguiente)
 % ------------------------------------------------------------------------------
@@ -157,15 +169,19 @@
 }
 
 % 8. PROBLEMA RESUELTO (Púrpura)
-\newtcbtheorem[number within=chapter]{problema}{Problema Resuelto}{
-    colback=purple!3!white,
-    colframe=purple!75!black,
-    coltitle=white,
-    fonttitle=\bfseries,
-    enhanced,
-    separator sign={: },
-    breakable
-}{prob}
+\newtcolorbox{problema}[1][]{
+  enhanced,
+  breakable,
+  colback=boxbg,
+  colframe=maincolor,
+  fonttitle=\bfseries,
+  coltitle=white,
+  arc=2mm,
+  boxrule=1pt,
+  code={\refstepcounter{problemacontador}},
+  title={Problema~\theproblemacontador\ifstrempty{#1}{}{: #1}},
+  lower separated=true
+}
 
 % ------------------------------------------------------------------------------
 % Notación Matemática

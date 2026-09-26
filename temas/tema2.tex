@@ -1,10 +1,160 @@
 \chapter{Aditividad, continuidad de funciones de conjunto y espacios de medida}
 
 \section{Funciones de conjunto: aditividad y continuidad}
-% Aditividad finita, aditividad contable ($\sigma$-aditividad) y propiedades de continuidad.
 
+\begin{proposicion}{Propiedades de las funciones de conjunto aditivas}{prop:prop10}
+Sea $\mathcal{Q}$ un álgebra sobre $\Omega$ y $\mu : \mathcal{Q} \to \overline{\mathbb{R}}$ una función de conjunto aditiva. Sean $A, B \in \mathcal{Q}$, entonces se verifican las siguientes propiedades:
+\begin{enumerate}[label=\arabic*.]
+    \item $\mu(A) = \mu(A \setminus B) + \mu(A \cap B)$
+    \item $\mu(A) + \mu(B) = \mu(A \cup B) + \mu(A \cap B)$
+    \item Si $B \subseteq A$ y $\mu(B)$ es finito, entonces $\mu(A \setminus B) = \mu(A) - \mu(B)$.
+    \item Si $B \subseteq A$ y $\mu(B) = \pm\infty$, entonces $\mu(A) = \mu(B) = \pm\infty$.
+    \item Si $B \subseteq A$ y $\mu(A)$ es finito, entonces $\mu(B)$ es finito.
+\end{enumerate}
+\end{proposicion}
+
+\begin{demostracion}
+Demostramos formalmente cada apartado haciendo uso de la propiedad de aditividad finita:
+
+\begin{enumerate}[label=\arabic*.]
+    \item Podemos descomponer el conjunto $A$ como la unión de dos conjuntos disjuntos de $\mathcal{Q}$:
+    \[
+        A = (A \setminus B) \cup (A \cap B), \quad \text{con } (A \setminus B) \cap (A \cap B) = \varnothing
+    \]
+    Por la aditividad de $\mu$, se deduce directamente:
+    \[
+        \mu(A) = \mu(A \setminus B) + \mu(A \cap B)
+    \]
+
+    \item Expresamos la unión $A \cup B$ mediante una partición disjunta de tres bloques:
+    \[
+        A \cup B = (A \setminus B) \cup (A \cap B) \cup (B \setminus A)
+    \]
+    Aplicando la aditividad finita sobre esta descomposición:
+    \[
+        \mu(A \cup B) = \mu(A \setminus B) + \mu(A \cap B) + \mu(B \setminus A)
+    \]
+    Por otra parte, aplicando el resultado del apartado 1 a los conjuntos $A$ y $B$:
+    \[
+        \mu(A) = \mu(A \setminus B) + \mu(A \cap B), \quad \mu(B) = \mu(B \setminus A) + \mu(A \cap B)
+    \]
+    Sumando miembro a miembro ambas expresiones:
+    \[
+        \mu(A) + \mu(B) = \mu(A \setminus B) + \mu(A \cap B) + \mu(B \setminus A) + \mu(A \cap B) = \mu(A \cup B) + \mu(A \cap B)
+    \]
+
+    \begin{observacion}
+    En la teoría de la probabilidad, al trabajar con medidas acotadas por 1, es habitual despejar la expresión como $P(A \cup B) = P(A) + P(B) - P(A \cap B)$. Sin embargo, en la teoría general de la medida donde las funciones de conjunto pueden tomar valores infinitos, no es correcto realizar la resta si $\mu(A \cap B) = \infty$, ya que se incurriría en la indeterminación $\infty - \infty$. Por ello, la formulación dada en la Proposición representa la forma aditiva general e indiscutible.
+    \end{observacion}
+
+    \item Si $B \subseteq A$, se verifica que $A \cap B = B$. Sustituyendo en la propiedad 1:
+    \[
+        \mu(A) = \mu(A \setminus B) + \mu(B)
+    \]
+    Puesto que por hipótesis $\mu(B)$ es una cantidad finita ($|\mu(B)| < \infty$), podemos restarla en ambos lados de la igualdad:
+    \[
+        \mu(A \setminus B) = \mu(A) - \mu(B)
+    \]
+
+    \item Si $B \subseteq A$, volvemos a tener $\mu(A) = \mu(A \setminus B) + \mu(B)$. 
+    Puesto que $\mu(A)$ y $\mu(B)$ están bien definidos al ser $A, B \in \mathcal{Q}$:
+    \begin{itemize}
+        \item Si $\mu(B) = +\infty$, la suma $\mu(A \setminus B) + \infty$ obliga a que $\mu(A) = +\infty$.
+        \item Si $\mu(B) = -\infty$, de forma análoga se deduce que $\mu(A) = -\infty$.
+    \end{itemize}
+    En consecuencia, la medida infinita del subconjunto $B$ arrastra al superconjunto $A$ a tener su misma medida infinita.
+
+    \item Se deduce inmediatamente por contrarrecíproco del apartado 4: si $\mu(B)$ fuese infinito ($+\infty$ o $-\infty$), por la propiedad 4 la medida de $A$ debería ser también infinita, contradiciendo la hipótesis de que $\mu(A)$ es finita. Por tanto, $\mu(B)$ es necesariamente finita.
+\end{enumerate}
+\end{demostracion}
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 25
+% ------------------------------------------------------------------------------
+\begin{problema}[Aditividad y no $\sigma$-aditividad de la densidad natural relativa]
+En el espacio medible $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$, se definen para cada subconjunto de números naturales $E \subseteq \mathbb{N}$ las siguientes funciones de conjunto:
+\[
+    r_n(E) = \#\{k \in E \mid k \le n\}, \quad \tau(E) = \lim_{n \to \infty} \frac{r_n(E)}{n}
+\]
+Sea $\mathcal{G} = \{ E \subseteq \mathbb{N} \mid \text{existe el límite } \tau(E) \}$. Demostrar que la función de conjunto $\tau$ es aditiva sobre la clase $\mathcal{G}$, pero no es $\sigma$-aditiva.
+
+\tcblower
+
+\paragraph{1. Demostración de la aditividad sobre $\mathcal{G}$:}
+
+Verificamos en primer lugar que $\tau$ cumple las condiciones de función de conjunto aditiva sobre la clase $\mathcal{G}$:
+\begin{enumerate}[label=\alph*)]
+    \item \textit{Pertenencia del conjunto vacío:} Para $E = \varnothing$, se tiene $r_n(\varnothing) = 0$ para todo $n \in \mathbb{N}$. Por tanto:
+    \[
+        \tau(\varnothing) = \lim_{n \to \infty} \frac{0}{n} = 0
+    \]
+    de donde $\varnothing \in \mathcal{G}$ y $\tau(\varnothing) = 0$.
+
+    \item \textit{Aditividad para conjuntos disjuntos:} Sean $A, B \in \mathcal{G}$ dos subconjuntos disjuntos ($A \cap B = \varnothing$). Por ser $A, B \in \mathcal{G}$, existen los límites individuales $\tau(A)$ y $\tau(B)$.
+    
+    Puesto que $A$ y $B$ no comparten elementos, el número de elementos menores o iguales que $n$ en la unión satisface:
+    \[
+        r_n(A \cup B) = r_n(A) + r_n(B)
+    \]
+    Calculando la función $\tau$ sobre la unión $A \cup B$:
+    \[
+        \tau(A \cup B) = \lim_{n \to \infty} \frac{r_n(A \cup B)}{n} = \lim_{n \to \infty} \left( \frac{r_n(A)}{n} + \frac{r_n(B)}{n} \right)
+    \]
+    Como la suma de límites existentes es igual al límite de la suma:
+    \[
+        \tau(A \cup B) = \lim_{n \to \infty} \frac{r_n(A)}{n} + \lim_{n \to \infty} \frac{r_n(B)}{n} = \tau(A) + \tau(B)
+    \]
+    Dado que el límite existe, $A \cup B \in \mathcal{G}$ y se verifica la aditividad. Por inducción finita, para cualquier colección $A_1, \dots, A_m \in \mathcal{G}$ de conjuntos disjuntos dos a dos se satisface $\tau\left(\bigcup_{i=1}^m A_i\right) = \sum_{i=1}^m \tau(A_i)$.
+\end{enumerate}
+
+Por consiguiente, la función de conjunto $\tau$ es aditiva sobre la clase $\mathcal{G}$.
+
+\paragraph{2. Contraejemplo de no $\sigma$-aditividad:}
+
+Para probar que $\tau$ no es $\sigma$-aditiva, construimos una colección numerable de conjuntos disjuntos de medida nula cuya unión posea medida strictly positiva.
+
+Consideremos la familia de subconjuntos unipuntuales $E_i = \{i\}$ para cada $i \in \mathbb{N}$. Evaluamos $r_n(E_i)$ para un índice $i$ fijo:
+\[
+    r_n(E_i) = \begin{cases} 1 & \text{si } n \ge i \\ 0 & \text{si } n < i \end{cases}
+\]
+Calculando la medida $\tau$ de cada singleton $E_i$:
+\[
+    \tau(E_i) = \lim_{n \to \infty} \frac{r_n(E_i)}{n} = \lim_{n \to \infty} \frac{1}{n} = 0
+\]
+Existe el límite para cada $i$, de modo que $E_i \in \mathcal{G}$ con $\tau(E_i) = 0$ para todo $i \in \mathbb{N}$. La suma de la serie de sus medidas resulta:
+\[
+    \sum_{i=1}^\infty \tau(E_i) = \sum_{i=1}^\infty 0 = 0
+\]
+
+Por otra parte, la unión numerable de todos estos conjuntos disjuntos recubre el espacio completo:
+\[
+    \bigcup_{i=1}^\infty E_i = \mathbb{N}
+\]
+Calculamos la medida de $\mathbb{N}$, observando que $r_n(\mathbb{N}) = n$:
+\[
+    \tau\left( \bigcup_{i=1}^\infty E_i \right) = \tau(\mathbb{N}) = \lim_{n \to \infty} \frac{r_n(\mathbb{N})}{n} = \lim_{n \to \infty} \frac{n}{n} = 1
+\]
+
+Dado que:
+\[
+    1 = \tau\left( \bigcup_{i=1}^\infty E_i \right) \neq \sum_{i=1}^\infty \tau(E_i) = 0
+\]
+se concluye que la función de conjunto $\tau$ \textbf{no es $\sigma$-aditiva} sobre la clase $\mathcal{G}$.
+\end{problema}
+
+\newpage
+%==========================================================
 \section{Espacios de medida}
 % Definición de espacio medible, espacio de medida, propiedades elementales de la medida.
 
+
+\newpage
+%==========================================================
 \section{Comparación de medidas}
 % Medidas finitas, $\sigma$-finitas, absoluta continuidad y singularidad de medidas.
+
+
+
+\newpage
+%==========================================================
+\section{Problemas resueltos}

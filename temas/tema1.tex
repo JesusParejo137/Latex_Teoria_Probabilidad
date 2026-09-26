@@ -270,7 +270,7 @@ Analizamos la condición de pertenencia puntual de cualquier elemento $x \in \Om
 % RESUMEN FINAL
 % ------------------------------------------------------------------------------
 \begin{observacion}[Resumen final]
-Denotando la sucesión $\{A_n\}_{n \in \mathbb{N}}$ como la unión de las $k$ sucesiones, $\{A_n\} = \{A_n^1\} \cup \dots \cup \{A_n^k\}$, tenemos[cite: 3]:
+Denotando la sucesión $\{A_n\}_{n \in \mathbb{N}}$ como la unión de las $k$ sucesiones, $\{A_n\} = \{A_n^1\} \cup \dots \cup \{A_n^k\}$, tenemos:
 \begin{enumerate}[label=\alph*)]
     \item $\displaystyle \varlimsup_{n \to \infty} A_n = \bigcup_{j=1}^k \varlimsup_{n \to \infty} A_n^j$
     \item $\displaystyle \varliminf_{n \to \infty} A_n = \bigcap_{j=1}^k \varliminf_{n \to \infty} A_n^j$
@@ -1196,7 +1196,7 @@ Demostramos ambas inclusiones:
 \end{enumerate}
 \end{demostracion}
 
-\begin{problema}{Cálculo de límites mediante subcadenas monótonas}{prob:limites_subcadenas_monotonas}
+\begin{problema}[Cálculo de límites mediante subcadenas monótonas]
 Recalcular los límites superior e inferior de las siguientes sucesiones de conjuntos de $\mathbb{R}$ descomponiéndolas en sus subcadenas pares e impares y aplicando los resultados de monotonía y de operaciones con límites (Proposiciones \ref{prop:prop2} y \ref{prop:prop3}):
 
 \begin{enumerate}[label=\arabic*)]
@@ -1281,18 +1281,19 @@ Recalcular los límites superior e inferior de las siguientes sucesiones de conj
 % ==============================================================================
 % SECCIÓN DE PROBLEMAS RESUELTOS DEL TEMA 1
 % ==============================================================================
-\section{Problemas resueltos}
+\seccionproblemas
 % ------------------------------------------------------------------------------
 % PROBLEMA 8
 % ------------------------------------------------------------------------------
-\begin{problema}{Límite superior de semirrectas abiertas}{prob:lim_semirrectas}
+\begin{problema}[Límite superior de semirrectas abiertas]
 Sea el espacio universal $\Omega = \mathbb{R}$ y sea $\{a_n\}_{n \in \mathbb{N}}$ una sucesión arbitraria de números reales con límite superior:
 \[
     a = \varlimsup_{n \to \infty} a_n = \inf_{k \ge 1} \sup_{n \ge k} a_n
 \]
 Consideramos la sucesión de subconjuntos de $\mathbb{R}$ dada por $A_n = (-\infty, a_n)$. Determinar la relación entre el conjunto $\varlimsup_{n \to \infty} A_n$ y los intervalos $(-\infty, a)$ y $(-\infty, a]$.
 
-\paragraph{Solución:}
+\tcblower
+
 Definimos la sucesión numérica de supremos $s_k = \sup_{n \ge k} a_n$. Dado que el conjunto sobre el que se calcula el supremo es cada vez menor, $\{s_k\}_{k \in \mathbb{N}}$ es una sucesión monótona decreciente ($s_k \downarrow a$).
 
 Expresamos la unión de las colas $\sigma_k = \bigcup_{j=k}^\infty A_j = \bigcup_{j=k}^\infty (-\infty, a_j)$. Para cada $k \in \mathbb{N}$:
@@ -1333,13 +1334,14 @@ coincidiendo con $(-\infty, a]$ si $s_k > a$ para todo $k$, y con $(-\infty, a)$
 % ------------------------------------------------------------------------------
 % PROBLEMA 9
 % ------------------------------------------------------------------------------
-\begin{problema}{Estudio de semiálgebra sobre un conjunto finito}{prob:semialgebra_finitos}
+\begin{problema}[Estudio de semiálgebra sobre un conjunto finito]
 Sea el conjunto universal $\Omega = \{1, 2, 3, 4, 5, 6\}$. Comprobar si la siguiente clase de subconjuntos tiene estructura de semiálgebra:
 \[
     \mathcal{S} = \{ \varnothing, \Omega, \{1,2\}, \{3,4\}, \{5,6\}, \{1,2,5,6\} \}
 \]
 
-\paragraph{Solución:}
+\tcblower
+
 Denotemos la partición atómica básica por $A = \{1,2\}$, $B = \{3,4\}$ y $C = \{5,6\}$. Observamos que $\Omega = A \cup B \cup C$ y la clase se puede escribir de forma simplificada como:
 \[
     \mathcal{S} = \{ \varnothing, \Omega, A, B, C, A \cup C \}
@@ -1375,14 +1377,14 @@ Dado que se satisfacen las tres propiedades, la clase $\mathcal{S}$ sí tiene es
 % ------------------------------------------------------------------------------
 % PROBLEMA 10 DE LA LISTA
 % ------------------------------------------------------------------------------
-\begin{problema}{Comprobación de álgebras y semiálgebras}{prob:comprobacion_algebras}
+\begin{problema}[Comprobación de álgebras y semiálgebras]
 Sea el conjunto universal $\Omega = \{1, 2, 3, 4\}$. Comprobar si las siguientes clases de subconjuntos tienen estructura de álgebra o de semiálgebra:
 \begin{enumerate}[label=\alph*)]
     \item $\mathcal{A} = \{ \varnothing, \Omega, \{1,2\}, \{3,4\} \}$
     \item $\mathcal{H} = \{ \varnothing, \Omega, \{1\}, \{2\}, \{3\}, \{4\} \}$
 \end{enumerate}
 
-\paragraph{Solución:}
+\tcblower
 
 \begin{enumerate}[label=\alph*)]
     \item \textbf{Estudio de la clase $\mathcal{A}$:}
@@ -1415,7 +1417,7 @@ Sea el conjunto universal $\Omega = \{1, 2, 3, 4\}$. Comprobar si las siguientes
 % ------------------------------------------------------------------------------
 % PROBLEMA 14 DE LA LISTA
 % ------------------------------------------------------------------------------
-\begin{problema}{Estructura de álgebra en el semieje real}{prob:algebra_semieje}
+\begin{problema}[Estructura de álgebra en el semieje real]
 En el espacio universal $\Omega = [0,\infty)$, se consideran las siguientes clases de subconjuntos:
 \begin{enumerate}[label=\alph*)]
     \item $C_1$, la clase de los intervalos de la forma $[0,a)$, donde $a \in \Omega$ o $a = +\infty$. Demostrar que $C_1$ no es álgebra.
@@ -1423,7 +1425,7 @@ En el espacio universal $\Omega = [0,\infty)$, se consideran las siguientes clas
     \item Demostrar que el álgebra generada por $C_1$ es $C_2$; es decir, $\mathcal{Q}(C_1) = C_2$.
 \end{enumerate}
 
-\paragraph{Solución:}
+\tcblower
 
 \begin{enumerate}[label=\alph*)]
     \item \textbf{Estudio de la clase $C_1 = \{ [0,a) \mid a \in [0,\infty] \}$:}
@@ -1504,11 +1506,12 @@ En el espacio universal $\Omega = [0,\infty)$, se consideran las siguientes clas
 
 \newpage
 
-\begin{problema}{\texorpdfstring{$\sigma$}{sigma}-álgebra generada por conjuntos con números primos}{prob:sigma_algebra_primos}
+\begin{problema}[\texorpdfstring{$\sigma$}{sigma}-álgebra generada por conjuntos con números primos]
 Determinar la $\sigma$-álgebra de $\mathbb{N}$ que está generada por los subconjuntos de números naturales que contienen a todos los números primos. 
 ¿Están en dicha $\sigma$-álgebra el subconjunto de los $\{\text{múltiplos de } 5\}$? ¿Y el de los $\{\text{múltiplos de } 6\}$?
 
-\paragraph{Solución:}
+\tcblower
+
 Sea $\mathbb{P} = \{2, 3, 5, 7, 11, \dots\} \subset \mathbb{N}$ el conjunto formado por todos los números primos. La colección generadora dada en el enunciado se define como:
 \[
     \mathcal{C} = \{ A \in \mathcal{P}(\mathbb{N}) \mid \mathbb{P} \subseteq A \}
@@ -1573,13 +1576,14 @@ Sea $\mathbb{P} = \{2, 3, 5, 7, 11, \dots\} \subset \mathbb{N}$ el conjunto form
 
 \newpage
 
-\begin{problema}{(Proposición 7) Álgebra generada por una semiálgebra}{prob:algebra_generada_semialgebra}
+\begin{problema}[(Proposición 7) Álgebra generada por una semiálgebra]
 Sea $S$ una semiálgebra sobre $\Omega$. Demostrar que el álgebra generada por $S$ viene dada por el conjunto de todas las uniones finitas de conjuntos disjuntos de $S$; es decir:
 \[
     \mathcal{Q}(S) = \left\{ E \in \mathcal{P}(\Omega) \,\,\middle|\,\, E = \bigcup_{i=1}^n A_i \text{ para algún } n \in \mathbb{N}, \text{ donde } A_i \in S \text{ y } A_i \cap A_j = \varnothing \, (i \neq j) \right\}
 \]
 
-\paragraph{Solución:}
+\tcblower
+
 Denotemos por $\mathcal{C}$ a la colección de todas las uniones finitas de conjuntos de $S$ disjuntos dos a dos:
 \[
     \mathcal{C} = \left\{ E \in \mathcal{P}(\Omega) \,\,\middle|\,\, E = \bigcup_{n=1}^r A_n \text{ para algún } r \in \mathbb{N}, \text{ con } A_n \in S \text{ y } A_i \cap A_j = \varnothing \, (i \neq j) \right\}
@@ -1648,4 +1652,397 @@ Queremos probar la igualdad $\mathcal{Q}(S) = \mathcal{C}$ mediante la doble inc
 \end{enumerate}
 
 De ambas inclusiones se deduce formalmente la igualdad $\mathcal{Q}(S) = \mathcal{C}$.
+\end{problema}
+
+\newpage
+%==================================================
+%================= PROBLEMA 20 ====================
+%==================================================
+\begin{problema}[La unión de \texorpdfstring{$\sigma$}{sigma}-álgebras no es una semiálgebra]
+Demostrar mediante un contraejemplo que la unión de $\sigma$-álgebras no tiene por qué tener ni siquiera estructura de semiálgebra.
+
+\tcblower
+
+Recordemos que para que una clase de subconjuntos $\mathcal{S} \subseteq \mathcal{P}(\Omega)$ tenga estructura de \textbf{semiálgebra}, debe satisfacer simultáneamente tres condiciones:
+\begin{enumerate}
+    \item $\Omega \in \mathcal{S}$.
+    \item \textit{Cierre por intersecciones finitas:} Si $A, B \in \mathcal{S} \implies A \cap B \in \mathcal{S}$.
+    \item \textit{Descomposición del complemento:} Para todo $A \in \mathcal{S}$, su complementario $A^c$ se puede expresar como la unión finita de elementos de $\mathcal{S}$ disjuntos dos a dos.
+\end{enumerate}
+
+A continuación, mostramos dos contraejemplos construidos sobre espacios universales finitos demostrando que la unión de dos $\sigma$-álgebras no preserva el cierre bajo intersecciones finitas.
+
+\paragraph{Contraejemplo 1 (Espacio finito $\Omega = \{1, 2, 3, 4\}$):}
+Consideremos el conjunto universal $\Omega = \{1, 2, 3, 4\}$ y definimos las dos siguientes $\sigma$-álgebras sobre $\Omega$:
+\[
+    \mathcal{G}_1 = \{ \varnothing, \Omega, \{1\}, \{2,3,4\} \}
+\]
+\[
+    \mathcal{G}_2 = \{ \varnothing, \Omega, \{2\}, \{1,3,4\} \}
+\]
+La colección dada por la unión de ambas $\sigma$-álgebras es:
+\[
+    \mathcal{U} = \mathcal{G}_1 \cup \mathcal{G}_2 = \{ \varnothing, \Omega, \{1\}, \{2\}, \{2,3,4\}, \{1,3,4\} \}
+\]
+
+Veamos que $\mathcal{U}$ no satisface la condición de cierre por intersecciones finitas:
+\begin{itemize}
+    \item Tomamos los elementos $A = \{2,3,4\} \in \mathcal{U}$ y $B = \{1,3,4\} \in \mathcal{U}$.
+    \item Calculamos su intersección:
+    \[
+        A \cap B = \{2,3,4\} \cap \{1,3,4\} = \{3,4\}
+    \]
+    \item Sin embargo, el conjunto $\{3,4\} \notin \mathcal{U}$.
+\end{itemize}
+Al no ser cerrada bajo intersecciones finitas, la unión $\mathcal{U} = \mathcal{G}_1 \cup \mathcal{G}_2$ \textbf{no tiene estructura de semiálgebra}.
+
+\paragraph{Contraejemplo 2 (Espacio finito $\Omega = \{1, 2, 3\}$):}
+Consideremos el espacio universal $\Omega = \{1, 2, 3\}$ y definimos las dos $\sigma$-álgebras generadas por particiones atómicas distintas:
+\[
+    \mathcal{G}_1 = \{ \varnothing, \Omega, \{1,2\}, \{3\} \}
+\]
+\[
+    \mathcal{G}_2 = \{ \varnothing, \Omega, \{2,3\}, \{1\} \}
+\]
+La unión de ambas colecciones resulta en:
+\[
+    \mathcal{U}' = \mathcal{G}_1 \cup \mathcal{G}_2 = \{ \varnothing, \Omega, \{1\}, \{3\}, \{1,2\}, \{2,3\} \}
+\]
+
+Comprobamos de nuevo el fallo del cierre por intersecciones finitas:
+\begin{itemize}
+    \item Tomamos los elementos $A = \{1,2\} \in \mathcal{U}'$ y $B = \{2,3\} \in \mathcal{U}'$.
+    \item Calculamos su intersección:
+    \[
+        A \cap B = \{1,2\} \cap \{2,3\} = \{2\}
+    \]
+    \item Sin embargo, $\{2\} \notin \mathcal{U}'$.
+\end{itemize}
+Por lo tanto, la colección $\mathcal{U}'$ tampoco es cerrada bajo intersecciones finitas y no posee estructura de semiálgebra.
+
+\paragraph{Contraejemplo 3 (Espacio infinito $\Omega = \mathbb{R}$):}
+Consideremos el espacio universal infinito $\Omega = \mathbb{R}$ y las siguientes dos $\sigma$-álgebras definidas sobre $\mathbb{R}$ (generadas por particiones en dos intervalos):
+\[
+    \mathcal{G}_1 = \{ \varnothing, \mathbb{R}, (-\infty, 0], (0, \infty) \}
+\]
+\[
+    \mathcal{G}_2 = \{ \varnothing, \mathbb{R}, (-\infty, 1], (1, \infty) \}
+\]
+La unión de ambas $\sigma$-álgebras resulta en la colección:
+\[
+    \mathcal{U}'' = \mathcal{G}_1 \cup \mathcal{G}_2 = \{ \varnothing, \mathbb{R}, (-\infty, 0], (0, \infty), (-\infty, 1], (1, \infty) \}
+\]
+
+Comprobamos que $\mathcal{U}''$ no satisface el axioma de cierre por intersecciones finitas:
+\begin{itemize}
+    \item Tomamos los elementos $A = (0, \infty) \in \mathcal{U}''$ y $B = (-\infty, 1] \in \mathcal{U}''$.
+    \item Calculamos su intersección:
+    \[
+        A \cap B = (0, \infty) \cap (-\infty, 1] = (0, 1]
+    \]
+    \item Sin embargo, el intervalo semiabierto $(0, 1] \notin \mathcal{U}''$.
+\end{itemize}
+Al no ser cerrada bajo intersecciones finitas, la unión de $\sigma$-álgebras $\mathcal{U}'' = \mathcal{G}_1 \cup \mathcal{G}_2$ sobre el espacio infinito $\mathbb{R}$ \textbf{tampoco tiene estructura de semiálgebra}.
+
+\paragraph{Conclusión:}
+La unión de dos o más $\sigma$-álgebras no garantiza el cierre por intersecciones finitas, por lo que en general no constituye una semiálgebra (y, en consecuencia, tampoco un álgebra ni una $\sigma$-álgebra).
+\end{problema}
+
+\newpage
+%==================================================
+%================= PROBLEMA 21 ====================
+%==================================================
+\begin{problema}[\texorpdfstring{$\sigma$}{sigma}-álgebra co-numerable]
+Sea $\Omega$ un conjunto no numerable y sea la clase de subconjuntos:
+\[
+    \mathcal{G} = \{ E \subseteq \Omega \mid E \text{ o } E^c \text{ es numerable} \}
+\]
+Demostrar que $\mathcal{G}$ es una $\sigma$-álgebra sobre $\Omega$.
+
+\tcblower
+
+Comprobamos explícitamente que la clase $\mathcal{G}$ satisface las tres condiciones fundamentales de la definición de $\sigma$-álgebra:
+
+\begin{enumerate}
+    \item \textbf{Pertenencia del conjunto universal:}
+    El complementario del espacio universal $\Omega$ es el conjunto vacío:
+    \[
+        \Omega^c = \varnothing
+    \]
+    Puesto que $\varnothing$ es un conjunto finito (y por tanto numerable), su complementario $\Omega^c$ es numerable, lo que garantiza que:
+    \[
+        \Omega \in \mathcal{G}
+    \]
+
+    \item \textbf{Cierre por complementation:}
+    Sea $A \in \mathcal{G}$. Por definición de la clase $\mathcal{G}$, se cumple que $A$ es numerable o $A^c$ es numerable.
+    
+    Analizamos el complementario $A^c$, cuyo complementario es $(A^c)^c = A$:
+    \begin{itemize}
+        \item Si $A$ es numerable, entonces el complementario de $A^c$ (que es $A$) es numerable, luego $A^c \in \mathcal{G}$.
+        \item Si $A^c$ es numerable, entonces el propio conjunto $A^c$ es numerable, luego $A^c \in \mathcal{G}$.
+    \end{itemize}
+    En cualquiera de los dos casos se verifica que $A^c \in \mathcal{G}$.
+
+    \item \textbf{Cierre por uniones numerables:}
+    Sea $\{A_i\}_{i=1}^\infty \subseteq \mathcal{G}$ una colección numerable de conjuntos de $\mathcal{G}$. Distinguimos dos casos posibles:
+
+    \begin{itemize}
+        \item \textit{Caso 1: Todos los conjuntos $A_i$ son numerables ($A_i$ es numerable $\forall i \in \mathbb{N}$).}
+        
+        Dado que la unión numerable de conjuntos numerables es a su vez un conjunto numerable, se tiene que:
+        \[
+            \bigcup_{i=1}^\infty A_i \text{ es numerable} \implies \bigcup_{i=1}^\infty A_i \in \mathcal{G}
+        \]
+
+        \item \textit{Caso 2: Existe al menos un subíndice $i_0 \in \mathbb{N}$ tal que $A_{i_0}$ no es numerable.}
+        
+        Puesto que $A_{i_0} \in \mathcal{G}$ y no es numerable, por la definición de $\mathcal{G}$ se deduce necesariamente que su complementario es numerable:
+        \[
+            A_{i_0}^c \text{ es numerable}
+        \]
+        Aplicando las leyes de De Morgan al complementario de la unión numerable:
+        \[
+            \left( \bigcup_{i=1}^\infty A_i \right)^c = \bigcap_{i=1}^\infty A_i^c \subseteq A_{i_0}^c
+        \]
+        Dado que $A_{i_0}^c$ es numerable y todo subconjunto de un conjunto numerable es también numerable, la intersección $\displaystyle \left( \bigcup_{i=1}^\infty A_i \right)^c$ resulta ser numerable.
+        
+        Por tanto, por definición de la clase, se concluye que:
+        \[
+            \bigcup_{i=1}^\infty A_i \in \mathcal{G}
+        \]
+    \end{itemize}
+\end{enumerate}
+
+Al satisfacerse las tres propiedades, queda demostrado que la clase $\mathcal{G}$ es una $\sigma$-álgebra sobre $\Omega$ (conocida como la \textit{$\sigma$-álgebra co-numerable}).
+\end{problema}
+
+\newpage
+%==================================================
+%================= PROBLEMA 22 ====================
+%==================================================
+\begin{problema}[Construcción del álgebra generada mediante extensiones]
+Dada una familia arbitraria $C$ de subconjuntos de $\Omega$, consideramos las siguientes extensiones sucesivas:
+\begin{align*}
+    C_1 &= \{ A \in \mathcal{P}(\Omega) \mid A \in C \text{ o } A^c \in C \} \\
+    C_2 &= \{ A_1 \cap A_2 \cap \dots \cap A_n \mid A_i \in C_1, \, n \in \mathbb{N} \} \\
+    C_3 &= \{ A_1 \cup A_2 \cup \dots \cup A_n \mid A_i \in C_2, \, n \in \mathbb{N} \}
+\end{align*}
+Demostrar que el álgebra generada por $C$ coincide con la clase $C_3$, es decir:
+\[
+    \mathcal{Q}(C) = C_3
+\]
+
+\tcblower
+
+Para probar que $\mathcal{Q}(C) = C_3$, establecemos la igualdad mediante la doble inclusión:
+
+\begin{enumerate}
+    \item \textbf{Demostración de la inclusión $C_3 \subseteq \mathcal{Q}(C)$:}
+
+    Recordemos que el álgebra generada $\mathcal{Q}(C)$ es, por definición, la menor álgebra sobre $\Omega$ que contiene a la clase $C$. Por tanto, $\mathcal{Q}(C)$ es cerrada por complementación, intersecciones finitas y uniones finitas:
+    \begin{itemize}
+        \item \textit{Paso 1:} Dado que $C \subseteq \mathcal{Q}(C)$ y $\mathcal{Q}(C)$ es cerrada bajo complementación, para todo $A \in C_1$ se tiene $A \in \mathcal{Q}(C)$ o $A^c \in \mathcal{Q}(C) \implies A \in \mathcal{Q}(C)$. Así, $C_1 \subseteq \mathcal{Q}(C)$.
+        \item \textit{Paso 2:} Todo elemento de $C_2$ es una intersección finita de conjuntos de $C_1$. Al ser $\mathcal{Q}(C)$ cerrada por intersecciones finitas y $C_1 \subseteq \mathcal{Q}(C)$, se deduce que $C_2 \subseteq \mathcal{Q}(C)$.
+        \item \textit{Paso 3:} Todo elemento de $C_3$ es una unión finita de conjuntos de $C_2$. Al ser $\mathcal{Q}(C)$ cerrada por uniones finitas y $C_2 \subseteq \mathcal{Q}(C)$, concluimos que $C_3 \subseteq \mathcal{Q}(C)$.
+    \end{itemize}
+
+    \item \textbf{Demostración de la inclusión $\mathcal{Q}(C) \subseteq C_3$:}
+
+    Para demostrar esta inclusión, basta verificar que $C \subseteq C_3$ y que la clase $C_3$ posee estructura de álgebra sobre $\Omega$. Puesto que $\mathcal{Q}(C)$ es el álgebra minimal que contiene a $C$, se concluirá que $\mathcal{Q}(C) \subseteq C_3$.
+
+    \begin{itemize}
+        \item \textit{Inclusión de la clase base:} Todo elemento $A \in C$ pertenece a $C_1$, que a su vez se expresa como intersección de $n=1$ elementos en $C_2$, y como unión de $n=1$ elementos en $C_3$. Por tanto, $C \subseteq C_1 \subseteq C_2 \subseteq C_3$.
+        
+        \item \textit{Verificación de las tres condiciones de álgebra para $C_3$:}
+        \begin{enumerate}[label=\arabic*)]
+            \item \textit{Pertenencia del conjunto universal:} Tomando un elemento cualquiera $A \in C$, se tiene que $A \in C_1$ y $A^c \in C_1$. En particular, $A, A^c \in C_2$. Dado que $\Omega = A \cup A^c$, la unión finita pertenece a $C_3$, de donde $\Omega \in C_3$.
+
+            \item \textit{Cierre por complementación:} Sea $B \in C_3$. Por definición de $C_3$, $B$ se escribe como la unión finita de $n$ elementos de $C_2$:
+            \[
+                B = \bigcup_{i=1}^n B_i \quad \text{con } B_i \in C_2 \text{ para todo } i = 1, \dots, n
+            \]
+            A su vez, cada $B_i \in C_2$ es la intersección finita de $m_i$ elementos de $C_1$:
+            \[
+                B_i = \bigcap_{j=1}^{m_i} B_{ij} \quad \text{con } B_{ij} \in C_1
+            \]
+            Sustituyendo esta expresión, tenemos $B = \bigcup_{i=1}^n \bigcap_{j=1}^{m_i} B_{ij}$. Calculamos su complementario aplicando las leyes de De Morgan:
+            \[
+                B^c = \left( \bigcup_{i=1}^n \bigcap_{j=1}^{m_i} B_{ij} \right)^c = \bigcap_{i=1}^n \bigcup_{j=1}^{m_i} B_{ij}^c
+            \]
+            Puesto que $B_{ij} \in C_1$, por la propia definición simétrica de $C_1$ ($A \in C \text{ o } A^c \in C$), su complementario también pertenece a $C_1$, es decir, $B_{ij}^c \in C_1$.
+            
+            Aplicando la propiedad distributiva generalizada para intersecciones de uniones finitas, expresamos $B^c$ como una unión finita de intersecciones finitas de elementos de $C_1$:
+            \[
+                B^c = \bigcup_{j_1=1}^{m_1} \bigcup_{j_2=1}^{m_2} \dots \bigcup_{j_n=1}^{m_n} \left( B_{1 j_1}^c \cap B_{2 j_2}^c \cap \dots \cap B_{n j_n}^c \right)
+            \]
+            Como cada término $B_{1 j_1}^c \cap B_{2 j_2}^c \cap \dots \cap B_{n j_n}^c$ es una intersección finita de elementos de $C_1$, pertenece por definición a $C_2$. En consecuencia, $B^c$ se ha expresado como una unión finita de elementos de $C_2$, lo que prueba que $B^c \in C_3$.
+
+            \item \textit{Cierre por uniones finitas:} Sean $A, B \in C_3$. Por definición, existen representaciones como uniones finitas de elementos de $C_2$:
+            \[
+                A = \bigcup_{i=1}^n A_i \quad \text{y} \quad B = \bigcup_{k=1}^l B_k \quad \text{con } A_i, B_k \in C_2
+            \]
+            Uniendo ambas expresiones:
+            \[
+                A \cup B = \left( \bigcup_{i=1}^n A_i \right) \cup \left( \bigcup_{k=1}^l B_k \right)
+            \]
+            que consiste en una unión de $n + l$ elementos de $C_2$. Por tanto, $A \cup B \in C_3$.
+        \end{enumerate}
+        Habiendo comprobado los tres axiomas, concluimos que $C_3$ es un álgebra sobre $\Omega$.
+    \end{itemize}
+
+    Puesto que $C_3$ es un álgebra que contiene a $C$, y $\mathcal{Q}(C)$ es la menor álgebra que contiene a $C$, se deduce que $\mathcal{Q}(C) \subseteq C_3$.
+\end{enumerate}
+
+De ambas inclusiones se concluye formalmente la igualdad $\mathcal{Q}(C) = C_3$.
+\end{problema}
+
+\newpage
+%==================================================
+%================= PROBLEMA 23 ====================
+%==================================================
+\begin{problema}[(Proposición 9) Antiimagen de una \texorpdfstring{$\sigma$}{sigma}-álgebra]
+Dada una aplicación $f : \Omega_1 \to \Omega_2$, demostrar que si $\mathcal{G}$ es una $\sigma$-álgebra de $\Omega_2$, entonces la clase imagen inversa $f^{-1}(\mathcal{G})$ es una $\sigma$-álgebra de $\Omega_1$.
+
+\tcblower
+
+Recordemos que la clase imagen inversa de la $\sigma$-álgebra $\mathcal{G}$ sobre el espacio fuente $\Omega_1$ se define explícitamente como:
+\[
+    f^{-1}(\mathcal{G}) = \bigl\{ A \subseteq \Omega_1 \bigm| \exists B \in \mathcal{G} \text{ tal que } A = f^{-1}(B) \bigr\}
+\]
+Para demostrar que $f^{-1}(\mathcal{G})$ es una $\sigma$-álgebra sobre $\Omega_1$, verificamos los tres axiomas fundamentales empleando las propiedades algebraicas de la imagen inversa:
+
+\begin{enumerate}
+    \item \textbf{Pertenencia del conjunto universal:}
+    Puesto que $\mathcal{G}$ es una $\sigma$-álgebra sobre $\Omega_2$, el espacio completo pertenece a la clase: $\Omega_2 \in \mathcal{G}$.
+    Por la propiedad fundamental de la antiimagen del espacio de llegada $f^{-1}(\Omega_2) = \Omega_1$, se deduce directamente que:
+    \[
+        \Omega_1 \in f^{-1}(\mathcal{G})
+    \]
+
+    \item \textbf{Cierre por complementarios:}
+    Sea $A \in f^{-1}(\mathcal{G})$. Por definición de antiimagen de una clase, existe un subconjunto $B \in \mathcal{G}$ tal que $A = f^{-1}(B)$.
+    Al ser $\mathcal{G}$ una $\sigma$-álgebra sobre $\Omega_2$, el complemento $B^c = \Omega_2 \setminus B$ satisface $B^c \in \mathcal{G}$.
+    
+    Utilizando la propiedad de la imagen inversa respecto a la complementación, $(f^{-1}(B))^c = f^{-1}(B^c)$, calculamos:
+    \[
+        A^c = \bigl( f^{-1}(B) \bigr)^c = f^{-1}(B^c)
+    \]
+    Puesto que $B^c \in \mathcal{G}$, se concluye que $A^c \in f^{-1}(\mathcal{G})$.
+
+    \item \textbf{Cierre por uniones numerables:}
+    Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq f^{-1}(\mathcal{G})$ una colección numerable arbitraria. Por definición, para cada subíndice $n \in \mathbb{N}$ existe un conjunto $B_n \in \mathcal{G}$ tal que $A_n = f^{-1}(B_n)$.
+    
+    Como $\mathcal{G}$ es una $\sigma$-álgebra sobre $\Omega_2$, la unión numerable de sus elementos pertenece a la clase: $\bigcup_{n=1}^\infty B_n \in \mathcal{G}$.
+    
+    Aplicando la propiedad de conmutatividad entre la antiimagen y la unión numerable:
+    \[
+        \bigcup_{n=1}^\infty A_n = \bigcup_{n=1}^\infty f^{-1}(B_n) = f^{-1}\left( \bigcup_{n=1}^\infty B_n \right)
+    \]
+    Dado que $\bigcup_{n=1}^\infty B_n \in \mathcal{G}$, se tiene que $f^{-1}\left( \bigcup_{n=1}^\infty B_n \right) \in f^{-1}(\mathcal{G})$, por lo que:
+    \[
+        \bigcup_{n=1}^\infty A_n \in f^{-1}(\mathcal{G})
+    \]
+\end{enumerate}
+
+Al verificarse las tres propiedades, queda demostrado que $f^{-1}(\mathcal{G})$ es una $\sigma$-álgebra sobre $\Omega_1$.
+\end{problema}
+
+\newpage
+%==================================================
+%================= PROBLEMA 24 ====================
+%==================================================
+\begin{problema}[(Teorema 3) Teorema de los buenos conjuntos y propiedades de la antiimagen]
+Dada una aplicación $f : \Omega_1 \to \Omega_2$:
+\begin{enumerate}[label=\alph*)]
+    \item Demostrar que si $\mathcal{H}$ es una $\sigma$-álgebra de $\Omega_1$, entonces
+    \[
+        \mathcal{G} = \{ B \in \mathcal{P}(\Omega_2) \mid f^{-1}(B) \in \mathcal{H} \}
+    \]
+    es una $\sigma$-álgebra de $\Omega_2$.
+    \item Demostrar que si $\mathcal{C}$ es una clase cualquiera de subconjuntos de $\Omega_2$, entonces la clase
+    \[
+        \mathcal{F} = \{ B \in \mathcal{P}(\Omega_2) \mid f^{-1}(B) \in \sigma(f^{-1}(\mathcal{C})) \}
+    \]
+    es una $\sigma$-álgebra.
+    \item Demostrar el \textit{teorema de los buenos conjuntos}: Si $f : \Omega_1 \to \Omega_2$ es una aplicación y $\mathcal{C}$ es una clase cualquiera de subconjuntos de $\Omega_2$, entonces
+    \[
+        \sigma(f^{-1}(\mathcal{C})) = f^{-1}(\sigma(\mathcal{C}))
+    \]
+\end{enumerate}
+
+\tcblower
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Demostración de que $\mathcal{G}$ es una $\sigma$-álgebra sobre $\Omega_2$:}
+    
+    Verificamos las tres propiedades características de una $\sigma$-álgebra sobre el espacio universal $\Omega_2$:
+    \begin{enumerate}[label=\arabic*.]
+        \item \textit{Pertenencia del universo:}
+        Por definición de antiimagen completa del espacio de llegada, se cumple que $f^{-1}(\Omega_2) = \Omega_1$. Puesto que $\mathcal{H}$ es una $\sigma$-álgebra sobre $\Omega_1$, se tiene $\Omega_1 \in \mathcal{H}$, de donde $f^{-1}(\Omega_2) \in \mathcal{H}$. Por consiguiente, $\Omega_2 \in \mathcal{G}$.
+
+        \item \textit{Cierre por complementación:}
+        Sea $B \in \mathcal{G}$. Por definición de la clase $\mathcal{G}$, se verifica $f^{-1}(B) \in \mathcal{H}$.
+        Al ser $\mathcal{H}$ una $\sigma$-álgebra, el complementario de cualquiera de sus elementos pertenece a la propia clase. Aplicando la propiedad de la imagen inversa respecto a la complementación:
+        \[
+            f^{-1}(B^c) = (f^{-1}(B))^c \in \mathcal{H}
+        \]
+        Por tanto, $B^c \in \mathcal{G}$.
+
+        \item \textit{Cierre por uniones numerables:}
+        Sea $\{B_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una colección numerable de conjuntos. Por definición de $\mathcal{G}$, $f^{-1}(B_n) \in \mathcal{H}$ para todo $n \in \mathbb{N}$.
+        Dado que $\mathcal{H}$ es cerrada bajo uniones numerables y la antiimagen conmuta con la unión numerable:
+        \[
+            f^{-1}\left( \bigcup_{n=1}^\infty B_n \right) = \bigcup_{n=1}^\infty f^{-1}(B_n) \in \mathcal{H}
+        \]
+        Por consiguiente, $\bigcup_{n=1}^\infty B_n \in \mathcal{G}$.
+    \end{enumerate}
+    Queda probado que $\mathcal{G}$ es una $\sigma$-álgebra sobre $\Omega_2$.
+
+    \item \textbf{Demostración de que $\mathcal{F}$ es una $\sigma$-álgebra:}
+    
+    Observamos que la clase $\mathcal{F}$ se obtiene como un caso particular de la clase $\mathcal{G}$ definida en el apartado a), tomando como $\sigma$-álgebra sobre el espacio fuente $\Omega_1$ a la $\sigma$-álgebra generada:
+    \[
+        \mathcal{H} = \sigma(f^{-1}(\mathcal{C}))
+    \]
+    Puesto que $\sigma(f^{-1}(\mathcal{C}))$ es, por definición, una $\sigma$-álgebra sobre $\Omega_1$, aplicando el resultado demostrado en el apartado a) se concluye directamente que $\mathcal{F}$ es una $\sigma$-álgebra sobre $\Omega_2$.
+
+    \item \textbf{Demostración del Teorema de los buenos conjuntos ($\sigma(f^{-1}(\mathcal{C})) = f^{-1}(\sigma(\mathcal{C}))$):}
+
+    Probamos la igualdad mediante la doble inclusión:
+
+    \begin{itemize}
+        \item \textbf{Inclusión $\subseteq$ ($\sigma(f^{-1}(\mathcal{C})) \subseteq f^{-1}(\sigma(\mathcal{C}))$):}
+        
+        Dado que $\mathcal{C} \subseteq \sigma(\mathcal{C})$ y la operación de antiimagen preserva la inclusión entre clases de conjuntos:
+        \[
+            f^{-1}(\mathcal{C}) \subseteq f^{-1}(\sigma(\mathcal{C}))
+        \]
+        Por la Proposición 9 (Problema 23), la imagen inversa de una $\sigma$-álgebra es siempre una $\sigma$-álgebra. Dado que $\sigma(\mathcal{C})$ es una $\sigma$-álgebra sobre $\Omega_2$, resulta que $f^{-1}(\sigma(\mathcal{C}))$ es una $\sigma$-álgebra sobre $\Omega_1$.
+        
+        Puesto que $\sigma(f^{-1}(\mathcal{C}))$ es la menor $\sigma$-álgebra sobre $\Omega_1$ que contiene a la clase de generadores $f^{-1}(\mathcal{C})$, y $f^{-1}(\sigma(\mathcal{C}))$ es una $\sigma$-álgebra sobre $\Omega_1$ que la contiene, se concluye que:
+        \[
+            \sigma(f^{-1}(\mathcal{C})) \subseteq f^{-1}(\sigma(\mathcal{C}))
+        \]
+
+        \item \textbf{Inclusión $\supseteq$ ($f^{-1}(\sigma(\mathcal{C})) \subseteq \sigma(f^{-1}(\mathcal{C}))$):}
+        
+        Consideremos la clase $\mathcal{F}$ definida en el apartado b):
+        \[
+            \mathcal{F} = \{ B \in \mathcal{P}(\Omega_2) \mid f^{-1}(B) \in \sigma(f^{-1}(\mathcal{C})) \}
+        \]
+        Para todo conjunto $B \in \mathcal{C}$, su antiimagen $f^{-1}(B)$ pertenece a $f^{-1}(\mathcal{C}) \subseteq \sigma(f^{-1}(\mathcal{C}))$, por lo que $B \in \mathcal{F}$. Esto demuestra que $\mathcal{C} \subseteq \mathcal{F}$.
+        
+        Dado que $\mathcal{F}$ es una $\sigma$-álgebra sobre $\Omega_2$ (por el apartado b)) y contiene a la clase $\mathcal{C}$, la $\sigma$-álgebra generada por $\mathcal{C}$ satisface la inclusión:
+        \[
+            \sigma(\mathcal{C}) \subseteq \mathcal{F}
+        \]
+        Así pues, para todo elemento $B \in \sigma(\mathcal{C})$, se tiene que $B \in \mathcal{F}$, lo cual implica por definición de $\mathcal{F}$ que $f^{-1}(B) \in \sigma(f^{-1}(\mathcal{C}))$. Por consiguiente:
+        \[
+            f^{-1}(\sigma(\mathcal{C})) \subseteq \sigma(f^{-1}(\mathcal{C}))
+        \]
+    \end{itemize}
+
+    De la combinación de ambas inclusiones se deduce la igualdad $\sigma(f^{-1}(\mathcal{C})) = f^{-1}(\sigma(\mathcal{C}))$.
+\end{enumerate}
 \end{problema}
