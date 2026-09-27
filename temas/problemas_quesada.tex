@@ -810,3 +810,312 @@ Hallar los límites superior e inferior de las siguientes sucesiones de subconju
     dado que la intersección entre los conjuntos de números racionales e irracionales es vacía ($\mathbb{Q} \cap \mathbb{I} = \varnothing$).
 \end{enumerate}
 \end{problema}
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 18
+% ------------------------------------------------------------------------------
+\begin{problema}[Límites de sucesiones de regiones en \texorpdfstring{$\mathbb{R}^2$}{R2}]
+Hallar los límites superior e inferior de las siguientes sucesiones de subconjuntos de $\mathbb{R}^2$:
+\begin{enumerate}[label=\alph*)]
+    \item $A_n = \left\{ (x,y) \in \mathbb{R}^2 \,\,\middle|\,\, n^2 x^2 + n^4 y^2 \le 1 \right\}$
+    \item $A_n = \left\{ (x,y) \in \mathbb{R}^2 \,\,\middle|\,\, x + y > (-1)^n \right\}$
+\end{enumerate}
+
+\tcblower
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Estudio de la sucesión de elipses $A_n$:}
+    
+    Cada conjunto $A_n$ representa la región plana delimitada por una elipse centrada en el origen con semiejes $a_n = \frac{1}{n}$ y $b_n = \frac{1}{n^2}$.
+    
+    Comprobamos la monotonía de la sucesión: si $(x,y) \in A_{n+1}$, se satisface
+    \[
+        (n+1)^2 x^2 + (n+1)^4 y^2 \le 1
+    \]
+    Como $n^2 < (n+1)^2$ y $n^4 < (n+1)^4$ para todo $n \in \mathbb{N}$, se deduce que:
+    \[
+        n^2 x^2 + n^4 y^2 < (n+1)^2 x^2 + (n+1)^4 y^2 \le 1 \implies (x,y) \in A_n
+    \]
+    Por consiguiente, la sucesión es estrictamente decreciente ($A_{n+1} \subset A_n$). Al ser monótona decreciente, la sucesión es convergente y sus límites coinciden con la intersección numerable:
+    \[
+        \lim_{n \to \infty} A_n = \varlimsup_{n \to \infty} A_n = \varliminf_{n \to \infty} A_n = \bigcap_{n=1}^\infty A_n
+    \]
+    
+    Determinamos los puntos pertenecientes a la intersección:
+    \begin{itemize}
+        \item El origen $(0,0)$ cumple $n^2(0)^2 + n^4(0)^2 = 0 \le 1$ para todo $n \in \mathbb{N}$, luego $(0,0) \in \bigcap_{n=1}^\infty A_n$.
+        \item Para cualquier punto $(x,y) \neq (0,0)$, la norma es estrictamente positiva ($x^2 + y^2 > 0$). Tomando el límite $n \to \infty$, se cumple $n^2 x^2 + n^4 y^2 \to \infty$, por lo que existe $N \in \mathbb{N}$ tal que $n^2 x^2 + n^4 y^2 > 1$ para todo $n \ge N$. Así, $(x,y) \notin A_n$ para $n \ge N$.
+    \end{itemize}
+    
+    Por tanto, $\displaystyle \bigcap_{n=1}^\infty A_n = \{(0,0)\}$, concluyendo que:
+    \[
+        \varlimsup_{n \to \infty} A_n = \varliminf_{n \to \infty} A_n = \lim_{n \to \infty} A_n = \{(0,0)\}
+    \]
+
+    % --------------------------------------------------------------------------
+    % HUECO RESERVADO PARA DIAGRAMA (APARTADO A)
+    % --------------------------------------------------------------------------
+    \begin{center}
+    \includegraphics[width=0.55\linewidth]{imagenes/problemas_Quesada/prob_quesada_1_18_a}
+\end{center}
+
+    \item \textbf{Estudio de la sucesión de semiplanos $A_n$:}
+    
+    La sucesión oscila según la paridad del índice $n$:
+    \begin{itemize}
+        \item Para índices impares ($n = 2k-1$): $A_{2k-1} = \{ (x,y) \in \mathbb{R}^2 \mid x + y > -1 \} \equiv H_1$
+        \item Para índices pares ($n = 2k$): $A_{2k} = \{ (x,y) \in \mathbb{R}^2 \mid x + y > 1 \} \equiv H_2$
+    \end{itemize}
+    
+    Observamos la relación de inclusión estricta entre ambos semiplanos: $H_2 \subset H_1$ (ya que $x+y > 1 \implies x+y > -1$).
+    
+    Calculamos los límites superior e inferior descomponiendo en sus subsucesiones pares e impares:
+    \begin{align*}
+        \varlimsup_{n \to \infty} A_n &= \varlimsup_{n \to \infty} A_{2n-1} \cup \varlimsup_{n \to \infty} A_{2n} = H_1 \cup H_2 = H_1 = \{ (x,y) \in \mathbb{R}^2 \mid x + y > -1 \} \\
+        \varliminf_{n \to \infty} A_n &= \varliminf_{n \to \infty} A_{2n-1} \cap \varliminf_{n \to \infty} A_{2n} = H_1 \cap H_2 = H_2 = \{ (x,y) \in \mathbb{R}^2 \mid x + y > 1 \}
+    \end{align*}
+    
+    Al ser $\varlimsup_{n \to \infty} A_n \neq \varliminf_{n \to \infty} A_n$, la sucesión $\{A_n\}$ no es convergente.
+
+    % --------------------------------------------------------------------------
+    % HUECO RESERVADO PARA DIAGRAMA (APARTADO B)
+    % --------------------------------------------------------------------------
+    \begin{center}
+        \includegraphics[width=0.55\linewidth]{imagenes/problemas_Quesada/prob_quesada_1_18_b}
+    \end{center}
+\end{enumerate}
+\end{problema}
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 19
+% ------------------------------------------------------------------------------
+\begin{problema}[Límite de una sucesión de discos con centros oscilantes]
+Sea la sucesión de círculos (discos cerrados) en $\mathbb{R}^2$:
+\[
+    C_n = \left\{ (x,y) \in \mathbb{R}^2 \,\,\middle|\,\, x^2 + \left(y - \left(-\frac{1}{2}\right)^n\right)^2 \le 1 \right\}
+\]
+Calcular su límite, si existe.
+
+\tcblower
+
+Sea $y_n = \left(-\frac{1}{2}\right)^n$. La sucesión $\{C_n\}_{n \in \mathbb{N}}$ consta de discos de radio $1$ centrados en $(0, y_n)$, donde la coordenada vertical del centro oscila en signo y tiende a $0$ cuando $n \to \infty$.
+
+Para determinar si existe el límite, calculamos los límites inferior y superior de la sucesión analizando la condición de pertenencia de un punto $(x,y) \in \mathbb{R}^2$:
+\[
+    (x,y) \in C_n \iff x^2 + (y - y_n)^2 \le 1 \iff x^2 + y^2 - 2y y_n + y_n^2 \le 1
+\]
+
+Distinguimos tres regiones en el plano respecto al disco unidad centrado en el origen, $C = \{(x,y) \in \mathbb{R}^2 \mid x^2 + y^2 \le 1\}$:
+
+\begin{enumerate}[label=\arabic*.]
+    \item \textit{Puntos interiores ($x^2 + y^2 < 1$):}
+    Existe $\varepsilon > 0$ tal que $x^2 + y^2 = 1 - \varepsilon$. Como $-2y y_n + y_n^2 \to 0$ cuando $n \to \infty$, existe $N \in \mathbb{N}$ tal que para todo $n \ge N$ se cumple $|-2y y_n + y_n^2| < \varepsilon$. 
+    
+    Por tanto, $x^2 + (y - y_n)^2 < 1$ para todo $n \ge N$, lo que implica que el punto pertenece a todos los conjuntos salvo a un número finito:
+    \[
+        \{(x,y) \in \mathbb{R}^2 \mid x^2 + y^2 < 1\} \subseteq \varliminf_{n \to \infty} C_n
+    \]
+
+    \item \textit{Puntos exteriores ($x^2 + y^2 > 1$):}
+    Existe $\varepsilon > 0$ tal que $x^2 + y^2 = 1 + \varepsilon$. Análogamente, para $n$ suficientemente grande se cumple $x^2 + (y - y_n)^2 > 1$. Por consiguiente, el punto no pertenece a $C_n$ salvo para un número finito de índices, luego no forma parte del límite superior:
+    \[
+        \varlimsup_{n \to \infty} C_n \subseteq \{(x,y) \in \mathbb{R}^2 \mid x^2 + y^2 \le 1\}
+    \]
+
+    \item \textit{Puntos de la frontera ($x^2 + y^2 = 1$):}
+    Sustituyendo $x^2 + y^2 = 1$, la condición $(x,y) \in C_n$ se reduce a $y_n(2y - y_n) \ge 0$.
+    \begin{itemize}
+        \item Si $y = 0$ (puntos $(1,0)$ y $(-1,0)$): La condición se convierte en $-y_n^2 \ge 0$, lo cual es falso para todo $n \in \mathbb{N}$. Por tanto, $(1,0)$ y $(-1,0)$ no pertenecen a ningún $C_n$.
+        \item Si $y > 0$: Para $n$ par ($y_n > 0$), se cumple $2y - y_n > 0$ para $n$ grande, luego $y_n(2y - y_n) > 0$ y el punto pertenece a $C_n$. Para $n$ impar ($y_n < 0$), $y_n(2y - y_n) < 0$ y el punto no pertenece a $C_n$.
+        \item Si $y < 0$: Análogamente, el punto pertenece a $C_n$ para $n$ impar suficientemente grande, pero no pertenece a $C_n$ para $n$ par.
+    \end{itemize}
+\end{enumerate}
+
+En consecuencia, los límites inferior y superior vienen dados por:
+\[
+    \varliminf_{n \to \infty} C_n = \left\{ (x,y) \in \mathbb{R}^2 \,\,\middle|\,\, x^2 + y^2 < 1 \right\}
+\]
+\[
+    \varlimsup_{n \to \infty} C_n = \left\{ (x,y) \in \mathbb{R}^2 \,\,\middle|\,\, x^2 + y^2 < 1 \right\} \cup \left\{ (x,y) \in \mathbb{R}^2 \,\,\middle|\,\, x^2 + y^2 = 1, \, y \neq 0 \right\}
+\]
+
+Puesto que $\varliminf_{n \to \infty} C_n \neq \varlimsup_{n \to \infty} C_n$, se concluye que la sucesión $\{C_n\}$ \textbf{no es convergente} y el límite $\displaystyle \lim_{n \to \infty} C_n$ \textbf{no existe}.
+
+% --------------------------------------------------------------------------
+% HUECO RESERVADO PARA DIAGRAMA
+% --------------------------------------------------------------------------
+\begin{center}
+    \includegraphics[width=0.55\linewidth]{imagenes/problemas_Quesada/prob_quesada_1_19_a}
+\end{center}
+\end{problema}
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 20
+% ------------------------------------------------------------------------------
+\begin{problema}[$\sigma$-álgebra de parejas de enteros contiguos]
+Sea $\Omega = \mathbb{Z}^+$ y sea $\mathcal{A}$ la clase de subconjuntos de $\mathbb{Z}^+$ definida por:
+\[
+    \mathcal{A} = \{ A \subseteq \mathbb{Z}^+ \mid \forall n, \, 2n \in A \iff 2n+1 \in A \}
+\]
+Demostrar que $\mathcal{A}$ es una $\sigma$-álgebra sobre $\mathbb{Z}^+$.
+
+\tcblower
+
+\paragraph{Interpretación estructurada:}
+La condición $2n \in A \iff 2n+1 \in A$ establece que los elementos de $\mathbb{Z}^+$ están agrupados en bloques o parejas indivisibles de la forma $P_n = \{2n, 2n+1\}$. Así, un subconjunto $A$ pertenece a $\mathcal{A}$ si y solo si es la unión de bloques completos $P_n$.
+
+\begin{center}
+    \includegraphics[width=0.75\linewidth]{imagenes/problemas_Quesada/prob_quesada_1_20_a}
+\end{center}
+
+Verificamos que la clase $\mathcal{A}$ satisface los tres axiomas de $\sigma$-álgebra:
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Pertenencia del conjunto universal:}
+    Para todo $n$, los elementos $2n$ y $2n+1$ pertenecen trivialmente al espacio universal $\mathbb{Z}^+$. Por tanto, las proposiciones $2n \in \mathbb{Z}^+$ y $2n+1 \in \mathbb{Z}^+$ son ambas verdaderas, verificándose la equivalencia $2n \in \mathbb{Z}^+ \iff 2n+1 \in \mathbb{Z}^+$. Concluimos que:
+    \[
+        \mathbb{Z}^+ \in \mathcal{A}
+    \]
+
+    \item \textbf{Cierre por complementación:}
+    Sea $A \in \mathcal{A}$. Para estudiar si su complementario $A^c = \mathbb{Z}^+ \setminus A$ pertenece a $\mathcal{A}$, evaluamos la condición para un entero $n$ cualquiera:
+    \[
+        2n \in A^c \iff 2n \notin A \iff \neg (2n \in A)
+    \]
+    Dado que $A \in \mathcal{A}$, se cumple $2n \in A \iff 2n+1 \in A$. Negando ambos miembros de la equivalencia:
+    \[
+        \neg (2n \in A) \iff \neg (2n+1 \in A) \iff 2n+1 \notin A \iff 2n+1 \in A^c
+    \]
+    Por tanto, $2n \in A^c \iff 2n+1 \in A^c$, lo que demuestra que:
+    \[
+        A^c \in \mathcal{A}
+    \]
+
+    \item \textbf{Cierre por uniones numerables:}
+    Sea $\{A_k\}_{k \in \mathbb{N}} \subseteq \mathcal{A}$ una colección numerable de conjuntos. Definimos la unión numerable $A = \bigcup_{k=1}^\infty A_k$.
+    
+    Para cualquier entero $n$, se deducen las siguientes equivalencias lógicas:
+    \begin{align*}
+        2n \in \bigcup_{k=1}^\infty A_k &\iff \exists k_0 \in \mathbb{N} \text{ tal que } 2n \in A_{k_0} \\
+        &\iff \exists k_0 \in \mathbb{N} \text{ tal que } 2n+1 \in A_{k_0} \quad (\text{pues } A_{k_0} \in \mathcal{A}) \\
+        &\iff 2n+1 \in \bigcup_{k=1}^\infty A_k
+    \end{align*}
+    Al cumplirse la equivalencia $2n \in A \iff 2n+1 \in A$, concluimos que:
+    \[
+        \bigcup_{k=1}^\infty A_k \in \mathcal{A}
+    \]
+\end{enumerate}
+
+Al verificarse las tres condiciones, queda demostrado que la clase $\mathcal{A}$ es una $\sigma$-álgebra sobre $\mathbb{Z}^+$.
+
+\end{problema}
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 21
+% ------------------------------------------------------------------------------
+\begin{problema}[$\sigma$-álgebra co-numerable]
+Sea $\Omega$ un conjunto no numerable y sea la clase de subconjuntos
+\[
+    \mathcal{C} = \{ A \in \mathcal{P}(\Omega) \mid A \text{ o } A^c \text{ es numerable} \}
+\]
+Demostrar que $\mathcal{C}$ es una $\sigma$-álgebra sobre $\Omega$.
+
+\tcblower
+
+Verificamos que la clase $\mathcal{C}$ cumple las tres condiciones características de una $\sigma$-álgebra sobre $\Omega$:
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Pertenencia del conjunto universal:}
+    El complementario del espacio universal $\Omega$ es el conjunto vacío, $\Omega^c = \varnothing$. Puesto que el conjunto vacío es finito (y, por tanto, numerable), se deduce directamente que:
+    \[
+        \Omega \in \mathcal{C}
+    \]
+
+    \item \textbf{Cierre por complementación:}
+    Sea $A \in \mathcal{C}$. Por definición de la clase $\mathcal{C}$, se verifica que $A$ es numerable o $A^c$ es numerable.
+    
+    Analizamos el complementario $A^c$, teniendo en cuenta la propiedad de la doble complementación $(A^c)^c = A$:
+    \begin{itemize}
+        \item Si $A$ es numerable, entonces $(A^c)^c$ es numerable, luego $A^c \in \mathcal{C}$.
+        \item Si $A^c$ es numerable, por definición directa se tiene $A^c \in \mathcal{C}$.
+    \end{itemize}
+    En cualquiera de los dos casos, $A^c \in \mathcal{C}$.
+
+    \item \textbf{Cierre por uniones numerables:}
+    Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{C}$ una colección numerable de conjuntos. Distinguimos dos casos posibles:
+    \begin{itemize}
+        \item \textit{Caso 1: Todos los conjuntos $A_n$ son numerables.}
+        Puesto que la unión numerable de conjuntos numerables es a su vez numerable, la unión $\bigcup_{n=1}^\infty A_n$ es numerable, por lo que:
+        \[
+            \bigcup_{n=1}^\infty A_n \in \mathcal{C}
+        \]
+
+        \item \textit{Caso 2: Existe al menos un índice $n_0 \in \mathbb{N}$ tal que $A_{n_0}$ no es numerable.}
+        Al ser $A_{n_0} \in \mathcal{C}$, necesariamente su complementario $A_{n_0}^c$ debe ser numerable. Aplicando las leyes de De Morgan:
+        \[
+            \left( \bigcup_{n=1}^\infty A_n \right)^c = \bigcap_{n=1}^\infty A_n^c \subseteq A_{n_0}^c
+        \]
+        Puesto que cualquier subconjunto de un conjunto numerable es numerable, el complementario $\left( \bigcup_{n=1}^\infty A_n \right)^c$ es numerable, concluyendo que:
+        \[
+            \bigcup_{n=1}^\infty A_n \in \mathcal{C}
+        \]
+    \end{itemize}
+\end{enumerate}
+
+Al satisfacerse las tres propiedades, queda demostrado que $\mathcal{C}$ es una $\sigma$-álgebra sobre $\Omega$.
+
+\end{problema}
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 22
+% ------------------------------------------------------------------------------
+\begin{problema}[$\sigma$-álgebra generada por una partición numerable]
+Dado un conjunto universal $\Omega$, sea $\mathcal{A} = \{A_n\}_{n \in \mathbb{N}}$ una familia numerable de subconjuntos de $\Omega$, disjuntos dos a dos y tales que $\bigcup_{n \in \mathbb{N}} A_n = \Omega$. Demostrar que la $\sigma$-álgebra generada por $\mathcal{A}$, denotada por $\sigma(\mathcal{A})$, coincide con la clase $\mathcal{C}$ formada por todas las uniones arbitrarias de elementos de la familia:
+\[
+    \mathcal{C} = \left\{ \bigcup_{n \in I} A_n \,\,\middle|\,\, I \subseteq \mathbb{N} \right\}
+\]
+
+\tcblower
+
+Para demostrar la igualdad $\sigma(\mathcal{A}) = \mathcal{C}$, establecemos la doble inclusión entre ambas clases:
+
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Inclusión $\sigma(\mathcal{A}) \subseteq \mathcal{C}$:}
+    
+    Basta verificar que $\mathcal{C}$ es una $\sigma$-álgebra sobre $\Omega$ que contiene a la familia de generadores $\mathcal{A}$:
+    \begin{enumerate}[label=\alph*)]
+        \item \textit{Pertenencia de $\Omega$:} Tomando el subconjunto de índices $I = \mathbb{N}$, se tiene $\Omega = \bigcup_{n \in \mathbb{N}} A_n \in \mathcal{C}$.
+        
+        \item \textit{Cierre por complementación:} Sea $C = \bigcup_{n \in I} A_n \in \mathcal{C}$. Dado que la familia $\{A_n\}_{n \in \mathbb{N}}$ constituye una partición disjunta de $\Omega$, el complementario de $C$ es la unión de los bloques restantes:
+        \[
+            C^c = \Omega \setminus \left( \bigcup_{n \in I} A_n \right) = \bigcup_{n \in \mathbb{N} \setminus I} A_n
+        \]
+        Como $\mathbb{N} \setminus I \subseteq \mathbb{N}$, se sigue inmediatamente que $C^c \in \mathcal{C}$.
+        \begin{center}
+            \includegraphics[width=0.55\linewidth]{imagenes/problemas_Quesada/prob_quesada_1_22_a}
+        \end{center}
+
+        \item \textit{Cierre por uniones numerables:} Sea $\{C_k\}_{k \in \mathbb{N}} \subseteq \mathcal{C}$, donde cada $C_k = \bigcup_{n \in I_k} A_n$ para algún subconjunto de índices $I_k \subseteq \mathbb{N}$. La unión numerable resulta:
+        \[
+            \bigcup_{k=1}^\infty C_k = \bigcup_{k=1}^\infty \left( \bigcup_{n \in I_k} A_n \right) = \bigcup_{n \in \bigcup_{k=1}^\infty I_k} A_n
+        \]
+        Al ser $\bigcup_{k=1}^\infty I_k \subseteq \mathbb{N}$, la unión pertenece a $\mathcal{C}$.
+    \end{enumerate}
+    
+    Así, $\mathcal{C}$ es una $\sigma$-álgebra. Además, tomando $I = \{n\}$ para cada $n \in \mathbb{N}$, tenemos que $A_n \in \mathcal{C}$, de modo que $\mathcal{A} \subseteq \mathcal{C}$. Como $\sigma(\mathcal{A})$ es la minimal entre las $\sigma$-álgebras que contienen a $\mathcal{A}$, concluimos que:
+    \[
+        \sigma(\mathcal{A}) \subseteq \mathcal{C}
+    \]
+
+    \item \textbf{Inclusión $\mathcal{C} \subseteq \sigma(\mathcal{A})$:}
+    
+    Sea $C = \bigcup_{n \in I} A_n \in \mathcal{C}$ un elemento cualquiera de la clase. Por definición, cada bloque $A_n$ pertenece a la familia generadora $\mathcal{A} \subseteq \sigma(\mathcal{A})$.
+    
+    Puesto que $I \subseteq \mathbb{N}$ es un conjunto a lo sumo numerable de índices y la $\sigma$-álgebra $\sigma(\mathcal{A})$ es cerrada por uniones numerables, la unión $\bigcup_{n \in I} A_n$ pertenece necesariamente a $\sigma(\mathcal{A})$. Por tanto:
+    \[
+        \mathcal{C} \subseteq \sigma(\mathcal{A})
+    \]
+\end{enumerate}
+
+De la combinación de ambas inclusiones se deduce que $\sigma(\mathcal{A}) = \mathcal{C}$.
+\end{problema}
