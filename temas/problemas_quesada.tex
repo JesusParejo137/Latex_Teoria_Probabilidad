@@ -1119,3 +1119,396 @@ Para demostrar la igualdad $\sigma(\mathcal{A}) = \mathcal{C}$, establecemos la 
 
 De la combinación de ambas inclusiones se deduce que $\sigma(\mathcal{A}) = \mathcal{C}$.
 \end{problema}
+
+\newpage
+
+\section{Espacio probabilístico}
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 1
+% ------------------------------------------------------------------------------
+\begin{problema}[Mezcla de una colección numerable de medidas de probabilidad]
+Sea $(\Omega, \mathcal{Q})$ un espacio probabilizable y sea $(P_n)_{n \in \mathbb{N}}$ una sucesión de medidas de probabilidad definidas sobre él. Demostrar que la función de conjunto
+\[
+    P(A) = \sum_{n=1}^\infty a_n P_n(A)
+\]
+es una medida de probabilidad sobre el mismo espacio, para cualquier sucesión de números reales $(a_n)_{n \in \mathbb{N}}$ tal que $a_n \ge 0$ para todo $n \in \mathbb{N}$ y $\displaystyle \sum_{n=1}^\infty a_n = 1$.
+
+\tcblower
+
+Comprobamos que la función de conjunto $P : \mathcal{Q} \to \mathbb{R}$ satisface los tres axiomas de Kolmogorov para ser una medida de probabilidad:
+
+\paragraph{1. No negatividad:}
+Para cualquier suceso $A \in \mathcal{Q}$, dado que $a_n \ge 0$ y $P_n(A) \ge 0$ para todo $n \in \mathbb{N}$ (por ser cada $P_n$ una medida de probabilidad), cada término del sumatorio cumple $a_n P_n(A) \ge 0$.
+La suma de términos no negativos es no negativa, por lo que:
+\[
+    P(A) = \sum_{n=1}^\infty a_n P_n(A) \ge 0, \quad \forall A \in \mathcal{Q}
+\]
+
+\paragraph{2. Normalización del espacio muestral:}
+Evaluamos la función $P$ sobre el conjunto universal $\Omega$. Dado que $P_n(\Omega) = 1$ para todo $n \in \mathbb{N}$ y $\displaystyle \sum_{n=1}^\infty a_n = 1$:
+\[
+    P(\Omega) = \sum_{n=1}^\infty a_n P_n(\Omega) = \sum_{n=1}^\infty a_n \cdot 1 = \sum_{n=1}^\infty a_n = 1
+\]
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Combinación convexa de medidas $P = \sum_{n=1}^\infty a_n P_n$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{3. $\sigma$-aditividad:}
+Sea $(A_i)_{i \in \mathbb{N}} \subseteq \mathcal{Q}$ una sucesión de sucesos disjuntos dos a dos ($A_i \cap A_j = \varnothing$ para todo $i \neq j$).
+Por la $\sigma$-aditividad de cada medida $P_n$, se tiene que $P_n\left(\bigcup_{i=1}^\infty A_i\right) = \sum_{i=1}^\infty P_n(A_i)$.
+Sustituyendo esta propiedad en la definición de la función $P$:
+\[
+    P\left( \bigcup_{i=1}^\infty A_i \right) = \sum_{n=1}^\infty a_n P_n\left( \bigcup_{i=1}^\infty A_i \right) = \sum_{n=1}^\infty a_n \left( \sum_{i=1}^\infty P_n(A_i) \right) = \sum_{n=1}^\infty \sum_{i=1}^\infty a_n P_n(A_i)
+\]
+Puesto que todos los términos $a_n P_n(A_i)$ son no negativos, podemos aplicar el Teorema de Tonelli para series dobles (intercambio del orden de sumación para términos no negativos) sin alterar la convergencia ni la suma:
+\[
+    \sum_{n=1}^\infty \sum_{i=1}^\infty a_n P_n(A_i) = \sum_{i=1}^\infty \sum_{n=1}^\infty a_n P_n(A_i) = \sum_{i=1}^\infty P(A_i)
+\]
+Concluimos que:
+\[
+    P\left( \bigcup_{i=1}^\infty A_i \right) = \sum_{i=1}^\infty P(A_i)
+\]
+
+Al cumplirse los tres axiomas, queda demostrado que $P$ es una medida de probabilidad sobre $(\Omega, \mathcal{Q})$.
+\end{problema}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 2
+% ------------------------------------------------------------------------------
+\begin{problema}[Propiedades de la probabilidad y diferencia simétrica]
+Sea $(\Omega, \mathcal{Q}, P)$ un espacio de probabilidad y sean $A, B \in \mathcal{Q}$. Demostrar que:
+\begin{enumerate}[label=\alph*)]
+    \item $P(A) = P(B) = 1 \implies P(A \cap B) = P(A \cup B) = 1$
+    \item $P(A \Delta B) = P(A) + P(B) - 2P(A \cap B)$
+    \item $P(A \Delta B) = 0 \implies P(A) = P(B)$
+\end{enumerate}
+
+\tcblower
+
+\paragraph{Apartado a):}
+Por la propiedad de monotonía de la medida de probabilidad, al ser $A \subseteq A \cup B \subseteq \Omega$, se satisface la cadena de desigualdades:
+\[
+    1 = P(A) \le P(A \cup B) \le P(\Omega) = 1 \implies P(A \cup B) = 1
+\]
+Por otra parte, aplicando la fórmula de la probabilidad de la unión de dos sucesos:
+\[
+    P(A \cup B) = P(A) + P(B) - P(A \cap B)
+\]
+Sustituyendo los valores conocidos $P(A) = 1$, $P(B) = 1$ y $P(A \cup B) = 1$:
+\[
+    1 = 1 + 1 - P(A \cap B) \implies P(A \cap B) = 1
+\]
+Por tanto, se concluye que $P(A \cap B) = P(A \cup B) = 1$.
+
+\paragraph{Apartado b):}
+La diferencia simétrica entre dos conjuntos se define equivalentemente como la diferencia entre su unión y su intersección:
+\[
+    A \Delta B = (A \cup B) \setminus (A \cap B)
+\]
+Dado que $(A \cap B) \subseteq (A \cup B)$, aplicando la propiedad de la probabilidad de la diferencia de conjuntos contenidos:
+\[
+    P(A \Delta B) = P\bigl((A \cup B) \setminus (A \cap B)\bigr) = P(A \cup B) - P(A \cap B)
+\]
+Sustituyendo la fórmula general para la unión $P(A \cup B) = P(A) + P(B) - P(A \cap B)$:
+\[
+    P(A \Delta B) = P(A) + P(B) - P(A \cap B) - P(A \cap B) = P(A) + P(B) - 2P(A \cap B)
+\]
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Representación de la diferencia simétrica $A \Delta B$ en un diagrama de Venn]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{Apartado c):}
+Supongamos que $P(A \Delta B) = 0$. Utilizando la igualdad $P(A \Delta B) = P(A \cup B) - P(A \cap B)$ demostrada en el apartado anterior:
+\[
+    P(A \cup B) - P(A \cap B) = 0 \implies P(A \cap B) = P(A \cup B)
+\]
+Por las inclusiones de conjuntos $A \cap B \subseteq A \subseteq A \cup B$ y $A \cap B \subseteq B \subseteq A \cup B$, la monotonía de la probabilidad establece que:
+\[
+    P(A \cap B) \le P(A) \le P(A \cup B) \quad \text{y} \quad P(A \cap B) \le P(B) \le P(A \cup B)
+\]
+Al coincidir el valor de los extremos inferior y superior ($P(A \cap B) = P(A \cup B)$), las desigualdades se saturan como igualdades, deduciéndose directamente que:
+\[
+    P(A) = P(A \cap B) = P(B) = P(A \cup B)
+\]
+Por consiguiente, $P(A) = P(B)$.
+\end{problema}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 3
+% ------------------------------------------------------------------------------
+\begin{problema}[Verificación del axioma de normalización mediante integración]
+Se define la función de conjunto $P$ sobre el espacio medible $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ del siguiente modo:
+\[
+    P(B) = \int_{B \cap [1, \infty)} \frac{1}{2} \, dx, \quad \forall B \in \mathcal{B}(\mathbb{R})
+\]
+¿Es $P$ una probabilidad sobre $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$?
+
+\tcblower
+
+\paragraph{Respuesta:}
+No, $P$ no es una medida de probabilidad sobre $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
+
+\paragraph{Demostración y análisis de los axiomas:}
+Para determinar si $P$ es una medida de probabilidad, analizamos el cumplimiento de los tres axiomas de Kolmogorov:
+
+\paragraph{1. No negatividad:}
+Como el integrando $f(x) = \frac{1}{2}$ es estrictamente positivo y la medida de Lebesgue es positiva, la integral sobre cualquier región medible $B \cap [1, \infty)$ resulta no negativa:
+\[
+    P(B) = \int_{B \cap [1, \infty)} \frac{1}{2} \, dx \ge 0, \quad \forall B \in \mathcal{B}(\mathbb{R})
+\]
+
+\paragraph{2. $\sigma$-aditividad:}
+Dada una colección numerable de sucesos borelianos disjuntos dos a dos $(B_n)_{n \in \mathbb{N}} \subseteq \mathcal{B}(\mathbb{R})$ ($B_i \cap B_j = \varnothing$ para $i \neq j$), la intersección con $[1, \infty)$ preserva el disjuntismo. Por la $\sigma$-aditividad de la integral de Lebesgue (o el Teorema de Convergencia Monótona):
+\[
+    P\left( \bigcup_{n=1}^\infty B_n \right) = \int_{\left(\bigcup_{n=1}^\infty B_n\right) \cap [1, \infty)} \frac{1}{2} \, dx = \int_{\bigcup_{n=1}^\infty \left(B_n \cap [1, \infty)\right)} \frac{1}{2} \, dx
+\]
+\[
+    P\left( \bigcup_{n=1}^\infty B_n \right) = \sum_{n=1}^\infty \int_{B_n \cap [1, \infty)} \frac{1}{2} \, dx = \sum_{n=1}^\infty P(B_n)
+\]
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Área bajo la función constante $f(x)=1/2$ en el recinto no acotado $[1, \infty)$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{3. Normalización del espacio muestral:}
+Evaluamos la medida sobre todo el conjunto universal $\Omega = \mathbb{R}$:
+\[
+    P(\mathbb{R}) = \int_{\mathbb{R} \cap [1, \infty)} \frac{1}{2} \, dx = \int_{1}^{\infty} \frac{1}{2} \, dx = \left[ \frac{x}{2} \right]_{1}^{\infty} = \infty
+\]
+Puesto que $P(\mathbb{R}) = \infty \neq 1$, no se satisface la condición de estar normada a la unidad.
+
+\paragraph{Conclusión:}
+Aunque $P$ define una medida sobre el espacio medible $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$, al no cumplir el axioma de normalización ($P(\mathbb{R}) \neq 1$), no constituye una medida de probabilidad.
+\end{problema}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 4
+% ------------------------------------------------------------------------------
+\begin{problema}[Medida de probabilidad inducida por una densidad]
+Sea $\Omega = [0,1]$. Supongamos que sobre la $\sigma$-álgebra de Borel $\mathcal{B}([0,1])$ definimos una aplicación $P$ dada por:
+\[
+    P(B) = \int_B f(x) \, dx, \quad \forall B \in \mathcal{B}([0,1])
+\]
+donde $f : [0,1] \to \mathbb{R}$ es una función no negativa tal que $\displaystyle \int_0^1 f(x) \, dx = 1$.
+\begin{enumerate}[label=\alph*)]
+    \item Demostrar que $P$ es una medida de probabilidad sobre $([0,1], \mathcal{B}([0,1]))$.
+    \item Demostrar que $P(\{r\}) = 0$ para todo $r \in [0,1]$.
+    \item Calcular $P(\mathbb{Q} \cap [0,1])$, donde $\mathbb{Q}$ representa al conjunto de los números racionales.
+    \item Demostrar que $P((a,b]) = P([a,b])$ para cualquier intervalo $[a,b] \subseteq [0,1]$.
+\end{enumerate}
+
+\tcblower
+
+\paragraph{Apartado a):}
+Comprobamos los tres axiomas de Kolmogorov para verificar que $P$ es una medida de probabilidad sobre el espacio medible $([0,1], \mathcal{B}([0,1]))$:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{No negatividad:} Como $f(x) \ge 0$ para todo $x \in [0,1]$, la integral de una función no negativa sobre cualquier conjunto boreliano $B \in \mathcal{B}([0,1])$ resulta siempre no negativa:
+    \[
+        P(B) = \int_B f(x) \, dx \ge 0, \quad \forall B \in \mathcal{B}([0,1])
+    \]
+    \item \textbf{Normalización del espacio muestral:} Evaluamos la medida sobre el conjunto universal $\Omega = [0,1]$ aplicando la hipótesis dada:
+    \[
+        P([0,1]) = \int_0^1 f(x) \, dx = 1
+    \]
+    \item \textbf{$\sigma$-aditividad:} Dada una sucesión de conjuntos borelianos disjuntos dos a dos $(B_n)_{n \in \mathbb{N}} \subseteq \mathcal{B}([0,1])$ ($B_i \cap B_j = \varnothing$ para $i \neq j$), por la $\sigma$-aditividad de la integral de Lebesgue respecto del dominio de integración:
+    \[
+        P\left( \bigcup_{n=1}^\infty B_n \right) = \int_{\bigcup_{n=1}^\infty B_n} f(x) \, dx = \sum_{n=1}^\infty \int_{B_n} f(x) \, dx = \sum_{n=1}^\infty P(B_n)
+    \]
+\end{enumerate}
+Por tanto, $P$ es una medida de probabilidad bien definida.
+
+\paragraph{Apartado b):}
+Dado un punto arbitrario $r \in [0,1]$, el conjunto unipuntual $\{r\}$ pertenece a $\mathcal{B}([0,1])$. Dado que la medida de Lebesgue de cualquier punto aislado es nula ($\lambda(\{r\}) = 0$), la integral de la función $f$ sobre dicho conjunto es cero:
+\[
+    P(\{r\}) = \int_{\{r\}} f(x) \, dx = 0
+\]
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Masa de probabilidad nula en conjuntos unipuntuales y densidades continuas]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{Apartado c):}
+El conjunto de los números racionales $\mathbb{Q}$ es numerable, de modo que la intersección $\mathbb{Q} \cap [0,1]$ es también un conjunto numerable. Por consiguiente, podemos expresar este conjunto como la unión numerable disjunta de sus puntos individuales:
+\[
+    \mathbb{Q} \cap [0,1] = \bigcup_{r \in \mathbb{Q} \cap [0,1]} \{r\}
+\]
+Aplicando la propiedad de $\sigma$-aditividad demostrada en el apartado a) junto con el resultado del apartado b):
+\[
+    P(\mathbb{Q} \cap [0,1]) = \sum_{r \in \mathbb{Q} \cap [0,1]} P(\{r\}) = \sum_{r \in \mathbb{Q} \cap [0,1]} 0 = 0
+\]
+
+\paragraph{Apartado d):}
+Dado un intervalo $[a,b] \subseteq [0,1]$, podemos expresar el intervalo cerrado como la unión disjunta de su extremo izquierdo y del intervalo semiabierto correspondiente:
+\[
+    [a,b] = \{a\} \cup (a,b] \quad \text{con } \{a\} \cap (a,b] = \varnothing
+\]
+Por la aditividad de la probabilidad $P$:
+\[
+    P([a,b]) = P(\{a\}) + P((a,b])
+\]
+Puesto que $P(\{a\}) = 0$ por el apartado b), concluimos directamente que:
+\[
+    P([a,b]) = 0 + P((a,b]) = P((a,b])
+\]
+\end{problema}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 5
+% ------------------------------------------------------------------------------
+\begin{problema}[Espacio de probabilidad para el lanzamiento de dos dados]
+Se lanzan al azar dos dados ($a$ y $b$), y denotamos por $\Omega_a = \{1,2,3,4,5,6\}$ y $\Omega_b = \{1,2,3,4,5,6\}$ los resultados elementales posibles en cada uno de ellos.
+\begin{enumerate}[label=\alph*)]
+    \item Comprobar que $(\Omega_a \times \Omega_b, \mathcal{P}(\Omega_a \times \Omega_b), P)$, donde $P(A \times B) = \frac{\text{card}(A) \cdot \text{card}(B)}{36}$ para todo $A \times B \in \mathcal{P}(\Omega_a) \times \mathcal{P}(\Omega_b)$, determina un espacio de probabilidad de sucesos elementales equiprobables.
+    \item Demostrar que la aplicación $P_a : \mathcal{P}(\Omega_a) \to \mathbb{R}$ tal que $P_a(A) = P(A \times \Omega_b)$ es una medida de probabilidad sobre $(\Omega_a, \mathcal{P}(\Omega_a))$ y que sus sucesos elementales son equiprobables.
+\end{enumerate}
+
+\tcblower
+
+\paragraph{Apartado a):}
+El espacio muestral del experimento conjunto es el producto cartesiano $\Omega = \Omega_a \times \Omega_b$, cuyo cardinal es $\text{card}(\Omega) = 6 \cdot 6 = 36$. Dado que $\Omega$ es finito, la clase de las partes $\mathcal{P}(\Omega_a \times \Omega_b)$ constituye trivialmente una $\sigma$-álgebra sobre $\Omega$.
+
+Consideremos los sucesos elementales unipuntuales $\{(i,j)\} = \{i\} \times \{j\}$ para $(i,j) \in \Omega_a \times \Omega_b$. Aplicando la definición dada sobre el producto de singletons:
+\[
+    P(\{(i,j)\}) = P(\{i\} \times \{j\}) = \frac{\text{card}(\{i\}) \cdot \text{card}(\{j\})}{36} = \frac{1 \cdot 1}{36} = \frac{1}{36}
+\]
+Dado que $P(\{(i,j)\}) = \frac{1}{36} > 0$ para todo $(i,j) \in \Omega$ y la suma de las probabilidades sobre todo el espacio es:
+\[
+    \sum_{(i,j) \in \Omega} P(\{(i,j)\}) = \sum_{i=1}^6 \sum_{j=1}^6 \frac{1}{36} = 36 \cdot \frac{1}{36} = 1
+\]
+queda inducida de manera única una medida de probabilidad sobre $(\Omega, \mathcal{P}(\Omega))$ dada por la regla de Laplace:
+\[
+    P(C) = \sum_{(i,j) \in C} P(\{(i,j)\}) = \frac{\text{card}(C)}{36}, \quad \forall C \subseteq \Omega
+\]
+Para un rectángulo medible $A \times B$, al cumplirse $\text{card}(A \times B) = \text{card}(A) \cdot \text{card}(B)$, la expresión coincide exactamente con la dada:
+\[
+    P(A \times B) = \frac{\text{card}(A) \cdot \text{card}(B)}{36}
+\]
+Por tanto, $(\Omega_a \times \Omega_b, \mathcal{P}(\Omega_a \times \Omega_b), P)$ determina un espacio de probabilidad discreto con sucesos elementales equiprobables.
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Matriz $6 \times 6$ del espacio muestral $\Omega_a \times \Omega_b$ y probabilidad marginal $P_a$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{Apartado b):}
+Verificamos que $P_a : \mathcal{P}(\Omega_a) \to \mathbb{R}$ satisface los axiomas de Kolmogorov sobre el espacio muestral $(\Omega_a, \mathcal{P}(\Omega_a))$:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{No negatividad:} Para cualquier $A \in \mathcal{P}(\Omega_a)$, por ser $P$ una medida de probabilidad:
+    \[
+        P_a(A) = P(A \times \Omega_b) \ge 0
+    \]
+    \item \textbf{Normalización:} Evaluamos sobre la totalidad del espacio fuente $\Omega_a$:
+    \[
+        P_a(\Omega_a) = P(\Omega_a \times \Omega_b) = \frac{\text{card}(\Omega_a) \cdot \text{card}(\Omega_b)}{36} = \frac{6 \cdot 6}{36} = 1
+    \]
+    \item \textbf{$\sigma$-aditividad:} Sea $(A_n)_{n \in \mathbb{N}} \subseteq \mathcal{P}(\Omega_a)$ una sucesión de sucesos disjuntos dos a dos ($A_i \cap A_j = \varnothing$ para $i \neq j$). Se tiene que los cilindros $(A_n \times \Omega_b)_{n \in \mathbb{N}}$ son disjuntos dos a dos en $\mathcal{P}(\Omega_a \times \Omega_b)$. Por la aditividad de $P$:
+    \[
+    \begin{array}{rl}
+        P_a\left( \bigcup_{n=1}^\infty A_n \right) & \displaystyle = P\left( \left(\bigcup_{n=1}^\infty A_n\right) \times \Omega_b \right) = P\left( \bigcup_{n=1}^\infty (A_n \times \Omega_b) \right) = \\[12pt]
+        & \displaystyle = \sum_{n=1}^\infty P(A_n \times \Omega_b) = \sum_{n=1}^\infty P_a(A_n)
+    \end{array}
+    \]
+\end{enumerate}
+Así pues, $P_a$ es una medida de probabilidad sobre $(\Omega_a, \mathcal{P}(\Omega_a))$.
+
+Finalmente, evaluamos la probabilidad marginal $P_a$ sobre un suceso elemental arbitrario $\{i\} \subseteq \Omega_a$:
+\[
+    P_a(\{i\}) = P(\{i\} \times \Omega_b) = \frac{\text{card}(\{i\}) \cdot \text{card}(\Omega_b)}{36} = \frac{1 \cdot 6}{36} = \frac{1}{6}
+\]
+Puesto que $P_a(\{i\}) = \frac{1}{6}$ para todo $i \in \{1,2,3,4,5,6\}$, los sucesos elementales de $(\Omega_a, \mathcal{P}(\Omega_a))$ son equiprobables.
+\end{problema}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 6
+% ------------------------------------------------------------------------------
+\begin{problema}[Límites superior e inferior de sucesiones de sucesos y de probabilidades]
+Sea $\Omega = \{\omega_1, \omega_2, \omega_3, \omega_4\}$ y sea $P$ una medida de probabilidad definida sobre $\mathcal{P}(\Omega)$ tal que $P(\{\omega_1\}) = 1/6$, $P(\{\omega_2\}) = 1/3$, $P(\{\omega_3\}) = 1/5$ y $P(\{\omega_4\}) = 3/10$.
+
+Dada la sucesión alternante de sucesos:
+\[
+    A_n = \begin{cases} \{\omega_1, \omega_2\} & \text{si } n \text{ es par} \\ \{\omega_2, \omega_3\} & \text{si } n \text{ es impar} \end{cases}
+\]
+Determinar $P(\varliminf_{n \to \infty} A_n)$, $\varliminf_{n \to \infty} P(A_n)$, $\varlimsup_{n \to \infty} P(A_n)$ y $P(\varlimsup_{n \to \infty} A_n)$.
+
+\tcblower
+
+\paragraph{1. Cálculo de los límites de conjuntos y sus probabilidades:}
+El límite inferior $\varliminf_{n \to \infty} A_n$ consta de los elementos que pertenecen a todos los términos salvo a lo sumo un número finito, lo que para una sucesión periódica de periodo $2$ equivale a la intersección de sus términos distintos:
+\[
+    \varliminf_{n \to \infty} A_n = \{\omega_1, \omega_2\} \cap \{\omega_2, \omega_3\} = \{\omega_2\}
+\]
+Su probabilidad vale:
+\[
+    P\left( \varliminf_{n \to \infty} A_n \right) = P(\{\omega_2\}) = \frac{1}{3} = \frac{10}{30}
+\]
+
+El límite superior $\varlimsup_{n \to \infty} A_n$ consta de los elementos que pertenecen a infinitos términos de la sucesión, lo que equivale a la unión de sus términos distintos:
+\[
+    \varlimsup_{n \to \infty} A_n = \{\omega_1, \omega_2\} \cup \{\omega_2, \omega_3\} = \{\omega_1, \omega_2, \omega_3\}
+\]
+Por la aditividad de la probabilidad sobre sucesos disjuntos:
+\[
+    P\left( \varlimsup_{n \to \infty} A_n \right) = P(\{\omega_1\}) + P(\{\omega_2\}) + P(\{\omega_3\}) = \frac{1}{6} + \frac{1}{3} + \frac{1}{5} = \frac{7}{10} = \frac{21}{30}
+\]
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Diagrama de Venn con los puntos $\omega_1, \omega_2, \omega_3, \omega_4$ y los sucesos de la sucesión $A_n$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{2. Cálculo de la sucesión de probabilidades y sus límites numéricos:}
+Evaluamos la probabilidad de $A_n$ según la paridad de $n$:
+\[
+    P(A_n) = \begin{cases}
+        P(\{\omega_1, \omega_2\}) = \dfrac{1}{6} + \dfrac{1}{3} = \dfrac{1}{2} = \dfrac{15}{30} & \text{si } n \text{ es par} \\[0.3em]
+        P(\{\omega_2, \omega_3\}) = \dfrac{1}{3} + \dfrac{1}{5} = \dfrac{8}{15} = \dfrac{16}{30} & \text{si } n \text{ es impar}
+    \end{cases}
+\]
+Los límites inferior y superior de la sucesión numérica $P(A_n)$ vienen dados por el valor mínimo y máximo de sus subsucesiones convergentes:
+\[
+    \varliminf_{n \to \infty} P(A_n) = \min\left\{\frac{1}{2}, \frac{8}{15}\right\} = \frac{1}{2} = \frac{15}{30}
+\]
+\[
+    \varlimsup_{n \to \infty} P(A_n) = \max\left\{\frac{1}{2}, \frac{8}{15}\right\} = \frac{8}{15} = \frac{16}{30}
+\]
+
+\paragraph{3. Comprobación del Teorema de continuidad para medidas (Corolario 1):}
+Se comprueba que se satisface la cadena general de desigualdades para cualquier medida de probabilidad:
+\[
+    P\left( \varliminf_{n \to \infty} A_n \right) \le \varliminf_{n \to \infty} P(A_n) \le \varlimsup_{n \to \infty} P(A_n) \le P\left( \varlimsup_{n \to \infty} A_n \right)
+\]
+Sustituyendo los valores obtenidos expresados en un denominador común:
+\[
+    \frac{10}{30} < \frac{15}{30} < \frac{16}{30} < \frac{21}{30} \implies \frac{1}{3} < \frac{1}{2} < \frac{8}{15} < \frac{7}{10}
+\]
+En este caso particular, todas las desigualdades resultan ser estrictas.
+\end{problema}

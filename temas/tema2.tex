@@ -13,7 +13,7 @@ Sea $\mathcal{Q}$ un álgebra sobre $\Omega$ y $\mu : \mathcal{Q} \to \overline{
 \end{enumerate}
 \end{proposicion}
 
-\begin{demostracion}
+\begin{demostracion}º   1
 Demostramos formalmente cada apartado haciendo uso de la propiedad de aditividad finita:
 
 \begin{enumerate}[label=\arabic*.]
@@ -67,6 +67,337 @@ Demostramos formalmente cada apartado haciendo uso de la propiedad de aditividad
     \item Se deduce inmediatamente por contrarrecíproco del apartado 4: si $\mu(B)$ fuese infinito ($+\infty$ o $-\infty$), por la propiedad 4 la medida de $A$ debería ser también infinita, contradiciendo la hipótesis de que $\mu(A)$ es finita. Por tanto, $\mu(B)$ es necesariamente finita.
 \end{enumerate}
 \end{demostracion}
+
+\newpage
+%=========================================================
+%=== SECCIÓN 2. CONTINUIDAD DE FUNCIONES DE CONJUNTO =====
+%=========================================================
+\section{Continuidad de funciones de conjunto}
+
+\begin{teorema}{Relación entre continuidad y \texorpdfstring{$\sigma$}{sigma}-aditividad}{teo4}
+Sea $\mathcal{G}$ una $\sigma$-álgebra sobre $\Omega$ y $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ una función de conjunto aditiva. Se verifican las siguientes propiedades:
+\begin{enumerate}[label=\arabic*.]
+    \item Si $\mu$ es continua ascendente, entonces $\mu$ es $\sigma$-aditiva.
+    \item Si $\mu$ es continua descendente en el vacío ($\varnothing$) y finita, entonces $\mu$ es $\sigma$-aditiva.
+\end{enumerate}
+\end{teorema}
+
+\begin{demostracion}
+Demostramos ambas implicaciones por separado:
+
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Demostración de 1 (Continuidad ascendente $\implies \sigma$-aditividad):}
+    
+    Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión de conjuntos disjuntos dos a dos ($A_i \cap A_j = \varnothing$ para todo $i \neq j$).
+    
+    Definimos la sucesión de uniones finitas parciales:
+    \[
+        C_n = \bigcup_{i=1}^n A_i
+    \]
+    Por construcción, $\{C_n\}_{n \in \mathbb{N}}$ es una sucesión monótona creciente ($C_n \uparrow$) cuyo límite es la unión numerable infinita:
+    \[
+        \lim_{n \to \infty} C_n = \bigcup_{n=1}^\infty C_n = \bigcup_{i=1}^\infty A_i
+    \]
+    
+    Aplicando la hipótesis de continuidad ascendente de $\mu$ sobre la sucesión $\{C_n\}$ y la aditividad finita de $\mu$ sobre la unión disjunta $C_n = \bigcup_{i=1}^n A_i$:
+    \begin{align*}
+        \mu\left( \bigcup_{i=1}^\infty A_i \right) &= \mu\left( \lim_{n \to \infty} C_n \right) = \lim_{n \to \infty} \mu(C_n) \\
+        &= \lim_{n \to \infty} \mu\left( \bigcup_{i=1}^n A_i \right) = \lim_{n \to \infty} \sum_{i=1}^n \mu(A_i) = \sum_{i=1}^\infty \mu(A_i)
+    \end{align*}
+    Por consiguiente, $\mu$ es $\sigma$-aditiva.
+
+    \item \textbf{Demostración de 2 (Continuidad descendente en $\varnothing$ y finitud $\implies \sigma$-aditividad):}
+    
+    Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión de conjuntos disjuntos dos a dos. Consideremos las siguientes dos sucesiones auxiliares:
+    \begin{itemize}
+        \item $C_n = \displaystyle\bigcup_{i=1}^n A_i$, que es creciente ($C_n \uparrow$) con $\displaystyle\lim_{n \to \infty} C_n = \bigcup_{i=1}^\infty A_i$.
+        \item $D_n = \displaystyle\left( \bigcup_{i=1}^\infty A_i \right) \setminus C_n$, la cola de la unión numerable.
+    \end{itemize}
+    
+    Observamos que la sucesión $\{D_n\}_{n \in \mathbb{N}}$ es monótona decreciente ($D_n \downarrow$) y su límite viene dado por:
+    \[
+        \lim_{n \to \infty} D_n = \left( \bigcup_{i=1}^\infty A_i \right) \setminus \left( \lim_{n \to \infty} C_n \right) = \left( \bigcup_{i=1}^\infty A_i \right) \setminus \left( \bigcup_{i=1}^\infty A_i \right) = \varnothing
+    \]
+    
+    Puesto que la función de conjunto $\mu$ es finita por hipótesis, se cumple $|\mu(D_n)| < \infty$ para todo $n \in \mathbb{N}$. Por tanto, podemos aplicar la propiedad de continuidad descendente en el vacío:
+    \[
+        \lim_{n \to \infty} \mu(D_n) = \mu\left( \lim_{n \to \infty} D_n \right) = \mu(\varnothing) = 0
+    \]
+    
+    Por otra parte, para cada $n \in \mathbb{N}$, el conjunto total se descompone de forma disjunta como $\bigcup_{i=1}^\infty A_i = C_n \cup D_n$, con $C_n \cap D_n = \varnothing$. Usando la aditividad finita de $\mu$:
+    \[
+        \mu\left( \bigcup_{i=1}^\infty A_i \right) = \mu(C_n \cup D_n) = \mu(C_n) + \mu(D_n) = \sum_{i=1}^n \mu(A_i) + \mu(D_n)
+    \]
+    
+    Tomando el límite cuando $n \to \infty$ en ambos lados y considerando que la cantidad $\mu\left( \bigcup_{i=1}^\infty A_i \right)$ es una constante respecto de $n$:
+    \begin{align*}
+        \mu\left( \bigcup_{i=1}^\infty A_i \right) &= \lim_{n \to \infty} \mu\left( \bigcup_{i=1}^\infty A_i \right) = \lim_{n \to \infty} \left( \sum_{i=1}^n \mu(A_i) + \mu(D_n) \right) \\
+        &= \sum_{i=1}^\infty \mu(A_i) + \lim_{n \to \infty} \mu(D_n) = \sum_{i=1}^\infty \mu(A_i) + 0 = \sum_{i=1}^\infty \mu(A_i)
+    \end{align*}
+    Queda demostrado que $\mu$ es $\sigma$-aditiva.
+\end{enumerate}
+\end{demostracion}
+
+\begin{teorema}{Teorema de continuidad}{teo5}
+Sea $\mathcal{G}$ una $\sigma$-álgebra sobre $\Omega$ y $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ una función de conjunto aditiva. Si $\mu$ es $\sigma$-aditiva, entonces $\mu$ es continua.
+\end{teorema}
+
+\begin{demostracion}
+Para probar que $\mu$ es continua, debemos demostrar que es continua ascendente y continua descendente.
+
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Continuidad ascendente:}
+    
+    Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión creciente de conjuntos ($A_1 \subseteq A_2 \subseteq \dots \subseteq A_n \subseteq \dots$). Su límite viene dado por $\displaystyle \lim_{n \to \infty} A_n = \bigcup_{i=1}^\infty A_i$. Distinguimos dos casos:
+    
+    \begin{itemize}
+        \item \textit{Caso 1: Existe algún $k \in \mathbb{N}$ tal que $\mu(A_k) = \pm\infty$.}
+        
+        Por la propiedad 4 de las funciones de conjunto aditivas, al ser $A_k \subseteq A_n$ para todo $n \ge k$, se tiene que $\mu(A_n) = \pm\infty$ para todo $n \ge k$, de donde:
+        \[
+            \lim_{n \to \infty} \mu(A_n) = \pm\infty
+        \]
+        Análogamente, como $A_k \subseteq \bigcup_{i=1}^\infty A_i = \lim_{n \to \infty} A_n$, se verifica que:
+        \[
+            \mu\left( \lim_{n \to \infty} A_n \right) = \pm\infty
+        \]
+        Por tanto, en este caso se cumple trivialmente $\displaystyle \lim_{n \to \infty} \mu(A_n) = \mu\left( \lim_{n \to \infty} A_n \right) = \pm\infty$.
+
+        \item \textit{Caso 2: $|\mu(A_n)| < +\infty$ para todo $n \in \mathbb{N}$.}
+        
+        Definimos la sucesión de conjuntos disjuntos $\{B_n\}_{n \in \mathbb{N}}$ mediante las coronas (tomando $A_0 = \varnothing$):
+        \[
+            B_n = A_n \setminus A_{n-1}, \quad \forall n \in \mathbb{N}
+        \]
+        Esta sucesión satisface las siguientes propiedades:
+        \begin{itemize}
+            \item $\displaystyle \bigcup_{i=1}^n B_i = A_n \quad \text{y} \quad \bigcup_{i=1}^\infty B_i = \bigcup_{i=1}^\infty A_i = \lim_{n \to \infty} A_n$.
+            \item Por la propiedad 3, dado que $A_{n-1} \subseteq A_n$ y $\mu(A_{n-1})$ es finita:
+            \[
+                \mu(B_n) = \mu(A_n \setminus A_{n-1}) = \mu(A_n) - \mu(A_{n-1})
+            \]
+        \end{itemize}
+        Dado que $\mu$ es $\sigma$-aditiva por hipótesis, calculamos la medida del límite:
+        \begin{align*}
+            \mu\left( \lim_{n \to \infty} A_n \right) &= \mu\left( \bigcup_{i=1}^\infty A_i \right) = \mu\left( \bigcup_{i=1}^\infty B_i \right) = \sum_{i=1}^\infty \mu(B_i) \\
+            &= \lim_{n \to \infty} \sum_{i=1}^n \mu(B_i) = \lim_{n \to \infty} \sum_{i=1}^n \bigl[ \mu(A_i) - \mu(A_{i-1}) \bigr] \\
+            &= \lim_{n \to \infty} \mu(A_n)
+        \end{align*}
+    \end{itemize}
+    En ambos casos se verifica que $\displaystyle \lim_{n \to \infty} \mu(A_n) = \mu\left( \lim_{n \to \infty} A_n \right)$, demostrando que $\mu$ es continua ascendente.
+
+    \item \textbf{Continuidad descendente:}
+    
+    Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión decreciente ($A_1 \supseteq A_2 \supseteq \dots \supseteq A_n \supseteq \dots$) tal que existe algún $k \in \mathbb{N}$ con $\mu(A_k)$ finito.
+    
+    Por la propiedad 5 de las funciones de conjunto aditivas:
+    \begin{itemize}
+        \item $\mu(A_n)$ es finita para todo $n \ge k$.
+        \item Dado que $\displaystyle \lim_{n \to \infty} A_n = \bigcap_{i=1}^\infty A_i \subseteq A_k$, la medida $\displaystyle \mu\left( \lim_{n \to \infty} A_n \right)$ es también finita.
+    \end{itemize}
+
+    Fijando dicho conjunto $A_k$, definimos la sucesión auxiliar:
+    \[
+        B_n = A_k \setminus A_{n+k-1}, \quad \forall n \in \mathbb{N}
+    \]
+    Al ser $\{A_n\}$ decreciente, la sucesión $\{B_n\}$ es monótona creciente ($B_n \uparrow$), y su límite es:
+    \[
+        \lim_{n \to \infty} B_n = \lim_{n \to \infty} (A_k \setminus A_{n+k-1}) = A_k \setminus \left( \lim_{n \to \infty} A_n \right)
+    \]
+
+    Por la continuidad ascendente probada en el apartado anterior, se verifica que:
+    \[
+        \mu\left( \lim_{n \to \infty} B_n \right) = \lim_{n \to \infty} \mu(B_n)
+    \]
+    Desarrollamos ambos miembros de esta igualdad de forma independiente:
+    \begin{itemize}
+        \item \textit{Miembro izquierdo:} Aplicando la propiedad 3 (ya que $\displaystyle \lim_{n \to \infty} A_n \subseteq A_k$ y su medida es finita):
+        \[
+            \mu\left( \lim_{n \to \infty} B_n \right) = \mu\left( A_k \setminus \lim_{n \to \infty} A_n \right) = \mu(A_k) - \mu\left( \lim_{n \to \infty} A_n \right)
+        \]
+        \item \textit{Miembro derecho:} Puesto que $\mu(A_{n+k-1})$ es finita para todo $n \ge 1$:
+        \begin{align*}
+            \lim_{n \to \infty} \mu(B_n) &= \lim_{n \to \infty} \mu(A_k \setminus A_{n+k-1}) = \lim_{n \to \infty} \bigl[ \mu(A_k) - \mu(A_{n+k-1}) \bigr] \\
+            &= \mu(A_k) - \lim_{n \to \infty} \mu(A_{n+k-1}) = \mu(A_k) - \lim_{n \to \infty} \mu(A_n)
+        \end{align*}
+    \end{itemize}
+
+    Igualando ambas expresiones:
+    \[
+        \mu(A_k) - \mu\left( \lim_{n \to \infty} A_n \right) = \mu(A_k) - \lim_{n \to \infty} \mu(A_n)
+    \]
+    Al ser $\mu(A_k)$ una cantidad finita, restando $\mu(A_k)$ en ambos lados se concluye:
+    \[
+        \lim_{n \to \infty} \mu(A_n) = \mu\left( \lim_{n \to \infty} A_n \right)
+    \]
+    lo que prueba que $\mu$ es continua descendente.
+\end{enumerate}
+
+Al ser continua tanto ascendente como descendentemente, queda demostrado que la función de conjunto $\mu$ es continua.
+\end{demostracion}
+
+\newpage
+%=========================================================
+%================= SECCIÓN 3. MEDIDAS ====================
+%=========================================================
+\section{Medidas}
+
+Llamaremos \textit{medida} a una función de conjunto $\sigma$-aditiva y positiva.
+Dado un conjunto universal $\Omega$ y una $\sigma$-álgebra $\mathcal{G}$ de subconjuntos de $\Omega$, al par $(\Omega, \mathcal{G})$ se le denomina \textit{espacio medible}, y a los elementos de $\mathcal{G}$ se les llama \textit{conjuntos medibles}.
+
+Sea $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ una medida. A la terna $(\Omega, \mathcal{G}, \mu)$ se le denomina \textit{espacio de medida}. 
+
+Si además $\mu(\Omega) = 1$, decimos que $\mu$ es una \textit{probabilidad} o \textit{medida probabilística}, y a la terna $(\Omega, \mathcal{G}, \mu)$ se le llama \textit{espacio probabilístico} o \textit{espacio de probabilidad}.
+
+\begin{proposicion}{Propiedades básicas de las medidas}{prop:prop11}
+Para toda medida $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ se verifican las siguientes propiedades:
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Monotonía:} Si $A, B \in \mathcal{G}$ con $B \subseteq A$, entonces $\mu(B) \le \mu(A)$.
+    \item \textbf{Subaditividad numerable:} Para toda sucesión de conjuntos $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$, se satisface:
+    \[
+        \mu\left( \bigcup_{n=1}^\infty A_n \right) \le \sum_{n=1}^\infty \mu(A_n)
+    \]
+\end{enumerate}
+\end{proposicion}
+
+\begin{demostracion}
+Al ser una medida una función de conjunto $\sigma$-aditiva y positiva, satisface en particular todas las propiedades de las funciones aditivas:
+
+\begin{enumerate}[label=\alph*)]
+    \item Por la propiedad de aditividad, podemos descomponer $A$ como la unión disjunta $A = (A \setminus B) \cup B$. Por consiguiente:
+    \[
+        \mu(A) = \mu(A \setminus B) + \mu(B)
+    \]
+    Como $\mu$ es una función de conjunto positiva, se tiene que $\mu(A \setminus B) \ge 0$, de lo cual se deduce directamente que $\mu(A) \ge \mu(B)$.
+
+    \item Sean $A_1, A_2 \in \mathcal{G}$. Aplicando la propiedad aditiva general:
+    \[
+        \mu(A_1) + \mu(A_2) = \mu(A_1 \cup A_2) + \mu(A_1 \cap A_2)
+    \]
+    Dado que $\mu(A_1 \cap A_2) \ge 0$, se obtiene $\mu(A_1 \cup A_2) \le \mu(A_1) + \mu(A_2)$.
+    
+    Por inducción finita, para cualquier número $n$ de subconjuntos se verifica:
+    \[
+        \mu\left( \bigcup_{j=1}^n A_j \right) \le \sum_{j=1}^n \mu(A_j)
+    \]
+    Tomando el límite cuando $n \to \infty$ en ambos miembros de la desigualdad:
+    \[
+        \lim_{n \to \infty} \mu\left( \bigcup_{j=1}^n A_j \right) \le \lim_{n \to \infty} \sum_{j=1}^n \mu(A_j) = \sum_{n=1}^\infty \mu(A_n)
+    \]
+    Por otra parte, la sucesión de uniones finitas $B_n = \bigcup_{j=1}^n A_j$ es una sucesión monótona creciente ($B_n \uparrow$) cuyo límite es la unión numerable infinita:
+    \[
+        \lim_{n \to \infty} B_n = \bigcup_{n=1}^\infty A_n
+    \]
+    Dado que toda medida $\sigma$-aditiva es continua ascendente, podemos conmutar el límite con la medida:
+    \[
+        \lim_{n \to \infty} \mu\left( \bigcup_{j=1}^n A_j \right) = \lim_{n \to \infty} \mu(B_n) = \mu\left( \lim_{n \to \infty} B_n \right) = \mu\left( \bigcup_{n=1}^\infty A_n \right)
+    \]
+    Sustituyendo este resultado en la desigualdad anterior se obtiene la propiedad de subaditividad numerable.
+\end{enumerate}
+\end{demostracion}
+
+\paragraph{Nota previa: Repaso de límites de sucesiones numéricas}
+Para estudiar cuándo es posible conmutar la medida con el límite para sucesiones de conjuntos no necesariamente monótonas, recordamos las definiciones y propiedades fundamentales de los límites superior e inferior de sucesiones reales.
+
+Dada una sucesión numérica $\{a_n\}_{n \in \mathbb{N}} \subseteq \overline{\mathbb{R}}$, sus límites superior e inferior se definen como:
+\[
+    \varlimsup_{n \to \infty} a_n = \limsup_{n \to \infty} a_n \equiv \inf_{n \ge 1} \sup_{m \ge n} a_m
+\]
+\[
+    \varliminf_{n \to \infty} a_n = \liminf_{n \to \infty} a_n \equiv \sup_{n \ge 1} \inf_{m \ge n} a_m
+\]
+\begin{itemize}
+    \item Los límites superior e inferior siempre existen en $\overline{\mathbb{R}}$.
+    \item Se verifica siempre la relación $\displaystyle \varliminf_{n \to \infty} a_n \le \varlimsup_{n \to \infty} a_n$.
+    \item Si ambos coinciden, la sucesión $\{a_n\}$ es convergente y $\displaystyle \lim_{n \to \infty} a_n = \varliminf_{n \to \infty} a_n = \varlimsup_{n \to \infty} a_n$.
+    \item Si $\{a_n\}$ es monótona creciente (resp. decreciente), es convergente a su supremo (resp. ínfimo).
+    \item Si $\{a_n\}$ y $\{b_n\}$ son sucesiones tales que $a_n \le b_n$ para todo $n \in \mathbb{N}$, se cumple:
+    \[
+        \varliminf_{n \to \infty} a_n \le \varliminf_{n \to \infty} b_n \quad \text{y} \quad \varlimsup_{n \to \infty} a_n \le \varlimsup_{n \to \infty} b_n
+    \]
+\end{itemize}
+
+\begin{teorema}{Teorema de continuidad para medidas}{teo6}
+Sea $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ una medida y sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión arbitraria de conjuntos medibles. Se verifican las siguientes afirmaciones:
+\begin{enumerate}[label=\alph*)]
+    \item $\displaystyle \mu\left( \varliminf_{n \to \infty} A_n \right) \le \varliminf_{n \to \infty} \mu(A_n) \le \varlimsup_{n \to \infty} \mu(A_n)$
+    \item Si existe un índice $n_0 \in \mathbb{N}$ tal que $\displaystyle \mu\left( \bigcup_{j=n_0}^\infty A_j \right) < \infty$, entonces:
+    \[
+        \mu\left( \varliminf_{n \to \infty} A_n \right) \le \varliminf_{n \to \infty} \mu(A_n) \le \varlimsup_{n \to \infty} \mu(A_n) \le \mu\left( \varlimsup_{n \to \infty} A_n \right)
+    \]
+    \item Si además la sucesión de conjuntos $\{A_n\}$ es convergente, entonces la sucesión numérica $\{\mu(A_n)\}$ es convergente y se cumple:
+    \[
+        \mu\left( \lim_{n \to \infty} A_n \right) = \lim_{n \to \infty} \mu(A_n)
+    \]
+\end{enumerate}
+\end{teorema}
+
+\begin{demostracion}
+\begin{enumerate}[label=\alph*)]
+    \item Consideremos la sucesión de conjuntos $\delta_n = \bigcap_{j=n}^\infty A_j$. Se cumple que $\{\delta_n\}_{n \in \mathbb{N}}$ es una sucesión monótona creciente ($\delta_n \uparrow$) cuyo límite coincide con el límite inferior:
+    \[
+        \lim_{n \to \infty} \delta_n = \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j = \varliminf_{n \to \infty} A_n
+    \]
+    Como toda medida es continua ascendente:
+    \[
+        \mu\left( \varliminf_{n \to \infty} A_n \right) = \mu\left( \lim_{n \to \infty} \delta_n \right) = \lim_{n \to \infty} \mu(\delta_n)
+    \]
+    La sucesión numérica $\{\mu(\delta_n)\}$ es creciente y por tanto convergente. Además, como $\delta_n \subseteq A_n$ para todo $n \in \mathbb{N}$, por monotonía de la medida se tiene $\mu(\delta_n) \le \mu(A_n)$. Tomando el límite inferior numérico:
+    \[
+        \lim_{n \to \infty} \mu(\delta_n) = \varliminf_{n \to \infty} \mu(\delta_n) \le \varliminf_{n \to \infty} \mu(A_n)
+    \]
+    Por consiguiente, $\displaystyle \mu\left( \varliminf_{n \to \infty} A_n \right) \le \varliminf_{n \to \infty} \mu(A_n)$.
+    
+    La segunda desigualdad $\displaystyle \varliminf_{n \to \infty} \mu(A_n) \le \varlimsup_{n \to \infty} \mu(A_n)$ es una propiedad general para cualquier sucesión numérica.
+
+    \item Para demostrar la desigualdad restante, consideramos la sucesión de conjuntos $\sigma_n = \bigcup_{j=n}^\infty A_j$. La sucesión $\{\sigma_n\}_{n \in \mathbb{N}}$ es monótona decreciente ($\sigma_n \downarrow$) y su límite es el límite superior de la sucesión:
+    \[
+        \lim_{n \to \infty} \sigma_n = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j = \varlimsup_{n \to \infty} A_n
+    \]
+    Por hipótesis, existe $n_0 \in \mathbb{N}$ tal que $\mu(\sigma_{n_0}) < \infty$. Por el Teorema de continuidad, la medida $\mu$ es continua descendente sobre la sucesión $\{\sigma_n\}$:
+    \[
+        \mu\left( \varlimsup_{n \to \infty} A_n \right) = \mu\left( \lim_{n \to \infty} \sigma_n \right) = \lim_{n \to \infty} \mu(\sigma_n)
+    \]
+    Dado que $A_n \subseteq \sigma_n$ para todo $n \in \mathbb{N}$, la monotonía implica $\mu(A_n) \le \mu(\sigma_n)$. Tomando el límite superior numérico:
+    \[
+        \varlimsup_{n \to \infty} \mu(A_n) \le \varlimsup_{n \to \infty} \mu(\sigma_n) = \lim_{n \to \infty} \mu(\sigma_n) = \mu\left( \varlimsup_{n \to \infty} A_n \right)
+    \]
+    lo cual demuestra la cuarta desigualdad.
+
+    \item Si la sucesión $\{A_n\}$ es convergente, sus límites superior e inferior de conjuntos coinciden:
+    \[
+        \varliminf_{n \to \infty} A_n = \varlimsup_{n \to \infty} A_n = \lim_{n \to \infty} A_n
+    \]
+    Sustituyendo esta igualdad en la cadena de desigualdades obtenida en el apartado b), los extremos de la cadena se igualan:
+    \[
+        \mu\left( \lim_{n \to \infty} A_n \right) \le \varliminf_{n \to \infty} \mu(A_n) \le \varlimsup_{n \to \infty} \mu(A_n) \le \mu\left( \lim_{n \to \infty} A_n \right)
+    \]
+    Por el teorema del sándwich, todas las desigualdades se convierten en igualdades. En particular, $\displaystyle \varliminf_{n \to \infty} \mu(A_n) = \varlimsup_{n \to \infty} \mu(A_n)$, lo que prueba que el límite numérico $\displaystyle \lim_{n \to \infty} \mu(A_n)$ existe y satisface $\displaystyle \mu\left( \lim_{n \to \infty} A_n \right) = \lim_{n \to \infty} \mu(A_n)$.
+\end{enumerate}
+\end{demostracion}
+
+\begin{corolario}{Continuidad para medidas de probabilidad}{cor1}
+Si $P : \mathcal{G} \to \mathbb{R}$ es una medida de probabilidad y $\{A_n\}_{n \in \mathbb{N}}$ es una sucesión arbitraria de sucesos de $\mathcal{G}$, se verifica:
+\begin{enumerate}[label=\alph*)]
+    \item $\displaystyle P\left( \varliminf_{n \to \infty} A_n \right) \le \varliminf_{n \to \infty} P(A_n) \le \varlimsup_{n \to \infty} P(A_n) \le P\left( \varlimsup_{n \to \infty} A_n \right)$
+    \item Si la sucesión $\{A_n\}$ es convergente, entonces $\displaystyle P\left( \lim_{n \to \infty} A_n \right) = \lim_{n \to \infty} P(A_n)$.
+\end{enumerate}
+\end{corolario}
+
+\paragraph{Tipos de medidas y terminología básica}
+\begin{itemize}
+    \item \textbf{Medida finita e infinita:} Una medida $\mu$ se dice \textit{finita} si $\mu(\Omega) < \infty$. Toda medida finita puede convertirse en una medida de probabilidad equivalente definiendo $\mu' = \frac{\mu}{\mu(\Omega)}$.
+    \item \textbf{Medida $\sigma$-finita:} Decimos que un espacio de medida $(\Omega, \mathcal{G}, \mu)$ es \textit{$\sigma$-finito} si existe una sucesión de conjuntos medibles $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ tal que $\mu(A_n) < \infty$ para todo $n \in \mathbb{N}$ y que constituye un recubrimiento de $\Omega$ ($\bigcup_{n=1}^\infty A_n = \Omega$). Típicamente se considera una sucesión creciente hacia el universo ($A_n \uparrow \Omega$).
+    
+    \textit{Ejemplo:} El espacio de Lebesgue $(\mathbb{R}, \mathcal{B}, \lambda)$ es $\sigma$-finito, ya que la sucesión de intervalos $A_n = (-n, n)$ recubre $\mathbb{R}$ y cumple $\lambda((-n, n)) = 2n < \infty$.
+    
+    \item \textbf{Propiedad casi seguro (c.s.):} Una propiedad se verifica \textit{casi seguro} (c.s.) o \textit{casi en todas partes} respecto a $\mu$ si se cumple en todos los elementos de $\Omega$ salvo en un conjunto de medida nula, es decir, existe $A \in \mathcal{G}$ con $\mu(A^c) = 0$ tal que la propiedad se verifica para todo $\omega \in A$.
+    
+    \item \textbf{Medida completa:} Una medida $\mu$ es \textit{completa} sobre $\mathcal{G}$ si todo subconjunto de un conjunto de medida nula pertenece a $\mathcal{G}$ (y por tanto tiene medida nula). En tal caso, el espacio de medida $(\Omega, \mathcal{G}, \mu)$ se denomina \textit{espacio completo}.
+\end{itemize}
+\newpage
+%==========================================================
+\seccionproblemas
 
 % ------------------------------------------------------------------------------
 % PROBLEMA 25
@@ -143,18 +474,90 @@ se concluye que la función de conjunto $\tau$ \textbf{no es $\sigma$-aditiva} s
 \end{problema}
 
 \newpage
-%==========================================================
-\section{Espacios de medida}
-% Definición de espacio medible, espacio de medida, propiedades elementales de la medida.
 
+% ------------------------------------------------------------------------------
+% PROBLEMA 26
+% ------------------------------------------------------------------------------
+\begin{problema}[Continuidad de la medida de cardinal y cálculo de límites]
+Tomemos $\Omega = \mathbb{N}$, $\mathcal{G} = \mathcal{P}(\mathbb{N})$ y la función de conjunto $\mu(A) = \text{cardinal}(A)$. Sea $\{A_n\}$ la sucesión de conjuntos con término general $A_n = \{x = 2m \mid m \le n\}$. ¿Podemos calcular $\mu\left(\lim_{n \to \infty} A_n\right)$ sin conocer el conjunto límite de la sucesión $\{A_n\}$?
+
+\tcblower
+
+Analizamos la naturaleza de la función de conjunto y de la sucesión:
+
+\begin{enumerate}
+    \item \textbf{Propiedades de la función de conjunto:} 
+    La función $\mu(A) = \text{cardinal}(A)$ es una medida sobre el espacio medible $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$, ya que es positiva y $\sigma$-aditiva. Por consiguiente, al ser una medida, es una función de conjunto continua (tanto ascendente como descendentemente).
+
+    \item \textbf{Monotonía de la sucesión:} 
+    El término general de la sucesión es $A_n = \{2, 4, 6, \dots, 2n\}$. Es evidente que cada conjunto está contenido en el siguiente:
+    \[
+        A_1 \subseteq A_2 \subseteq A_3 \subseteq \dots \subseteq A_n \subseteq \dots
+    \]
+    Por lo tanto, la sucesión $\{A_n\}$ es monótona creciente, lo que garantiza su convergencia.
+
+    \item \textbf{Aplicación de la continuidad de la medida:} 
+    Gracias a la propiedad de continuidad ascendente de las medidas, podemos conmutar la aplicación de la medida con el límite de la sucesión monótona:
+    \[
+        \mu\left( \lim_{n \to \infty} A_n \right) = \lim_{n \to \infty} \mu(A_n)
+    \]
+\end{enumerate}
+
+Calculamos directamente el límite de las medidas de los términos individuales sin necesidad de determinar explícitamente el conjunto límite:
+\[
+    \mu(A_n) = \text{cardinal}(\{2, 4, \dots, 2n\}) = n
+\]
+Tomando el límite cuando $n \to \infty$:
+\[
+    \lim_{n \to \infty} \mu(A_n) = \lim_{n \to \infty} n = +\infty
+\]
+
+\textbf{Conclusión:} Sí es posible calcular $\mu\left(\lim_{n \to \infty} A_n\right)$ sin conocer explícitamente el conjunto límite (que en este caso correspondería al conjunto de los números pares $2\mathbb{N}$, de cardinal infinito), utilizando la propiedad de continuidad de la medida.
+\end{problema}
 
 \newpage
-%==========================================================
-\section{Comparación de medidas}
-% Medidas finitas, $\sigma$-finitas, absoluta continuidad y singularidad de medidas.
 
+% ------------------------------------------------------------------------------
+% PROBLEMA 27
+% ------------------------------------------------------------------------------
+\begin{problema}[Falta de continuidad descendente cuando la medida es infinita]
+Tomemos $\Omega = \mathbb{R}$, $\mathcal{G} = \mathcal{B}$ (la $\sigma$-álgebra de Borel) y la función de conjunto $\lambda(A) = \text{longitud del intervalo } A$ (medida de Lebesgue). Sea $\{A_n\}_{n \in \mathbb{N}}$ la sucesión de conjuntos definida por $A_n = (n, \infty)$. ¿Se verifica que $\lambda\left(\lim_{n \to \infty} A_n\right) = \lim_{n \to \infty} \lambda(A_n)$?
 
+\tcblower
 
-\newpage
-%==========================================================
-\section{Problemas resueltos}
+Calculamos independientemente ambos lados de la igualdad para comprobar si coinciden:
+
+\begin{enumerate}
+    \item \textbf{Cálculo del miembro izquierdo $\lambda\left(\lim_{n \to \infty} A_n\right)$:}
+    
+    La sucesión de intervalos $A_n = (n, \infty)$ es monótona decreciente, ya que:
+    \[
+        A_1 \supset A_2 \supset A_3 \supset \dots \supset A_n \supset A_{n+1} \supset \dots
+    \]
+    Por ser una sucesión decreciente, su límite de conjuntos viene dado por la intersección de todos sus términos:
+    \[
+        \lim_{n \to \infty} A_n = \bigcap_{n=1}^\infty (n, \infty) = \varnothing
+    \]
+    Puesto que la medida de Lebesgue del conjunto vacío es nula, obtenemos:
+    \[
+        \lambda\left( \lim_{n \to \infty} A_n \right) = \lambda(\varnothing) = 0
+    \]
+
+    \item \textbf{Cálculo del miembro derecho $\lim_{n \to \infty} \lambda(A_n)$:}
+    
+    Para todo $n \in \mathbb{N}$, el intervalo $A_n = (n, \infty)$ es un semieje no acotado, por lo que su medida de Lebesgue es infinita:
+    \[
+        \lambda(A_n) = \lambda((n, \infty)) = \infty, \quad \forall n \in \mathbb{N}
+    \]
+    Tomando el límite de la sucesión constante de medidas:
+    \[
+        \lim_{n \to \infty} \lambda(A_n) = \lim_{n \to \infty} \infty = \infty
+    \]
+\end{enumerate}
+
+\paragraph{Conclusión:}
+Puesto que $0 \neq \infty$, \textbf{no se verifica} la igualdad $\lambda\left(\lim_{n \to \infty} A_n\right) = \lim_{n \to \infty} \lambda(A_n)$.
+
+\paragraph{Nota teórica:}
+Aunque la medida de Lebesgue es $\sigma$-aditiva y por tanto continua, la propiedad de \textit{continuidad descendente} exige como hipótesis imprescindible que la medida de al menos un término de la sucesión sea finita ($\exists n_0 \text{ tal que } \lambda(A_{n_0}) < \infty$). Al ser $\lambda(A_n) = \infty$ para todo $n \in \mathbb{N}$, no se cumple esta condición necesaria y la medida no conmuta con el límite.
+\end{problema}
