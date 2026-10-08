@@ -2,6 +2,30 @@
 
 \section{Funciones de conjunto: aditividad y continuidad}
 
+\begin{definicion}{Función de conjunto}{funcion_conjunto}
+    Una \textbf{función de conjunto} es una aplicación de clase $\mathcal{C}$ de conjuntos de $\Omega$ en el cierre de $\mathbb{R}$, $\overline{\mathbb{R}}$, donde $\overline{\mathbb{R}}=\mathbb{R}\cup\{-\infty,+\infty\}$, $\mu:\mathcal{C}\colon\longrightarrow\overline{\mathbb{R}}$.
+
+    Diremos que $\mu$ es \textbf{aditiva} si:
+    \begin{enumerate}[label=\alph*)]
+        \item $\mu(\varnothing)=0$
+        \item Si $A_1,\hdots,A_n\in\mathcal{C}$ disjuntos dos a dos ($A_i\cap A_j=\varnothing, i\neq j$), entonces
+        \[
+        \mu\left(\bigcup_{i=1}^n A_i\right)=\sum_{i=1}^n \mu(A_i)
+        \]
+    \end{enumerate}
+    y diremos que es $\sigma-aditiva$ si:
+    \begin{enumerate}[label=\alph*)]
+        \item $\mu(\varnothing)=0$
+        \item Si $A_1,\hdots,A_n,\hdots\in\mathcal{C}$ disjuntos dos a dos ($A_i\cap A_j=\varnothing, i\neq j$), entonces
+        \[
+        \mu\left(\bigcup_{n=1}^\infty A_n\right)=\sum_{n=1}^\infty \mu(A_n)
+        \]
+    \end{enumerate}
+    En ambas definiciones entendemos que $\mathcal{C}$ es tal que a ambos lados en $a)$ y $b)$ están bien definidos; es decir, que el $\varnothing$ y la unión finita/numerable de los $A_n$ que aparece a la izquierda de la igualdad, pertenecen a $\mathcal{C}$ y que el sumatorio infinito, que aparece a la derecha de la igualdad, es convergente; es decir, sumable.
+
+    Para no tener problema con la parte izquierda de estas igualdades, supondremos siempre que $\mathcal{C}$ es, como mínimo, álgebra cuando hablemos de aditividad y $\sigma-$álgebra cuando hablemos de $\sigma-$aditividad.
+\end{definicion}
+\newpage
 \begin{proposicion}{Propiedades de las funciones de conjunto aditivas}{prop:prop10}
 Sea $\mathcal{Q}$ un álgebra sobre $\Omega$ y $\mu : \mathcal{Q} \to \overline{\mathbb{R}}$ una función de conjunto aditiva. Sean $A, B \in \mathcal{Q}$, entonces se verifican las siguientes propiedades:
 \begin{enumerate}[label=\arabic*.]
@@ -12,8 +36,7 @@ Sea $\mathcal{Q}$ un álgebra sobre $\Omega$ y $\mu : \mathcal{Q} \to \overline{
     \item Si $B \subseteq A$ y $\mu(A)$ es finito, entonces $\mu(B)$ es finito.
 \end{enumerate}
 \end{proposicion}
-
-\begin{demostracion}º   1
+\begin{demostracion}
 Demostramos formalmente cada apartado haciendo uso de la propiedad de aditividad finita:
 
 \begin{enumerate}[label=\arabic*.]
@@ -74,23 +97,35 @@ Demostramos formalmente cada apartado haciendo uso de la propiedad de aditividad
 %=========================================================
 \section{Continuidad de funciones de conjunto}
 
+\begin{definicion}{Continuidad ascendente/descendente}{continuidad}
+    Una función de conjunto $\mu$ se dice \textbf{continua ascendente} si para toda sucesión $\{A_n\}$ creciente:
+    \[
+    \lim(\mu(A_n))=\mu(\lim(A_n))
+    \]
+    Una función de conjunto $\mu$ se dice \textbf{continua descendendente} si para toda sucesión $\{A_n\}$ decreciente tal que $|\mu(A_{n_0}|<\infty$, para algún $n_0$, se verifica:
+    \[
+    \lim(\mu(A_n))=\mu(\lim(A_n))
+    \]
+    Estas definiciones tienen sentido cuando el dominio de definición de $\mu$ es una clase monótona. Como solo aplican a sucesiones monótonas de conjuntos, son siempre convergentes y el límite siempre existe.
+
+    Diremos que $\mu$ es \textbf{continua} si lo es ascendente y descendentemente.
+
+    Diremos que $\mu$ es \textbf{continua en un conjunto} $A$ si es continua para toda sucesión monótona que converja a $A$.
+\end{definicion}
+
 \begin{teorema}{Relación entre continuidad y \texorpdfstring{$\sigma$}{sigma}-aditividad}{teo4}
 Sea $\mathcal{G}$ una $\sigma$-álgebra sobre $\Omega$ y $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ una función de conjunto aditiva. Se verifican las siguientes propiedades:
-\begin{enumerate}[label=\arabic*.]
+\begin{enumerate}[label=\alph*)]
     \item Si $\mu$ es continua ascendente, entonces $\mu$ es $\sigma$-aditiva.
     \item Si $\mu$ es continua descendente en el vacío ($\varnothing$) y finita, entonces $\mu$ es $\sigma$-aditiva.
 \end{enumerate}
 \end{teorema}
 
 \begin{demostracion}
-Demostramos ambas implicaciones por separado:
+Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión de conjuntos disjuntos dos a dos ($A_i \cap A_j = \varnothing$ para todo $i \neq j$).
 
-\begin{enumerate}[label=\arabic*.]
-    \item \textbf{Demostración de 1 (Continuidad ascendente $\implies \sigma$-aditividad):}
-    
-    Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión de conjuntos disjuntos dos a dos ($A_i \cap A_j = \varnothing$ para todo $i \neq j$).
-    
-    Definimos la sucesión de uniones finitas parciales:
+\begin{enumerate}[label=\alph*)]
+    \item Definimos la sucesión de uniones finitas parciales:
     \[
         C_n = \bigcup_{i=1}^n A_i
     \]
@@ -106,13 +141,10 @@ Demostramos ambas implicaciones por separado:
     \end{align*}
     Por consiguiente, $\mu$ es $\sigma$-aditiva.
 
-    \item \textbf{Demostración de 2 (Continuidad descendente en $\varnothing$ y finitud $\implies \sigma$-aditividad):}
-    
-    Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión de conjuntos disjuntos dos a dos. Consideremos las siguientes dos sucesiones auxiliares:
-    \begin{itemize}
-        \item $C_n = \displaystyle\bigcup_{i=1}^n A_i$, que es creciente ($C_n \uparrow$) con $\displaystyle\lim_{n \to \infty} C_n = \bigcup_{i=1}^\infty A_i$.
-        \item $D_n = \displaystyle\left( \bigcup_{i=1}^\infty A_i \right) \setminus C_n$, la cola de la unión numerable.
-    \end{itemize}
+    \item Definimos la sucesión cola de la unión numerable:
+     \[
+     D_n = \displaystyle\left( \bigcup_{i=1}^\infty A_i \right) \setminus C_n
+     \]
     
     Observamos que la sucesión $\{D_n\}_{n \in \mathbb{N}}$ es monótona decreciente ($D_n \downarrow$) y su límite viene dado por:
     \[
@@ -136,7 +168,13 @@ Demostramos ambas implicaciones por separado:
     \end{align*}
     Queda demostrado que $\mu$ es $\sigma$-aditiva.
 \end{enumerate}
+
+\begin{center}
+    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_1_teorema4.png}
+\end{center}
 \end{demostracion}
+
+\newpage
 
 \begin{teorema}{Teorema de continuidad}{teo5}
 Sea $\mathcal{G}$ una $\sigma$-álgebra sobre $\Omega$ y $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ una función de conjunto aditiva. Si $\mu$ es $\sigma$-aditiva, entonces $\mu$ es continua.
@@ -241,13 +279,16 @@ Al ser continua tanto ascendente como descendentemente, queda demostrado que la 
 %================= SECCIÓN 3. MEDIDAS ====================
 %=========================================================
 \section{Medidas}
+\begin{definicion}{Medida y espacio medible}{medidas}
+    Llamaremos \textbf{medida} a una función de conjunto $\sigma$-aditiva y positiva.
 
-Llamaremos \textit{medida} a una función de conjunto $\sigma$-aditiva y positiva.
-Dado un conjunto universal $\Omega$ y una $\sigma$-álgebra $\mathcal{G}$ de subconjuntos de $\Omega$, al par $(\Omega, \mathcal{G})$ se le denomina \textit{espacio medible}, y a los elementos de $\mathcal{G}$ se les llama \textit{conjuntos medibles}.
+    Dado un conjunto universal $\Omega$ y una $\sigma$-álgebra $\mathcal{G}$ de subconjuntos de $\Omega$, al par $(\Omega, \mathcal{G})$ se le denomina \textbf{espacio medible}, y a los elementos de $\mathcal{G}$ se les llama \textbf{conjuntos medibles}.
 
-Sea $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ una medida. A la terna $(\Omega, \mathcal{G}, \mu)$ se le denomina \textit{espacio de medida}. 
+    Sea $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ una medida. A la terna $(\Omega, \mathcal{G}, \mu)$ se le denomina \textbf{espacio de medida}. 
 
-Si además $\mu(\Omega) = 1$, decimos que $\mu$ es una \textit{probabilidad} o \textit{medida probabilística}, y a la terna $(\Omega, \mathcal{G}, \mu)$ se le llama \textit{espacio probabilístico} o \textit{espacio de probabilidad}.
+    Si además $\mu(\Omega) = 1$, decimos que $\mu$ es una \textbf{probabilidad} o \textbf{medida probabilística}, y a la terna $(\Omega, \mathcal{G}, \mu)$ se le llama \textbf{espacio probabilístico} o \textbf{espacio de probabilidad}.
+
+\end{definicion}
 
 \begin{proposicion}{Propiedades básicas de las medidas}{prop:prop11}
 Para toda medida $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ se verifican las siguientes propiedades:
@@ -295,8 +336,8 @@ Al ser una medida una función de conjunto $\sigma$-aditiva y positiva, satisfac
     Sustituyendo este resultado en la desigualdad anterior se obtiene la propiedad de subaditividad numerable.
 \end{enumerate}
 \end{demostracion}
-
-\paragraph{Nota previa: Repaso de límites de sucesiones numéricas}
+\noindent
+\textbf{Nota previa: Repaso de límites de sucesiones numéricas}\\
 Para estudiar cuándo es posible conmutar la medida con el límite para sucesiones de conjuntos no necesariamente monótonas, recordamos las definiciones y propiedades fundamentales de los límites superior e inferior de sucesiones reales.
 
 Dada una sucesión numérica $\{a_n\}_{n \in \mathbb{N}} \subseteq \overline{\mathbb{R}}$, sus límites superior e inferior se definen como:
@@ -317,6 +358,8 @@ Dada una sucesión numérica $\{a_n\}_{n \in \mathbb{N}} \subseteq \overline{\ma
     \]
 \end{itemize}
 
+\newpage
+
 \begin{teorema}{Teorema de continuidad para medidas}{teo6}
 Sea $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ una medida y sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión arbitraria de conjuntos medibles. Se verifican las siguientes afirmaciones:
 \begin{enumerate}[label=\alph*)]
@@ -334,35 +377,50 @@ Sea $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ una medida y sea $\{A_n\}_{n \
 
 \begin{demostracion}
 \begin{enumerate}[label=\alph*)]
-    \item Consideremos la sucesión de conjuntos $\delta_n = \bigcap_{j=n}^\infty A_j$. Se cumple que $\{\delta_n\}_{n \in \mathbb{N}}$ es una sucesión monótona creciente ($\delta_n \uparrow$) cuyo límite coincide con el límite inferior:
+    \item Consideremos la sucesión de conjuntos $\delta_n = \bigcap_{j=n}^\infty A_j$. Se cumple que:
+    \begin{itemize}
+        \item[i)] $\{\delta_n\}_{n \in \mathbb{N}}$ es una sucesión monótona creciente, luego tiene límite y es
+        \[
+            \lim_{n \to \infty} \delta_n = \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j = \varliminf_{n \to \infty} A_n
+        \]
+        \item[ii)] Como toda medida es continua ascendente:
+        \[
+             \mu\left( \lim_{n \to \infty} \delta_n \right) = \lim_{n \to \infty} \mu(\delta_n)
+        \]
+        \item[iii)] La sucesión numérica $\{\mu(\delta_n)\}$ es creciente y por tanto convergente. Además, como $\delta_n \subseteq A_n$ para todo $n \in \mathbb{N}$, por monotonía de la medida se tiene 
+        \[
+            \mu(\delta_n) \le \mu(A_n) \:\implies\:\varliminf_{n \to \infty} \mu(\delta_n) \le \varliminf_{n \to \infty} \mu(A_n)
+        \]
+    \end{itemize}
+    Por consiguiente,
     \[
-        \lim_{n \to \infty} \delta_n = \bigcup_{n=1}^\infty \bigcap_{j=n}^\infty A_j = \varliminf_{n \to \infty} A_n
+    \mu(\varliminf_{n \to \infty} A_n) \overset{i)}{=} \mu(\lim_{n \to \infty}\delta_n) \overset{ii)}{=} \lim_{n \to \infty}\mu(\delta_n)=\varliminf_{n \to \infty}\mu(\delta_n) \overset{iii)}{\leq} \varliminf_{n \to \infty}\mu(A_n)
     \]
-    Como toda medida es continua ascendente:
-    \[
-        \mu\left( \varliminf_{n \to \infty} A_n \right) = \mu\left( \lim_{n \to \infty} \delta_n \right) = \lim_{n \to \infty} \mu(\delta_n)
-    \]
-    La sucesión numérica $\{\mu(\delta_n)\}$ es creciente y por tanto convergente. Además, como $\delta_n \subseteq A_n$ para todo $n \in \mathbb{N}$, por monotonía de la medida se tiene $\mu(\delta_n) \le \mu(A_n)$. Tomando el límite inferior numérico:
-    \[
-        \lim_{n \to \infty} \mu(\delta_n) = \varliminf_{n \to \infty} \mu(\delta_n) \le \varliminf_{n \to \infty} \mu(A_n)
-    \]
-    Por consiguiente, $\displaystyle \mu\left( \varliminf_{n \to \infty} A_n \right) \le \varliminf_{n \to \infty} \mu(A_n)$.
-    
     La segunda desigualdad $\displaystyle \varliminf_{n \to \infty} \mu(A_n) \le \varlimsup_{n \to \infty} \mu(A_n)$ es una propiedad general para cualquier sucesión numérica.
+\newpage
+    \item Falta demostrar la tercera desigualdad, para ello consideramos la sucesión de conjuntos $\sigma_n = \bigcup_{j=n}^\infty A_j$. La sucesión $\{\sigma_n\}_{n \in \mathbb{N}}$ es monótona decreciente ($\sigma_n \downarrow$) y su límite es el límite superior de la sucesión:
+    \begin{itemize}
+        \item[i)] $\{\sigma_n\}_{n \in \mathbb{N}}$ es una sucesión monótona decreciente, luego tiene límite y es
+        \[
+            \lim_{n \to \infty} \sigma_n = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j = \varlimsup_{n \to \infty} A_n
+        \]
+        \item[ii)] Por hipótesis, existe $n_0 \in \mathbb{N}$ tal que $\mu(\sigma_{n_0}) < \infty$. Por el Teorema de continuidad, la medida $\mu$ es continua descendente sobre la sucesión $\{\sigma_n\}$:
+        \[
+            \mu\left( \lim_{n \to \infty} \sigma_n \right) = \lim_{n \to \infty} \mu(\sigma_n)
+        \]
+        \item[iii)] La sucesión numérica $\{\mu(\sigma_n)\}$ es decreciente y por tanto convergente. Además, como $A_n \subseteq \sigma_n$ para todo $n \in \mathbb{N}$, por monotonía de la medida se tiene 
+        \[
+            \mu(A_n) \le \mu(\sigma_n) \:\implies\:\varlimsup_{n \to \infty} \mu(A_n) \le \varlimsup_{n \to \infty} \mu(\sigma_n)
+        \]
+    \end{itemize}
+    Por consiguiente,
+    \[
+    \varlimsup\mu(\sigma_n)=\varlimsup
+    \]
+    \[
+        \varlimsup_{n \to \infty} \mu(A_n) \overset{iii)}{\le} \varlimsup_{n \to \infty} \mu(\sigma_n)  = \lim_{n \to \infty} \mu(\sigma_n) \overset{ii)}{=} \mu\left(\lim_{n\to\infty}\sigma_n\right) \overset{i)}{=} \mu\left( \varlimsup_{n \to \infty} A_n \right)
+    \]
 
-    \item Para demostrar la desigualdad restante, consideramos la sucesión de conjuntos $\sigma_n = \bigcup_{j=n}^\infty A_j$. La sucesión $\{\sigma_n\}_{n \in \mathbb{N}}$ es monótona decreciente ($\sigma_n \downarrow$) y su límite es el límite superior de la sucesión:
-    \[
-        \lim_{n \to \infty} \sigma_n = \bigcap_{n=1}^\infty \bigcup_{j=n}^\infty A_j = \varlimsup_{n \to \infty} A_n
-    \]
-    Por hipótesis, existe $n_0 \in \mathbb{N}$ tal que $\mu(\sigma_{n_0}) < \infty$. Por el Teorema de continuidad, la medida $\mu$ es continua descendente sobre la sucesión $\{\sigma_n\}$:
-    \[
-        \mu\left( \varlimsup_{n \to \infty} A_n \right) = \mu\left( \lim_{n \to \infty} \sigma_n \right) = \lim_{n \to \infty} \mu(\sigma_n)
-    \]
-    Dado que $A_n \subseteq \sigma_n$ para todo $n \in \mathbb{N}$, la monotonía implica $\mu(A_n) \le \mu(\sigma_n)$. Tomando el límite superior numérico:
-    \[
-        \varlimsup_{n \to \infty} \mu(A_n) \le \varlimsup_{n \to \infty} \mu(\sigma_n) = \lim_{n \to \infty} \mu(\sigma_n) = \mu\left( \varlimsup_{n \to \infty} A_n \right)
-    \]
-    lo cual demuestra la cuarta desigualdad.
 
     \item Si la sucesión $\{A_n\}$ es convergente, sus límites superior e inferior de conjuntos coinciden:
     \[
@@ -384,17 +442,77 @@ Si $P : \mathcal{G} \to \mathbb{R}$ es una medida de probabilidad y $\{A_n\}_{n 
 \end{enumerate}
 \end{corolario}
 
-\paragraph{Tipos de medidas y terminología básica}
-\begin{itemize}
-    \item \textbf{Medida finita e infinita:} Una medida $\mu$ se dice \textit{finita} si $\mu(\Omega) < \infty$. Toda medida finita puede convertirse en una medida de probabilidad equivalente definiendo $\mu' = \frac{\mu}{\mu(\Omega)}$.
-    \item \textbf{Medida $\sigma$-finita:} Decimos que un espacio de medida $(\Omega, \mathcal{G}, \mu)$ es \textit{$\sigma$-finito} si existe una sucesión de conjuntos medibles $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ tal que $\mu(A_n) < \infty$ para todo $n \in \mathbb{N}$ y que constituye un recubrimiento de $\Omega$ ($\bigcup_{n=1}^\infty A_n = \Omega$). Típicamente se considera una sucesión creciente hacia el universo ($A_n \uparrow \Omega$).
+\begin{definicion}{Tipos de medidas}{tipos_medidas}
+    \begin{itemize}
+        \item \textbf{Medida finita e infinita:} Una medida $\mu$ se dice \textit{finita} si $\mu(\Omega) < \infty$. Toda medida finita puede convertirse en una medida de probabilidad equivalente definiendo $\mu' = \frac{\mu}{\mu(\Omega)}$.
+        \item \textbf{Medida $\sigma$-finita:} Decimos que un espacio de medida $(\Omega, \mathcal{G}, \mu)$ es \textit{$\sigma$-finito} si existe una sucesión de conjuntos medibles $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ tal que $\mu(A_n) < \infty$ para todo $n \in \mathbb{N}$ y que constituye un recubrimiento de $\Omega$ ($\bigcup_{n=1}^\infty A_n = \Omega$). Típicamente se considera una sucesión creciente hacia el universo ($A_n \uparrow \Omega$).
+        
+        \textit{Ejemplo:} El espacio de Lebesgue $(\mathbb{R}, \mathcal{B}, \lambda)$ es $\sigma$-finito, ya que la sucesión de intervalos $A_n = (-n, n)$ recubre $\mathbb{R}$ y cumple $\lambda((-n, n)) = 2n < \infty$.
+        
+        \item \textbf{Propiedad casi seguro (c.s.):} Una propiedad se verifica \textit{casi seguro} (c.s.) o \textit{casi en todas partes} respecto a $\mu$ si se cumple en todos los elementos de $\Omega$ salvo en un conjunto de medida nula, es decir, existe $A \in \mathcal{G}$ con $\mu(A^c) = 0$ tal que la propiedad se verifica para todo $\omega \in A$.
+        
+        \item \textbf{Medida completa:} Una medida $\mu$ es \textit{completa} sobre $\mathcal{G}$ si todo subconjunto de un conjunto de medida nula pertenece a $\mathcal{G}$ (y por tanto tiene medida nula). En tal caso, el espacio de medida $(\Omega, \mathcal{G}, \mu)$ se denomina \textit{espacio completo}.
+    \end{itemize}
+\end{definicion}
+
+\newpage
+%==========================================================
+%========== SECCIÓN 4. COMPARACIÓN DE MEDIDAS =============
+%==========================================================
+\section{Comparación de medidas}
+
+Sean $\mu, \nu : \mathcal{G} \to \overline{\mathbb{R}}$ dos funciones de conjunto $\sigma$-aditivas sobre el espacio medible $(\Omega, \mathcal{G})$.
+
+\begin{definicion}{Medidas mutuamente singulares}{def:singulares}
+Decimos que las medidas $\mu$ y $\nu$ son \textit{mutuamente singulares} (o ortogonales), y lo denotamos por $\nu \perp \mu$, si existe algún conjunto medible $A \in \mathcal{G}$ tal que:
+\[
+    \nu(A) = 0 \quad \text{y} \quad \mu(A^c) = 0
+\]
+En este caso, la medida $\nu$ está concentrada en el conjunto $A^c$, mientras que la medida $\mu$ está concentrada en el conjunto $A$.
+\end{definicion}
+
+\begin{definicion}{Continuidad absoluta de medidas}{def:abs_continua}
+Decimos que $\nu$ es \textit{absolutamente continua} respecto a $\mu$, y lo denotamos por $\nu \ll \mu$, si y solo si $\nu$ se anula sobre todos los conjuntos de la $\sigma$-álgebra $\mathcal{G}$ sobre los que $\mu$ se anula. Es decir:
+\[
+    \forall A \in \mathcal{G}, \quad \mu(A) = 0 \implies \nu(A) = 0
+\]
+\end{definicion}
+
+\begin{observacion}
+La relación de continuidad absoluta $\ll$ define una relación de \textit{preorden} (reflexiva y transitiva) en el conjunto de todas las medidas sobre el espacio medible $(\Omega, \mathcal{G})$:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Reflexividad:} $\mu \ll \mu$ para toda medida $\mu$.
+    \item \textbf{Transitividad:} Si $\nu_1 \ll \nu_2$ y $\nu_2 \ll \nu_3$, entonces $\nu_1 \ll \nu_3$.
+\end{enumerate}
+En general, la relación no es antisimétrica. Cuando dos medidas cumplen simultáneamente $\nu \ll \mu$ y $\mu \ll \nu$, se dice que $\mu$ y $\nu$ son \textit{medidas equivalentes} ($\mu \sim \nu$), lo que significa que comparten exactamente los mismos conjuntos de medida nula.
+\end{observacion}
+
+\begin{figure}[h]
+    \includegraphics[width=0.95\textwidth]{imagenes/tema2/T2_2_comparacion_medidas.png}
+\end{figure}
+
+\begin{teorema}{Teorema de descomposición de Lebesgue}{teo:descomposicion_lebesgue}
+Sean $\mu$ y $\nu$ dos medidas $\sigma$-finitas sobre el espacio medible $(\Omega, \mathcal{G})$. Entonces existe una única descomposición de la medida $\nu$ en la forma:
+\[
+    \nu = \nu_1 + \nu_2
+\]
+donde $\nu_1$ y $\nu_2$ son medidas $\sigma$-finitas sobre $\mathcal{G}$ tales que:
+\[
+    \nu_1 \perp \mu \quad \text{y} \quad \nu_2 \ll \mu
+\]
+\end{teorema}
+
+\begin{demostracion}
+\textbf{Comentarios sobre la estructura de la demostración:}
+La componente $\nu_1$ representa la \textit{parte singular} de $\nu$ respecto de $\mu$, mientras que $\nu_2$ constituye la \textit{parte absolutamente continua} respecto de $\mu$. 
+
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Existencia:} Se define la medida suma $\lambda = \mu + \nu$, la cual es también $\sigma$-finita sobre $\mathcal{G}$. Tanto $\mu$ como $\nu$ son absolutamente continuas respecto a $\lambda$ ($\mu \ll \lambda$ y $\nu \ll \lambda$). Mediante el Teorema de Radon-Nikodym, existen derivadas no negativas $f = \frac{d\mu}{d\lambda}$ y $g = \frac{d\nu}{d\lambda}$. Tomando el conjunto medible $A = \{\omega \in \Omega \mid f(\omega) = 0\}$, la restricción de $\nu$ al conjunto $A$ proporciona la componente singular $\nu_1(E) = \nu(E \cap A)$, mientras que la restricción al complementario $A^c$ genera la componente absolutamente continua $\nu_2(E) = \nu(E \cap A^c)$.
     
-    \textit{Ejemplo:} El espacio de Lebesgue $(\mathbb{R}, \mathcal{B}, \lambda)$ es $\sigma$-finito, ya que la sucesión de intervalos $A_n = (-n, n)$ recubre $\mathbb{R}$ y cumple $\lambda((-n, n)) = 2n < \infty$.
-    
-    \item \textbf{Propiedad casi seguro (c.s.):} Una propiedad se verifica \textit{casi seguro} (c.s.) o \textit{casi en todas partes} respecto a $\mu$ si se cumple en todos los elementos de $\Omega$ salvo en un conjunto de medida nula, es decir, existe $A \in \mathcal{G}$ con $\mu(A^c) = 0$ tal que la propiedad se verifica para todo $\omega \in A$.
-    
-    \item \textbf{Medida completa:} Una medida $\mu$ es \textit{completa} sobre $\mathcal{G}$ si todo subconjunto de un conjunto de medida nula pertenece a $\mathcal{G}$ (y por tanto tiene medida nula). En tal caso, el espacio de medida $(\Omega, \mathcal{G}, \mu)$ se denomina \textit{espacio completo}.
-\end{itemize}
+    \item \textbf{Unicidad:} Si existiera otra descomposición $\nu = \nu_1' + \nu_2'$ con $\nu_1' \perp \mu$ y $\nu_2' \ll \mu$, se obtendría $\nu_1 - \nu_1' = \nu_2' - \nu_2$. Al ser el miembro izquierdo una medida singular respecto a $\mu$ y el miembro derecho una medida absolutamente continua respecto a $\mu$, la única medida que satisface ambas condiciones simultáneamente es la medida nula, deduciéndose $\nu_1 = \nu_1'$ y $\nu_2 = \nu_2'$.
+\end{enumerate}
+\end{demostracion}
+
 \newpage
 %==========================================================
 \seccionproblemas
@@ -560,4 +678,436 @@ Puesto que $0 \neq \infty$, \textbf{no se verifica} la igualdad $\lambda\left(\l
 
 \paragraph{Nota teórica:}
 Aunque la medida de Lebesgue es $\sigma$-aditiva y por tanto continua, la propiedad de \textit{continuidad descendente} exige como hipótesis imprescindible que la medida de al menos un término de la sucesión sea finita ($\exists n_0 \text{ tal que } \lambda(A_{n_0}) < \infty$). Al ser $\lambda(A_n) = \infty$ para todo $n \in \mathbb{N}$, no se cumple esta condición necesaria y la medida no conmuta con el límite.
+\end{problema}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 28
+% ------------------------------------------------------------------------------
+\begin{problema}[Medida de Lebesgue de números sin el dígito 1 en su desarrollo decimal]
+Determinar la medida de Lebesgue del conjunto $A \subset [0,1]$ formado por los números reales que en su escritura decimal no contienen ningún dígito igual a $1$.
+
+\tcblower
+
+Construimos el conjunto $A$ mediante una sucesión decreciente de conjuntos $\{A_n\}_{n \in \mathbb{N}_0}$:
+\begin{align*}
+    A_0 &= [0,1] \\
+    A_1 &= \{ x \in [0,1] \mid \text{el primer dígito decimal de } x \text{ no es } 1 \} = [0, 1] \setminus [0.1, 0.2) \\
+    A_2 &= \{ x \in [0,1] \mid \text{los dos primeros dígitos decimales de } x \text{ no son } 1 \} \\
+    &\;\;\vdots \\
+    A_n &= \{ x \in [0,1] \mid \text{ninguno de los primeros } n \text{ dígitos decimales de } x \text{ es } 1 \}
+\end{align*}
+
+El conjunto de interés se obtiene como la intersección numerable de esta familia:
+\[
+    A = \bigcap_{n=0}^\infty A_n = \lim_{n \to \infty} A_n
+\]
+
+% Espacio reservado para incorporar figura en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Representación gráfica de los conjuntos $A_0, A_1, A_2$ en la recta real]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+Calculamos la medida de Lebesgue $\lambda$ de los primeros términos:
+\begin{itemize}
+    \item $\lambda(A_0) = 1 = \left(\frac{9}{10}\right)^0$
+    \item Para obtener $A_1$, retiramos de $A_0$ el intervalo $[0.1, 0.2)$ de longitud $1/10$. Por tanto:
+    \[
+        \lambda(A_1) = 1 - \frac{1}{10} = \frac{9}{10} = \left(\frac{9}{10}\right)^1
+    \]
+    \item Para obtener $A_2$, retiramos de $A_1$ los $9$ subintervalos de longitud $1/100$ cuyos segundos dígitos son $1$. La medida eliminada es $9 \cdot \frac{1}{100} = \frac{9}{100}$:
+    \[
+        \lambda(A_2) = \frac{9}{10} - \frac{9}{100} = \frac{81}{100} = \left(\frac{9}{10}\right)^2
+    \]
+    \item Por inducción, en la etapa $n$-ésima la medida de $A_n$ viene dada por:
+    \[
+        \lambda(A_n) = \left(\frac{9}{10}\right)^n
+    \]
+\end{itemize}
+
+Puesto que $\{A_n\}$ es una sucesión decreciente de conjuntos ($A_n \downarrow$) y la medida del primer conjunto es finita ($\lambda(A_0) = 1 < \infty$), podemos aplicar el Teorema de continuidad de medidas (continuidad descendente):
+\[
+    \lambda(A) = \lambda\left( \lim_{n \to \infty} A_n \right) = \lim_{n \to \infty} \lambda(A_n) = \lim_{n \to \infty} \left(\frac{9}{10}\right)^n = 0
+\]
+
+Por tanto, la medida de Lebesgue del conjunto $A$ es nula ($\lambda(A) = 0$).
+\end{problema}
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 29
+% ------------------------------------------------------------------------------
+\begin{problema}[Verificación de continuidad para la medida cardinal en $\mathbb{N}$]
+Sea el espacio de medida $(\mathbb{N}, \mathcal{P}(\mathbb{N}), \mu)$ con $\mu = \text{cardinal}$. Para las siguientes sucesiones de subconjuntos de $\mathbb{N}$:
+\begin{enumerate}[label=\alph*)]
+    \item $A_n = \{2n, 2n+2, 2n+4, \dots\}$
+    \item $A_n = \{n, n+1, n+2, \dots, 2n\}$
+\end{enumerate}
+¿Se verifica que $\mu\left(\lim_{n \to \infty} A_n\right) = \lim_{n \to \infty} \mu(A_n)$?
+
+\tcblower
+
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{Análisis de la sucesión $A_n = \{2n, 2n+2, 2n+4, \dots\}$:}
+    
+    La sucesión $\{A_n\}$ es monótona decreciente ($A_1 \supset A_2 \supset A_3 \dots$), por lo que su límite de conjuntos existe y viene dado por la intersección de todos sus términos:
+    \[
+        \lim_{n \to \infty} A_n = \bigcap_{n=1}^\infty A_n = \varnothing \implies \mu\left( \lim_{n \to \infty} A_n \right) = \mu(\varnothing) = 0
+    \]
+    
+    Analizamos si es posible conmutar la medida con el límite mediante el Teorema de continuidad:
+    \begin{itemize}
+        \item Para todo $n \in \mathbb{N}$, el cardinal de $A_n$ es infinito: $\mu(A_n) = \infty$.
+        \item Al ser $\mu(A_n) = \infty$ para todo $n \in \mathbb{N}$, no se cumple la hipótesis de finitud de algún término ($\exists n_0 \text{ tal que } \mu(A_{n_0}) < \infty$). Por tanto, no es aplicable el Teorema de continuidad descendente.
+    \end{itemize}
+    
+    Calculando directamente el límite numérico de las medidas:
+    \[
+        \lim_{n \to \infty} \mu(A_n) = \lim_{n \to \infty} \infty = \infty
+    \]
+    
+    Dado que $0 \neq \infty$, \textbf{no se verifica} la igualdad $\mu\left(\lim_{n \to \infty} A_n\right) = \lim_{n \to \infty} \mu(A_n)$.
+
+    \item \textbf{Análisis de la sucesión $A_n = \{n, n+1, n+2, \dots, 2n\}$:}
+    
+    La sucesión $\{A_n\}$ no es monótona ($A_1 = \{1,2\}$, $A_2 = \{2,3,4\}$, $A_3 = \{3,4,5,6\}$), por lo que debemos calcular sus límites superior e inferior de conjuntos:
+    \begin{itemize}
+        \item \textit{Límite superior:} La sucesión de uniones $\sigma_n = \bigcup_{j=n}^\infty A_j = \{n, n+1, n+2, \dots\}$ satisface:
+        \[
+            \varlimsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty \sigma_n = \varnothing
+        \]
+        \item \textit{Límite inferior:} La sucesión de intersecciones $\delta_n = \bigcap_{j=n}^\infty A_j = \varnothing$ (pues ningún número pertenece a $A_j$ para todo $j \ge n$) satisface:
+        \[
+            \varliminf_{n \to \infty} A_n = \bigcup_{n=1}^\infty \delta_n = \varnothing
+        \]
+    \end{itemize}
+    Al coincidir ambos límites, el límite de la sucesión de conjuntos existe y vale $\lim_{n \to \infty} A_n = \varnothing$, con lo cual:
+    \[
+        \mu\left( \lim_{n \to \infty} A_n \right) = \mu(\varnothing) = 0
+    \]
+    
+    Comprobamos las hipótesis del Teorema de continuidad para medidas:
+    Puesto que $\mu(\sigma_n) = \mu(\{n, n+1, \dots\}) = \infty$ para todo $n \in \mathbb{N}$, la hipótesis de medida finita sobre las uniones no se verifica y no se puede aplicar el teorema.
+    
+    Calculamos directamente el límite de las medidas de los términos:
+    \[
+        \mu(A_n) = \text{card}(\{n, n+1, \dots, 2n\}) = 2n - n + 1 = n + 1
+    \]
+    \[
+        \lim_{n \to \infty} \mu(A_n) = \lim_{n \to \infty} (n + 1) = \infty
+    \]
+    
+    Como $0 \neq \infty$, \textbf{tampoco se verifica} la igualdad en este apartado.
+\end{enumerate}
+\end{problema}
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 30
+% ------------------------------------------------------------------------------
+\begin{problema}[Comprobación del Teorema de continuidad para sucesiones de conjuntos unipuntuales]
+Considerando la sucesión de subconjuntos de $\mathbb{R}$ dada por $A_n = \{n\}$, decidir qué desigualdades o igualdades del Teorema de continuidad para medidas se verifican para las siguientes medidas:
+\begin{enumerate}[label=\alph*)]
+    \item $\nu \equiv$ Probabilidad concentrada en $\mathbb{N}$.
+    \item $\mu \equiv$ Cardinal (medida de contar).
+\end{enumerate}
+
+\tcblower
+
+Calculamos en primer lugar el límite de la sucesión de conjuntos $A_n = \{n\}$:
+\begin{itemize}
+    \item $\sigma_n = \bigcup_{j=n}^\infty \{j\} = \{n, n+1, n+2, \dots\} \implies \varlimsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty \sigma_n = \varnothing$
+    \item $\delta_n = \bigcap_{j=n}^\infty \{j\} = \varnothing \implies \varliminf_{n \to \infty} A_n = \bigcup_{n=1}^\infty \delta_n = \varnothing$
+\end{itemize}
+Dado que $\varliminf_{n \to \infty} A_n = \varlimsup_{n \to \infty} A_n = \varnothing$, la sucesión es convergente y $\lim_{n \to \infty} A_n = \varnothing$.
+
+\paragraph{Apartado a) Medida de probabilidad $\nu$ concentrada en $\mathbb{N}$:}
+Al ser $\nu$ una medida de probabilidad, cumple $\nu(\mathbb{R}) = \nu(\mathbb{N}) = 1 < \infty$. Por tanto, el espacio de medida es finito y se satisfacen todas las hipótesis del Corolario de continuidad para probabilidades:
+
+\begin{enumerate}[label=\arabic*.]
+    \item Medida del conjunto límite: $\nu\left( \lim_{n \to \infty} A_n \right) = \nu(\varnothing) = 0$.
+    \item Límite de las medidas: Dado que $\nu(\mathbb{N}) = \sum_{n=1}^\infty \nu(\{n\}) = 1 < \infty$, la serie converge y su término general tiende a cero, es decir, $\lim_{n \to \infty} \nu(A_n) = \lim_{n \to \infty} \nu(\{n\}) = 0$.
+\end{enumerate}
+
+Sustituyendo en la cadena de desigualdades del Teorema 6 / Corolario 1:
+\[
+    \nu\left( \varliminf_{n \to \infty} A_n \right) \le \varliminf_{n \to \infty} \nu(A_n) \le \varlimsup_{n \to \infty} \nu(A_n) \le \nu\left( \varlimsup_{n \to \infty} A_n \right)
+\]
+\[
+    0 \le 0 \le 0 \le 0
+\]
+Se verifican todas las desigualdades, convirtiéndose en \textbf{igualdades estrictas} ($\nu(\lim A_n) = \lim \nu(A_n) = 0$).
+
+\paragraph{Apartado b) Medida cardinal $\mu$:}
+Evaluamos los términos de la cadena de desigualdades para la medida de contar $\mu$:
+\begin{enumerate}[label=\arabic*.]
+    \item Medida del límite inferior y superior de conjuntos:
+    \[
+        \mu\left( \varliminf_{n \to \infty} A_n \right) = \mu(\varnothing) = 0, \quad \mu\left( \varlimsup_{n \to \infty} A_n \right) = \mu(\varnothing) = 0
+    \]
+    \item Límites de las medidas numéricas:
+    Como $\mu(A_n) = \text{card}(\{n\}) = 1$ para todo $n \in \mathbb{N}$, se tiene:
+    \[
+        \varliminf_{n \to \infty} \mu(A_n) = \lim_{n \to \infty} 1 = 1, \quad \varlimsup_{n \to \infty} \mu(A_n) = \lim_{n \to \infty} 1 = 1
+    \]
+\end{enumerate}
+
+Analizamos la validez de la cadena de desigualdades:
+\[
+    \mu\left( \varliminf_{n \to \infty} A_n \right) \le \varliminf_{n \to \infty} \mu(A_n) \le \varlimsup_{n \to \infty} \mu(A_n) \le \mu\left( \varlimsup_{n \to \infty} A_n \right)
+\]
+Sustituyendo los valores calculados:
+\[
+    0 \le 1 \le 1 \le 0
+\]
+Concluimos que:
+\begin{itemize}
+    \item Las dos primeras desigualdades de la parte general del Teorema 6a ($0 \le 1 \le 1$) \textbf{sí se verifican}.
+    \item La última desigualdad ($1 \le 0$) \textbf{falla} y no se cumple. Esto es consistente con la teoría, pues $\mu(\sigma_n) = \mu(\{n, n+1, \dots\}) = \infty$, incumpliéndose la hipótesis del Teorema 6b de finitud de la medida sobre la cola de uniones.
+\end{itemize}
+\end{problema}
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 31
+% ------------------------------------------------------------------------------
+\begin{problema}[$\sigma$-finitud en sub-$\sigma$-álgebras]
+Sea $(\Omega, \mathcal{G}, \mu)$ un espacio de medida $\sigma$-finito y sea $\mathcal{F}$ una $\sigma$-álgebra contenida en $\mathcal{G}$ ($\mathcal{F} \subseteq \mathcal{G}$). ¿Es $(\Omega, \mathcal{F}, \mu)$ un espacio de medida $\sigma$-finito? En caso de respuesta negativa, encontrar un contraejemplo.
+
+\tcblower
+
+\paragraph{Respuesta:}
+No necesariamente. La propiedad de $\sigma$-finitud exige no solo que la medida $\mu$ permita recubrir el espacio $\Omega$ mediante conjuntos de medida finita, sino que dichos conjuntos pertenezcan explícitamente a la $\sigma$-álgebra considerada. Si la sub-$\sigma$-álgebra $\mathcal{F}$ es demasiado gruesa (poco fina), puede no contener suficientes subconjuntos de medida finita para cubrir todo el espacio $\Omega$.
+
+\paragraph{Contraejemplo:}
+Consideremos el espacio muestral numerable $\Omega = \mathbb{N}$ equipado con la $\sigma$-álgebra de las partes $\mathcal{G} = \mathcal{P}(\mathbb{N})$ y la medida cardinal o de contar $\mu = \text{cardinal}$.
+
+\begin{enumerate}
+    \item \textbf{$(\Omega, \mathcal{G}, \mu)$ es $\sigma$-finito:}
+    Podemos expresar $\mathbb{N}$ como la unión numerable de subconjuntos unipuntuales $A_n = \{n\} \in \mathcal{P}(\mathbb{N})$:
+    \[
+        \mathbb{N} = \bigcup_{n=1}^\infty \{n\}
+    \]
+    donde cada término satisface $\mu(\{n\}) = 1 < \infty$. Por consiguiente, $(\mathbb{N}, \mathcal{P}(\mathbb{N}), \mu)$ es un espacio de medida $\sigma$-finito.
+
+    \item \textbf{Elección de la sub-$\sigma$-álgebra $\mathcal{F}$:}
+    Tomamos como sub-$\sigma$-álgebra la $\sigma$-álgebra trivial sobre $\mathbb{N}$:
+    \[
+        \mathcal{F} = \{\varnothing, \mathbb{N}\} \subseteq \mathcal{P}(\mathbb{N})
+    \]
+    
+    \item \textbf{$(\Omega, \mathcal{F}, \mu)$ no es $\sigma$-finito:}
+    Evaluamos la medida $\mu$ sobre los únicos dos elementos que pertenecen a $\mathcal{F}$:
+    \[
+        \mu(\varnothing) = 0 < \infty, \quad \mu(\mathbb{N}) = \text{cardinal}(\mathbb{N}) = \infty
+    \]
+    Para que $(\mathbb{N}, \mathcal{F}, \mu)$ fuese un espacio $\sigma$-finito, tendría que existir una sucesión de conjuntos $\{E_n\}_{n \in \mathbb{N}} \subseteq \mathcal{F}$ con $\mu(E_n) < \infty$ para todo $n$ tal que $\bigcup_{n=1}^\infty E_n = \mathbb{N}$.
+    
+    Sin embargo, el único conjunto de la sub-$\sigma$-álgebra $\mathcal{F}$ que posee medida finita es el conjunto vacío ($E_n = \varnothing$). La unión numerable de conjuntos vacíos satisface:
+    \[
+        \bigcup_{n=1}^\infty \varnothing = \varnothing \neq \mathbb{N}
+    \]
+    
+    Por lo tanto, es imposible recubrir $\mathbb{N}$ con elementos de $\mathcal{F}$ que tengan medida finita.
+\end{enumerate}
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Comparación de la partición fina en $\mathcal{P}(\mathbb{N})$ frente al bloque único de la sub-$\sigma$-álgebra trivial $\mathcal{F}=\{\varnothing, \mathbb{N}\}$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{Conclusión:}
+El par $(\Omega, \mathcal{F}, \mu)$ no es un espacio de medida $\sigma$-finito. La $\sigma$-finitud depende críticamente de la $\sigma$-álgebra sobre la que se evalúa la medida y no se conserva necesariamente al restringirse a una sub-$\sigma$-álgebra.
+\end{problema}
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 32
+% ------------------------------------------------------------------------------
+\begin{problema}[Medida concentrada en $\mathbb{N}$ y singularidad mutua con Lebesgue]
+Sea $\Omega = \mathbb{R}$, $\mathcal{B}$ la $\sigma$-álgebra de Borel sobre $\mathbb{R}$ y $\lambda$ la medida de Lebesgue. Demostrar que la función de conjunto
+\[
+    \nu(A) = \#(A \cap \mathbb{N})
+\]
+(que cuenta el número de enteros positivos pertenecientes a $A$) es una medida sobre $(\mathbb{R}, \mathcal{B})$ y que las medidas $\lambda$ y $\nu$ son mutuamente singulares ($\lambda \perp \nu$).
+
+\tcblower
+
+\paragraph{1. Comprobación de que $\nu$ es una medida sobre $(\mathbb{R}, \mathcal{B})$:}
+Verificamos los axiomas de medida sobre el espacio medible $(\mathbb{R}, \mathcal{B})$:
+\begin{enumerate}[label=\alph*)]
+    \item \textit{No negatividad:} Para todo conjunto $A \in \mathcal{B}$, la intersección $A \cap \mathbb{N}$ es un subconjunto de naturales, por lo que su cardinal es no negativo:
+    \[
+        \nu(A) = \#(A \cap \mathbb{N}) \ge 0, \quad \forall A \in \mathcal{B}
+    \]
+    \item \textit{Medida del conjunto vacío:} Para $A = \varnothing$, se cumple $\varnothing \cap \mathbb{N} = \varnothing$, de donde:
+    \[
+        \nu(\varnothing) = \#(\varnothing) = 0
+    \]
+    \item \textit{$\sigma$-aditividad:} Dada una sucesión $(A_n)_{n \in \mathbb{N}} \subseteq \mathcal{B}$ de conjuntos borelianos disjuntos dos a dos ($A_i \cap A_j = \varnothing$ para todo $i \neq j$), la distribución del producto cartesiano/intersección satisface que los conjuntos $(A_n \cap \mathbb{N})_{n \in \mathbb{N}}$ son también disjuntos dos a dos. Por la aditividad del cardinal sobre conjuntos disjuntos:
+    \[
+        \nu\left( \bigcup_{n=1}^\infty A_n \right) = \#\left( \left(\bigcup_{n=1}^\infty A_n\right) \cap \mathbb{N} \right) = \#\left( \bigcup_{n=1}^\infty (A_n \cap \mathbb{N}) \right) = \sum_{n=1}^\infty \#(A_n \cap \mathbb{N}) = \sum_{n=1}^\infty \nu(A_n)
+    \]
+\end{enumerate}
+Por tanto, $\nu$ es una medida sobre $(\mathbb{R}, \mathcal{B})$ (medida de contar concentrada en $\mathbb{N}$).
+
+\paragraph{2. Demostración de que $\lambda$ y $\nu$ son mutuamente singulares ($\lambda \perp \nu$):}
+Por definición, $\lambda \perp \nu$ si existe un conjunto medible $A \in \mathcal{B}$ tal que $\nu(A) = 0$ y $\lambda(A^c) = 0$.
+
+Consideremos el conjunto de los números irracionales y no enteros positivos, o equivalentemente, el complementario de los números naturales en la recta real:
+\[
+    A = \mathbb{N}^c = \mathbb{R} \setminus \mathbb{N} \in \mathcal{B}
+\]
+
+Evaluamos ambas medidas sobre el conjunto $A$ y su complementario $A^c = \mathbb{N}$:
+\begin{itemize}
+    \item \textit{Medida $\nu$ sobre $A$:} 
+    \[
+        \nu(A) = \nu(\mathbb{R} \setminus \mathbb{N}) = \#\left((\mathbb{R} \setminus \mathbb{N}) \cap \mathbb{N}\right) = \#(\varnothing) = 0
+    \]
+    \item \textit{Medida de Lebesgue $\lambda$ sobre $A^c$:}
+    El complementario es $A^c = \mathbb{N} = \bigcup_{n=1}^\infty \{n\}$, un conjunto numerable de puntos aislados. Dado que la medida de Lebesgue de cualquier singleton es nula ($\lambda(\{n\}) = 0$), por $\sigma$-aditividad de $\lambda$:
+    \[
+        \lambda(A^c) = \lambda(\mathbb{N}) = \sum_{n=1}^\infty \lambda(\{n\}) = \sum_{n=1}^\infty 0 = 0
+    \]
+\end{itemize}
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Soporte discreto $\mathbb{N}$ de la medida $\nu$ frente al soporte continuo de la medida de Lebesgue $\lambda$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+Al haber encontrado un suceso $A = \mathbb{N}^c \in \mathcal{B}$ tal que $\nu(A) = 0$ y $\lambda(A^c) = 0$, queda demostrado que las medidas $\lambda$ y $\nu$ son mutuamente singulares ($\lambda \perp \nu$).
+\end{problema}
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 33
+% ------------------------------------------------------------------------------
+\begin{problema}[Relación de continuidad absoluta entre la medida de Lebesgue y la medida cardinal]
+Sea $\Omega = \mathbb{R}$, $\mathcal{B}$ la $\sigma$-álgebra de Borel, $\lambda$ la medida de Lebesgue y $\nu$ la medida cardinal (de contar) sobre $\mathbb{R}$. Decidir si se verifica $\lambda \ll \nu$ o $\nu \ll \lambda$.
+
+\tcblower
+
+Analizamos por separado ambas direcciones de la relación de continuidad absoluta:
+
+\paragraph{1. Estudio de $\nu \ll \lambda$ (Continuidad absoluta de la medida cardinal respecto a Lebesgue):}
+Para que la medida cardinal $\nu$ fuese absolutamente continua respecto a la medida de Lebesgue $\lambda$, se tendría que verificar la implicación:
+\[
+    \forall A \in \mathcal{B}, \quad \lambda(A) = 0 \implies \nu(A) = 0
+\]
+Consideremos el conjunto unipuntual formado por el número cero, $A = \{0\} \in \mathcal{B}$:
+\begin{itemize}
+    \item La medida de Lebesgue de un punto es nula: $\lambda(\{0\}) = 0$.
+    \item La medida cardinal de un punto es su número de elementos: $\nu(\{0\}) = \text{card}(\{0\}) = 1$.
+\end{itemize}
+Dado que $\lambda(\{0\}) = 0$ pero $\nu(\{0\}) = 1 \neq 0$, la implicación no se cumple.
+Por lo tanto, \textbf{$\nu$ no es absolutamente continua respecto a $\lambda$} ($\nu \not\ll \lambda$).
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Contrapunto entre medida nula de Lebesgue en un singleton y su medida cardinal no nula]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{2. Estudio de $\lambda \ll \nu$ (Continuidad absoluta de Lebesgue respecto a la medida cardinal):}
+Para comprobar si la medida de Lebesgue $\lambda$ es absolutamente continua respecto a la medida cardinal $\nu$, analizamos la condición:
+\[
+    \forall A \in \mathcal{B}, \quad \nu(A) = 0 \implies \lambda(A) = 0
+\]
+Por definición, la medida cardinal de un conjunto $A \subseteq \mathbb{R}$ es cero si y solo si $A$ no contiene ningún elemento, es decir, únicamente cuando $A$ es el conjunto vacío:
+\[
+    \nu(A) = 0 \iff A = \varnothing
+\]
+Evaluando la medida de Lebesgue sobre el conjunto vacío:
+\[
+    \lambda(\varnothing) = 0
+\]
+Dado que la única forma de que $\nu(A)$ se anule es que $A = \varnothing$, y sobre dicho conjunto la medida de Lebesgue $\lambda$ se anula trivialmente, la implicación $\nu(A) = 0 \implies \lambda(A) = 0$ se satisface universalmente para todo $A \in \mathcal{B}$.
+
+Por lo tanto, \textbf{$\lambda$ es absolutamente continua respecto a $\nu$} ($\lambda \ll \nu$).
+\end{problema}
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 34
+% ------------------------------------------------------------------------------
+\begin{problema}[Medidas inducidas por restricciones de Lebesgue a semiejes y comparación]
+Sea $\Omega = \mathbb{R}$, $\mathcal{B}$ la $\sigma$-álgebra de Borel y $\lambda$ la medida de Lebesgue. Determinar si las funciones de conjunto definidas para cada $B \in \mathcal{B}$ por:
+\[
+    \mu(B) = \lambda(B \cap \mathbb{R}^-) \quad \text{y} \quad \nu(B) = \lambda(B \cap \mathbb{R}^+)
+\]
+donde $\mathbb{R}^- = (-\infty, 0)$ y $\mathbb{R}^+ = [0, \infty)$, son medidas sobre $(\mathbb{R}, \mathcal{B})$.
+
+Decidir si son mutuamente singulares o absolutamente continuas la una respecto de la otra, y analizar su relación de continuidad absoluta respecto de la medida de Lebesgue $\lambda$.
+
+\tcblower
+
+\paragraph{1. Comprobación de la estructura de medida:}
+Comprobamos los axiomas de medida sobre $(\mathbb{R}, \mathcal{B})$ para la función de conjunto $\mu$ (el caso de $\nu$ es completamente análogo):
+\begin{enumerate}[label=\alph*)]
+    \item \textit{No negatividad:} Como la medida de Lebesgue es positiva, para todo $B \in \mathcal{B}$ se cumple:
+    \[
+        \mu(B) = \lambda(B \cap \mathbb{R}^-) \ge 0
+    \]
+    \item \textit{Medida del conjunto vacío:} 
+    \[
+        \mu(\varnothing) = \lambda(\varnothing \cap \mathbb{R}^-) = \lambda(\varnothing) = 0
+    \]
+    \item \textit{$\sigma$-aditividad:} Dada una sucesión $(B_n)_{n \in \mathbb{N}} \subseteq \mathcal{B}$ de conjuntos disjuntos dos a dos ($B_i \cap B_j = \varnothing$ para $i \neq j$), la familia $(B_n \cap \mathbb{R}^-)_{n \in \mathbb{N}}$ es también disjunta dos a dos. Por la $\sigma$-aditividad de la medida de Lebesgue:
+    \[
+        \mu\left( \bigcup_{n=1}^\infty B_n \right) = \lambda\left( \left(\bigcup_{n=1}^\infty B_n\right) \cap \mathbb{R}^- \right) = \lambda\left( \bigcup_{n=1}^\infty (B_n \cap \mathbb{R}^-) \right) = \sum_{n=1}^\infty \lambda(B_n \cap \mathbb{R}^-) = \sum_{n=1}^\infty \mu(B_n)
+    \]
+\end{enumerate}
+Por consiguiente, $\mu$ y $\nu$ son medidas bien definidas sobre $(\mathbb{R}, \mathcal{B})$.
+
+\paragraph{2. Comparación entre $\mu$ y $\nu$:}
+\begin{itemize}
+    \item \textit{Singularidad mutua ($\mu \perp \nu$):}
+    Consideremos el conjunto boreliano $A = \mathbb{R}^- = (-\infty, 0) \in \mathcal{B}$. Evaluamos ambas medidas sobre $A$ y su complementario $A^c = \mathbb{R}^+ = [0, \infty)$:
+    \[
+        \nu(A) = \lambda((-\infty, 0) \cap [0, \infty)) = \lambda(\varnothing) = 0
+    \]
+    \[
+        \mu(A^c) = \lambda([0, \infty) \cap (-\infty, 0)) = \lambda(\varnothing) = 0
+    \]
+    Al existir un conjunto $A \in \mathcal{B}$ tal que $\nu(A) = 0$ y $\mu(A^c) = 0$, queda demostrado que las medidas $\mu$ y $\nu$ son mutuamente singulares ($\mu \perp \nu$).
+
+    \item \textit{Continuidad absoluta recíproca:}
+    Al ser medidas mutuamente singulares no nulas, no son absolutamente continuas entre sí. En efecto:
+    \begin{itemize}
+        \item Tomando $B_1 = (-1, 0)$, se tiene $\mu(B_1) = 1 > 0$ pero $\nu(B_1) = 0$, luego $\mu \not\ll \nu$.
+        \item Tomando $B_2 = (0, 1)$, se tiene $\nu(B_2) = 1 > 0$ pero $\mu(B_2) = 0$, luego $\nu \not\ll \mu$.
+    \end{itemize}
+\end{itemize}
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Soporte disjunto de las medidas $\mu$ sobre $(-\infty,0)$ y $\nu$ sobre $[0,\infty)$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{3. Comparación respecto de la medida de Lebesgue $\lambda$:}
+\begin{itemize}
+    \item \textit{Continuidad absoluta de $\mu$ y $\nu$ respecto de $\lambda$ ($\mu \ll \lambda$ y $\nu \ll \lambda$):}
+    Sea $B \in \mathcal{B}$ tal que $\lambda(B) = 0$. Por la propiedad de monotonía de la medida de Lebesgue:
+    \[
+        B \cap \mathbb{R}^- \subseteq B \implies \mu(B) = \lambda(B \cap \mathbb{R}^-) \le \lambda(B) = 0 \implies \mu(B) = 0
+    \]
+    Analogamente, $\nu(B) = \lambda(B \cap \mathbb{R}^+) \le \lambda(B) = 0 \implies \nu(B) = 0$.
+    Por tanto, se verifica que $\mu \ll \lambda$ y $\nu \ll \lambda$.
+
+    \item \textit{Relación recíproca ($\lambda \not\ll \mu$ y $\lambda \not\ll \nu$):}
+    La medida de Lebesgue no es absolutamente continua respecto de $\mu$ ni de $\nu$:
+    \begin{itemize}
+        \item Para $B_2 = (0, 1)$, $\mu(B_2) = 0$ pero $\lambda(B_2) = 1 \neq 0 \implies \lambda \not\ll \mu$.
+        \item Para $B_1 = (-1, 0)$, $\nu(B_1) = 0$ pero $\lambda(B_1) = 1 \neq 0 \implies \lambda \not\ll \nu$.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Nota adicional:}
+Observamos que $\lambda = \mu + \nu$, lo que representa la descomposición de la medida de Lebesgue en sus componentes concentradas sobre los semiejes real negativo y real positivo.
 \end{problema}

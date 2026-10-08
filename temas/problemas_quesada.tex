@@ -1121,9 +1121,11 @@ De la combinación de ambas inclusiones se deduce que $\sigma(\mathcal{A}) = \ma
 \end{problema}
 
 \newpage
-
+%=====================================================
+%=========== TEMA 2. ESPACIO PROBABILÍSTICO ==========
+%=====================================================
 \section{Espacio probabilístico}
-
+\setcounter{problemacontador}{0}
 % ------------------------------------------------------------------------------
 % PROBLEMA 1
 % ------------------------------------------------------------------------------
@@ -1136,29 +1138,26 @@ es una medida de probabilidad sobre el mismo espacio, para cualquier sucesión d
 
 \tcblower
 
-Comprobamos que la función de conjunto $P : \mathcal{Q} \to \mathbb{R}$ satisface los tres axiomas de Kolmogorov para ser una medida de probabilidad:
-
-\paragraph{1. No negatividad:}
+Comprobamos que la función de conjunto $P : \mathcal{Q} \to \mathbb{R}$ satisface los tres axiomas de Kolmogorov para ser una medida de probabilidad:\\[4pt]
+\noindent
+\textbf{1. No negatividad:}
 Para cualquier suceso $A \in \mathcal{Q}$, dado que $a_n \ge 0$ y $P_n(A) \ge 0$ para todo $n \in \mathbb{N}$ (por ser cada $P_n$ una medida de probabilidad), cada término del sumatorio cumple $a_n P_n(A) \ge 0$.
 La suma de términos no negativos es no negativa, por lo que:
 \[
     P(A) = \sum_{n=1}^\infty a_n P_n(A) \ge 0, \quad \forall A \in \mathcal{Q}
 \]
-
-\paragraph{2. Normalización del espacio muestral:}
+\noindent
+\textbf{2. Normalización del espacio muestral:}\\
 Evaluamos la función $P$ sobre el conjunto universal $\Omega$. Dado que $P_n(\Omega) = 1$ para todo $n \in \mathbb{N}$ y $\displaystyle \sum_{n=1}^\infty a_n = 1$:
 \[
     P(\Omega) = \sum_{n=1}^\infty a_n P_n(\Omega) = \sum_{n=1}^\infty a_n \cdot 1 = \sum_{n=1}^\infty a_n = 1
 \]
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Combinación convexa de medidas $P = \sum_{n=1}^\infty a_n P_n$]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=1\linewidth]{imagenes/problemas_Quesada/prob_quesada_2_1_a}
 \end{center}
-
-\paragraph{3. $\sigma$-aditividad:}
+\noindent
+\textbf{3. $\sigma$-aditividad:}\\
 Sea $(A_i)_{i \in \mathbb{N}} \subseteq \mathcal{Q}$ una sucesión de sucesos disjuntos dos a dos ($A_i \cap A_j = \varnothing$ para todo $i \neq j$).
 Por la $\sigma$-aditividad de cada medida $P_n$, se tiene que $P_n\left(\bigcup_{i=1}^\infty A_i\right) = \sum_{i=1}^\infty P_n(A_i)$.
 Sustituyendo esta propiedad en la definición de la función $P$:
@@ -1192,22 +1191,18 @@ Sea $(\Omega, \mathcal{Q}, P)$ un espacio de probabilidad y sean $A, B \in \math
 
 \tcblower
 
-\paragraph{Apartado a):}
+\paragraph{a)}
 Por la propiedad de monotonía de la medida de probabilidad, al ser $A \subseteq A \cup B \subseteq \Omega$, se satisface la cadena de desigualdades:
 \[
     1 = P(A) \le P(A \cup B) \le P(\Omega) = 1 \implies P(A \cup B) = 1
 \]
 Por otra parte, aplicando la fórmula de la probabilidad de la unión de dos sucesos:
 \[
-    P(A \cup B) = P(A) + P(B) - P(A \cap B)
-\]
-Sustituyendo los valores conocidos $P(A) = 1$, $P(B) = 1$ y $P(A \cup B) = 1$:
-\[
-    1 = 1 + 1 - P(A \cap B) \implies P(A \cap B) = 1
+    P(A \cup B) = P(A) + P(B) - P(A \cap B) \implies 1 = 1 + 1 - P(A \cap B) \implies P(A \cap B) = 1
 \]
 Por tanto, se concluye que $P(A \cap B) = P(A \cup B) = 1$.
 
-\paragraph{Apartado b):}
+\paragraph{b)}
 La diferencia simétrica entre dos conjuntos se define equivalentemente como la diferencia entre su unión y su intersección:
 \[
     A \Delta B = (A \cup B) \setminus (A \cap B)
@@ -1221,15 +1216,12 @@ Sustituyendo la fórmula general para la unión $P(A \cup B) = P(A) + P(B) - P(A
     P(A \Delta B) = P(A) + P(B) - P(A \cap B) - P(A \cap B) = P(A) + P(B) - 2P(A \cap B)
 \]
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Representación de la diferencia simétrica $A \Delta B$ en un diagrama de Venn]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=0.5\linewidth]{imagenes/problemas_Quesada/prob_quesada_2_2_a}
 \end{center}
 
-\paragraph{Apartado c):}
-Supongamos que $P(A \Delta B) = 0$. Utilizando la igualdad $P(A \Delta B) = P(A \cup B) - P(A \cap B)$ demostrada en el apartado anterior:
+\paragraph{c)}
+Supongamos que $P(A \Delta B) = 0$. Utilizando la igualdad demostrada en el apartado anterior:
 \[
     P(A \cup B) - P(A \cap B) = 0 \implies P(A \cap B) = P(A \cup B)
 \]
@@ -1259,9 +1251,7 @@ Se define la función de conjunto $P$ sobre el espacio medible $(\mathbb{R}, \ma
 \tcblower
 
 \paragraph{Respuesta:}
-No, $P$ no es una medida de probabilidad sobre $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
-
-\paragraph{Demostración y análisis de los axiomas:}
+No, $P$ no es una medida de probabilidad sobre $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$.\\[4pt]
 Para determinar si $P$ es una medida de probabilidad, analizamos el cumplimiento de los tres axiomas de Kolmogorov:
 
 \paragraph{1. No negatividad:}
@@ -1273,18 +1263,11 @@ Como el integrando $f(x) = \frac{1}{2}$ es estrictamente positivo y la medida de
 \paragraph{2. $\sigma$-aditividad:}
 Dada una colección numerable de sucesos borelianos disjuntos dos a dos $(B_n)_{n \in \mathbb{N}} \subseteq \mathcal{B}(\mathbb{R})$ ($B_i \cap B_j = \varnothing$ para $i \neq j$), la intersección con $[1, \infty)$ preserva el disjuntismo. Por la $\sigma$-aditividad de la integral de Lebesgue (o el Teorema de Convergencia Monótona):
 \[
-    P\left( \bigcup_{n=1}^\infty B_n \right) = \int_{\left(\bigcup_{n=1}^\infty B_n\right) \cap [1, \infty)} \frac{1}{2} \, dx = \int_{\bigcup_{n=1}^\infty \left(B_n \cap [1, \infty)\right)} \frac{1}{2} \, dx
+    \begin{array}{rl}
+        \displaystyle P\left( \bigcup_{n=1}^\infty B_n \right) & \displaystyle = \int_{\left(\bigcup_{n=1}^\infty B_n\right) \cap [1, \infty)} \frac{1}{2} \, dx = \int_{\bigcup_{n=1}^\infty \left(B_n \cap [1, \infty)\right)} \frac{1}{2} \, dx \\[16pt]
+        & \displaystyle = \sum_{n=1}^\infty \int_{B_n \cap [1, \infty)} \frac{1}{2} \, dx = \sum_{n=1}^\infty P(B_n)
+    \end{array}
 \]
-\[
-    P\left( \bigcup_{n=1}^\infty B_n \right) = \sum_{n=1}^\infty \int_{B_n \cap [1, \infty)} \frac{1}{2} \, dx = \sum_{n=1}^\infty P(B_n)
-\]
-
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
-\begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Área bajo la función constante $f(x)=1/2$ en el recinto no acotado $[1, \infty)$]} \vfill}}
-    \vspace{0.2cm}
-\end{center}
 
 \paragraph{3. Normalización del espacio muestral:}
 Evaluamos la medida sobre todo el conjunto universal $\Omega = \mathbb{R}$:
@@ -1292,7 +1275,11 @@ Evaluamos la medida sobre todo el conjunto universal $\Omega = \mathbb{R}$:
     P(\mathbb{R}) = \int_{\mathbb{R} \cap [1, \infty)} \frac{1}{2} \, dx = \int_{1}^{\infty} \frac{1}{2} \, dx = \left[ \frac{x}{2} \right]_{1}^{\infty} = \infty
 \]
 Puesto que $P(\mathbb{R}) = \infty \neq 1$, no se satisface la condición de estar normada a la unidad.
-
+\vspace{1cm}
+\begin{center}
+    \includegraphics[width=1\linewidth]{imagenes/problemas_Quesada/prob_quesada_2_3_a}
+\end{center}
+ 
 \paragraph{Conclusión:}
 Aunque $P$ define una medida sobre el espacio medible $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$, al no cumplir el axioma de normalización ($P(\mathbb{R}) \neq 1$), no constituye una medida de probabilidad.
 \end{problema}
@@ -1317,7 +1304,7 @@ donde $f : [0,1] \to \mathbb{R}$ es una función no negativa tal que $\displayst
 
 \tcblower
 
-\paragraph{Apartado a):}
+\paragraph{a)}
 Comprobamos los tres axiomas de Kolmogorov para verificar que $P$ es una medida de probabilidad sobre el espacio medible $([0,1], \mathcal{B}([0,1]))$:
 \begin{enumerate}[label=\arabic*.]
     \item \textbf{No negatividad:} Como $f(x) \ge 0$ para todo $x \in [0,1]$, la integral de una función no negativa sobre cualquier conjunto boreliano $B \in \mathcal{B}([0,1])$ resulta siempre no negativa:
@@ -1335,20 +1322,13 @@ Comprobamos los tres axiomas de Kolmogorov para verificar que $P$ es una medida 
 \end{enumerate}
 Por tanto, $P$ es una medida de probabilidad bien definida.
 
-\paragraph{Apartado b):}
+\paragraph{b)}
 Dado un punto arbitrario $r \in [0,1]$, el conjunto unipuntual $\{r\}$ pertenece a $\mathcal{B}([0,1])$. Dado que la medida de Lebesgue de cualquier punto aislado es nula ($\lambda(\{r\}) = 0$), la integral de la función $f$ sobre dicho conjunto es cero:
 \[
     P(\{r\}) = \int_{\{r\}} f(x) \, dx = 0
 \]
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
-\begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Masa de probabilidad nula en conjuntos unipuntuales y densidades continuas]} \vfill}}
-    \vspace{0.2cm}
-\end{center}
-
-\paragraph{Apartado c):}
+\paragraph{c)}
 El conjunto de los números racionales $\mathbb{Q}$ es numerable, de modo que la intersección $\mathbb{Q} \cap [0,1]$ es también un conjunto numerable. Por consiguiente, podemos expresar este conjunto como la unión numerable disjunta de sus puntos individuales:
 \[
     \mathbb{Q} \cap [0,1] = \bigcup_{r \in \mathbb{Q} \cap [0,1]} \{r\}
@@ -1358,7 +1338,7 @@ Aplicando la propiedad de $\sigma$-aditividad demostrada en el apartado a) junto
     P(\mathbb{Q} \cap [0,1]) = \sum_{r \in \mathbb{Q} \cap [0,1]} P(\{r\}) = \sum_{r \in \mathbb{Q} \cap [0,1]} 0 = 0
 \]
 
-\paragraph{Apartado d):}
+\paragraph{d)}
 Dado un intervalo $[a,b] \subseteq [0,1]$, podemos expresar el intervalo cerrado como la unión disjunta de su extremo izquierdo y del intervalo semiabierto correspondiente:
 \[
     [a,b] = \{a\} \cup (a,b] \quad \text{con } \{a\} \cap (a,b] = \varnothing
@@ -1371,6 +1351,10 @@ Puesto que $P(\{a\}) = 0$ por el apartado b), concluimos directamente que:
 \[
     P([a,b]) = 0 + P((a,b]) = P((a,b])
 \]
+\vspace{1cm}
+\begin{center}
+    \includegraphics[width=1\linewidth]{imagenes/problemas_Quesada/prob_quesada_2_4_a}
+\end{center}
 \end{problema}
 
 \newpage
@@ -1387,7 +1371,7 @@ Se lanzan al azar dos dados ($a$ y $b$), y denotamos por $\Omega_a = \{1,2,3,4,5
 
 \tcblower
 
-\paragraph{Apartado a):}
+\paragraph{a)}
 El espacio muestral del experimento conjunto es el producto cartesiano $\Omega = \Omega_a \times \Omega_b$, cuyo cardinal es $\text{card}(\Omega) = 6 \cdot 6 = 36$. Dado que $\Omega$ es finito, la clase de las partes $\mathcal{P}(\Omega_a \times \Omega_b)$ constituye trivialmente una $\sigma$-álgebra sobre $\Omega$.
 
 Consideremos los sucesos elementales unipuntuales $\{(i,j)\} = \{i\} \times \{j\}$ para $(i,j) \in \Omega_a \times \Omega_b$. Aplicando la definición dada sobre el producto de singletons:
@@ -1408,14 +1392,7 @@ Para un rectángulo medible $A \times B$, al cumplirse $\text{card}(A \times B) 
 \]
 Por tanto, $(\Omega_a \times \Omega_b, \mathcal{P}(\Omega_a \times \Omega_b), P)$ determina un espacio de probabilidad discreto con sucesos elementales equiprobables.
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
-\begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Matriz $6 \times 6$ del espacio muestral $\Omega_a \times \Omega_b$ y probabilidad marginal $P_a$]} \vfill}}
-    \vspace{0.2cm}
-\end{center}
-
-\paragraph{Apartado b):}
+\paragraph{b)}
 Verificamos que $P_a : \mathcal{P}(\Omega_a) \to \mathbb{R}$ satisface los axiomas de Kolmogorov sobre el espacio muestral $(\Omega_a, \mathcal{P}(\Omega_a))$:
 \begin{enumerate}[label=\arabic*.]
     \item \textbf{No negatividad:} Para cualquier $A \in \mathcal{P}(\Omega_a)$, por ser $P$ una medida de probabilidad:
@@ -1441,6 +1418,10 @@ Finalmente, evaluamos la probabilidad marginal $P_a$ sobre un suceso elemental a
     P_a(\{i\}) = P(\{i\} \times \Omega_b) = \frac{\text{card}(\{i\}) \cdot \text{card}(\Omega_b)}{36} = \frac{1 \cdot 6}{36} = \frac{1}{6}
 \]
 Puesto que $P_a(\{i\}) = \frac{1}{6}$ para todo $i \in \{1,2,3,4,5,6\}$, los sucesos elementales de $(\Omega_a, \mathcal{P}(\Omega_a))$ son equiprobables.
+\vspace{1cm}
+\begin{center}
+    \includegraphics[width=1\linewidth]{imagenes/problemas_Quesada/prob_quesada_2_5_a}
+\end{center}
 \end{problema}
 
 \newpage
@@ -1477,19 +1458,15 @@ Por la aditividad de la probabilidad sobre sucesos disjuntos:
 \[
     P\left( \varlimsup_{n \to \infty} A_n \right) = P(\{\omega_1\}) + P(\{\omega_2\}) + P(\{\omega_3\}) = \frac{1}{6} + \frac{1}{3} + \frac{1}{5} = \frac{7}{10} = \frac{21}{30}
 \]
-
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\vspace{0.5cm}
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Diagrama de Venn con los puntos $\omega_1, \omega_2, \omega_3, \omega_4$ y los sucesos de la sucesión $A_n$]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=0.8\linewidth]{imagenes/problemas_Quesada/prob_quesada_2_6_a}
 \end{center}
-
 \paragraph{2. Cálculo de la sucesión de probabilidades y sus límites numéricos:}
 Evaluamos la probabilidad de $A_n$ según la paridad de $n$:
 \[
     P(A_n) = \begin{cases}
-        P(\{\omega_1, \omega_2\}) = \dfrac{1}{6} + \dfrac{1}{3} = \dfrac{1}{2} = \dfrac{15}{30} & \text{si } n \text{ es par} \\[0.3em]
+        P(\{\omega_1, \omega_2\}) = \dfrac{1}{6} + \dfrac{1}{3} = \dfrac{1}{2} = \dfrac{15}{30} & \text{si } n \text{ es par} \\[0.5em]
         P(\{\omega_2, \omega_3\}) = \dfrac{1}{3} + \dfrac{1}{5} = \dfrac{8}{15} = \dfrac{16}{30} & \text{si } n \text{ es impar}
     \end{cases}
 \]
@@ -1511,4 +1488,170 @@ Sustituyendo los valores obtenidos expresados en un denominador común:
     \frac{10}{30} < \frac{15}{30} < \frac{16}{30} < \frac{21}{30} \implies \frac{1}{3} < \frac{1}{2} < \frac{8}{15} < \frac{7}{10}
 \]
 En este caso particular, todas las desigualdades resultan ser estrictas.
+\end{problema}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 7
+% ------------------------------------------------------------------------------
+\begin{problema}[Probabilidades en una $\sigma$-álgebra generada por dos conjuntos]
+Considérese el espacio muestral $\Omega = \{\omega_1, \omega_2, \omega_3, \omega_4\}$, la $\sigma$-álgebra de subconjuntos de $\Omega$ generada por los conjuntos $A = \{\omega_1, \omega_2\}$ y $B = \{\omega_2, \omega_3, \omega_4\}$, y la medida de probabilidad sobre el espacio probabilizable $(\Omega, \mathcal{Q})$ tal que $P(\{\omega_1\}) = P(\{\omega_2\}) = \frac{P(B)}{2}$. Se pide:
+\begin{enumerate}[label=\alph*)]
+    \item Determinar las probabilidades de los cuatro puntos muestrales.
+    \item Calcular $P(A)$ y $P(\{\omega_3, \omega_4\})$.
+\end{enumerate}
+
+\tcblower
+
+\paragraph{1. Determinación de la $\sigma$-álgebra generada $\mathcal{Q} = \sigma(A, B)$:}
+Partimos de la colección generadora $\mathcal{C} = \{A, B\}$. Los átomos (sucesos elementales medibles minimales) se obtienen mediante las intersecciones no vacías de $A, A^c$ y $B, B^c$:
+\begin{itemize}
+    \item $A \cap B = \{\omega_2\}$
+    \item $A \cap B^c = \{\omega_1\}$
+    \item $A^c \cap B = \{\omega_3, \omega_4\}$
+    \item $A^c \cap B^c = \varnothing$
+\end{itemize}
+La $\sigma$-álgebra generada $\mathcal{Q} = \sigma(\mathcal{C})$ está formada por todas las uniones posibles de estos tres átomos disjuntos $\{\omega_1\}$, $\{\omega_2\}$ y $\{\omega_3, \omega_4\}$, constando de $2^3 = 8$ elementos:
+\[
+    \mathcal{Q} = \bigl\{ \varnothing, \, \{\omega_1\}, \, \{\omega_2\}, \, \{\omega_3, \omega_4\}, \, \{\omega_1, \omega_2\}, \, \{\omega_1, \omega_3, \omega_4\}, \, \{\omega_2, \omega_3, \omega_4\}, \, \Omega \bigr\}
+\]
+Observamos que los subconjuntos unipuntuales $\{\omega_3\}$ y $\{\omega_4\}$ no pertenecen a $\mathcal{Q}$, por lo que no constituyen sucesos medibles.
+
+\paragraph{a) Probabilidades de los puntos muestrales:}
+Puesto que $B = \{\omega_2, \omega_3, \omega_4\} = \{\omega_2\} \sqcup \{\omega_3, \omega_4\}$ y $\{\omega_1\} \sqcup B = \Omega$, los sucesos $\{\omega_1\}$ y $B$ constituyen una partición del espacio universal $\Omega$. Por el axioma de normalización y la aditividad finita:
+\[
+    P(\{\omega_1\}) + P(B) = P(\Omega) = 1
+\]
+Sustituyendo la condición $P(B) = 2 P(\{\omega_1\})$:
+\[
+    P(\{\omega_1\}) + 2 P(\{\omega_1\}) = 1 \implies 3 P(\{\omega_1\}) = 1 \implies P(\{\omega_1\}) = \frac{1}{3}
+\]
+Por consiguiente, deducimos:
+\[
+    P(\{\omega_1\}) = \frac{1}{3}, \quad P(\{\omega_2\}) = \frac{1}{3}, \quad P(B) = \frac{2}{3}
+\]
+Por otro lado, dado que $\{\omega_3\} \notin \mathcal{Q}$ y $\{\omega_4\} \notin \mathcal{Q}$, las probabilidades individuales de $\omega_3$ y $\omega_4$ no están definidas dentro del espacio probabilístico $(\Omega, \mathcal{Q}, P)$.
+
+\paragraph{b) Cálculo de $P(A)$ y $P(\{\omega_3, \omega_4\})$:}
+\begin{itemize}
+    \item Puesto que $A = \{\omega_1, \omega_2\} = \{\omega_1\} \sqcup \{\omega_2\}$, por la aditividad de la medida de probabilidad:
+    \[
+        P(A) = P(\{\omega_1\}) + P(\{\omega_2\}) = \frac{1}{3} + \frac{1}{3} = \frac{2}{3}
+    \]
+    \item El suceso $\{\omega_3, \omega_4\}$ es el complementario de $A$ respecto a $\Omega$, es decir, $\{\omega_3, \omega_4\} = A^c \in \mathcal{Q}$. Por la propiedad del suceso contrario:
+    \[
+        P(\{\omega_3, \omega_4\}) = P(A^c) = 1 - P(A) = 1 - \frac{2}{3} = \frac{1}{3}
+    \]
+\end{itemize}
+
+\vspace{0.5cm}
+\begin{center}
+    \includegraphics[width=1\linewidth]{imagenes/problemas_Quesada/prob_quesada_2_7_a}
+\end{center}
+\end{problema}
+
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 8
+% ------------------------------------------------------------------------------
+\begin{problema}[Cálculo de probabilidades para tres sucesos]
+Sean $A, B$ y $C$ tres sucesos de un espacio probabilístico $(\Omega, \mathcal{Q}, P)$ tales que $P(A) = 0.4$, $P(B) = 0.2$, $P(C) = 0.3$, $P(A \cap B) = 0.1$ y $(A \cup B) \cap C = \varnothing$. Calcular las probabilidades de los siguientes sucesos:
+\begin{enumerate}[label=\alph*)]
+    \item Solamente ocurre $A$.
+    \item Los tres sucesos ocurren.
+    \item Ocurren $A$ y $B$, pero no $C$.
+    \item Por lo menos dos ocurren.
+    \item Ocurren dos y no más.
+    \item No ocurren más de dos.
+    \item Ocurre por lo menos uno.
+    \item Ocurre sólo uno.
+    \item No ocurre ninguno.
+\end{enumerate}
+
+\tcblower
+
+\paragraph{Análisis previo de la condición de disjuntismo:}
+La condición $(A \cup B) \cap C = \varnothing$ establece que $C$ es disjunto con la unión $A \cup B$. Por la propiedad distributiva de la intersección:
+\[
+    (A \cap C) \cup (B \cap C) = \varnothing \implies A \cap C = \varnothing \quad \text{y} \quad B \cap C = \varnothing
+\]
+En particular, las probabilidades asociadas a estas intersecciones se anulan:
+\[
+    P(A \cap C) = 0, \quad P(B \cap C) = 0, \quad P(A \cap B \cap C) = 0
+\]
+
+\paragraph{a) Solamente ocurre $A$ ($A \cap B^c \cap C^c$):}
+Al ser $A \cap C = \varnothing$, se cumple $A \subseteq C^c$, por lo que $A \cap C^c = A$. El suceso se reduce a $A \setminus B$:
+\[
+    P(A \cap B^c \cap C^c) = P(A \setminus B) = P(A) - P(A \cap B) = 0.4 - 0.1 = 0.3
+\]
+
+\paragraph{b) Los tres sucesos ocurren ($A \cap B \cap C$):}
+Como $A \cap B \cap C \subseteq (A \cup B) \cap C = \varnothing$:
+\[
+    P(A \cap B \cap C) = P(\varnothing) = 0
+\]
+
+\paragraph{c) Ocurren $A$ y $B$, pero no $C$ ($A \cap B \cap C^c$):}
+Al ser $A \cap B \subseteq A \cup B$ y $(A \cup B) \cap C = \varnothing$, el suceso $A \cap B$ está completamente contenido en $C^c$:
+\[
+    P(A \cap B \cap C^c) = P(A \cap B) = 0.1
+\]
+
+\paragraph{d) Por lo menos dos ocurren:}
+Expresamos el suceso mediante la unión de las tres posibles intersecciones dobles:
+\[
+    (A \cap B) \cup (A \cap C) \cup (B \cap C) = (A \cap B) \cup \varnothing \cup \varnothing = A \cap B
+\]
+\[
+    P(\text{por lo menos dos}) = P(A \cap B) = 0.1
+\]
+
+\paragraph{e) Ocurren dos y no más (exactamente dos):}
+Equivale a que ocurran por lo menos dos pero no los tres simultáneamente:
+\[
+    P(\text{exactamente dos}) = P(\text{por lo menos dos}) - P(A \cap B \cap C) = 0.1 - 0 = 0.1
+\]
+
+\paragraph{f) No ocurren más de dos:}
+Es el suceso contrario a que ocurran los tres sucesos a la vez:
+\[
+    P(\text{no ocurren más de dos}) = 1 - P(A \cap B \cap C) = 1 - 0 = 1
+\]
+
+\paragraph{g) Ocurre por lo menos uno ($A \cup B \cup C$):}
+Dado que $C$ es disjunto con $A \cup B$:
+\[
+    P(A \cup B \cup C) = P(A \cup B) + P(C)
+\]
+Calculamos primero $P(A \cup B)$:
+\[
+    P(A \cup B) = P(A) + P(B) - P(A \cap B) = 0.4 + 0.2 - 0.1 = 0.5
+\]
+Sustituyendo obtenemos:
+\[
+    P(A \cup B \cup C) = 0.5 + 0.3 = 0.8
+\]
+
+\paragraph{h) Ocurre sólo uno (exactamente uno):}
+Es la diferencia entre que ocurra por lo menos uno y que ocurran por lo menos dos:
+\[
+    P(\text{exactamente uno}) = P(A \cup B \cup C) - P(\text{por lo menos dos}) = 0.8 - 0.1 = 0.7
+\]
+\textit{Demostración alternativa:} Sumamos las probabilidades de la ocurrencia exclusiva de cada suceso:
+\[
+    P(A \setminus B) + P(B \setminus A) + P(C) = (0.4 - 0.1) + (0.2 - 0.1) + 0.3 = 0.3 + 0.1 + 0.3 = 0.7
+\]
+
+\paragraph{i) No ocurre ninguno ($(A \cup B \cup C)^c$):}
+Es el suceso contrario a que ocurra al menos uno:
+\[
+    P\bigl((A \cup B \cup C)^c\bigr) = 1 - P(A \cup B \cup C) = 1 - 0.8 = 0.2
+\]
+
+\vspace{0.5cm}
+\begin{center}
+    \includegraphics[width=1\linewidth]{imagenes/problemas_Quesada/prob_quesada_2_8_a}
+\end{center}
 \end{problema}
