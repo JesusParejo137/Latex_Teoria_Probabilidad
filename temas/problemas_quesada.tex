@@ -852,10 +852,7 @@ Hallar los límites superior e inferior de las siguientes sucesiones de subconju
         \varlimsup_{n \to \infty} A_n = \varliminf_{n \to \infty} A_n = \lim_{n \to \infty} A_n = \{(0,0)\}
     \]
 
-    % --------------------------------------------------------------------------
-    % HUECO RESERVADO PARA DIAGRAMA (APARTADO A)
-    % --------------------------------------------------------------------------
-    \begin{center}
+\begin{center}
     \includegraphics[width=0.55\linewidth]{imagenes/problemas_Quesada/prob_quesada_1_18_a}
 \end{center}
 
@@ -877,9 +874,6 @@ Hallar los límites superior e inferior de las siguientes sucesiones de subconju
     
     Al ser $\varlimsup_{n \to \infty} A_n \neq \varliminf_{n \to \infty} A_n$, la sucesión $\{A_n\}$ no es convergente.
 
-    % --------------------------------------------------------------------------
-    % HUECO RESERVADO PARA DIAGRAMA (APARTADO B)
-    % --------------------------------------------------------------------------
     \begin{center}
         \includegraphics[width=0.55\linewidth]{imagenes/problemas_Quesada/prob_quesada_1_18_b}
     \end{center}
@@ -1654,4 +1648,513 @@ Es el suceso contrario a que ocurra al menos uno:
 \begin{center}
     \includegraphics[width=1\linewidth]{imagenes/problemas_Quesada/prob_quesada_2_8_a}
 \end{center}
+\end{problema}
+
+\newpage
+% ------------------------------------------------------------------------------
+% PROBLEMA 9
+% ------------------------------------------------------------------------------
+\begin{problema}[Veracidad y falsedad de propiedades de la medida de probabilidad]
+Decidir si son ciertas o falsas las siguientes afirmaciones, demostrándolas o aportando un contraejemplo:
+\begin{enumerate}[label=\alph*)]
+    \item Si $P(A) + P(B) > 1$, entonces $A \cap B \neq \varnothing$.
+    \item Si $P(A) = P(B) = p$, entonces $P(A \cap B) \le p^2$.
+    \item Si $P(A) = P(B^c)$, entonces $A^c = B$.
+    \item Si $P(A) = 0$, entonces $A = \varnothing$.
+    \item Si $P(A) = 0$ y $P(B) = 1$, entonces $P(A \cap B) = 0$.
+\end{enumerate}
+
+\tcblower
+
+\paragraph{a) Verdadero:}
+Aplicando la propiedad de la probabilidad de la unión de dos sucesos:
+\[
+    P(A \cup B) = P(A) + P(B) - P(A \cap B)
+\]
+Puesto que $P(A \cup B) \le 1$, despejando la probabilidad de la intersección obtenemos la desigualdad de Bonferroni:
+\[
+    P(A \cap B) = P(A) + P(B) - P(A \cup B) \ge P(A) + P(B) - 1
+\]
+Como por hipótesis $P(A) + P(B) > 1$, se deduce que $P(A \cap B) > 0$. Dado que la probabilidad del conjunto vacío es nula ($P(\varnothing) = 0$), el suceso $A \cap B$ no puede ser el conjunto vacío, por lo que necesariamente $A \cap B \neq \varnothing$.
+
+\paragraph{b) Falso:}
+Por la propiedad de monotonía de la probabilidad, al ser $A \cap B \subseteq A$, sabemos que $P(A \cap B) \le P(A) = p$. Sin embargo, para $p \in (0,1)$, se verifica $p^2 < p$, por lo que $P(A \cap B)$ puede ser estrictamente mayor que $p^2$.
+
+\textit{Contraejemplo:} Sea el espacio muestral $\Omega = \{1, 2\}$ con la medida de probabilidad dada por $P(\{1\}) = P(\{2\}) = 1/2$. Consideramos los sucesos $A = B = \{1\}$.
+Se tiene $P(A) = P(B) = 1/2 = p$. Calculamos la probabilidad de la intersección:
+\[
+    P(A \cap B) = P(\{1\}) = \frac{1}{2} > \left(\frac{1}{2}\right)^2 = \frac{1}{4} = p^2
+\]
+
+\paragraph{c) Falso:}
+Que dos sucesos tengan la misma probabilidad no implica que sean conjuntos iguales, ya que la medida de probabilidad no es una aplicación inyectiva sobre la $\sigma$-álgebra.
+
+\textit{Contraejemplo:} Consideremos el espacio muestral $\Omega = \{1, 2, 3\}$ con la probabilidad definida por $P(\{1\}) = P(\{2\}) = 1/2$ y $P(\{3\}) = 0$. Sean $A = \{1\}$ y $B = \{1\}$.
+Se satisface $B^c = \{2, 3\}$, de modo que $P(B^c) = P(\{2\}) + P(\{3\}) = 1/2 + 0 = 1/2$.
+Por otro lado, $P(A) = P(\{1\}) = 1/2$, cumpliéndose $P(A) = P(B^c)$. Sin embargo, $A^c = \{2, 3\} \neq \{1\} = B$.
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Contraejemplos mediante diagramas de Venn y masas de probabilidad]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{d) Falso:}
+Un suceso de probabilidad nula no se reduce necesariamente al conjunto vacío $\varnothing$.
+
+\textit{Contraejemplo discreto:} Sobre el espacio muestral $\Omega = \{1, 2, 3\}$ con $P(\{1\}) = P(\{2\}) = 1/2$ y $P(\{3\}) = 0$, elegimos $A = \{3\}$. Se cumple $P(A) = 0$, pero $A = \{3\} \neq \varnothing$.
+
+\textit{Nota sobre espacios continuos:} En espacios de probabilidad continuos (como $\Omega = [0,1]$ con la medida de Lebesgue), todo suceso formado por un único punto $A = \{x_0\}$ satisface $P(\{x_0\}) = 0$, a pesar de que $\{x_0\} \neq \varnothing$.
+
+\paragraph{e) Verdadero:}
+Por la propiedad de inclusión $A \cap B \subseteq A$, aplicando la monotonía de la medida de probabilidad:
+\[
+    0 \le P(A \cap B) \le P(A)
+\]
+Puesto que por hipótesis $P(A) = 0$, acotando por arriba y por abajo resulta inmediatamente $P(A \cap B) = 0$.
+\end{problema}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 10
+% ------------------------------------------------------------------------------
+\begin{problema}[Desigualdad de Bonferroni para la intersección de $n$ sucesos]
+Se considera un espacio de probabilidad $(\Omega, \mathcal{Q}, P)$ y una colección de $n$ sucesos $A_1, A_2, \dots, A_n \in \mathcal{Q}$. Demostrar que:
+\[
+    P\left( \bigcap_{i=1}^n A_i \right) \ge 1 - \sum_{i=1}^n P(A_i^c)
+\]
+
+\tcblower
+
+\paragraph{Método 1: Demostración por inducción finita sobre $n$}
+
+\begin{enumerate}
+    \item \textbf{Base de inducción ($n = 2$):}
+    Para dos sucesos cualesquiera $A_1, A_2 \in \mathcal{Q}$, por la propiedad de la probabilidad de la unión se cumple $P(A_1 \cup A_2) \le 1$. Por tanto:
+    \[
+        P(A_1 \cup A_2) = P(A_1) + P(A_2) - P(A_1 \cap A_2) \le 1
+    \]
+    Despejando la probabilidad de la intersección y expresando $P(A_i) = 1 - P(A_i^c)$:
+    \[
+        P(A_1 \cap A_2) \ge P(A_1) + P(A_2) - 1 = \bigl(1 - P(A_1^c)\bigr) + \bigl(1 - P(A_2^c)\bigr) - 1 = 1 - P(A_1^c) - P(A_2^c)
+    \]
+    lo cual establece la validez del caso base $n = 2$.
+
+    \item \textbf{Hipótesis de inducción (H.I.):}
+    Suponemos cierto el resultado para $n - 1$ sucesos ($n \ge 3$), es decir:
+    \[
+        P\left( \bigcap_{i=1}^{n-1} A_i \right) \ge 1 - \sum_{i=1}^{n-1} P(A_i^c)
+    \]
+
+    \item \textbf{Tesis de inducción y paso inductivo:}
+    Queremos probar la propiedad para $n$ sucesos. Definimos $A = \bigcap_{i=1}^{n-1} A_i$ y $B = A_n$. Aplicando el resultado del caso base $n = 2$ a los sucesos $A$ y $B$:
+    \[
+        P\left( \bigcap_{i=1}^n A_i \right) = P(A \cap B) \ge 1 - P(A^c) - P(B^c) = P(A) - P(A_n^c)
+    \]
+    Sustituyendo la cota inferior dada por la Hipótesis de Inducción para $P(A)$:
+    \[
+        P\left( \bigcap_{i=1}^n A_i \right) \ge \left( 1 - \sum_{i=1}^{n-1} P(A_i^c) \right) - P(A_n^c) = 1 - \sum_{i=1}^n P(A_i^c)
+    \]
+    Queda así demostrado el enunciado por inducción finita.
+\end{enumerate}
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Ilustración de la desigualdad de Bonferroni mediante solapamiento de sucesos en un espacio de probabilidad]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{Método 2: Demostración alternativa directa (vía De Morgan y Subaditividad)}
+
+Por las leyes de De Morgan generalizadas, el suceso contrario de la intersección coincide con la unión de los sucesos contrarios:
+\[
+    \left( \bigcap_{i=1}^n A_i \right)^c = \bigcup_{i=1}^n A_i^c
+\]
+Aplicando la medida de probabilidad y utilizando la propiedad de subaditividad finita:
+\[
+    P\left( \left( \bigcap_{i=1}^n A_i \right)^c \right) = P\left( \bigcup_{i=1}^n A_i^c \right) \le \sum_{i=1}^n P(A_i^c)
+\]
+Por la propiedad del suceso contrario, $P\left( \left( \bigcap_{i=1}^n A_i \right)^c \right) = 1 - P\left( \bigcap_{i=1}^n A_i \right)$. Sustituyendo en la desigualdad anterior:
+\[
+    1 - P\left( \bigcap_{i=1}^n A_i \right) \le \sum_{i=1}^n P(A_i^c) \implies P\left( \bigcap_{i=1}^n A_i \right) \ge 1 - \sum_{i=1}^n P(A_i^c)
+\]
+\end{problema}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 11
+% ------------------------------------------------------------------------------
+\begin{problema}[Medida de probabilidad discreta sobre $\mathbb{N}$ y suma de series]
+Sea el espacio probabilístico $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$, donde $\mathcal{P}(\mathbb{N})$ representa la familia de todos los subconjuntos de números naturales ($\mathbb{N} = \{1, 2, 3, \dots\}$). Se define la función de conjunto:
+\[
+    P(A) = \sum_{i \in A} \frac{1}{2^i}, \quad \forall A \in \mathcal{P}(\mathbb{N})
+\]
+\begin{enumerate}[label=\alph*)]
+    \item Comprobar que $P$ es una medida de probabilidad sobre dicho espacio.
+    \item Calcular las probabilidades del conjunto de los números pares y del conjunto de los números impares.
+\end{enumerate}
+
+\tcblower
+
+\paragraph{a) Comprobación de los axiomas de Kolmogorov:}
+Verificamos que la función de conjunto $P : \mathcal{P}(\mathbb{N}) \to \mathbb{R}$ satisface los tres axiomas de la definición de medida de probabilidad:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{No negatividad:} Dado que el término general $\frac{1}{2^i} > 0$ para todo $i \in \mathbb{N}$, la suma sobre cualquier subconjunto $A \subseteq \mathbb{N}$ resulta no negativa:
+    \[
+        P(A) = \sum_{i \in A} \frac{1}{2^i} \ge 0, \quad \forall A \in \mathcal{P}(\mathbb{N})
+    \]
+    \item \textbf{Normalización del espacio universal:} Evaluamos sobre todo el espacio muestral $\Omega = \mathbb{N} = \{1, 2, 3, \dots\}$. Se trata de la suma de una serie geométrica de primer término $a = \frac{1}{2}$ y razón $r = \frac{1}{2}$:
+    \[
+        P(\mathbb{N}) = \sum_{n=1}^\infty \frac{1}{2^n} = \frac{\frac{1}{2}}{1 - \frac{1}{2}} = 1
+    \]
+    \item \textbf{$\sigma$-aditividad:} Sea $(A_j)_{j \in \mathbb{N}} \subseteq \mathcal{P}(\mathbb{N})$ una sucesión de conjuntos disjuntos dos a dos ($A_i \cap A_j = \varnothing$ para todo $i \neq j$). Puesto que todos los términos $\frac{1}{2^k}$ son estrictamente positivos, la serie es absolutamente convergente, lo que permite reordenar y agrupar sus términos libremente:
+    \[
+        P\left( \bigcup_{j=1}^\infty A_j \right) = \sum_{k \in \bigcup_{j=1}^\infty A_j} \frac{1}{2^k} = \sum_{j=1}^\infty \sum_{k \in A_j} \frac{1}{2^k} = \sum_{j=1}^\infty P(A_j)
+    \]
+\end{enumerate}
+Por tanto, $P$ es una medida de probabilidad bien definida sobre $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$.
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Masa de probabilidad $1/2^i$ asignada a cada entero $i \in \mathbb{N}$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{b) Probabilidades de los conjuntos de pares e impares:}
+Consideramos la partición de $\mathbb{N}$ dada por los números pares $A_{\text{pares}} = \{2n \mid n \in \mathbb{N}\}$ y los números impares $A_{\text{impares}} = \{2n - 1 \mid n \in \mathbb{N}\}$:
+
+\begin{itemize}
+    \item \textbf{Conjunto de números pares ($A_{\text{pares}}$):}
+    Sustituyendo $i = 2n$ en el sumatorio, obtenemos una serie geométrica de primer término $a = \frac{1}{4}$ y razón $r = \frac{1}{4}$:
+    \[
+        P(A_{\text{pares}}) = \sum_{n=1}^\infty \frac{1}{2^{2n}} = \sum_{n=1}^\infty \frac{1}{4^n} = \frac{\frac{1}{4}}{1 - \frac{1}{4}} = \frac{\frac{1}{4}}{\frac{3}{4}} = \frac{1}{3}
+    \]
+
+    \item \textbf{Conjunto de números impares ($A_{\text{impares}}$):}
+    Sustituyendo $i = 2n - 1$ en el sumatorio, reescribimos la expresión factorizando $\frac{1}{2}$:
+    \[
+        P(A_{\text{impares}}) = \sum_{n=1}^\infty \frac{1}{2^{2n-1}} = \frac{1}{2} \sum_{n=1}^\infty \frac{1}{4^{n-1}} = \frac{1}{2} \sum_{k=0}^\infty \left(\frac{1}{4}\right)^k = \frac{1}{2} \cdot \frac{1}{1 - \frac{1}{4}} = \frac{1}{2} \cdot \frac{4}{3} = \frac{2}{3}
+    \]
+\end{itemize}
+
+Comprobamos la consistencia del resultado verificando la aditividad sobre la partición:
+\[
+    P(A_{\text{pares}}) + P(A_{\text{impares}}) = \frac{1}{3} + \frac{2}{3} = 1 = P(\mathbb{N})
+\]
+
+\paragraph{Nota sobre la convención de los números naturales:}
+Si se considerase el convenio $\mathbb{N}_0 = \{0, 1, 2, \dots\}$, la suma total sobre el espacio daría $\sum_{n=0}^\infty \frac{1}{2^n} = 2$, por lo que la medida debería renormalizarse dividiendo por $2$, definiendo $P(\{i\}) = \frac{1}{2^{i+1}}$. Bajo esta renormalización sobre $\mathbb{N}_0$, las probabilidades quedarían invertidas: $P(A_{\text{pares}}) = \frac{2}{3}$ y $P(A_{\text{impares}}) = \frac{1}{3}$.
+\end{problema}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 12
+% ------------------------------------------------------------------------------
+\begin{problema}[Medida de probabilidad inducida sobre la traza de un conjunto no medible]
+Sea $(\Omega, \mathcal{Q}, P)$ un espacio de probabilidad tal que para un cierto subconjunto $E \in \mathcal{P}(\Omega)$ se verifica que $P(A) = 0$ para todo $A \in \mathcal{Q}$ tal que $A \subseteq E$, y $P(A) = 1$ para todo $A \in \mathcal{Q}$ tal que $A \supseteq E$. Se pide:
+\begin{enumerate}[label=\alph*)]
+    \item Demostrar que $E \notin \mathcal{Q}$.
+    \item Demostrar que $P(A) = 0$ para todo $A \in \mathcal{Q}$ tal que $A \subseteq E^c$.
+    \item Sea $\mathcal{Q}_E = \{ A \cap E \mid A \in \mathcal{Q} \}$ la traza de $\mathcal{Q}$ sobre $E$, y sea $P_E : \mathcal{Q}_E \to \mathbb{R}$ la función definida por $P_E(A \cap E) = P(A)$. Comprobar que $P_E$ es una medida de probabilidad sobre $(E, \mathcal{Q}_E)$.
+\end{enumerate}
+
+\tcblower
+
+\paragraph{a) Demostración de $E \notin \mathcal{Q}$:}
+Procedemos por reducción al absurdo. Supongamos que $E \in \mathcal{Q}$.
+Como $E \subseteq E$, aplicando la primera hipótesis sobre el conjunto medible $A = E \in \mathcal{Q}$ resulta:
+\[
+    P(E) = 0
+\]
+Por otra parte, como $E \supseteq E$, aplicando la segunda hipótesis sobre $A = E \in \mathcal{Q}$ resulta:
+\[
+    P(E) = 1
+\]
+De ambas condiciones se deduciría que $0 = 1$, lo cual es imposible. Por consiguiente, $E \notin \mathcal{Q}$.
+
+\paragraph{b) Demostración de $P(A) = 0$ para todo $A \in \mathcal{Q}$ con $A \subseteq E^c$:}
+Sea $A \in \mathcal{Q}$ tal que $A \subseteq E^c$. Tomando complementarios respecto a $\Omega$:
+\[
+    A \subseteq E^c \implies E \subseteq A^c
+\]
+Como $A \in \mathcal{Q}$, por las propiedades de la $\sigma$-álgebra se cumple $A^c \in \mathcal{Q}$. Al verificar $A^c \supseteq E$, la hipótesis garantiza que:
+\[
+    P(A^c) = 1
+\]
+Por la propiedad del suceso contrario para la medida de probabilidad $P$:
+\[
+    P(A) = 1 - P(A^c) = 1 - 1 = 0
+\]
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Inclusión del subconjunto no medible $E$ en $\Omega$ y traza de la $\sigma$-álgebra $\mathcal{Q}_E$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{c) Comprobación de que $P_E$ es una probabilidad sobre $(E, \mathcal{Q}_E)$:}
+
+\paragraph{1. Bien definición de la aplicación $P_E$:}
+Comprobamos que si dos conjuntos $A_1, A_2 \in \mathcal{Q}$ producen la misma traza sobre $E$ ($A_1 \cap E = A_2 \cap E$), sus probabilidades coinciden ($P(A_1) = P(A_2)$).
+
+Si $A_1 \cap E = A_2 \cap E$, calculamos la diferencia relativa $A_1 \setminus A_2$:
+\[
+    (A_1 \setminus A_2) \cap E = (A_1 \cap A_2^c) \cap E = (A_1 \cap E) \cap A_2^c = (A_2 \cap E) \cap A_2^c = \varnothing
+\]
+Por tanto, $A_1 \setminus A_2 \subseteq E^c$. Como $A_1, A_2 \in \mathcal{Q}$, se tiene $A_1 \setminus A_2 \in \mathcal{Q}$, y por el apartado b):
+\[
+    P(A_1 \setminus A_2) = 0
+\]
+Por simetría, de manera análoga se obtiene $P(A_2 \setminus A_1) = 0$. Expresando $A_1 = (A_1 \cap A_2) \cup (A_1 \setminus A_2)$:
+\[
+    P(A_1) = P(A_1 \cap A_2) + P(A_1 \setminus A_2) = P(A_1 \cap A_2) + 0 = P(A_1 \cap A_2)
+\]
+De la misma forma, $P(A_2) = P(A_1 \cap A_2)$. Concluimos que $P(A_1) = P(A_2)$, luego la función $P_E$ está bien definida.
+
+\paragraph{2. Verificación de los axiomas de Kolmogorov:}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{No negatividad:} Para todo $B \in \mathcal{Q}_E$, existe $A \in \mathcal{Q}$ tal que $B = A \cap E$. Por ser $P$ una probabilidad:
+    \[
+        P_E(B) = P_E(A \cap E) = P(A) \ge 0
+    \]
+
+    \item \textbf{Normalización del espacio universal $E$:}
+    Expresamos $E$ como la traza de todo el espacio universal $\Omega \in \mathcal{Q}$:
+    \[
+        E = \Omega \cap E \implies P_E(E) = P_E(\Omega \cap E) = P(\Omega) = 1
+    \]
+
+    \item \textbf{$\sigma$-aditividad:}
+    Sea $(B_n)_{n \in \mathbb{N}} \subseteq \mathcal{Q}_E$ una sucesión de conjuntos disjuntos dos a dos en la traza ($B_i \cap B_j = \varnothing$ para $i \neq j$). Por definición, para cada $n \in \mathbb{N}$ existe $A_n \in \mathcal{Q}$ tal que $B_n = A_n \cap E$.
+
+    Para construir representantes disjuntos en la $\sigma$-álgebra original $\mathcal{Q}$, definimos:
+    \[
+        A_1' = A_1, \quad A_n' = A_n \setminus \bigcup_{k=1}^{n-1} A_k \in \mathcal{Q} \quad (n \ge 2)
+    \]
+    La colección $(A_n')_{n \in \mathbb{N}} \subseteq \mathcal{Q}$ es por construcción disjunta dos a dos. Evaluando su traza sobre $E$:
+    \[
+        A_n' \cap E = \left( A_n \setminus \bigcup_{k=1}^{n-1} A_k \right) \cap E = (A_n \cap E) \setminus \bigcup_{k=1}^{n-1} (A_k \cap E) = B_n \setminus \bigcup_{k=1}^{n-1} B_k = B_n
+    \]
+    ya que los conjuntos $B_k$ son disjuntos dos a dos. Se cumple asimismo que:
+    \[
+        \left( \bigcup_{n=1}^\infty A_n' \right) \cap E = \bigcup_{n=1}^\infty (A_n' \cap E) = \bigcup_{n=1}^\infty B_n
+    \]
+    Por la definición de $P_E$ y la $\sigma$-aditividad de la medida de probabilidad $P$ sobre los conjuntos disjuntos $A_n' \in \mathcal{Q}$:
+    \[
+        P_E\left( \bigcup_{n=1}^\infty B_n \right) = P_E\left( \left(\bigcup_{n=1}^\infty A_n'\right) \cap E \right) = P\left( \bigcup_{n=1}^\infty A_n' \right) = \sum_{n=1}^\infty P(A_n') = \sum_{n=1}^\infty P_E(A_n' \cap E) = \sum_{n=1}^\infty P_E(B_n)
+    \]
+\end{enumerate}
+
+Al verificarse los tres axiomas, queda demostrado que $P_E$ es una medida de probabilidad sobre el espacio medible $(E, \mathcal{Q}_E)$.
+\end{problema}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 13
+% ------------------------------------------------------------------------------
+\begin{problema}[Imposibilidad de la medida de probabilidad dada]
+¿Es posible definir una medida de probabilidad $P$ sobre $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ tal que, para algún $\varepsilon > 0$, se verifique que
+\[
+    P\left(\left[-\frac{1}{n}, 0\right]\right) > P\left(\left[0, \frac{1}{n}\right]\right) + \varepsilon, \quad \forall n \ge 1?
+\]
+
+\tcblower
+
+Procedemos por reducción al absurdo. Supongamos que existe una medida de probabilidad $P$ sobre $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$ y una constante $\varepsilon > 0$ tales que:
+\[
+    P\left(\left[-\frac{1}{n}, 0\right]\right) > P\left(\left[0, \frac{1}{n}\right]\right) + \varepsilon, \quad \forall n \ge 1
+\]
+
+Consideremos las sucesiones de subconjuntos de $\mathbb{R}$:
+\[
+    A_n = \left[-\frac{1}{n}, 0\right] \quad \text{y} \quad B_n = \left[0, \frac{1}{n}\right], \quad \forall n \ge 1
+\]
+
+Analizamos las propiedades de ambas sucesiones:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Monotonía decreciente y límites de conjuntos:}
+    Ambas sucesiones son monótonas decrecientes ($A_n \downarrow$ y $B_n \downarrow$). Sus límites de conjuntos vienen dados por las respectivas intersecciones numerables:
+    \[
+        \lim_{n \to \infty} A_n = \bigcap_{n=1}^\infty \left[-\frac{1}{n}, 0\right] = \{0\}
+    \]
+    \[
+        \lim_{n \to \infty} B_n = \bigcap_{n=1}^\infty \left[0, \frac{1}{n}\right] = \{0\}
+    \]
+
+    \item \textbf{Aplicación del Teorema de continuidad descendente:}
+    Al ser $P$ una medida de probabilidad (y por tanto finita, $P(\mathbb{R}) = 1 < \infty$), se satisface la condición de continuidad descendente. Por consiguiente, los límites numéricos de las medidas coinciden con las medidas de los respectivos conjuntos límite:
+    \[
+        \lim_{n \to \infty} P(A_n) = P\left( \lim_{n \to \infty} A_n \right) = P(\{0\})
+    \]
+    \[
+        \lim_{n \to \infty} P(B_n) = P\left( \lim_{n \to \infty} B_n \right) = P(\{0\})
+    \]
+\end{enumerate}
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Sucesiones de intervalos $A_n$ y $B_n$ colapsando sobre el origen $\{0\}$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+Tomando el límite cuando $n \to \infty$ en ambos lados de la desigualdad inicial:
+\[
+    \lim_{n \to \infty} P(A_n) \ge \lim_{n \to \infty} P(B_n) + \varepsilon
+\]
+Sustituyendo las medidas de los límites obtenidas:
+\[
+    P(\{0\}) \ge P(\{0\}) + \varepsilon \implies \varepsilon \le 0
+\]
+lo cual contradice la hipótesis $\varepsilon > 0$.
+
+Por tanto, \textbf{no es posible} definir tal medida de probabilidad sobre $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
+\end{problema}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 14
+% ------------------------------------------------------------------------------
+\begin{problema}[Medida de probabilidad discreta soportada en los números naturales]
+Sea $\Omega = \mathbb{R}^+$. Supongamos que sobre la $\sigma$-álgebra de Borel $\mathcal{B}(\mathbb{R}^+)$ definimos una aplicación $P$ tal que:
+\[
+    P(B) = \sum_{n \in \mathbb{N} \cap B} p(n), \quad \forall B \in \mathcal{B}(\mathbb{R}^+)
+\]
+para una función $p : \mathbb{N} \to \mathbb{R}$ no negativa tal que $\displaystyle \sum_{n \in \mathbb{N}} p(n) = 1$. Se pide:
+\begin{enumerate}[label=\alph*)]
+    \item Demostrar que $P$ es una medida de probabilidad sobre $(\mathbb{R}^+, \mathcal{B}(\mathbb{R}^+))$.
+    \item Demostrar que $P(\{n\}) = p(n)$ para todo $n \in \mathbb{N}$, y que $P(\{x\}) = 0$ para todo $x \in \mathbb{R}^+ \setminus \mathbb{N}$.
+    \item Calcular $P(I)$, donde $I$ representa el conjunto de los números irracionales en $\mathbb{R}^+$.
+    \item ¿Cuándo se verifica la igualdad $P((a,b]) = P([a,b])$?
+\end{enumerate}
+
+\tcblower
+
+\paragraph{a) Demostración de que $P$ es una medida de probabilidad:}
+Comprobamos los tres axiomas de Kolmogorov sobre el espacio medible $(\mathbb{R}^+, \mathcal{B}(\mathbb{R}^+))$:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{No negatividad:} Como $p(n) \ge 0$ para todo $n \in \mathbb{N}$, la suma de términos no negativos sobre cualquier conjunto boreliano $B \in \mathcal{B}(\mathbb{R}^+)$ es no negativa:
+    \[
+        P(B) = \sum_{n \in \mathbb{N} \cap B} p(n) \ge 0, \quad \forall B \in \mathcal{B}(\mathbb{R}^+)
+    \]
+    \item \textbf{Normalización del espacio universal:} Evaluamos sobre $\Omega = \mathbb{R}^+$ observando que $\mathbb{N} \cap \mathbb{R}^+ = \mathbb{N}$:
+    \[
+        P(\mathbb{R}^+) = \sum_{n \in \mathbb{N} \cap \mathbb{R}^+} p(n) = \sum_{n \in \mathbb{N}} p(n) = 1
+    \]
+    \item \textbf{$\sigma$-aditividad:} Sea $(B_k)_{k \in \mathbb{N}} \subseteq \mathcal{B}(\mathbb{R}^+)$ una sucesión de conjuntos disjuntos dos a dos ($B_i \cap B_j = \varnothing$ para $i \neq j$). La colección de conjuntos de naturales $(B_k \cap \mathbb{N})_{k \in \mathbb{N}}$ es también disjunta dos a dos. Por la propiedad de reordenación de series de términos no negativos (Teorema de Tonelli):
+    \[
+        P\left( \bigcup_{k=1}^\infty B_k \right) = \sum_{n \in \mathbb{N} \cap \left(\bigcup_{k=1}^\infty B_k\right)} p(n) = \sum_{n \in \bigcup_{k=1}^\infty (B_k \cap \mathbb{N})} p(n) = \sum_{k=1}^\infty \sum_{n \in B_k \cap \mathbb{N}} p(n) = \sum_{k=1}^\infty P(B_k)
+    \]
+\end{enumerate}
+Queda demostrado que $P$ es una medida de probabilidad sobre $(\mathbb{R}^+, \mathcal{B}(\mathbb{R}^+))$.
+
+\paragraph{b) Masa de probabilidad en puntos individuales:}
+\begin{itemize}
+    \item Dado $n \in \mathbb{N}$, se cumple $\{n\} \cap \mathbb{N} = \{n\}$. Por tanto:
+    \[
+        P(\{n\}) = \sum_{m \in \{n\} \cap \mathbb{N}} p(m) = \sum_{m \in \{n\}} p(m) = p(n)
+    \]
+    \item Dado $x \in \mathbb{R}^+ \setminus \mathbb{N}$, la intersección resulta vacía $\{x\} \cap \mathbb{N} = \varnothing$. Por consiguiente:
+    \[
+        P(\{x\}) = \sum_{m \in \{x\} \cap \mathbb{N}} p(m) = \sum_{m \in \varnothing} p(m) = 0
+    \]
+\end{itemize}
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Representación de la medida discreta $P$ con masas puntuales $p(n)$ sobre los enteros positivos $\mathbb{N}$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{c) Probabilidad del conjunto de irracionales $I$:}
+Puesto que ningún número irracional es entero positivo ($I \subseteq \mathbb{R}^+ \setminus \mathbb{Q} \subseteq \mathbb{R}^+ \setminus \mathbb{N}$), la intersección con los números naturales es vacía ($I \cap \mathbb{N} = \varnothing$). Evaluando la medida $P$:
+\[
+    P(I) = \sum_{n \in I \cap \mathbb{N}} p(n) = \sum_{n \in \varnothing} p(n) = 0
+\]
+
+\paragraph{d) Condición de igualdad $P((a,b]) = P([a,b])$:}
+Descomponemos el intervalo cerrado $[a,b]$ como la unión disjunta de su extremo $a$ y del intervalo semiabierto $(a,b]$:
+\[
+    [a,b] = \{a\} \sqcup (a,b] \implies P([a,b]) = P(\{a\}) + P((a,b])
+\]
+Por tanto, la igualdad $P((a,b]) = P([a,b])$ se verifica si y solo si la masa en el extremo $a$ es nula:
+\[
+    P(\{a\}) = 0
+\]
+Atendiendo al apartado b), esto ocurre si y solo si $a \notin \mathbb{N}$ (o bien $a \in \mathbb{N}$ con $p(a) = 0$). En particular, se satisface siempre que el extremo inferior no sea un número natural ($a \in \mathbb{R}^+ \setminus \mathbb{N}$).
+\end{problema}
+
+\newpage
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 15
+% ------------------------------------------------------------------------------
+\begin{problema}[Espacio probabilizable finito y medida marginal]
+Se considera el espacio probabilizable $(\Omega \times \Omega, \mathcal{P}(\Omega \times \Omega))$, donde $\Omega = \{1, 2, 3, 4, 5, 6\}$ y los pares $(i,j) \in \Omega \times \Omega$ representan los resultados elementales posibles. Supóngase una medida de probabilidad $P$ definida sobre tal espacio, de modo que
+\[P(\{(i,j)\}) = \frac{i+j}{c}\]
+para una cierta constante $c > 0$. Se pide:
+\begin{enumerate}[label=\alph*)]
+    \item Determinar el valor de la constante $c$.
+    \item Demostrar que la aplicación $P_1 : \mathcal{P}(\Omega) \to \mathbb{R}$ dada por $P_1(A) = P(A \times \Omega)$ es una medida de probabilidad sobre $(\Omega, \mathcal{P}(\Omega))$.
+    \item Describir y determinar las probabilidades de los siguientes sucesos:
+    \begin{itemize}
+        \item $A$: "`la suma de los resultados es $6$"'
+        \item $B$: "`ambos resultados son iguales"'
+        \item $C$: "`sólo uno de los sucesos $A$ o $B$ ocurre"'
+    \end{itemize}
+\end{enumerate}
+
+\tcblower
+
+\paragraph{a) Determinación del valor de la constante $c$:}
+Por el axioma de normalización, la probabilidad del espacio muestral total $\Omega \times \Omega$ debe ser igual a $1$:
+\[P(\Omega \times \Omega) = \sum_{i=1}^6 \sum_{j=1}^6 P(\{(i,j)\}) = \sum_{i=1}^6 \sum_{j=1}^6 \frac{i+j}{c} = 1 \implies c = \sum_{i=1}^6 \sum_{j=1}^6 (i+j)\]
+Descomponiendo la suma doble:
+\[c = \sum_{i=1}^6 \left( 6i + \sum_{j=1}^6 j \right) = 6 \sum_{i=1}^6 i + 6 \sum_{j=1}^6 j = 12 \sum_{i=1}^6 i\]
+Como $\sum_{i=1}^6 i = \frac{6 \times 7}{2} = 21$, resulta:
+\[c = 12 \times 21 = 252\]
+
+\paragraph{b) Demostración de que $P_1$ es una medida de probabilidad sobre $(\Omega, \mathcal{P}(\Omega))$:}
+Verificamos los tres axiomas de Kolmogorov para $P_1(A) = P(A \times \Omega)$:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{No negatividad:} Como $P$ es una medida de probabilidad sobre $\Omega \times \Omega$, para todo $A \subseteq \Omega$ se cumple $P_1(A) = P(A \times \Omega) \ge 0$.
+    \item \textbf{Normalización:} Evaluando sobre el espacio universal $\Omega$:
+    \[P_1(\Omega) = P(\Omega \times \Omega) = 1\]
+    \item \textbf{Aditividad finita:} Dados $A, B \subseteq \Omega$ tales que $A \cap B = \varnothing$, los cilindros asociados son disjuntos en $\Omega \times \Omega$, es decir, $(A \times \Omega) \cap (B \times \Omega) = (A \cap B) \times \Omega = \varnothing$. Por la aditividad de $P$:
+    \[P_1(A \cup B) = P\bigl((A \cup B) \times \Omega\bigr) = P\bigl((A \times \Omega) \cup (B \times \Omega)\bigr) = P(A \times \Omega) + P(B \times \Omega) = P_1(A) + P_1(B)\]
+\end{enumerate}
+Al ser $\Omega$ un conjunto finito, la aditividad finita implica la $\sigma$-aditividad, por lo que $P_1$ es una medida de probabilidad (la medida marginal sobre el primer factor).
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Malla $6 \times 6$ de pares $(i,j)$ y representación de los sucesos $A$, $B$ y $A \cap B$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{c) Descripción y cálculo de probabilidades de los sucesos:}
+\begin{itemize}
+    \item \textbf{Suceso $A$ (suma igual a $6$):}
+    $A = \{(1,5), (2,4), (3,3), (4,2), (5,1)\}$. Como $i+j = 6$ para cada par de $A$:
+    \[P(A) = \sum_{(i,j) \in A} \frac{6}{252} = 5 \times \frac{6}{252} = \frac{30}{252} = \frac{5}{42}\]
+
+    \item \textbf{Suceso $B$ (resultados iguales):}
+    $B = \{(1,1), (2,2), (3,3), (4,4), (5,5), (6,6)\}$. Sumando las probabilidades de cada punto:
+    \[P(B) = \sum_{i=1}^6 \frac{2i}{252} = \frac{2}{252} \sum_{i=1}^6 i = \frac{2 \times 21}{252} = \frac{42}{252} = \frac{1}{6}\]
+
+    \item \textbf{Suceso $C$ (sólo ocurre uno de los dos, $C = A \Delta B$):}
+    La intersección es $A \cap B = \{(3,3)\}$, cuya probabilidad vale $P(A \cap B) = \frac{3+3}{252} = \frac{6}{252} = \frac{1}{42}$.
+    Aplicando la fórmula de la probabilidad de la diferencia simétrica:
+    \[P(C) = P(A \Delta B) = P(A) + P(B) - 2 P(A \cap B) = \frac{30}{252} + \frac{42}{252} - 2 \times \frac{6}{252} = \frac{60}{252} = \frac{5}{21}\]
+\end{itemize}
 \end{problema}

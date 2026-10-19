@@ -1,6 +1,6 @@
-\chapter{Aditividad, continuidad de funciones de conjunto y espacios de medida}
+\chapter{Espacios de medida}
 
-\section{Funciones de conjunto: aditividad y continuidad}
+\section{Aditividad de funciones de conjunto}
 
 \begin{definicion}{Función de conjunto}{funcion_conjunto}
     Una \textbf{función de conjunto} es una aplicación de clase $\mathcal{C}$ de conjuntos de $\Omega$ en el cierre de $\mathbb{R}$, $\overline{\mathbb{R}}$, donde $\overline{\mathbb{R}}=\mathbb{R}\cup\{-\infty,+\infty\}$, $\mu:\mathcal{C}\colon\longrightarrow\overline{\mathbb{R}}$.
@@ -512,6 +512,52 @@ La componente $\nu_1$ representa la \textit{parte singular} de $\nu$ respecto de
     \item \textbf{Unicidad:} Si existiera otra descomposición $\nu = \nu_1' + \nu_2'$ con $\nu_1' \perp \mu$ y $\nu_2' \ll \mu$, se obtendría $\nu_1 - \nu_1' = \nu_2' - \nu_2$. Al ser el miembro izquierdo una medida singular respecto a $\mu$ y el miembro derecho una medida absolutamente continua respecto a $\mu$, la única medida que satisface ambas condiciones simultáneamente es la medida nula, deduciéndose $\nu_1 = \nu_1'$ y $\nu_2 = \nu_2'$.
 \end{enumerate}
 \end{demostracion}
+
+\newpage
+%==========================================================
+%========== SECCIÓN 5. EXTENSIÓN DE MEDIDAS ===============
+%==========================================================
+\section{Extensión de medidas}
+
+En muchas aplicaciones prácticas (como en la construcción de la medida de Lebesgue en $\mathbb{R}^n$), resulta sencillo definir una medida sobre una clase de conjuntos simple (como rectángulos o intervalos) que forma una semialgebra, pero resulta necesario extenderla de forma coherente a estructuras más complejas como álgebras y $\sigma$-álgebras.
+
+\begin{definicion}{Medida sobre una semialgebra}{def:medida_semialgebra}
+Sea $S$ una semialgebra sobre un conjunto $\Omega$. Decimos que una función de conjunto $\mu : S \to \overline{\mathbb{R}}$ es una \textit{medida sobre la semialgebra} $S$ si satisface las siguientes condiciones:
+\begin{enumerate}[label=\alph*)]
+    \item \textbf{No negatividad:} $\mu(A) \ge 0$ para todo $A \in S$.
+    \item \textbf{Conjunto vacío:} $\mu(\varnothing) = 0$.
+    \item \textbf{$\sigma$-aditividad restringida:} Si $(A_n)_{n \in \mathbb{N}} \subseteq S$ es una sucesión de conjuntos disjuntos dos a dos tal que su unión numerable también pertenece a la semialgebra ($\bigcup_{n=1}^\infty A_n \in S$), entonces:
+    \[
+        \mu\left( \bigsqcup_{n=1}^\infty A_n \right) = \sum_{n=1}^\infty \mu(A_n)
+    \]
+\end{enumerate}
+\end{definicion}
+
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Esquema del proceso de extensión de medidas desde una semialgebra $S$ hasta la $\sigma$-álgebra $\sigma(S)$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+El proceso de extensión se realiza formalmente en dos etapas consecutivas:
+
+\begin{teorema}{Primer teorema de extensión}{teo:primer_extension}
+Sea $\mu$ una medida definida sobre una semialgebra $S$. Existe una única extensión $\bar{\mu}$ de la medida $\mu$ al álgebra generada por $S$, denotada por $\mathcal{Q}(S)$.
+\end{teorema}
+
+\begin{observacion}
+Recordemos que todo elemento $E \in \mathcal{Q}(S)$ se expresa de forma única como una unión finita de elementos disjuntos de $S$ ($E = \bigsqcup_{i=1}^r A_i$ con $A_i \in S$). La extensión $\bar{\mu}$ en el álgebra se define de forma natural como $\bar{\mu}(E) = \sum_{i=1}^r \mu(A_i)$.
+\end{observacion}
+
+\begin{teorema}{Teorema de existencia y unicidad de Carathéodory}{teo:caratheodory}
+Toda medida $\mu$ definida sobre un álgebra $\mathcal{Q}$ se extiende como una medida $\bar{\mu}$ a la $\sigma$-álgebra generada por $\mathcal{Q}$, denotada por $\sigma(\mathcal{Q})$.
+
+Además, si la medida original $\mu$ es $\sigma$-finita sobre $\mathcal{Q}$, entonces su extensión $\bar{\mu}$ a $\sigma(\mathcal{Q})$ es \textbf{única} y también es \textbf{$\sigma$-finita}.
+\end{teorema}
+
+\begin{observacion}
+El Teorema de Carathéodory es fundamental para garantizar la existencia de la medida de Lebesgue $\lambda$ en $\mathbb{R}^n$, partiendo de la medida del volumen elemental definida sobre los intervalos o rectángulos de $\mathbb{R}^n$. La condición de $\sigma$-finitud resulta indispensable para garantizar que no existan múltiples extensiones distintas sobre la misma $\sigma$-álgebra.
+\end{observacion}
 
 \newpage
 %==========================================================
@@ -1110,4 +1156,402 @@ Por consiguiente, $\mu$ y $\nu$ son medidas bien definidas sobre $(\mathbb{R}, \
 
 \paragraph{Nota adicional:}
 Observamos que $\lambda = \mu + \nu$, lo que representa la descomposición de la medida de Lebesgue en sus componentes concentradas sobre los semiejes real negativo y real positivo.
+\end{problema}
+
+\newpage
+\newpage %===
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 35
+% ------------------------------------------------------------------------------
+\begin{problema}[Singularidad mutua entre una medida discreta de soporte finito y la medida de Lebesgue]
+Sea $\Omega = \mathbb{R}$, $\mathcal{B}$ la $\sigma$-álgebra de Borel y $\lambda$ la medida de Lebesgue. Demostrar que toda medida discreta $\mu$ con soporte en $\{x_1, \dots, x_n\}$ definida sobre $(\mathbb{R}, \mathcal{B})$ (es decir, tal que $\mu(\{x\}) = 0$ para todo $x \notin \{x_1, \dots, x_n\}$) es mutuamente singular a $\lambda$.
+
+\tcblower
+
+Para demostrar que la medida discreta $\mu$ y la medida de Lebesgue $\lambda$ son mutuamente singulares ($\mu \perp \lambda$), debemos encontrar un conjunto medible $A \in \mathcal{B}$ tal que:
+\[
+    \mu(A) = 0 \quad \text{y} \quad \lambda(A^c) = 0
+\]
+
+Consideremos el soporte de la medida $\mu$, dado por el conjunto finito $S = \{x_1, \dots, x_n\} \in \mathcal{B}$, y definamos $A$ como el complementario de dicho soporte:
+\[
+    A = S^c = \mathbb{R} \setminus \{x_1, \dots, x_n\} \in \mathcal{B}
+\]
+
+Evaluamos el valor de ambas medidas sobre el conjunto $A$ y sobre su complementario $A^c = S$:
+
+\paragraph{1. Medida $\mu$ sobre $A$:}
+Por hipótesis, la medida $\mu$ está totalmente concentrada en los puntos $\{x_1, \dots, x_n\}$, por lo que la medida del complementario de su soporte es nula:
+\[
+    \mu(A) = \mu(\mathbb{R} \setminus \{x_1, \dots, x_n\}) = 0
+\]
+
+\paragraph{2. Medida de Lebesgue $\lambda$ sobre $A^c$:}
+El complementario es $A^c = S = \{x_1, \dots, x_n\}$, que se descompone como la unión finita disjunta de puntos aislados:
+\[
+    A^c = \bigsqcup_{i=1}^n \{x_i\}
+\]
+Dado que la medida de Lebesgue de cualquier conjunto unipuntual es cero ($\lambda(\{x_i\}) = 0$ para todo $i$), aplicando la aditividad finita de $\lambda$:
+\[
+    \lambda(A^c) = \lambda\left( \bigsqcup_{i=1}^n \{x_i\} \right) = \sum_{i=1}^n \lambda(\{x_i\}) = \sum_{i=1}^n 0 = 0
+\]
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Soporte puntual $S=\{x_1,\dots,x_n\}$ de la medida discreta $\mu$ frente a la medida de Lebesgue $\lambda$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+Al haber encontrado el conjunto $A = S^c \in \mathcal{B}$ tal que $\mu(A) = 0$ y $\lambda(A^c) = 0$, queda demostrado que la medida discreta $\mu$ y la medida de Lebesgue $\lambda$ son mutuamente singulares ($\mu \perp \lambda$).
+
+\paragraph{Análisis de la continuidad absoluta:}
+De forma adicional, se observa que $\mu$ no es absolutamente continua respecto de $\lambda$ ($\mu \not\ll \lambda$). Tomando el conjunto del soporte $S = \{x_1, \dots, x_n\}$, tenemos que $\lambda(S) = 0$, pero $\mu(S) = \mu(\mathbb{R}) > 0$ (asumiendo que $\mu$ no es la medida nula). Por tanto, no se cumple la implicación de continuidad absoluta.
+\end{problema}
+
+\newpage
+\newpage %===
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 36
+% ------------------------------------------------------------------------------
+\begin{problema}[Medida definida mediante integral de densidad y continuidad absoluta]
+Sea $\Omega = \mathbb{R}$, $\mathcal{B}$ la $\sigma$-álgebra de Borel y $\lambda$ la medida de Lebesgue. Demostrar que una función de conjunto definida sobre $(\mathbb{R}, \mathcal{B})$ como
+\[
+    \mu(A) = \int_A f(x) \, dx
+\]
+siendo $f(x) \ge 0$ para todo $x \in \mathbb{R}$, es una medida sobre $(\mathbb{R}, \mathcal{B})$. ¿Se verifica que $\lambda \ll \mu$ o $\mu \ll \lambda$?
+
+\tcblower
+
+\paragraph{1. Demostración de que $\mu$ es una medida sobre $(\mathbb{R}, \mathcal{B})$:}
+Verificamos las tres propiedades fundamentales de las medidas sobre el espacio medible $(\mathbb{R}, \mathcal{B})$:
+\begin{enumerate}[label=\alph*)]
+    \item \textit{No negatividad:} Como $f(x) \ge 0$ para todo $x \in \mathbb{R}$, la integral de Lebesgue de una función no negativa sobre cualquier conjunto medible $A \in \mathcal{B}$ es no negativa:
+    \[
+        \mu(A) = \int_A f(x) \, dx \ge 0, \quad \forall A \in \mathcal{B}
+    \]
+    \item \textit{Medida del conjunto vacío:} Para $A = \varnothing$, la integral sobre un dominio de medida nula es cero:
+    \[
+        \mu(\varnothing) = \int_\varnothing f(x) \, dx = 0
+    \]
+    \item \textit{$\sigma$-aditividad:} Dada una sucesión $(A_n)_{n \in \mathbb{N}} \subseteq \mathcal{B}$ de conjuntos borelianos disjuntos dos a dos ($A_i \cap A_j = \varnothing$ para todo $i \neq j$), por la propiedad de la integral de Lebesgue (o el Teorema de convergencia monótona aplicado a la serie de funciones indicatrices):
+    \[
+        \mu\left( \bigcup_{n=1}^\infty A_n \right) = \int_{\bigcup_{n=1}^\infty A_n} f(x) \, dx = \int_{\mathbb{R}} \sum_{n=1}^\infty f(x) \chi_{A_n}(x) \, dx = \sum_{n=1}^\infty \int_{A_n} f(x) \, dx = \sum_{n=1}^\infty \mu(A_n)
+    \]
+\end{enumerate}
+Por tanto, $\mu$ es una medida bien definida sobre $(\mathbb{R}, \mathcal{B})$.
+
+\paragraph{2. Análisis de la relación $\mu \ll \lambda$:}
+Estudiamos la condición $\forall A \in \mathcal{B}, \, \lambda(A) = 0 \implies \mu(A) = 0$.
+Sea $A \in \mathcal{B}$ tal que $\lambda(A) = 0$. Por las propiedades generales de la integral de Lebesgue, la integral de cualquier función medible sobre un conjunto de medida de Lebesgue nula es siempre cero:
+\[
+    \mu(A) = \int_A f(x) \, d\lambda = 0
+\]
+Por consiguiente, \textbf{siempre se verifica que} $\mu \ll \lambda$ (la medida $\mu$ es absolutamente continua respecto de la medida de Lebesgue $\lambda$). En este contexto, la función $f$ actúa como la derivada de Radon-Nikodym de $\mu$ respecto de $\lambda$ ($f = \frac{d\mu}{d\lambda}$).
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Integración de la función de densidad $f(x) \ge 0$ sobre conjuntos $A$ con medida de Lebesgue nula o positiva]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{3. Análisis de la relación $\lambda \ll \mu$:}
+Estudiamos si es cierto que $\forall A \in \mathcal{B}, \, \mu(A) = 0 \implies \lambda(A) = 0$.
+Esta propiedad \textbf{no se verifica en general}, salvo que la densidad $f(x)$ sea estrictamente positiva casi por todas partes ($f(x) > 0$ c.s. $\lambda$).
+
+\textit{Contraejemplo:} Consideremos la función $f(x) = 0$ para todo $x \in \mathbb{R}$ (o bien $f(x) = \chi_{[0, \infty)}(x)$).
+Para $A = (-2, -1) \in \mathcal{B}$:
+\begin{itemize}
+    \item La medida $\mu$ del conjunto $A$ vale:
+    \[
+        \mu(A) = \int_{-2}^{-1} 0 \, dx = 0
+    \]
+    \item La medida de Lebesgue del conjunto $A$ vale:
+    \[
+        \lambda(A) = \lambda((-2, -1)) = 1 \neq 0
+    \]
+\end{itemize}
+Dado que $\mu(A) = 0$ pero $\lambda(A) = 1 \neq 0$, la implicación de continuidad absoluta no se satisface.
+
+Por tanto, en general \textbf{$\lambda$ no es absolutamente continua respecto de $\mu$} ($\lambda \not\ll \mu$).
+\end{problema}
+
+\newpage
+\newpage %===
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 37
+% ------------------------------------------------------------------------------
+\begin{problema}[Nulidad de una medida absolutamente continua y mutuamente singular]
+Sean $\lambda, \mu : (\Omega, \mathcal{G}) \to \mathbb{R}$ dos medidas sobre el espacio medible $(\Omega, \mathcal{G})$. Demostrar que si $\lambda \ll \mu$ y $\lambda \perp \mu$, entonces $\lambda \equiv 0$ (la medida $\lambda$ es idénticamente nula).
+
+\tcblower
+
+\paragraph{1. Hipótesis de singularidad mutua ($\lambda \perp \mu$):}
+Por definición de medidas mutuamente singulares, existe un conjunto medible $B_0 \in \mathcal{G}$ tal que:
+\[
+    \lambda(B_0) = 0 \quad \text{y} \quad \mu(B_0^c) = 0
+\]
+
+\paragraph{2. Aplicación de la continuidad absoluta ($\lambda \ll \mu$):}
+La relación de continuidad absoluta establece que todo conjunto de medida nula según $\mu$ tiene también medida nula según $\lambda$:
+\[
+    \forall B \in \mathcal{G}, \quad \mu(B) = 0 \implies \lambda(B) = 0
+\]
+Aplicando esta implicación al conjunto $B_0^c \in \mathcal{G}$, dado que $\mu(B_0^c) = 0$, deducimos directamente que:
+\[
+    \lambda(B_0^c) = 0
+\]
+
+\paragraph{3. Medida del espacio total $\Omega$:}
+Descomponemos el espacio muestral $\Omega$ en la unión disjunta de $B_0$ y su complementario $B_0^c$:
+\[
+    \Omega = B_0 \sqcup B_0^c
+\]
+Por la aditividad de la medida $\lambda$:
+\[
+    \lambda(\Omega) = \lambda(B_0 \sqcup B_0^c) = \lambda(B_0) + \lambda(B_0^c) = 0 + 0 = 0
+\]
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Intersección trivial de las condiciones de continuidad absoluta y singularidad mutua entre medidas]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{4. Conclusión para un conjunto medible arbitrario:}
+Para todo suceso $A \in \mathcal{G}$, la inclusión $A \subseteq \Omega$ implica, por la propiedad de monotonía de las medidas:
+\[
+    0 \le \lambda(A) \le \lambda(\Omega) = 0 \implies \lambda(A) = 0
+\]
+Dado que $\lambda(A) = 0$ para todo $A \in \mathcal{G}$, se concluye que la medida $\lambda$ es idénticamente nula ($\lambda \equiv 0$).
+\end{problema}
+
+\newpage
+\newpage %===
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 38
+% ------------------------------------------------------------------------------
+\begin{problema}[Propiedades algebraicas de la continuidad absoluta y la singularidad mutua]
+Sean $\lambda_1, \lambda_2$ y $\mu$ tres medidas completas sobre el espacio medible $(\Omega, \mathcal{G})$. Demostrar las siguientes propiedades:
+\begin{enumerate}[label=\alph*)]
+    \item Si $\lambda_1 \ll \mu$ y $\lambda_2 \perp \mu$, entonces $\lambda_1 \perp \lambda_2$.
+    \item Si $\lambda_1 \ll \mu$ y $\lambda_2 \ll \mu$, entonces $\lambda_1 + \lambda_2 \ll \mu$.
+    \item Si $\lambda_1 \perp \mu$ y $\lambda_2 \perp \mu$, entonces $\lambda_1 + \lambda_2 \perp \mu$.
+    \item Si $\lambda = \lambda_1 + \lambda_2$, entonces $\lambda_1 \ll \lambda$ y $\lambda_2 \ll \lambda$; y si además $\lambda_1 \ll \lambda_2$, entonces $\lambda \ll \lambda_2$.
+\end{enumerate}
+
+\tcblower
+
+\paragraph{a) Demostración de $\lambda_1 \ll \mu \land \lambda_2 \perp \mu \implies \lambda_1 \perp \lambda_2$:}
+Puesto que $\lambda_2 \perp \mu$, por definición de medidas mutuamente singulares, existe un conjunto medible $B_0 \in \mathcal{G}$ tal que:
+\[
+    \mu(B_0) = 0 \quad \text{y} \quad \lambda_2(B_0^c) = 0
+\]
+Por otro lado, como $\lambda_1 \ll \mu$, la medida $\lambda_1$ se anula sobre todo conjunto de medida nula según $\mu$. Aplicando esta propiedad al conjunto $B_0$:
+\[
+    \mu(B_0) = 0 \implies \lambda_1(B_0) = 0
+\]
+Por lo tanto, hemos encontrado un suceso $B_0 \in \mathcal{G}$ tal que $\lambda_1(B_0) = 0$ y $\lambda_2(B_0^c) = 0$, lo que demuestra que $\lambda_1$ y $\lambda_2$ son mutuamente singulares:
+\[
+    \lambda_1 \perp \lambda_2
+\]
+
+\paragraph{b) Demostración de $\lambda_1 \ll \mu \land \lambda_2 \ll \mu \implies \lambda_1 + \lambda_2 \ll \mu$:}
+Sea $A \in \mathcal{G}$ un conjunto medible tal que $\mu(A) = 0$. Por la hipótesis de continuidad absoluta de $\lambda_1$ y $\lambda_2$ respecto de $\mu$:
+\[
+    \mu(A) = 0 \implies \lambda_1(A) = 0 \quad \text{y} \quad \lambda_2(A) = 0
+\]
+Evaluando la medida suma $\lambda_1 + \lambda_2$ sobre el conjunto $A$:
+\[
+    (\lambda_1 + \lambda_2)(A) = \lambda_1(A) + \lambda_2(A) = 0 + 0 = 0
+\]
+Al cumplirse la implicación $\mu(A) = 0 \implies (\lambda_1 + \lambda_2)(A) = 0$ para todo $A \in \mathcal{G}$, concluimos que:
+\[
+    \lambda_1 + \lambda_2 \ll \mu
+\]
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Preservación de la continuidad absoluta y la singularidad mutua bajo suma de medidas]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{c) Demostración de $\lambda_1 \perp \mu \land \lambda_2 \perp \mu \implies \lambda_1 + \lambda_2 \perp \mu$:}
+Por ser $\lambda_1 \perp \mu$ y $\lambda_2 \perp \mu$, existen conjuntos $A_1, A_2 \in \mathcal{G}$ tales que:
+\[
+    \lambda_1(A_1) = 0 \quad \text{con} \quad \mu(A_1^c) = 0
+\]
+\[
+    \lambda_2(A_2) = 0 \quad \text{con} \quad \mu(A_2^c) = 0
+\]
+Definimos el conjunto $A = A_1 \cap A_2 \in \mathcal{G}$. Verificamos los valores de la medida suma en $A$ y de la medida $\mu$ en $A^c$:
+\begin{itemize}
+    \item Por la propiedad de monotonía de las medidas, dado que $A \subseteq A_1$ y $A \subseteq A_2$:
+    \[
+        \lambda_1(A) \le \lambda_1(A_1) = 0 \implies \lambda_1(A) = 0
+    \]
+    \[
+        \lambda_2(A) \le \lambda_2(A_2) = 0 \implies \lambda_2(A) = 0
+    \]
+    Por consiguiente:
+    \[
+        (\lambda_1 + \lambda_2)(A) = \lambda_1(A) + \lambda_2(A) = 0 + 0 = 0
+    \]
+    \item Por las leyes de De Morgan, el complementario de $A$ es $A^c = (A_1 \cap A_2)^c = A_1^c \cup A_2^c$. Por la subaditividad de la medida $\mu$:
+    \[
+        \mu(A^c) = \mu(A_1^c \cup A_2^c) \le \mu(A_1^c) + \mu(A_2^c) = 0 + 0 = 0 \implies \mu(A^c) = 0
+    \]
+\end{itemize}
+Al haber hallado $A \in \mathcal{G}$ tal que $(\lambda_1 + \lambda_2)(A) = 0$ y $\mu(A^c) = 0$, queda probado que:
+\[
+    \lambda_1 + \lambda_2 \perp \mu
+\]
+
+\paragraph{d) Demostración para la medida suma $\lambda = \lambda_1 + \lambda_2$:}
+\begin{enumerate}[label=\arabic*.]
+    \item \textit{Continuidad absoluta de las componentes ($\lambda_1 \ll \lambda$ y $\lambda_2 \ll \lambda$):}
+    Sea $A \in \mathcal{G}$ tal que $\lambda(A) = 0$. Dado que $\lambda(A) = \lambda_1(A) + \lambda_2(A) = 0$ y ambas medidas son no negativas ($\lambda_1(A) \ge 0$, $\lambda_2(A) \ge 0$), se deduce necesariamente que:
+    \[
+        \lambda_1(A) = 0 \quad \text{y} \quad \lambda_2(A) = 0
+    \]
+    Por lo tanto, la medida suma domina a cada una de sus componentes: $\lambda_1 \ll \lambda$ y $\lambda_2 \ll \lambda$.
+
+    \item \textit{Transmisión de la continuidad absoluta ($\lambda_1 \ll \lambda_2 \implies \lambda \ll \lambda_2$):}
+    Supongamos además que $\lambda_1 \ll \lambda_2$. Sea $A \in \mathcal{G}$ tal que $\lambda_2(A) = 0$. Por la hipótesis $\lambda_1 \ll \lambda_2$, se tiene inmediatamente que $\lambda_1(A) = 0$. Evaluando la medida total $\lambda$:
+    \[
+        \lambda(A) = \lambda_1(A) + \lambda_2(A) = 0 + 0 = 0
+    \]
+    Por consiguiente, queda demostrado que $\lambda \ll \lambda_2$.
+\end{enumerate}
+\end{problema}
+
+\newpage
+\newpage %===
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 39
+% ------------------------------------------------------------------------------
+\begin{problema}[Caracterización de la continuidad absoluta sobre $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$ mediante conjuntos unitarios]
+Sean $\mu$ y $\nu$ dos medidas $\sigma$-finitas sobre el espacio medible $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$. Demostrar que $\mu \ll \nu$ si y sólo si $\mu$ se anula sobre todos los conjuntos unitarios en los que se anula $\nu$; es decir:
+\[
+    \mu \ll \nu \iff \bigl( \nu(\{n\}) = 0 \implies \mu(\{n\}) = 0, \quad \forall n \in \mathbb{N} \bigr)
+\]
+
+\tcblower
+
+\paragraph{1. Implicación directa ($\implies$):}
+Supongamos que $\mu$ es absolutamente continua respecto de $\nu$ ($\mu \ll \nu$). Por definición de continuidad absoluta, para cualquier conjunto medible $A \in \mathcal{P}(\mathbb{N})$ se cumple:
+\[
+    \nu(A) = 0 \implies \mu(A) = 0
+\]
+En particular, considerando para cada $n \in \mathbb{N}$ el suceso unitario $A = \{n\} \in \mathcal{P}(\mathbb{N})$, si $\nu(\{n\}) = 0$, la definición implica directamente que $\mu(\{n\}) = 0$.
+
+\paragraph{2. Implicación recíproca ($\impliedby$):}
+Supongamos que se verifica la condición puntual:
+\[
+    \nu(\{n\}) = 0 \implies \mu(\{n\}) = 0, \quad \forall n \in \mathbb{N}
+\]
+Sea $A \in \mathcal{P}(\mathbb{N})$ un subconjunto arbitrario tal que $\nu(A) = 0$. Expresamos $A$ como la unión disjunta de sus puntos elementales:
+\[
+    A = \bigsqcup_{n \in A} \{n\}
+\]
+Por la $\sigma$-aditividad de la medida $\nu$, la medida del conjunto $A$ viene dada por la suma numerable de las medidas de sus puntos:
+\[
+    \nu(A) = \sum_{n \in A} \nu(\{n\}) = 0
+\]
+Puesto que $\nu(\{n\}) \ge 0$ para todo $n \in \mathbb{N}$, una suma de términos no negativos se anula si y solo si todos sus sumandos son nulos. Por tanto:
+\[
+    \nu(\{n\}) = 0, \quad \forall n \in A
+\]
+Aplicando la hipótesis puntual, deducimos que $\mu(\{n\}) = 0$ para todo $n \in A$.
+
+Por la $\sigma$-aditividad de la medida $\mu$, evaluamos la medida del conjunto $A$:
+\[
+    \mu(A) = \sum_{n \in A} \mu(\{n\}) = \sum_{n \in A} 0 = 0
+\]
+Dado que $\nu(A) = 0 \implies \mu(A) = 0$ para todo $A \in \mathcal{P}(\mathbb{N})$, queda demostrado que $\mu \ll \nu$.
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Descomposición atómica de la masa de medida en $\mathbb{N}$ y transmisión de la masa nula]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{Conclusión:}
+En el espacio medible $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$, la continuidad absoluta entre medidas queda completamente determinada por el comportamiento de las medidas sobre los átomos unipuntuales $\{n\}$.
+\end{problema}
+
+\newpage
+\newpage %===
+
+% ------------------------------------------------------------------------------
+% PROBLEMA 40
+% ------------------------------------------------------------------------------
+\begin{problema}[Medidas sobre la $\sigma$-álgebra numerable-conumerable y estudio de $\sigma$-finitud y continuidad absoluta]
+Sea $\Omega$ un conjunto no numerable y $\mathcal{G} = \{E \subseteq \Omega \mid E \text{ o } E^c \text{ es finito o numerable}\}$. Definimos las funciones de conjunto $\mu, \nu : \mathcal{G} \to \overline{\mathbb{R}}$ dadas por:
+\[
+    \mu(E) = \text{cardinal}(E) \quad \text{y} \quad \nu(E) = \begin{cases} 0 & \text{si } E \text{ es finito o numerable} \\ 1 & \text{si } E^c \text{ es finito o numerable} \end{cases}
+\]
+Determinar si $\mu$ y $\nu$ son medidas sobre $(\Omega, \mathcal{G})$, si los espacios de medida son $\sigma$-finitos y si se verifica $\mu \ll \nu$ o $\nu \ll \mu$.
+
+\tcblower
+
+\paragraph{1. Comprobación de que $\mu$ y $\nu$ son medidas sobre $(\Omega, \mathcal{G})$:}
+\begin{enumerate}[label=\alph*)]
+    \item \textit{Estudio de la función de conjunto $\mu$ (Medida cardinal):}
+    La función cardinal asigna a cada conjunto su número de elementos.
+    \begin{itemize}
+        \item \textbf{No negatividad y conjunto vacío:} $\mu(E) \ge 0$ para todo $E \in \mathcal{G}$ y $\mu(\varnothing) = 0$.
+        \item \textbf{$\sigma$-aditividad:} Dada una sucesión de conjuntos disjuntos dos a dos $(E_n)_{n \in \mathbb{N}} \subseteq \mathcal{G}$, el cardinal de la unión disjunta es la suma de los cardinales: $\mu\left(\bigsqcup_{n=1}^\infty E_n\right) = \sum_{n=1}^\infty \mu(E_n)$.
+    \end{itemize}
+    Por lo tanto, $\mu$ es una medida bien definida sobre $(\Omega, \mathcal{G})$.
+
+    \item \textit{Estudio de la función de conjunto $\nu$:}
+    \begin{itemize}
+        \item \textbf{No negatividad y conjunto vacío:} Por definición, $\nu(E) \in \{0, 1\} \ge 0$ para todo $E \in \mathcal{G}$. Al ser $\varnothing$ un conjunto finito, $\nu(\varnothing) = 0$.
+        \item \textbf{$\sigma$-aditividad:} Sea $(E_n)_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión de conjuntos disjuntos dos a dos. Distinguimos dos casos:
+        \begin{enumerate}[label=\arabic*.]
+            \item \textit{Todos los $E_n$ son finitos o numerables:} La unión numerable de conjuntos finitos o numerables es finita o numerable, de modo que $\nu\left(\bigsqcup_{n=1}^\infty E_n\right) = 0$. Asimismo, $\sum_{n=1}^\infty \nu(E_n) = \sum_{n=1}^\infty 0 = 0$.
+            \item \textit{Existe un índice $n_0$ tal que $E_{n_0}$ no es finito ni numerable ($E_{n_0}^c$ es numerable):} Dado que los conjuntos son disjuntos dos a dos, para todo $k \neq n_0$ se cumple que $E_k \subseteq E_{n_0}^c$. Al ser $E_{n_0}^c$ finito o numerable, por inclusión todos los $E_k$ con $k \neq n_0$ son finitos o numerables. Por tanto, $\nu(E_{n_0}) = 1$ y $\nu(E_k) = 0$ para todo $k \neq n_0$, obteniéndose $\sum_{n=1}^\infty \nu(E_n) = 1$. Por otra parte, $\left(\bigsqcup_{n=1}^\infty E_n\right)^c \subseteq E_{n_0}^c$, de donde el complementario de la unión es finito o numerable y $\nu\left(\bigsqcup_{n=1}^\infty E_n\right) = 1$.
+        \end{enumerate}
+    \end{itemize}
+    En ambos casos se satisface la $\sigma$-aditividad. Por consiguiente, $\nu$ es una medida sobre $(\Omega, \mathcal{G})$.
+\end{enumerate}
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Partición del espacio no numerable $\Omega$ en conjuntos numerables y co-numerables para las medidas $\mu$ y $\nu$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\paragraph{2. Análisis de la $\sigma$-finitud:}
+\begin{itemize}
+    \item \textit{Para la medida $\mu$ (Cardinal):}
+    Puesto que $\Omega$ es un conjunto no numerable, cualquier recubrimiento numerable de $\Omega$ formado por elementos $\{E_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ debe contener al menos un conjunto $E_{n_0}$ que no sea finito ni numerable (si todos fuesen numerables, la unión $\Omega = \bigcup E_n$ sería numerable, lo que contradice la hipótesis). Dado que $E_{n_0}$ es no numerable, su cardinal es infinito ($\mu(E_{n_0}) = \infty$). Por tanto, es imposible recubrir $\Omega$ mediante conjuntos de medida cardinal finita. Concluimos que $(\Omega, \mathcal{G}, \mu)$ \textbf{no es $\sigma$-finito}.
+
+    \item \textit{Para la medida $\nu$:}
+    Puesto que $\Omega^c = \varnothing$ es un conjunto finito, la medida del espacio total es finita: $\nu(\Omega) = 1 < \infty$. Al ser una medida finita sobre $(\Omega, \mathcal{G})$, $(\Omega, \mathcal{G}, \nu)$ \textbf{es un espacio de medida $\sigma$-finito}.
+\end{itemize}
+
+\paragraph{3. Estudio de la continuidad absoluta:}
+\begin{itemize}
+    \item \textit{Análisis de $\nu \ll \mu$:}
+    Sea $E \in \mathcal{G}$ tal que $\mu(E) = 0$. Por definición de la medida cardinal, $\mu(E) = \text{cardinal}(E) = 0 \iff E = \varnothing$. Evaluando sobre el conjunto vacío, $\nu(\varnothing) = 0$. Dado que todo conjunto de medida nula según $\mu$ tiene medida nula según $\nu$, se concluye que \textbf{$\nu \ll \mu$}.
+
+    \item \textit{Análisis de $\mu \ll \nu$:}
+    Sea $E \in \mathcal{G}$ un conjunto finito o numerable no vacío (por ejemplo, el conjunto unipuntual $E = \{\omega_0\}$ para algún $\omega_0 \in \Omega$). Evaluando ambas medidas sobre $E$:
+    \[
+        \nu(E) = 0 \quad \text{mientras que} \quad \mu(E) = \text{cardinal}(\{\omega_0\}) = 1 \neq 0
+    \]
+    Puesto que existen conjuntos donde $\nu$ se anula pero $\mu$ no, la implicación de continuidad absoluta falla. Por lo tanto, \textbf{$\mu$ no es absolutamente continua respecto de $\nu$} ($\mu \not\ll \nu$).
+\end{itemize}
 \end{problema}

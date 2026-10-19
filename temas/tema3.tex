@@ -1,4 +1,179 @@
-\chapter{Funciones medibles y variables aleatorias}
+\chapter{Funciones medibles. Integral de Lebesgue}
+
+\section{Aplicaciones medibles}
+
+\begin{definicion}{Aplicación medible}{def:aplicacion_medible}
+Dados dos espacios medibles $(\Omega_1, \mathcal{G}_1)$ y $(\Omega_2, \mathcal{G}_2)$, la aplicación $X : \Omega_1 \to \Omega_2$ es \textbf{medible} si y solo si para todo conjunto medible $B \in \mathcal{G}_2$ se tiene que su imagen inversa $X^{-1}(B)$ pertenece a $\mathcal{G}_1$, es decir:
+\[
+    X^{-1}(\mathcal{G}_2) \subseteq \mathcal{G}_1
+\]
+Denotaremos esto escribiendo $X : (\Omega_1, \mathcal{G}_1) \to (\Omega_2, \mathcal{G}_2)$.
+\end{definicion}
+
+\paragraph{Notación de antiimágenes:}
+Para cada suceso $B \in \mathcal{G}_2$, el elemento imagen inversa se denota indistintamente por:
+\[
+    X^{-1}(B) = \{ \omega_1 \in \Omega_1 \mid X(\omega_1) \in B \} \equiv \{ X \in B \}
+\]
+
+% ------------------------------------------------------------------------------
+\begin{proposicion}[$\sigma$-álgebra generada por una aplicación]
+Sea $X : \Omega_1 \to \Omega_2$ una aplicación y $(\Omega_2, \mathcal{G}_2)$ un espacio medible. La mínima $\sigma$-álgebra sobre $\Omega_1$ respecto de la cual $X$ es medible viene dada por:
+\[
+    X^{-1}(\mathcal{G}_2) = \{ A \subseteq \Omega_1 \mid \exists B \in \mathcal{G}_2 \text{ tal que } A = X^{-1}(B) \}
+\]
+A esta estructura se la denota por $\sigma(X) \equiv X^{-1}(\mathcal{G}_2)$ y se la llama $\sigma$-álgebra generada por $X$.
+\end{proposicion}
+
+\begin{demostracion}
+Procedemos en dos pasos:
+\begin{enumerate}[label=\arabic*.]
+    \item \textit{Estructura de $\sigma$-álgebra de $X^{-1}(\mathcal{G}_2)$:}
+    Dado que $\mathcal{G}_2$ es una $\sigma$-álgebra sobre $\Omega_2$, por las propiedades fundamentales de la imagen inversa, la colección $X^{-1}(\mathcal{G}_2)$ hereda automáticamente todas las propiedades de $\sigma$-álgebra sobre $\Omega_1$.
+    
+    \item \textit{Minimalidad de $X^{-1}(\mathcal{G}_2)$:}
+    Para todo $B \in \mathcal{G}_2$, $X^{-1}(B) \in X^{-1}(\mathcal{G}_2)$, por lo que $X$ es trivialmente medible respecto a $X^{-1}(\mathcal{G}_2)$ y $\mathcal{G}_2$.
+    
+    Sea ahora $\mathcal{G}_1$ cualquier otra $\sigma$-álgebra sobre $\Omega_1$ respecto de la cual $X$ sea medible. Por definición de medibilidad, dado un conjunto arbitrario $A \in X^{-1}(\mathcal{G}_2)$, existe $B \in \mathcal{G}_2$ tal que $A = X^{-1}(B) \in \mathcal{G}_1$. En consecuencia, $X^{-1}(\mathcal{G}_2) \subseteq \mathcal{G}_1$, lo que demuestra la minimalidad.
+\end{enumerate}
+\end{demostracion}
+
+% ------------------------------------------------------------------------------
+\begin{corolario}[Criterio de medibilidad por clases generadoras]
+Una aplicación $X : (\Omega_1, \mathcal{G}_1) \to (\Omega_2, \mathcal{G}_2)$ es medible si y solo si existe una clase de subconjuntos $\mathcal{C}$ de $\Omega_2$ tal que genera la $\sigma$-álgebra $\mathcal{G}_2$ ($\sigma(\mathcal{C}) = \mathcal{G}_2$) y satisface:
+\[
+    X^{-1}(\mathcal{C}) \subseteq \mathcal{G}_1
+\]
+\end{corolario}
+
+\begin{demostracion}
+Demostramos ambas implicaciones:
+\begin{itemize}
+    \item \textbf{Implicación directa ($\implies$):}
+    Si $X$ es medible para las $\sigma$-álgebras $\mathcal{G}_1$ y $\mathcal{G}_2$, basta tomar como clase generadora $\mathcal{C} = \mathcal{G}_2$. Cumple trivialmente $\sigma(\mathcal{G}_2) = \mathcal{G}_2$ y $X^{-1}(\mathcal{C}) \subseteq \mathcal{G}_1$.
+    
+    \item \textbf{Implicación recíproca ($\impliedby$):}
+    Supongamos que existe $\mathcal{C}$ tal que $\sigma(\mathcal{C}) = \mathcal{G}_2$ y $X^{-1}(\mathcal{C}) \subseteq \mathcal{G}_1$. Aplicando el Teorema de los Buenos Conjuntos ($\sigma(X^{-1}(\mathcal{C})) = X^{-1}(\sigma(\mathcal{C}))$):
+    \[
+        X^{-1}(\mathcal{G}_2) = X^{-1}(\sigma(\mathcal{C})) = \sigma\left( X^{-1}(\mathcal{C}) \right)
+    \]
+    Como por hipótesis $X^{-1}(\mathcal{C}) \subseteq \mathcal{G}_1$, tomando la $\sigma$-álgebra generada en ambos lados y recordando que $\sigma(\mathcal{G}_1) = \mathcal{G}_1$:
+    \[
+        \sigma\left( X^{-1}(\mathcal{C}) \right) \subseteq \sigma(\mathcal{G}_1) = \mathcal{G}_1 \implies X^{-1}(\mathcal{G}_2) \subseteq \mathcal{G}_1
+    \]
+    Por lo tanto, $X$ es una aplicación medible.
+\end{itemize}
+\end{demostracion}
+
+% ------------------------------------------------------------------------------
+\begin{proposicion}[Medibilidad de aplicaciones continuas]
+Sean $(\Omega_1, \mathcal{T}_1)$ y $(\Omega_2, \mathcal{T}_2)$ dos espacios topológicos, y sean $\mathcal{B}_1 = \sigma(\mathcal{T}_1)$ y $\mathcal{B}_2 = \sigma(\mathcal{T}_2)$ sus respectivas $\sigma$-álgebras de Borel. Si la aplicación $X : \Omega_1 \to \Omega_2$ es continua, entonces $X$ es medible respecto a $(\mathcal{B}_1, \mathcal{B}_2)$.
+\end{proposicion}
+
+\begin{demostracion}
+Sean $\mathcal{T}_1$ y $\mathcal{T}_2$ las respectivas clases de abiertos topológicos. Por definición topológica de continuidad, la antiimagen de cualquier abierto en $\Omega_2$ es un abierto en $\Omega_1$, es decir:
+\[
+    X^{-1}(\mathcal{T}_2) \subseteq \mathcal{T}_1
+\]
+Aplicando el Corolario anterior con $\mathcal{C} = \mathcal{T}_2$ (ya que $\sigma(\mathcal{T}_2) = \mathcal{B}_2$):
+\[
+    X^{-1}(\mathcal{B}_2) = X^{-1}(\sigma(\mathcal{T}_2)) = \sigma\left( X^{-1}(\mathcal{T}_2) \right) \subseteq \sigma(\mathcal{T}_1) = \mathcal{B}_1
+\]
+Por consiguiente, $X : (\Omega_1, \mathcal{B}_1) \to (\Omega_2, \mathcal{B}_2)$ es medible.
+\end{demostracion}
+
+% ------------------------------------------------------------------------------
+\begin{proposicion}[Composición de aplicaciones medibles]
+Sean $X : (\Omega_1, \mathcal{G}_1) \to (\Omega_2, \mathcal{G}_2)$ e $Y : (\Omega_2, \mathcal{G}_2) \to (\Omega_3, \mathcal{G}_3)$ dos aplicaciones medibles. Entonces la aplicación compuesta $Y \circ X : (\Omega_1, \mathcal{G}_1) \to (\Omega_3, \mathcal{G}_3)$ también es medible.
+\end{proposicion}
+
+\begin{demostracion}
+Sea $A \in \mathcal{G}_3$ un conjunto medible del espacio de llegada. Analizamos la antiimagen de $A$ respecto de la composición:
+\[
+    (Y \circ X)^{-1}(A) = (X^{-1} \circ Y^{-1})(A) = X^{-1}\left( Y^{-1}(A) \right)
+\]
+Por la medibilidad de $Y$, la antiimagen $Y^{-1}(A) \in \mathcal{G}_2$.
+A su vez, por la medibilidad de $X$, la antiimagen de este conjunto $X^{-1}(Y^{-1}(A))$ pertenece a $\mathcal{G}_1$.
+Así pues, $(Y \circ X)^{-1}(A) \in \mathcal{G}_1$, probando que $Y \circ X$ es medible.
+\end{demostracion}
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Composición de aplicaciones medibles $(\Omega_1,\mathcal{G}_1) \xrightarrow{X} (\Omega_2,\mathcal{G}_2) \xrightarrow{Y} (\Omega_3,\mathcal{G}_3)$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+% ------------------------------------------------------------------------------
+\paragraph{Funciones medibles reales y sobre la recta real extendida:}
+Dado un espacio de medida $(\Omega, \mathcal{G}, \mu)$, llamaremos \textbf{función medible} a toda aplicación medible que valore en los números reales o en la recta real extendida:
+\[
+    f : (\Omega, \mathcal{G}) \to (\mathbb{R}, \mathcal{B}) \quad \text{o} \quad f : (\Omega, \mathcal{G}) \to (\overline{\mathbb{R}}, \overline{\mathcal{B}})
+\]
+donde $\overline{\mathbb{R}} = \mathbb{R} \cup \{\pm \infty\}$ y $\mathcal{B}$ designa la $\sigma$-álgebra de Borel correspondiente.
+
+Por el Corolario de las clases generadoras, $f : (\Omega, \mathcal{G}) \to (\mathbb{R}, \mathcal{B})$ es medible si y solo si la antiimagen de los intervalos que generan la $\sigma$-álgebra de Borel pertenece a $\mathcal{G}$, es decir:
+\[
+    f^{-1}((a, b)) \subseteq \mathcal{G}, \quad f^{-1}([a, b]) \subseteq \mathcal{G}, \quad \text{o bien} \quad f^{-1}((-\infty, a)) \subseteq \mathcal{G}, \quad \forall a, b \in \mathbb{R}
+\]
+
+% ------------------------------------------------------------------------------
+\begin{proposicion}[Operaciones algebraicas con funciones medibles]
+Sean $f_1, f_2 : (\Omega, \mathcal{G}) \to (\mathbb{R}, \mathcal{B})$ dos funciones medibles y $c \in \mathbb{R}$ una constante. Entonces las siguientes funciones también son medibles:
+\begin{enumerate}[label=\alph*)]
+    \item $f_3 = c$ (función constante).
+    \item $f_4 = f_1 + c$, \quad $f_5 = c f_1$, \quad $f_6 = |f_1|$, \quad $f_7 = \dfrac{1}{f_1}$ (asumiendo $f_1(\omega) \neq 0, \, \forall \omega \in \Omega$).
+    \item $f_8 = f_1 + f_2$, \quad $f_9 = f_1 \cdot f_2$, \quad $f_{10} = \max\{f_1, f_2\}$, \quad $f_{11} = \min\{f_1, f_2\}$.
+    \item Parte positiva $f_1^+$ y parte negativa $f_1^-$, dadas por:
+    \[
+        f_1^+(\omega) = \begin{cases} f_1(\omega) & \text{si } f_1(\omega) \ge 0 \\ 0 & \text{si } f_1(\omega) < 0 \end{cases}, \qquad f_1^-(\omega) = \begin{cases} -f_1(\omega) & \text{si } f_1(\omega) \le 0 \\ 0 & \text{si } f_1(\omega) > 0 \end{cases}
+    \]
+\end{enumerate}
+\end{proposicion}
+
+% ------------------------------------------------------------------------------
+\begin{proposicion}[Límites de sucesiones de funciones medibles]
+Sea $\{f_n\}_{n \in \mathbb{N}}$ una sucesión de funciones medibles $f_n : (\Omega, \mathcal{G}) \to (\mathbb{R}, \mathcal{B})$. Entonces también son funciones medibles:
+\begin{enumerate}[label=\alph*)]
+    \item $\sup_{n \in \mathbb{N}} \{f_n\}$ e $\inf_{n \in \mathbb{N}} \{f_n\}$.
+    \item $\varlimsup_{n \to \infty} f_n$, \quad $\varliminf_{n \to \infty} f_n$ \quad y \quad $\lim_{n \to \infty} f_n$ (en los puntos donde exista el límite).
+\end{enumerate}
+\end{proposicion}
+
+% ------------------------------------------------------------------------------
+\begin{teorema}[Medida inducida por una aplicación medible]
+Sea $f : (\Omega_1, \mathcal{G}_1, \mu) \to (\Omega_2, \mathcal{G}_2)$ una aplicación medible. La composición $\mu_f = \mu \circ f^{-1}$ define una medida sobre $(\Omega_2, \mathcal{G}_2)$. Si además $\mu$ es una medida de probabilidad, entonces $\mu_f = \mu \circ f^{-1}$ también es una probabilidad sobre $(\Omega_2, \mathcal{G}_2)$.
+\end{teorema}
+
+% ------------------------------------------------------------------------------
+\paragraph{Variables aleatorias y espacios probabilísticos inducidos ($P_X$):}
+Llamaremos \textbf{variable aleatoria} a toda función medible definida desde un espacio probabilístico:
+\[
+    X : (\Omega, \mathcal{G}, P) \to (\mathbb{R}, \mathcal{B}) \quad \text{o} \quad X : (\Omega, \mathcal{G}, P) \to (\overline{\mathbb{R}}, \overline{\mathcal{B}})
+\]
+donde $P : \mathcal{G} \to [0, 1]$ es una probabilidad sobre $(\Omega, \mathcal{G})$.
+
+Por el Teorema anterior, la probabilidad asociada o inducida por la variable aleatoria $X$, denotada por $P_X : \mathcal{B} \to [0, 1]$, define un espacio probabilístico $(\mathbb{R}, \mathcal{B}, P_X)$ mediante:
+\[
+    P_X(B) \equiv P(X \in B) = P\left( X^{-1}(B) \right), \quad \forall B \in \mathcal{B}
+\]
+
+% Espacio reservado para incorporar diagrama explicativo en los apuntes
+\begin{center}
+    \vspace{0.2cm}
+    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Transporte de medida de probabilidad $P$ a $P_X$ mediante la variable aleatoria $X : (\Omega,\mathcal{G},P) \to (\mathbb{R},\mathcal{B},P_X)$]} \vfill}}
+    \vspace{0.2cm}
+\end{center}
+
+\begin{itemize}
+    \item \textbf{Variables aleatorias discretas:}
+    Se dice que $X : (\Omega, \mathcal{G}, P) \to (\mathbb{R}, \mathcal{B})$ es discreta cuando la imagen de $X$ es un conjunto discreto (finito o numerable) $D = \{x_1, x_2, \dots\}$, que constituye el soporte de $X$.
+    La medida inducida $P_X$ está concentrada en los puntos de $D$ (átomos de la medida), con $P_X(\{x_i\}) = p_i > 0$ y $\sum_{x_i \in D} p_i = 1$. La medida $P_X$ y la medida de Lebesgue $\lambda$ son mutuamente singulares ($P_X \perp \lambda$), puesto que $\lambda(D) = 0$ y $P_X(D^c) = 0$.
+
+    \item \textbf{Variables aleatorias absolutamente continuas:}
+    Se dice que $X : (\Omega, \mathcal{G}, P) \to (\mathbb{R}, \mathcal{B})$ es absolutamente continua cuando la medida inducida $P_X$ es absolutamente continua respecto de la medida de Lebesgue $\lambda$ ($P_X \ll \lambda$).
+    En este caso, la medida $P_X$ carece de átomos, por lo que $P_X(\{x_i\}) = 0$ para todo $x_i \in \mathbb{R}$.
+\end{itemize}
 
 \section{Funciones medibles}
 % Definición, caracterizaciones y operaciones que preservan medibilidad.

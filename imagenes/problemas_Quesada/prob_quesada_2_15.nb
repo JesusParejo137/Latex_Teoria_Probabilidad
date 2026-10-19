@@ -1,0 +1,1480 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     55721,       1470]
+NotebookOptionsPosition[     55033,       1451]
+NotebookOutlinePosition[     55442,       1467]
+CellTagsIndexPosition[     55399,       1464]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{
+   RowBox[{"nCaras", "=", "6"}], ";"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"===", "===", "===", "===", "===", "===", "==="}], "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "Valores", " ", "dados", " ", "directamente", " ", "en", " ", "la", " ",
+        "resoluci\[OAcute]n", " ", 
+       RowBox[{"(", 
+        RowBox[{"sin", " ", "calcular", " ", "nada"}], ")"}]}], "===", "===", 
+      "===", "===", "===", "===", "==="}], "="}]}], "*)"}], 
+  "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"Matriz", " ", "de", " ", "pesos", " ", "i"}], "+", "j"}], ",", 
+    RowBox[{
+    "escrita", " ", "expl\[IAcute]citamente", " ", "fila", " ", "a", " ", 
+     "fila", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"fila", "=", "i"}], ",", 
+       RowBox[{"columna", "=", "j"}]}], ")"}]}]}], 
+   "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"matrizPesos", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"2", ",", "3", ",", "4", ",", "5", ",", "6", ",", "7"}], "}"}],
+       ",", 
+      RowBox[{"{", 
+       RowBox[{"3", ",", "4", ",", "5", ",", "6", ",", "7", ",", "8"}], "}"}],
+       ",", 
+      RowBox[{"{", 
+       RowBox[{"4", ",", "5", ",", "6", ",", "7", ",", "8", ",", "9"}], "}"}],
+       ",", 
+      RowBox[{"{", 
+       RowBox[{"5", ",", "6", ",", "7", ",", "8", ",", "9", ",", "10"}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"6", ",", "7", ",", "8", ",", "9", ",", "10", ",", "11"}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"7", ",", "8", ",", "9", ",", "10", ",", "11", ",", "12"}], 
+       "}"}]}], "}"}]}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"c", "=", "252"}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"apartado", " ", "a"}], ")"}], "*)"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"A", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"1", ",", "5"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"2", ",", "4"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"3", ",", "3"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"4", ",", "2"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"5", ",", "1"}], "}"}]}], "}"}]}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"suceso", " ", 
+     RowBox[{"A", ":", "suma"}]}], "=", "6"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"B", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"1", ",", "1"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"2", ",", "2"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"3", ",", "3"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"4", ",", "4"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"5", ",", "5"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"6", ",", "6"}], "}"}]}], "}"}]}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{"suceso", " ", 
+    RowBox[{"B", ":", 
+     RowBox[{"resultados", " ", "iguales"}]}]}], "*)"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PA", "=", 
+   RowBox[{"5", "/", "42"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"PB", "=", 
+   RowBox[{"1", "/", "6"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"PAB", "=", 
+   RowBox[{"1", "/", "42"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"PC", "=", 
+    RowBox[{"5", "/", "21"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"===", "===", "===", "===", "===", "===", "==="}], "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"PANEL", " ", "1"}], ":", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+        "mapa", " ", "de", " ", "calor", " ", "de", " ", "los", " ", "pesos", 
+         " ", "i"}], "+", "j"}], "===", "===", "===", "===", "===", "===", 
+       "==="}]}], "="}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"colorHeat", "[", "v_", "]"}], ":=", 
+    RowBox[{"Blend", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"RGBColor", "[", 
+         RowBox[{"0.93", ",", "0.95", ",", "1"}], "]"}], ",", 
+        RowBox[{"RGBColor", "[", 
+         RowBox[{"0.02", ",", "0.15", ",", "0.55"}], "]"}]}], "}"}], ",", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"v", "-", "2"}], ")"}], "/", "10"}]}], "]"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"ejesGrilla", "[", "titulo_", "]"}], ":=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"Text", "[", 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           RowBox[{"j", ",", "15", ",", "Bold"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"j", "-", "0.5"}], ",", 
+            RowBox[{"-", "0.4"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"j", ",", "1", ",", "nCaras"}], "}"}]}], "]"}], ",", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{"Text", "[", 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           RowBox[{"i", ",", "15", ",", "Bold"}], "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"-", "0.4"}], ",", 
+            RowBox[{"i", "-", "0.5"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "1", ",", "nCaras"}], "}"}]}], "]"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<j\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"nCaras", "+", "0.5"}], ",", 
+          RowBox[{"-", "0.4"}]}], "}"}]}], "]"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<i\>\"", ",", "18", ",", "Bold"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"-", "0.4"}], ",", 
+          RowBox[{"nCaras", "+", "0.5"}]}], "}"}]}], "]"}], ",", 
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{"titulo", ",", "16", ",", "Bold"}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"nCaras", "/", "2."}], ",", 
+          RowBox[{"nCaras", "+", "0.8"}]}], "}"}]}], "]"}]}], "}"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"cellsHeat", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"colorHeat", "[", 
+         RowBox[{"matrizPesos", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", "j"}], "]"}], "]"}], "]"}], ",", 
+        RowBox[{"EdgeForm", "[", 
+         RowBox[{"{", 
+          RowBox[{"Black", ",", 
+           RowBox[{"Thickness", "[", "0.002", "]"}]}], "}"}], "]"}], ",", 
+        RowBox[{"Rectangle", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"j", "-", "1"}], ",", 
+            RowBox[{"i", "-", "1"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"j", ",", "i"}], "}"}]}], "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "nCaras"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "1", ",", "nCaras"}], "}"}]}], "]"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"textHeat", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"Text", "[", 
+       RowBox[{
+        RowBox[{"Style", "[", 
+         RowBox[{
+          RowBox[{"matrizPesos", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", "j"}], "]"}], "]"}], ",", "14", ",", "Bold", 
+          ",", 
+          RowBox[{"If", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"matrizPesos", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "j"}], "]"}], "]"}], ">=", "8"}], ",", 
+            "White", ",", "Black"}], "]"}]}], "]"}], ",", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"j", "-", "0.5"}], ",", 
+          RowBox[{"i", "-", "0.5"}]}], "}"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "nCaras"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "1", ",", "nCaras"}], "}"}]}], "]"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"panel1Graf", "=", 
+    RowBox[{"Graphics", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"cellsHeat", ",", "textHeat", ",", 
+        RowBox[{"ejesGrilla", "[", "\"\<peso = i+j\>\"", "]"}]}], "}"}], ",", 
+      RowBox[{"PlotRange", "->", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "0.9"}], ",", 
+           RowBox[{"nCaras", "+", "0.5"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "0.9"}], ",", 
+           RowBox[{"nCaras", "+", "1.3"}]}], "}"}]}], "}"}]}], ",", 
+      RowBox[{"ImageSize", "->", "380"}]}], "]"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"panel1", "=", 
+    RowBox[{"Column", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"panel1Graf", ",", 
+        RowBox[{"Style", "[", 
+         RowBox[{
+          RowBox[{"\"\<c = \>\"", "<>", 
+           RowBox[{"ToString", "[", "c", "]"}]}], ",", "16", ",", "Bold"}], 
+         "]"}]}], "}"}], ",", 
+      RowBox[{"Alignment", "->", "Center"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"===", "===", "===", "===", "===", "===", "==="}], "=", 
+     RowBox[{
+      RowBox[{"PANEL", " ", "2"}], ":", 
+      RowBox[{"sucesos", " ", "A"}]}]}], ",", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "B", " ", "y", " ", "su", " ", "diferencia", " ", "sim\[EAcute]trica", 
+       " ", "C"}], "===", "===", "===", "===", "===", "===", "==="}], "="}]}],
+    "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"colorOnlyA", "=", 
+    RowBox[{"RGBColor", "[", 
+     RowBox[{"0.95", ",", "0.6", ",", "0.15"}], "]"}]}], ";"}], "   ", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"solo", " ", 
+     RowBox[{"A", ":", "suma"}]}], "=", "6"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"colorOnlyB", "=", 
+    RowBox[{"RGBColor", "[", 
+     RowBox[{"0.2", ",", "0.55", ",", "0.85"}], "]"}]}], ";"}], "   ", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"solo", " ", 
+     RowBox[{"B", ":", "i"}]}], "=", "j"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"colorBoth", "=", 
+    RowBox[{"RGBColor", "[", 
+     RowBox[{"0.55", ",", "0.3", ",", "0.75"}], "]"}]}], ";"}], "    ", 
+  RowBox[{"(*", "A\:2229B", "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"colorNone", "=", 
+    RowBox[{"RGBColor", "[", 
+     RowBox[{"0.93", ",", "0.93", ",", "0.93"}], "]"}]}], ";"}], "   ", 
+  RowBox[{"(*", "ninguno", "*)"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"cellColor", "[", 
+     RowBox[{"i_", ",", "j_"}], "]"}], ":=", 
+    RowBox[{"Which", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"MemberQ", "[", 
+        RowBox[{"A", ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "j"}], "}"}]}], "]"}], "&&", 
+       RowBox[{"MemberQ", "[", 
+        RowBox[{"B", ",", 
+         RowBox[{"{", 
+          RowBox[{"i", ",", "j"}], "}"}]}], "]"}]}], ",", "colorBoth", ",", 
+      RowBox[{"MemberQ", "[", 
+       RowBox[{"A", ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "j"}], "}"}]}], "]"}], ",", "colorOnlyA", ",", 
+      RowBox[{"MemberQ", "[", 
+       RowBox[{"B", ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", "j"}], "}"}]}], "]"}], ",", "colorOnlyB", ",", 
+      "True", ",", "colorNone"}], "]"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"cellsSets", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"cellColor", "[", 
+         RowBox[{"i", ",", "j"}], "]"}], ",", 
+        RowBox[{"EdgeForm", "[", 
+         RowBox[{"{", 
+          RowBox[{"Black", ",", 
+           RowBox[{"Thickness", "[", "0.002", "]"}]}], "}"}], "]"}], ",", 
+        RowBox[{"Rectangle", "[", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"j", "-", "1"}], ",", 
+            RowBox[{"i", "-", "1"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"j", ",", "i"}], "}"}]}], "]"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "nCaras"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "1", ",", "nCaras"}], "}"}]}], "]"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"marcaInterseccion", "=", 
+    RowBox[{"Table", "[", 
+     RowBox[{
+      RowBox[{"If", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"MemberQ", "[", 
+          RowBox[{"A", ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "j"}], "}"}]}], "]"}], "&&", 
+         RowBox[{"MemberQ", "[", 
+          RowBox[{"B", ",", 
+           RowBox[{"{", 
+            RowBox[{"i", ",", "j"}], "}"}]}], "]"}]}], ",", 
+        RowBox[{"Text", "[", 
+         RowBox[{
+          RowBox[{"Style", "[", 
+           RowBox[{
+           "\"\<\[Intersection]\>\"", ",", "20", ",", "Bold", ",", "White"}], 
+           "]"}], ",", 
+          RowBox[{"{", 
+           RowBox[{
+            RowBox[{"j", "-", "0.5"}], ",", 
+            RowBox[{"i", "-", "0.5"}]}], "}"}]}], "]"}], ",", 
+        RowBox[{"{", "}"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"i", ",", "1", ",", "nCaras"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"j", ",", "1", ",", "nCaras"}], "}"}]}], "]"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"panel2Graf", "=", 
+    RowBox[{"Graphics", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"cellsSets", ",", "marcaInterseccion", ",", 
+        RowBox[{"ejesGrilla", "[", "\"\<A (naranja), B (azul)\>\"", "]"}]}], 
+       "}"}], ",", 
+      RowBox[{"PlotRange", "->", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "0.9"}], ",", 
+           RowBox[{"nCaras", "+", "0.5"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"-", "0.9"}], ",", 
+           RowBox[{"nCaras", "+", "1.3"}]}], "}"}]}], "}"}]}], ",", 
+      RowBox[{"ImageSize", "->", "380"}]}], "]"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"leyendaSets", "=", 
+    RowBox[{"SwatchLegend", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "colorOnlyA", ",", "colorOnlyB", ",", "colorBoth", ",", "colorNone"}], 
+       "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<A\[Backslash]B (suma=6, i\[NotEqual]j)\>\"", ",", 
+        "\"\<B\[Backslash]A (i=j, suma\[NotEqual]6)\>\"", ",", 
+        "\"\<A\[Intersection]B = {(3,3)}\>\"", ",", "\"\<ninguno\>\""}], 
+       "}"}], ",", 
+      RowBox[{"LabelStyle", "->", 
+       RowBox[{"Directive", "[", 
+        RowBox[{"FontSize", "->", "15"}], "]"}]}], ",", 
+      RowBox[{"LegendMarkerSize", "->", "18"}]}], "]"}]}], ";"}], 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"panel2", "=", 
+    RowBox[{"Column", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"panel2Graf", ",", "leyendaSets"}], "}"}], ",", 
+      RowBox[{"Alignment", "->", "Center"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{"===", "===", "===", "===", "===", "===", "==="}], "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+      "Composici\[OAcute]n", " ", "final", " ", "con", " ", "resumen", " ", 
+       "num\[EAcute]rico", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"valores", " ", "dados"}], ",", 
+         RowBox[{"no", " ", "calculados"}]}], ")"}]}], "===", "===", "===", "===",
+       "===", "===", "==="}], "="}]}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"diagramaCompleto", "=", 
+    RowBox[{"Row", "[", 
+     RowBox[{"{", 
+      RowBox[{"panel1", ",", 
+       RowBox[{"Spacer", "[", "50", "]"}], ",", "panel2"}], "}"}], "]"}]}], 
+   ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"resumen", "=", 
+    RowBox[{"Column", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            RowBox[{"\"\<P(A) = \>\"", ",", "16"}], "]"}], ",", 
+           RowBox[{"Style", "[", 
+            RowBox[{
+            "\"\<5/42\>\"", ",", "16", ",", "Bold", ",", "colorOnlyA"}], 
+            "]"}]}], "}"}], "]"}], ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            RowBox[{"\"\<P(B) = \>\"", ",", "16"}], "]"}], ",", 
+           RowBox[{"Style", "[", 
+            RowBox[{
+            "\"\<1/6\>\"", ",", "16", ",", "Bold", ",", "colorOnlyB"}], 
+            "]"}]}], "}"}], "]"}], ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            RowBox[{"\"\<P(A\[Intersection]B) = \>\"", ",", "16"}], "]"}], 
+           ",", 
+           RowBox[{"Style", "[", 
+            RowBox[{
+            "\"\<1/42\>\"", ",", "16", ",", "Bold", ",", "colorBoth"}], 
+            "]"}]}], "}"}], "]"}], ",", 
+        RowBox[{"Row", "[", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"Style", "[", 
+            RowBox[{
+            "\"\<P(C) = P(A\[CapitalDelta]B) = \
+P(A)+P(B)-2P(A\[Intersection]B) = \>\"", ",", "16"}], "]"}], ",", 
+           RowBox[{"Style", "[", 
+            RowBox[{"\"\<5/21\>\"", ",", "16", ",", "Bold", ",", 
+             RowBox[{"Darker", "[", "Red", "]"}]}], "]"}]}], "}"}], "]"}]}], 
+       "}"}], ",", 
+      RowBox[{"Alignment", "->", "Left"}], ",", 
+      RowBox[{"Spacings", "->", "0.8"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"imagenFinal", "=", 
+    RowBox[{"Column", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"diagramaCompleto", ",", 
+        RowBox[{"Spacer", "[", "15", "]"}], ",", 
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<Resumen del apartado c):\>\"", ",", "18", ",", "Bold"}],
+          "]"}], ",", "resumen"}], "}"}], ",", 
+      RowBox[{"Alignment", "->", "Center"}]}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\n", "imagenFinal", "\n"}], "Input",
+ CellChangeTimes->{{4.0010354265701942`*^9, 4.0010354306809006`*^9}},
+ CellLabel->"In[50]:=",ExpressionUUID->"f8883c1d-d512-934e-b6d1-dd807a43f03d"],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     TemplateBox[{
+       TagBox[
+        GridBox[{{
+           GraphicsBox[{{{{
+                RGBColor[0.93, 0.95, 1], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{0, 0}, {1, 1}]}, {
+                RGBColor[0.8390000000000001, 0.87, 0.955], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{1, 0}, {2, 1}]}, {
+                RGBColor[0.748, 0.7899999999999999, 0.91], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{2, 0}, {3, 1}]}, {
+                RGBColor[0.657, 0.71, 0.865], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{3, 0}, {4, 1}]}, {
+                RGBColor[
+                0.5660000000000001, 0.6299999999999999, 0.8200000000000001], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{4, 0}, {5, 1}]}, {
+                RGBColor[0.47500000000000003`, 0.55, 0.775], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{5, 0}, {6, 1}]}}, {{
+                RGBColor[0.8390000000000001, 0.87, 0.955], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{0, 1}, {1, 2}]}, {
+                RGBColor[0.748, 0.7899999999999999, 0.91], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{1, 1}, {2, 2}]}, {
+                RGBColor[0.657, 0.71, 0.865], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{2, 1}, {3, 2}]}, {
+                RGBColor[
+                0.5660000000000001, 0.6299999999999999, 0.8200000000000001], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{3, 1}, {4, 2}]}, {
+                RGBColor[0.47500000000000003`, 0.55, 0.775], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{4, 1}, {5, 2}]}, {
+                RGBColor[0.384, 0.47000000000000003`, 0.73], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{5, 1}, {6, 2}]}}, {{
+                RGBColor[0.748, 0.7899999999999999, 0.91], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{0, 2}, {1, 3}]}, {
+                RGBColor[0.657, 0.71, 0.865], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{1, 2}, {2, 3}]}, {
+                RGBColor[
+                0.5660000000000001, 0.6299999999999999, 0.8200000000000001], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{2, 2}, {3, 3}]}, {
+                RGBColor[0.47500000000000003`, 0.55, 0.775], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{3, 2}, {4, 3}]}, {
+                RGBColor[0.384, 0.47000000000000003`, 0.73], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{4, 2}, {5, 3}]}, {
+                RGBColor[0.29300000000000004`, 0.39, 0.685], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{5, 2}, {6, 3}]}}, {{
+                RGBColor[0.657, 0.71, 0.865], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{0, 3}, {1, 4}]}, {
+                RGBColor[
+                0.5660000000000001, 0.6299999999999999, 0.8200000000000001], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{1, 3}, {2, 4}]}, {
+                RGBColor[0.47500000000000003`, 0.55, 0.775], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{2, 3}, {3, 4}]}, {
+                RGBColor[0.384, 0.47000000000000003`, 0.73], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{3, 3}, {4, 4}]}, {
+                RGBColor[0.29300000000000004`, 0.39, 0.685], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{4, 3}, {5, 4}]}, {
+                RGBColor[0.20199999999999996`, 0.30999999999999994`, 0.64], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{5, 3}, {6, 4}]}}, {{
+                RGBColor[
+                0.5660000000000001, 0.6299999999999999, 0.8200000000000001], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{0, 4}, {1, 5}]}, {
+                RGBColor[0.47500000000000003`, 0.55, 0.775], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{1, 4}, {2, 5}]}, {
+                RGBColor[0.384, 0.47000000000000003`, 0.73], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{2, 4}, {3, 5}]}, {
+                RGBColor[0.29300000000000004`, 0.39, 0.685], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{3, 4}, {4, 5}]}, {
+                RGBColor[0.20199999999999996`, 0.30999999999999994`, 0.64], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{4, 4}, {5, 5}]}, {
+                RGBColor[0.11099999999999999`, 0.22999999999999998`, 0.595], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{5, 4}, {6, 5}]}}, {{
+                RGBColor[0.47500000000000003`, 0.55, 0.775], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{0, 5}, {1, 6}]}, {
+                RGBColor[0.384, 0.47000000000000003`, 0.73], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{1, 5}, {2, 6}]}, {
+                RGBColor[0.29300000000000004`, 0.39, 0.685], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{2, 5}, {3, 6}]}, {
+                RGBColor[0.20199999999999996`, 0.30999999999999994`, 0.64], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{3, 5}, {4, 6}]}, {
+                RGBColor[0.11099999999999999`, 0.22999999999999998`, 0.595], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{4, 5}, {5, 6}]}, {
+                RGBColor[0.02, 0.15, 0.55], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{5, 5}, {6, 6}]}}}, {{
+               InsetBox[
+                FormBox[
+                 StyleBox["2", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                0.5, 0.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["3", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                1.5, 0.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["4", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                2.5, 0.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["5", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                3.5, 0.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["6", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                4.5, 0.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["7", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                5.5, 0.5}]}, {
+               InsetBox[
+                FormBox[
+                 StyleBox["3", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                0.5, 1.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["4", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                1.5, 1.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["5", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                2.5, 1.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["6", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                3.5, 1.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["7", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                4.5, 1.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["8", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                5.5, 1.5}]}, {
+               InsetBox[
+                FormBox[
+                 StyleBox["4", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                0.5, 2.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["5", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                1.5, 2.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["6", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                2.5, 2.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["7", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                3.5, 2.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["8", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                4.5, 2.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["9", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                5.5, 2.5}]}, {
+               InsetBox[
+                FormBox[
+                 StyleBox["5", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                0.5, 3.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["6", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                1.5, 3.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["7", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                2.5, 3.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["8", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                3.5, 3.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["9", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                4.5, 3.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["10", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                5.5, 3.5}]}, {
+               InsetBox[
+                FormBox[
+                 StyleBox["6", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                0.5, 4.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["7", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                1.5, 4.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["8", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                2.5, 4.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["9", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                3.5, 4.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["10", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                4.5, 4.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["11", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                5.5, 4.5}]}, {
+               InsetBox[
+                FormBox[
+                 StyleBox["7", 14, Bold, 
+                  GrayLevel[0], StripOnInput -> False], TraditionalForm], {
+                0.5, 5.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["8", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                1.5, 5.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["9", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                2.5, 5.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["10", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                3.5, 5.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["11", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                4.5, 5.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["12", 14, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                5.5, 5.5}]}}, {{
+               InsetBox[
+                FormBox[
+                 StyleBox["1", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {0.5, -0.4}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["2", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {1.5, -0.4}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["3", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {2.5, -0.4}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["4", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {3.5, -0.4}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["5", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {4.5, -0.4}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["6", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {5.5, -0.4}]}, {
+               InsetBox[
+                FormBox[
+                 StyleBox["1", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {-0.4, 0.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["2", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {-0.4, 1.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["3", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {-0.4, 2.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["4", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {-0.4, 3.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["5", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {-0.4, 4.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["6", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {-0.4, 5.5}]}, 
+              InsetBox[
+               FormBox[
+                StyleBox["\"j\"", 18, Bold, StripOnInput -> False], 
+                TraditionalForm], {6.5, -0.4}], 
+              InsetBox[
+               FormBox[
+                StyleBox["\"i\"", 18, Bold, StripOnInput -> False], 
+                TraditionalForm], {-0.4, 6.5}], 
+              InsetBox[
+               FormBox[
+                StyleBox["\"peso = i+j\"", 16, Bold, StripOnInput -> False], 
+                TraditionalForm], {3., 6.8}]}}, 
+            PlotRange -> {{-0.9, 6.5}, {-0.9, 7.3}}, ImageSize -> 380]}, {
+           StyleBox["\"c = 252\"", 16, Bold, StripOnInput -> False]}}, 
+         GridBoxAlignment -> {"Columns" -> {{Center}}}, DefaultBaseStyle -> 
+         "Column", 
+         GridBoxItemSize -> {
+          "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], "Column"], 
+       TemplateBox[{50}, "Spacer1"], 
+       TagBox[
+        GridBox[{{
+           GraphicsBox[{{{{
+                RGBColor[0.2, 0.55, 0.85], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{0, 0}, {1, 1}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{1, 0}, {2, 1}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{2, 0}, {3, 1}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{3, 0}, {4, 1}]}, {
+                RGBColor[0.95, 0.6, 0.15], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{4, 0}, {5, 1}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{5, 0}, {6, 1}]}}, {{
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{0, 1}, {1, 2}]}, {
+                RGBColor[0.2, 0.55, 0.85], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{1, 1}, {2, 2}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{2, 1}, {3, 2}]}, {
+                RGBColor[0.95, 0.6, 0.15], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{3, 1}, {4, 2}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{4, 1}, {5, 2}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{5, 1}, {6, 2}]}}, {{
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{0, 2}, {1, 3}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{1, 2}, {2, 3}]}, {
+                RGBColor[0.55, 0.3, 0.75], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{2, 2}, {3, 3}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{3, 2}, {4, 3}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{4, 2}, {5, 3}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{5, 2}, {6, 3}]}}, {{
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{0, 3}, {1, 4}]}, {
+                RGBColor[0.95, 0.6, 0.15], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{1, 3}, {2, 4}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{2, 3}, {3, 4}]}, {
+                RGBColor[0.2, 0.55, 0.85], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{3, 3}, {4, 4}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{4, 3}, {5, 4}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{5, 3}, {6, 4}]}}, {{
+                RGBColor[0.95, 0.6, 0.15], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{0, 4}, {1, 5}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{1, 4}, {2, 5}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{2, 4}, {3, 5}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{3, 4}, {4, 5}]}, {
+                RGBColor[0.2, 0.55, 0.85], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{4, 4}, {5, 5}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{5, 4}, {6, 5}]}}, {{
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{0, 5}, {1, 6}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{1, 5}, {2, 6}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{2, 5}, {3, 6}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{3, 5}, {4, 6}]}, {
+                RGBColor[0.93, 0.93, 0.93], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                RectangleBox[{4, 5}, {5, 6}]}, {
+                RGBColor[0.2, 0.55, 0.85], 
+                EdgeForm[{
+                  GrayLevel[0], 
+                  Thickness[0.002]}], 
+                
+                RectangleBox[{5, 5}, {6, 
+                 6}]}}}, {{{}, {}, {}, {}, {}, {}}, {{}, {}, {}, {}, {}, {}}, \
+{{}, {}, 
+               InsetBox[
+                FormBox[
+                 StyleBox["\"\[Intersection]\"", 20, Bold, 
+                  GrayLevel[1], StripOnInput -> False], TraditionalForm], {
+                2.5, 2.5}], {}, {}, {}}, {{}, {}, {}, {}, {}, {}}, {{}, {}, \
+{}, {}, {}, {}}, {{}, {}, {}, {}, {}, {}}}, {{
+               InsetBox[
+                FormBox[
+                 StyleBox["1", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {0.5, -0.4}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["2", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {1.5, -0.4}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["3", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {2.5, -0.4}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["4", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {3.5, -0.4}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["5", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {4.5, -0.4}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["6", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {5.5, -0.4}]}, {
+               InsetBox[
+                FormBox[
+                 StyleBox["1", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {-0.4, 0.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["2", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {-0.4, 1.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["3", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {-0.4, 2.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["4", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {-0.4, 3.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["5", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {-0.4, 4.5}], 
+               InsetBox[
+                FormBox[
+                 StyleBox["6", 15, Bold, StripOnInput -> False], 
+                 TraditionalForm], {-0.4, 5.5}]}, 
+              InsetBox[
+               FormBox[
+                StyleBox["\"j\"", 18, Bold, StripOnInput -> False], 
+                TraditionalForm], {6.5, -0.4}], 
+              InsetBox[
+               FormBox[
+                StyleBox["\"i\"", 18, Bold, StripOnInput -> False], 
+                TraditionalForm], {-0.4, 6.5}], 
+              InsetBox[
+               FormBox[
+                StyleBox[
+                "\"A (naranja), B (azul)\"", 16, Bold, StripOnInput -> False],
+                 TraditionalForm], {3., 6.8}]}}, 
+            PlotRange -> {{-0.9, 6.5}, {-0.9, 7.3}}, ImageSize -> 380]}, {
+           
+           TemplateBox[{
+            "\"A\[Backslash]B (suma=6, i\[NotEqual]j)\"", 
+             "\"B\[Backslash]A (i=j, suma\[NotEqual]6)\"", 
+             "\"A\[Intersection]B = {(3,3)}\"", "\"ninguno\""}, 
+            "SwatchLegend", DisplayFunction -> (StyleBox[
+              StyleBox[
+               PaneBox[
+                TagBox[
+                 GridBox[{{
+                    TagBox[
+                    GridBox[{{
+                    GraphicsBox[{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    RGBColor[0.95, 0.6, 0.15]], 
+                    RectangleBox[{0, 0}, {18, 18}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {18, 18}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.2777777777777778] -> 
+                    Baseline)], #}, {
+                    GraphicsBox[{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    RGBColor[0.2, 0.55, 0.85]], 
+                    RectangleBox[{0, 0}, {18, 18}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {18, 18}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.2777777777777778] -> 
+                    Baseline)], #2}, {
+                    GraphicsBox[{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    RGBColor[0.55, 0.3, 0.75]], 
+                    RectangleBox[{0, 0}, {18, 18}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {18, 18}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.2777777777777778] -> 
+                    Baseline)], #3}, {
+                    GraphicsBox[{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    AbsoluteThickness[1.6], 
+                    RGBColor[0.93, 0.93, 0.93]], 
+                    RectangleBox[{0, 0}, {18, 18}, "RoundingRadius" -> 0]}, 
+                    AspectRatio -> Full, ImageSize -> {18, 18}, 
+                    PlotRangePadding -> None, ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.2777777777777778] -> 
+                    Baseline)], #4}}, 
+                    GridBoxAlignment -> {
+                    "Columns" -> {Center, Left}, "Rows" -> {{Baseline}}}, 
+                    AutoDelete -> False, 
+                    GridBoxDividers -> {
+                    "Columns" -> {{False}}, "Rows" -> {{False}}}, 
+                    GridBoxItemSize -> {
+                    "Columns" -> {{All}}, "Rows" -> {{All}}}, 
+                    GridBoxSpacings -> {
+                    "Columns" -> {{0.3}}, "Rows" -> {{0.5}}}], "Grid"]}}, 
+                  GridBoxAlignment -> {
+                   "Columns" -> {{Left}}, "Rows" -> {{Top}}}, AutoDelete -> 
+                  False, GridBoxItemSize -> {
+                   "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+                  GridBoxSpacings -> {"Columns" -> {{1}}, "Rows" -> {{0}}}], 
+                 "Grid"], Alignment -> Left, AppearanceElements -> None, 
+                ImageMargins -> {{5, 5}, {5, 5}}, ImageSizeAction -> 
+                "ResizeToFit"], LineIndent -> 0, StripOnInput -> False], {
+               Directive[FontSize -> 15], FontFamily -> "Arial"}, Background -> 
+              Automatic, StripOnInput -> False]& ), 
+            InterpretationFunction :> (RowBox[{"SwatchLegend", "[", 
+               RowBox[{
+                 RowBox[{"{", 
+                   RowBox[{
+                    TemplateBox[<|"color" -> RGBColor[0.95, 0.6, 0.15]|>, 
+                    "RGBColorSwatchTemplate"], ",", 
+                    
+                    TemplateBox[<|"color" -> RGBColor[0.2, 0.55, 0.85]|>, 
+                    "RGBColorSwatchTemplate"], ",", 
+                    
+                    TemplateBox[<|"color" -> RGBColor[0.55, 0.3, 0.75]|>, 
+                    "RGBColorSwatchTemplate"], ",", 
+                    
+                    TemplateBox[<|"color" -> RGBColor[0.93, 0.93, 0.93]|>, 
+                    "RGBColorSwatchTemplate"]}], "}"}], ",", 
+                 RowBox[{"{", 
+                   RowBox[{#, ",", #2, ",", #3, ",", #4}], "}"}], ",", 
+                 RowBox[{"LabelStyle", "\[Rule]", 
+                   RowBox[{"Directive", "[", 
+                    RowBox[{"FontSize", "\[Rule]", "15"}], "]"}]}], ",", 
+                 RowBox[{"LegendMarkerSize", "\[Rule]", "18"}]}], "]"}]& ), 
+            Editable -> True]}}, 
+         GridBoxAlignment -> {"Columns" -> {{Center}}}, DefaultBaseStyle -> 
+         "Column", 
+         GridBoxItemSize -> {
+          "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}], "Column"]},
+      "RowDefault"]},
+    {
+     TemplateBox[{15},
+      "Spacer1"]},
+    {
+     StyleBox["\<\"Resumen del apartado c):\"\>",
+      StripOnInput->False,
+      FontSize->18,
+      FontWeight->Bold]},
+    {
+     TagBox[GridBox[{
+        {
+         TemplateBox[{
+           StyleBox["\"P(A) = \"", 16, StripOnInput -> False], 
+           StyleBox["\"5/42\"", 16, Bold, 
+            RGBColor[0.95, 0.6, 0.15], StripOnInput -> False]},
+          "RowDefault"]},
+        {
+         TemplateBox[{
+           StyleBox["\"P(B) = \"", 16, StripOnInput -> False], 
+           StyleBox["\"1/6\"", 16, Bold, 
+            RGBColor[0.2, 0.55, 0.85], StripOnInput -> False]},
+          "RowDefault"]},
+        {
+         TemplateBox[{
+           StyleBox["\"P(A\[Intersection]B) = \"", 16, StripOnInput -> False], 
+           StyleBox["\"1/42\"", 16, Bold, 
+            RGBColor[0.55, 0.3, 0.75], StripOnInput -> False]},
+          "RowDefault"]},
+        {
+         TemplateBox[{
+           StyleBox[
+           "\"P(C) = P(A\[CapitalDelta]B) = P(A)+P(B)-2P(A\[Intersection]B) = \
+\"", 16, StripOnInput -> False], 
+           StyleBox["\"5/21\"", 16, Bold, 
+            RGBColor[
+             Rational[2, 3], 0, 0], StripOnInput -> False]},
+          "RowDefault"]}
+       },
+       DefaultBaseStyle->"Column",
+       GridBoxAlignment->{"Columns" -> {{Left}}},
+       GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+       GridBoxSpacings->{"Columns" -> {{Automatic}}, "Rows" -> {{0.8}}}],
+      "Column"]}
+   },
+   DefaultBaseStyle->"Column",
+   GridBoxAlignment->{"Columns" -> {{Center}}},
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Column"]], "Output",
+ CellChangeTimes->{4.0010354311499367`*^9},
+ CellLabel->"Out[78]=",ExpressionUUID->"c1f70401-178a-8b45-8a4c-24c561d71259"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Export", "[", 
+   RowBox[{"\"\<prob_quesada_2_15_a.png\>\"", ",", "imagenFinal", ",", 
+    RowBox[{"Background", "->", "White"}], ",", 
+    RowBox[{"ImageResolution", "->", "300"}]}], "]"}], ";"}]], "Input",
+ CellChangeTimes->{{4.001035355111305*^9, 4.0010353554707813`*^9}, {
+  4.001035772425951*^9, 4.001035773042383*^9}},
+ CellLabel->"In[79]:=",ExpressionUUID->"43571c41-2318-0946-9da6-4d34daf2bd0d"],
+
+Cell[BoxData[
+ RowBox[{"SystemOpen", "[", 
+  RowBox[{"DirectoryName", "[", 
+   RowBox[{"AbsoluteFileName", "[", "\"\<prob_quesada_2_15_a.png\>\"", "]"}], 
+   "]"}], "]"}]], "Input",
+ NumberMarks->False,
+ CellLabel->"In[80]:=",ExpressionUUID->"4659c0b2-ab6e-0e44-a84e-3e7a098fb0fd"]
+},
+WindowSize->{1069.5, 1011},
+WindowMargins->{{Automatic, -5.25}, {Automatic, 0}},
+FrontEndVersion->"14.0 para Microsoft Windows (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"2b65f683-e991-9b4f-b3f6-f675a066b8bd"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 18442, 550, 1833, "Input",ExpressionUUID->"f8883c1d-d512-934e-b6d1-dd807a43f03d"],
+Cell[19025, 574, 35267, 856, 680, "Output",ExpressionUUID->"c1f70401-178a-8b45-8a4c-24c561d71259"]
+}, Open  ]],
+Cell[54307, 1433, 438, 8, 43, "Input",ExpressionUUID->"43571c41-2318-0946-9da6-4d34daf2bd0d"],
+Cell[54748, 1443, 281, 6, 73, "Input",ExpressionUUID->"4659c0b2-ab6e-0e44-a84e-3e7a098fb0fd"]
+}
+]
+*)
+
+(* End of internal cache information *)
+
