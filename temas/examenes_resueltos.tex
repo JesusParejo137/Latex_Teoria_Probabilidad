@@ -700,3 +700,272 @@ Sustituyendo obtenemos:
     E[X] = \frac{1}{2} \left( \frac{1}{2} \right) + \frac{1}{2} \left( \frac{1}{2} \right) = \frac{1}{4} + \frac{1}{4} = \frac{1}{2}
 \]
 \end{problema}
+
+\newpage
+\section{Examen Parcial 26-27}
+\setcounter{problemacontador}{0}
+%===================
+% Problema 1: 
+%===================
+\begin{problema}[Límites superior e inferior de sucesiones de intervalos]
+Hallar los límites superior e inferior y determinar el límite, si existe, de las siguientes sucesiones de subconjuntos de $\mathbb{R}$:
+\begin{enumerate}[label=\alph*)]
+    \item $A_n = \left(-n, \, \frac{n+1}{n}\right], \quad \forall n \ge 1$
+    \item $B_n = \left[0, \, \frac{(-1)^n + n}{n}\right), \quad \forall n \ge 1$
+\end{enumerate}
+
+\tcblower
+
+\paragraph{a) Estudio de la sucesión $A_n = \left(-n, 1 + \frac{1}{n}\right]$:}
+
+Analizamos la monotonía de los extremos de los intervalos $A_n$:
+\begin{itemize}
+    \item El extremo inferior $-n \to -\infty$ es estrictamente decreciente.
+    \item El extremo superior $1 + \frac{1}{n} \downarrow 1$ es estrictamente decreciente.
+\end{itemize}
+
+Calculamos las sucesiones de cola de uniones ($\sigma_n$) e intersecciones ($\delta_n$):
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Uniones de colas ($\sigma_n = \bigcup_{j=n}^\infty A_j$):}
+    Para cada $n \ge 1$, el extremo inferior de la unión se extiende hacia $-\infty$, mientras que el supremo de los extremos superiores se alcanza en $j = n$, siendo $1 + \frac{1}{n}$. Así:
+    \[
+        \sigma_n = \left(-\infty, \, 1 + \frac{1}{n}\right]
+    \]
+    La sucesión de conjuntos $\{\sigma_n\}$ es decreciente ($\sigma_n \downarrow$). El límite superior es:
+    \[
+        \varlimsup_{n \to \infty} A_n = \bigcap_{n=1}^\infty \sigma_n = \bigcap_{n=1}^\infty \left(-\infty, \, 1 + \frac{1}{n}\right] = (-\infty, 1]
+    \]
+
+    \item \textbf{Intersecciones de colas ($\delta_n = \bigcap_{j=n}^\infty A_j$):}
+    Para cada $n \ge 1$, el extremo inferior de la intersección es $\sup_{j \ge n} (-j) = -n$. Para el extremo superior, como $1 < 1 + \frac{1}{j}$ para todo $j \ge 1$, el punto $x = 1$ pertenece a todos los términos $A_j$, mientras que ningún $x > 1$ pertenece a todos los $A_j$. Por tanto:
+    \[
+        \delta_n = (-n, 1]
+    \]
+    La sucesión de conjuntos $\{\delta_n\}$ es creciente ($\delta_n \uparrow$). El límite inferior es:
+    \[
+        \varliminf_{n \to \infty} A_n = \bigcup_{n=1}^\infty \delta_n = \bigcup_{n=1}^\infty (-n, 1] = (-\infty, 1]
+    \]
+\end{enumerate}
+
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/examenes_resueltos/Parcial26-27_1.png}
+    \captionof{figure}{Comportamiento de los intervalos $A_n$ y convergencia hacia $(-\infty, 1]$}
+\end{center}
+
+Al coincidir los límites inferior y superior:
+\[
+    \varliminf_{n \to \infty} A_n = \varlimsup_{n \to \infty} A_n = (-\infty, 1]
+\]
+la sucesión $\{A_n\}$ es convergente y su límite existe, siendo $\lim_{n \to \infty} A_n = (-\infty, 1]$.
+
+\paragraph{b) Estudio de la sucesión $B_n = \left[0, 1 + \frac{(-1)^n}{n}\right)$:}
+
+Separamos la sucesión en sus subsucesiones de índices pares e impares:
+\begin{itemize}
+    \item \textbf{Subíndices pares ($n = 2m$):}
+    $B_{2m} = \left[0, 1 + \frac{1}{2m}\right)$. La sucesión es monótona decreciente ($B_{2m} \downarrow$) y converge a su intersección:
+    \[
+        \lim_{m \to \infty} B_{2m} = \bigcap_{m=1}^\infty \left[0, 1 + \frac{1}{2m}\right) = [0, 1]
+    \]
+    \item \textbf{Subíndices impares ($n = 2m-1$):}
+    $B_{2m-1} = \left[0, 1 - \frac{1}{2m-1}\right)$. La sucesión es monótona creciente ($B_{2m-1} \uparrow$) y converge a su unión:
+    \[
+        \lim_{m \to \infty} B_{2m-1} = \bigcup_{m=1}^\infty \left[0, 1 - \frac{1}{2m-1}\right) = [0, 1)
+    \]
+\end{itemize}
+
+Calculamos los límites superior e inferior de la sucesión general $\{B_n\}$:
+\begin{itemize}
+    \item \textbf{Límite superior ($\varlimsup_{n \to \infty} B_n$):}
+    Para todo $n \ge 1$, la unión de la cola $\bigcup_{j=n}^\infty B_j$ contiene a los términos pares superiores, resultando $\varlimsup_{n \to \infty} B_n = [0, 1]$.
+    \item \textbf{Límite inferior ($\varliminf_{n \to \infty} B_n$):}
+    Para todo $n \ge 1$, la intersección de la cola $\bigcap_{j=n}^\infty B_j$ queda acotada por los términos impares inferiores, resultando $\varliminf_{n \to \infty} B_n = [0, 1)$.
+\end{itemize}
+
+Como $\varliminf_{n \to \infty} B_n = [0, 1) \neq [0, 1] = \varlimsup_{n \to \infty} B_n$, la sucesión $\{B_n\}$ oscila en el extremo $x = 1$ y \textbf{no existe} el límite $\lim_{n \to \infty} B_n$.
+\end{problema}
+
+\newpage
+%===================
+% Problema 2: 
+%===================
+\begin{problema}[Estructura de semiálgebra y álgebra generada por una partición finita]
+Sea $\Omega$ un conjunto no vacío y $\{A_1, A_2, \dots, A_n\}$ una partición finita de $\Omega$ por conjuntos disjuntos dos a dos ($n \ge 2$), es decir:
+\[
+    \bigcup_{i=1}^n A_i = \Omega \quad \text{y} \quad A_i \cap A_j = \varnothing, \quad \forall i \neq j
+\]
+Determinar si la colección de conjuntos $\mathcal{C} = \{\varnothing, \Omega, A_1, A_2, \dots, A_n\}$ tiene estructura de semiálgebra y si tiene estructura de álgebra sobre $\Omega$.
+
+\tcblower
+
+\paragraph{1. Análisis de la estructura de semiálgebra:}
+Verificamos los tres axiomas constitutivos para que una familia de subconjuntos $\mathcal{S}$ sea una semiálgebra sobre $\Omega$:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Pertenencia del espacio total:}
+    Por definición explícita de la clase, $\Omega \in \mathcal{C}$.
+
+    \item \textbf{Cierre por intersecciones finitas:}
+    Sean $E, F \in \mathcal{C}$. Distinguimos los casos posibles:
+    \begin{itemize}
+        \item Si $E = \varnothing$ o $F = \varnothing$, la intersección es $\varnothing \in \mathcal{C}$.
+        \item Si $E = \Omega$, entonces $\Omega \cap F = F \in \mathcal{C}$.
+        \item Si $E = A_i$ y $F = A_j$, al ser los elementos de la partición mutuamente disjuntos:
+        \[
+            A_i \cap A_j = \begin{cases} A_i \in \mathcal{C} & \text{si } i = j \\ \varnothing \in \mathcal{C} & \text{si } i \neq j \end{cases}
+        \]
+    \end{itemize}
+    Por tanto, $\mathcal{C}$ es cerrada bajo intersecciones finitas.
+
+    \item \textbf{Descomposición del complementario en unión finita de disjuntos:}
+    Para todo $E \in \mathcal{C}$, comprobamos si $E^c$ se expresa como unión finita de elementos disjuntos de $\mathcal{C}$:
+    \begin{itemize}
+        \item $\Omega^c = \varnothing \in \mathcal{C}$ y $\varnothing^c = \Omega \in \mathcal{C}$.
+        \item Para cada elemento de la partición $A_i \in \mathcal{C}$:
+        \[
+            A_i^c = \Omega \setminus A_i = \bigsqcup_{\substack{j=1 \\ j \neq i}}^n A_j
+        \]
+        La cual es una unión finita de conjuntos $A_j \in \mathcal{C}$ mutuamente disjuntos.
+    \end{itemize}
+\end{enumerate}
+
+Concluimos que $\mathcal{C}$ es una semiálgebra sobre $\Omega$.
+
+\begin{center}
+    \includegraphics[width=0.75\linewidth]{imagenes/examenes_resueltos/Parcial26-27_2.png}
+    \captionof{figure}{Partición de $\Omega$ en bloques $A_i$ y representación del complementario $A_i^c$}
+\end{center}
+
+\paragraph{2. Análisis de la estructura de álgebra:}
+Para que $\mathcal{C}$ tenga estructura de álgebra, debe ser cerrada bajo la operación de complementación (o equivalentemente, bajo uniones finitas arbitrarias).
+
+Para $n \ge 3$, tomemos un elemento de la partición $A_i \in \mathcal{C}$. Su complementario es:
+\[
+    A_i^c = \bigcup_{\substack{j=1 \\ j \neq i}}^n A_j
+\]
+Dado que $n \ge 3$, esta unión consta de al menos 2 bloques de la partición. Sin embargo, los únicos elementos contenidos en $\mathcal{C}$ son el vacío $\varnothing$, el total $\Omega$ y los bloques individuales $A_k$. Por consiguiente:
+\[
+    A_i^c \notin \mathcal{C} \quad \text{y} \quad A_1 \cup A_2 \notin \mathcal{C}
+\]
+
+\paragraph{Conclusión:}
+La clase $\mathcal{C}$ \textbf{no es un álgebra} sobre $\Omega$ para $n \ge 3$ (en el caso particular $n = 2$, se cumple $A_1^c = A_2 \in \mathcal{C}$, con lo que $\mathcal{C}$ sí coincide con el álgebra generada).
+\end{problema}
+
+\newpage
+%===================
+% Problema 3: 
+%===================
+\begin{problema}[Estudio de la aditividad y $\sigma$-aditividad de una función de conjunto cardinal]
+Sea el espacio medible $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$. Se define la función de conjunto $\mu : \mathcal{P}(\mathbb{N}) \to \overline{\mathbb{R}}$ mediante:
+\[
+    \mu(E) = \begin{cases} 0 & \text{si } \mathrm{card}(E) < \infty \\ \infty & \text{si } \mathrm{card}(E) = \infty \end{cases}
+\]
+Estudiar si $\mu$ es una función de conjunto aditiva y si constituye una medida sobre $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$.
+
+\tcblower
+
+\paragraph{1. Estudio de la aditividad finita:}
+Comprobamos las dos condiciones de aditividad finita sobre el álgebra $\mathcal{P}(\mathbb{N})$:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Conjunto vacío:} Como $\mathrm{card}(\varnothing) = 0 < \infty$, se cumple $\mu(\varnothing) = 0$.
+    \item \textbf{Aditividad sobre uniones finitas disjuntas:}
+    Sean $E_1, E_2, \dots, E_n \in \mathcal{P}(\mathbb{N})$ conjuntos disjuntos dos a dos. Distinguimos dos casos:
+    \begin{itemize}
+        \item \textit{Caso 1: Todos los $E_i$ son finitos ($\mathrm{card}(E_i) < \infty$ para todo $i$).}
+        La unión finita de conjuntos finitos es finita ($\mathrm{card}(\bigsqcup_{i=1}^n E_i) < \infty$), por lo que:
+        \[
+            \mu\left( \bigsqcup_{i=1}^n E_i \right) = 0 \quad \text{y} \quad \sum_{i=1}^n \mu(E_i) = \sum_{i=1}^n 0 = 0
+        \]
+        \item \textit{Caso 2: Al menos un conjunto $E_{k}$ es infinito ($\mathrm{card}(E_{k}) = \infty$).}
+        La unión de la colección contiene un conjunto infinito, luego es infinita ($\mathrm{card}(\bigsqcup_{i=1}^n E_i) = \infty$). Por tanto:
+        \[
+            \mu\left( \bigsqcup_{i=1}^n E_i \right) = \infty \quad \text{y} \quad \sum_{i=1}^n \mu(E_i) = \mu(E_k) + \sum_{i \neq k} \mu(E_i) = \infty + \dots = \infty
+        \]
+    \end{itemize}
+\end{enumerate}
+
+En todos los casos se verifica la igualdad $\mu\left( \bigsqcup_{i=1}^n E_i \right) = \sum_{i=1}^n \mu(E_i)$, por lo que **$\mu$ es una función de conjunto aditiva**.
+
+\begin{center}
+    \includegraphics[width=0.55\linewidth]{imagenes/examenes_resueltos/Parcial26-27_3.png}
+    \captionof{figure}{Comparación de la medida de uniones finitas frente a uniones numerables de conjuntos finitos}
+\end{center}
+
+\paragraph{2. Estudio de la $\sigma$-aditividad y condición de medida:}
+Para que $\mu$ sea una medida, debe satisfacer la propiedad de $\sigma$-aditividad sobre la $\sigma$-álgebra $\mathcal{P}(\mathbb{N})$.
+
+Consideremos la sucesión de subconjuntos unipuntuales $E_n = \{n\}$ para cada $n \in \mathbb{N}$.
+\begin{itemize}
+    \item Los conjuntos $E_n$ son disjuntos dos a dos ($E_i \cap E_j = \varnothing$ para $i \neq j$).
+    \item Cada $E_n$ es un conjunto finito ($\mathrm{card}(E_n) = 1 < \infty$), por lo que $\mu(E_n) = 0$ para todo $n \in \mathbb{N}$.
+    \item La suma de las medidas de la sucesión es:
+    \[
+        \sum_{n=1}^\infty \mu(E_n) = \sum_{n=1}^\infty 0 = 0
+    \]
+    \item Por otro lado, la unión numerable disjunta de todos los términos es el conjunto de los números naturales:
+    \[
+        \bigcup_{n=1}^\infty E_n = \bigcup_{n=1}^\infty \{n\} = \mathbb{N}
+    \]
+    Como $\mathbb{N}$ es un conjunto infinito ($\mathrm{card}(\mathbb{N}) = \infty$), evaluando la función de conjunto obtenemos:
+    \[
+        \mu\left( \bigcup_{n=1}^\infty E_n \right) = \mu(\mathbb{N}) = \infty
+    \]
+\end{itemize}
+
+Puesto que $\mu\left( \bigcup_{n=1}^\infty E_n \right) = \infty \neq 0 = \sum_{n=1}^\infty \mu(E_n)$, la función de conjunto $\mu$ **no es $\sigma$-aditiva** y, en consecuencia, **no es una medida**.
+\end{problema}
+
+\newpage
+%===================
+% Problema 4: 
+%===================
+\begin{problema}[Caracterización de $\sigma$-álgebra a partir de un álgebra cerrada por uniones disjuntas]
+Sea $\Omega$ un conjunto y sea $\mathcal{Q}$ un álgebra de subconjuntos de $\Omega$. Demostrar que si $\mathcal{Q}$ es cerrada bajo la unión numerable de conjuntos disjuntos dos a dos, entonces $\mathcal{Q}$ es una $\sigma$-álgebra sobre $\Omega$.
+
+\tcblower
+
+Recordemos que, por hipótesis, $\mathcal{Q}$ satisface la estructura de álgebra sobre $\Omega$:
+\begin{enumerate}[label=\arabic*.]
+    \item $\Omega \in \mathcal{Q}$.
+    \item Cierre por complementación: Si $A \in \mathcal{Q} \implies A^c \in \mathcal{Q}$.
+    \item Cierre por uniones e intersecciones finitas: Si $A, B \in \mathcal{Q} \implies A \cup B \in \mathcal{Q}$ y $A \cap B \in \mathcal{Q}$.
+\end{enumerate}
+
+Para probar que $\mathcal{Q}$ es una $\sigma$-álgebra, debemos demostrar que es cerrada bajo uniones numerables arbitrarias.
+
+Sea $(A_n)_{n \in \mathbb{N}} \subseteq \mathcal{Q}$ una sucesión arbitraria de conjuntos medibles de $\mathcal{Q}$ (no necesariamente disjuntos).
+
+\paragraph{1. Construcción de una sucesión disjunta equivalente:}
+A partir de la sucesión $(A_n)_{n \in \mathbb{N}}$, construimos las uniones acumuladas finitas:
+\[
+    C_1 = A_1, \quad C_n = \bigcup_{k=1}^n A_k, \quad \forall n \ge 1
+\]
+Como $\mathcal{Q}$ es un álgebra, el cierre por uniones finitas garantiza que $C_n \in \mathcal{Q}$ para todo $n \in \mathbb{N}$.
+
+Definimos ahora la sucesión de diferencias sucesivas $(D_n)_{n \in \mathbb{N}}$:
+\[
+    D_1 = C_1 = A_1, \qquad D_n = C_n \setminus C_{n-1} = C_n \cap C_{n-1}^c, \quad \forall n \ge 2
+\]
+Puesto que $C_n \in \mathcal{Q}$ y $C_{n-1}^c \in \mathcal{Q}$, por estabilidad bajo intersecciones finitas se tiene que $D_n \in \mathcal{Q}$ para todo $n \in \mathbb{N}$.
+
+\begin{center}
+    \includegraphics[width=0.85\linewidth]{imagenes/examenes_resueltos/Parcial26-27_4.png}
+    \captionof{figure}{Disyuntivización de la sucesión $A_n$ mediante anillos inconexos $D_n = C_n \setminus C_{n-1}$}
+\end{center}
+
+\paragraph{2. Verificación de las propiedades de $(D_n)_{n \in \mathbb{N}}$:}
+\begin{itemize}
+    \item \textbf{Disjuntitud dos a dos:} Por construcción, cada elemento $x \in D_n$ pertenece a $C_n$ pero no a $C_{n-1}$, lo que implica que $x \notin D_k$ para todo $k < n$. Así, $D_i \cap D_j = \varnothing$ para todo $i \neq j$.
+    \item \textbf{Coincidencia de uniones:}
+    \[
+        \bigcup_{n=1}^\infty D_n = \bigcup_{n=1}^\infty C_n = \bigcup_{n=1}^\infty A_n
+    \]
+\end{itemize}
+
+\paragraph{3. Conclusión:}
+Por la hipótesis del problema, el álgebra $\mathcal{Q}$ es cerrada bajo uniones numerables de conjuntos disjuntos dos a dos. Aplicando esta condición a la sucesión disjunta $(D_n)_{n \in \mathbb{N}} \subseteq \mathcal{Q}$:
+\[
+    \bigcup_{n=1}^\infty D_n \in \mathcal{Q} \implies \bigcup_{n=1}^\infty A_n \in \mathcal{Q}
+\]
+Al ser $\mathcal{Q}$ cerrada bajo uniones numerables arbitrarias, se concluye que $\mathcal{Q}$ es una $\sigma$-álgebra sobre $\Omega$.
+\end{problema}

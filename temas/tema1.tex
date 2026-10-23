@@ -527,8 +527,12 @@ La clase de subconjuntos de $\mathbb{R}$ definida por:
     \mathcal{Y} = \{ \varnothing, \mathbb{R}, (x,y], (-\infty,z], (z,\infty) \mid x,y,z \in \mathbb{R}, \, x < y \}
 \]
 tiene estructura de semiálgebra.
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.8\linewidth]{imagenes/tema1/T1_3_a.png}
+    \vspace{0.2cm}
+\end{center}
 \end{proposicion}
-
 \begin{demostracion}
 Comprobamos explícitamente las tres condiciones de la definición de semiálgebra para la clase $\mathcal{Y}$:
 
@@ -560,6 +564,12 @@ Comprobamos explícitamente las tres condiciones de la definición de semiálgeb
                 \varnothing & \text{si } y \le s \text{ o } x \ge t
             \end{cases} \quad \in \mathcal{Y}
         \]
+
+        \begin{center}
+            \vspace{0.2cm}
+            \includegraphics[width=0.65\linewidth]{imagenes/tema1/T1_3_b.png}
+            \vspace{0.2cm}
+        \end{center}
 
         \item Intersección de un intervalo acotado $(x,y]$ con las semirrectas $(-\infty,z]$ y $(z,\infty)$:
         \[
@@ -602,11 +612,17 @@ Comprobamos explícitamente las tres condiciones de la definición de semiálgeb
         (z,\infty)^c &= (-\infty,z] \in \mathcal{Y}
     \end{align*}
 \end{enumerate}
+
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema1/T1_3_c.png}
+    \vspace{0.2cm}
+\end{center}
+
 Por consiguiente, la clase $\mathcal{Y}$ satisface todas las condiciones y tiene estructura de semiálgebra.
 \end{demostracion}
 
-\vspace{1cm}
-
+\newpage
 \begin{proposicion}{Clases equivalentes generadoras en $\mathbb{R}$}{prop5}
 Las clases de subconjuntos de $\mathbb{R}$:
 \[
@@ -616,6 +632,12 @@ generan la misma semiálgebra $\mathcal{S}(\mathcal{G}) = \mathcal{S}(\mathcal{C
 \[
     \mathcal{Q}(\mathcal{G}) = \mathcal{Q}(\mathcal{C}) = \mathcal{Q}(\mathcal{Y}) \quad \text{y} \quad \sigma(\mathcal{G}) = \sigma(\mathcal{C}) = \sigma(\mathcal{Y})
 \]
+
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.95\linewidth]{imagenes/tema1/T1_3_d.png}
+    \vspace{0.2cm}
+\end{center}
 \end{proposicion}
 
 \begin{demostracion}
@@ -657,6 +679,11 @@ Para demostrar que ambas clases generan la semiálgebra $\mathcal{Y}$, construim
         \]
         Dado que $\mathcal{Y}$ es una semiálgebra (Proposición \ref{prop:prop4}), concluimos que $\mathcal{S}(\mathcal{G}) = \mathcal{Y}$.
     \end{itemize}
+    \begin{center}
+        \vspace{0.2cm}
+        \includegraphics[width=0.85\linewidth]{imagenes/tema1/T1_3_e.png}
+        \vspace{0.2cm}
+    \end{center}
 
     \vspace{0.5em}
     \item \textbf{Construcción de la semiálgebra generada por $\mathcal{C}$, $\mathcal{S}(\mathcal{C})$:}
@@ -696,6 +723,11 @@ Para demostrar que ambas clases generan la semiálgebra $\mathcal{Y}$, construim
         \]
         Por tanto, $\mathcal{S}(\mathcal{C}) = \mathcal{Y}$.
     \end{itemize}
+    \begin{center}
+        \vspace{0.2cm}
+        \includegraphics[width=0.85\linewidth]{imagenes/tema1/T1_3_f.png}
+        \vspace{0.2cm}
+    \end{center}
 \end{enumerate}
 
 \paragraph{Conclusión sobre álgebras y $\sigma$-álgebras generadas:}
@@ -705,11 +737,21 @@ Al haber probado que $\mathcal{S}(\mathcal{G}) = \mathcal{S}(\mathcal{C}) = \mat
 \]
 \end{demostracion}
 
+\newpage
+%====================================================
+% PROPOSICIÓN 6: CARACTERIZACIÓN SIGMA-ÁLGEBRA DE BOREL 
+%====================================================
 \begin{proposicion}{Caracterización de la \texorpdfstring{$\sigma$}{sigma}-álgebra de Borel mediante semirrectas}{prop6}
 La $\sigma$-álgebra de Borel $\mathcal{B}$ de $\mathbb{R}$ coincide con la $\sigma$-álgebra generada por la clase de semirrectas cerradas por la derecha $\mathcal{C} = \{ (-\infty, a] \mid a \in \mathbb{R} \}$:
 \[
     \mathcal{B} = \sigma(\mathcal{C})
 \]
+
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.55\linewidth]{imagenes/tema1/T1_3_g.png}
+    \vspace{0.2cm}
+\end{center}
 \end{proposicion}
 
 \begin{demostracion}
@@ -728,6 +770,11 @@ Para probar la igualdad $\mathcal{B} = \sigma(\mathcal{C})$, demostramos formalm
     \[
         (-\infty, a] = \bigcap_{n=1}^\infty \left( -\infty, a + \frac{1}{n} \right)
     \]
+    \begin{center}
+        \vspace{0.2cm}
+        \includegraphics[width=0.55\linewidth]{imagenes/tema1/T1_3_h.png}
+        \vspace{0.2cm}
+    \end{center}
     Para cada $n \in \mathbb{N}$, el intervalo abierto $\left( -\infty, a + \frac{1}{n} \right)$ pertenece a la clase $\mathcal{A} \subseteq \mathcal{B}$. Dado que $\mathcal{B}$ es una $\sigma$-álgebra, es cerrada bajo intersecciones numerables, por lo que:
     \[
         (-\infty, a] = \bigcap_{n=1}^\infty \left( -\infty, a + \frac{1}{n} \right) \in \mathcal{B}
@@ -766,6 +813,11 @@ Para probar la igualdad $\mathcal{B} = \sigma(\mathcal{C})$, demostramos formalm
     \[
         (x,y) = \left( (x,y)^c \right)^c = \left( (-\infty, x] \cup [y, \infty) \right)^c \in \sigma(\mathcal{C})
     \]
+    \begin{center}
+        \vspace{0.2cm}
+        \includegraphics[width=0.6\linewidth]{imagenes/tema1/T1_3_i.png}
+        \vspace{0.2cm}
+    \end{center}
     
     \textit{Nota sobre la construcción directa:} Alternativamente, el intervalo abierto $(x,y)$ se puede expresar de forma directa como la intersección de la semirrecta $(-\infty, y)$ con el complementario de $(-\infty, x]$:
     \[
@@ -791,6 +843,11 @@ Sea $E \subseteq \Omega$ y $\mathcal{C} \subseteq \mathcal{P}(\Omega)$. Se verif
     \sigma_\Omega(\mathcal{C}) \cap E = \sigma_E(\mathcal{C} \cap E)
 \]
 donde $\sigma_\Omega(\mathcal{C}) \cap E = \{ B \cap E \mid B \in \sigma_\Omega(\mathcal{C}) \}$ representa la traza de $\sigma_\Omega(\mathcal{C})$ sobre $E$, y $\sigma_E(\mathcal{C} \cap E)$ es la $\sigma$-álgebra generada por $\mathcal{C} \cap E$ en el espacio universal $E$.
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema1/T1_3_j.png}
+    \vspace{0.2cm}
+\end{center}
 \end{teorema}
 
 \begin{demostracion}
@@ -871,6 +928,12 @@ Demostramos formalmente ambas inclusiones para establecer la igualdad:
 \end{enumerate}
 
 De la combinación de ambas inclusiones se obtiene la igualdad deseada $\sigma_\Omega(\mathcal{C}) \cap E = \sigma_E(\mathcal{C} \cap E)$.
+
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema1/T1_3_k.png}
+    \vspace{0.2cm}
+\end{center}
 \end{demostracion}
 
 \begin{demostracion}
@@ -882,11 +945,17 @@ Demostramos ambas inclusiones:
 \end{enumerate}
 \end{demostracion}
 
+\newpage
 \begin{proposicion}{Álgebra generada por una semiálgebra}{prop7}
 Si $\mathcal{S}$ es una semiálgebra, el álgebra generada $\mathcal{Q}(\mathcal{S})$ es la colección de todas las uniones finitas de conjuntos de $\mathcal{S}$ disjuntos dos a dos:
 \[
     \mathcal{Q}(\mathcal{S}) = \left\{ E \in \mathcal{P}(\Omega) \,\,\middle|\,\, E = \bigcup_{i=1}^r A_i, \text{ con } A_i \in \mathcal{S}, \, A_i \cap A_j = \varnothing \, (i \neq j) \right\}
 \]
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema1/T1_4_a.png}
+    \vspace{0.2cm}
+\end{center}
 \end{proposicion}
 \begin{demostracion}
 Denotemos por $\mathcal{C}$ a la colección de todas las uniones finitas de conjuntos de $S$ disjuntos dos a dos:
@@ -919,6 +988,12 @@ Queremos probar la igualdad $\mathcal{Q}(S) = \mathcal{C}$ mediante la doble inc
             \[
                 B_1 \cap B_2 = \left( \bigcup_{n=1}^{r_1} A_{1n} \right) \cap \left( \bigcup_{m=1}^{r_2} A_{2m} \right) = \bigcup_{n=1}^{r_1} \bigcup_{m=1}^{r_2} (A_{1n} \cap A_{2m})
             \]
+
+            \begin{center}
+                \vspace{0.2cm}
+                \includegraphics[width=0.85\linewidth]{imagenes/tema1/T1_4_b.png}
+                \vspace{0.2cm}
+            \end{center}
             Puesto que $S$ es semiálgebra, es cerrada por intersecciones finitas, luego $A_{1n} \cap A_{2m} \in S$ para todo $n, m$. Además, la colección de conjuntos $\{A_{1n} \cap A_{2m}\}$ consta de conjuntos disjuntos dos a dos, pues si $(n,m) \neq (n',m')$, bien $n \neq n'$ (y $A_{1n} \cap A_{1n'} = \varnothing$) o bien $m \neq m'$ (y $A_{2m} \cap A_{2m'} = \varnothing$).
             
             En consecuencia, $B_1 \cap B_2$ se ha escrito como una unión finita de conjuntos de $S$ disjuntos dos a dos, por lo que $B_1 \cap B_2 \in \mathcal{C}$.
@@ -929,10 +1004,20 @@ Queremos probar la igualdad $\mathcal{Q}(S) = \mathcal{C}$ mediante la doble inc
             \[
                 A_n^c = \bigsqcup_{k=1}^{l_n} B_{nk}, \quad \text{con } B_{nk} \in S \text{ disjuntos dos a dos}
             \]
+            \begin{center}
+                \vspace{0.2cm}
+                \includegraphics[width=0.95\linewidth]{imagenes/tema1/T1_4_c.png}
+                \vspace{0.2cm}
+            \end{center}
             Dado que $A_n^c \in \mathcal{C}$ para todo $n=1,\dots,r$, aplicamos las leyes de De Morgan para el complemento de $B$:
             \[
                 B^c = \left( \bigcup_{n=1}^r A_n \right)^c = \bigcap_{n=1}^r A_n^c
             \]
+            \begin{center}
+                \vspace{0.2cm}
+                \includegraphics[width=0.95\linewidth]{imagenes/tema1/T1_4_d.png}
+                \vspace{0.2cm}
+            \end{center}
             Como ya hemos demostrado que $\mathcal{C}$ es cerrada bajo intersecciones finitas, la intersección finita de los conjuntos $A_n^c \in \mathcal{C}$ pertenece a $\mathcal{C}$, concluyendo que $B^c \in \mathcal{C}$.
         \end{enumerate}
         Habiendo verificado las tres propiedades, concluimos que $\mathcal{C}$ es un álgebra sobre $\Omega$.
@@ -954,6 +1039,11 @@ Queremos probar la igualdad $\mathcal{Q}(S) = \mathcal{C}$ mediante la doble inc
     \[
         \mathcal{C} \subseteq \mathcal{Q}(S)
     \]
+    \begin{center}
+        \vspace{0.2cm}
+        \includegraphics[width=0.65\linewidth]{imagenes/tema1/T1_4_e.png}
+        \vspace{0.2cm}
+    \end{center}
 \end{enumerate}
 
 De ambas inclusiones se deduce formalmente la igualdad $\mathcal{Q}(S) = \mathcal{C}$.
@@ -980,6 +1070,11 @@ Se verifican las siguientes propiedades:
     \item Toda clase monótona que sea álgebra es una $\sigma$-álgebra.
     \item La clase monótona generada por un álgebra es un álgebra.
 \end{enumerate}
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema1/T1_4_f.png}
+    \vspace{0.2cm}
+\end{center}
 \end{proposicion}
 
 \begin{demostracion}
@@ -991,6 +1086,7 @@ Demostramos cada punto:
 \end{enumerate}
 \end{demostracion}
 
+\newpage
 \begin{lema}{Toda \texorpdfstring{$\sigma$}{sigma}-álgebra es clase monótona}{lema1}
 Sea $\mathcal{G}$ una $\sigma$-álgebra sobre $\Omega$. Entonces $\mathcal{G}$ tiene estructura de clase monótona.
 \end{lema}
@@ -1011,8 +1107,14 @@ Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión monótona d
     Puesto que $\mathcal{G}$ es una $\sigma$-álgebra, es cerrada por intersecciones numerables, luego $\displaystyle \lim_{n \to \infty} A_n = \bigcap_{n=1}^\infty A_n \in \mathcal{G}$.
 \end{itemize}
 En ambos casos, el límite de la sucesión monótona pertenece a $\mathcal{G}$. Por lo tanto, toda $\sigma$-álgebra $\mathcal{G}$ es una clase monótona.
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema1/T1_4_g.png}
+    \vspace{0.2cm}
+\end{center}
 \end{demostracion}
 
+\newpage
 \begin{lema}{Toda clase monótona que es álgebra es \texorpdfstring{$\sigma$}{sigma}-álgebra}{lema2}
 Sea $\mathcal{M}$ una clase monótona sobre $\Omega$. Si $\mathcal{M}$ es un álgebra, entonces $\mathcal{M}$ es una $\sigma$-álgebra.
 \end{lema}
@@ -1031,8 +1133,14 @@ Dado que $\mathcal{M}$ es una clase monótona, debe contener al límite de cualq
     \bigcup_{n=1}^\infty A_n = \bigcup_{k=1}^\infty B_k = \lim_{k \to \infty} B_k \in \mathcal{M}
 \]
 Por consiguiente, $\mathcal{M}$ es cerrada bajo uniones numerables y constituye una $\sigma$-álgebra.
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema1/T1_4_h.png}
+    \vspace{0.2cm}
+\end{center}
 \end{demostracion}
 
+\newpage
 \begin{lema}{La clase monótona generada por un álgebra es un álgebra}{lema3}
 Sea $\mathcal{G}$ un álgebra sobre $\Omega$. La clase monótona generada por $\mathcal{G}$, denotada por $\mathcal{M}(\mathcal{G})$, es un álgebra.
 \end{lema}
@@ -1096,6 +1204,11 @@ Comprobamos secuencialmente que $\mathcal{M}(\mathcal{G})$ satisface las tres pr
 \end{enumerate}
 
 Al cumplirse las tres condiciones, $\mathcal{M}(\mathcal{G})$ tiene estructura de álgebra.
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.75\linewidth]{imagenes/tema1/T1_4_i.png}
+    \vspace{0.2cm}
+\end{center}
 \end{demostracion}
 
 \newpage
@@ -1105,6 +1218,12 @@ Sea $Q$ un álgebra sobre $\Omega$. La clase monótona generada por $Q$ coincide
 \[
     \mathcal{M}(Q) = \sigma(Q)
 \]
+
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.3\linewidth]{imagenes/tema1/T1_4_j.png}
+    \vspace{0.2cm}
+\end{center}
 \end{teorema}
 
 \begin{demostracion}
@@ -1138,68 +1257,217 @@ De la combinación de ambas inclusiones se obtiene la igualdad deseada:
 \[
     \mathcal{M}(Q) = \sigma(Q)
 \]
+
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.66\linewidth]{imagenes/tema1/T1_4_k.png}
+    \vspace{0.2cm}
+\end{center}
 \end{demostracion}
-
-\newpage
-
 \section{Imagen directa e inversa de una aplicación}
+\begin{definicion}{Conceptos fundamentales de aplicaciones e imágenes directas e inversas}{def:aplicacion_imagenes}
+Sean $\Omega_1$ y $\Omega_2$ dos conjuntos y sea $f: \Omega_1 \to \Omega_2$ una aplicación entre ellos (una regla o ley que asigna a cada elemento $\omega_1 \in \Omega_1$ un único elemento $f(\omega_1) \in \Omega_2$).
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Inyectividad:} $f$ es \textit{inyectiva} si elementos distintos de $\Omega_1$ tienen imágenes distintas en $\Omega_2$, es decir:
+    \[\forall \omega_1, \omega_1' \in \Omega_1, \quad f(\omega_1) = f(\omega_1') \implies \omega_1 = \omega_1'\]
+    \item \textbf{Epiyectividad (Sobreyectividad):} $f$ es \textit{epiyectiva} si todo elemento de $\Omega_2$ tiene al menos una antiimagen en $\Omega_1$, es decir:
+    \[\forall \omega_2 \in \Omega_2, \quad \exists \omega_1 \in \Omega_1 \text{ tal que } f(\omega_1) = \omega_2\]
+    \item \textbf{Biyectividad:} $f$ es \textit{biyectiva} si es inyectiva y epiyectiva simultáneamente (establece una correspondencia biunívoca uno a uno entre elementos de $\Omega_1$ y $\Omega_2$).
+    \begin{center}
+        \vspace{0.2cm}
+        \includegraphics[width=0.75\linewidth]{imagenes/tema1/T1_4_l.png}
+        \vspace{0.2cm}
+    \end{center}
+    \item \textbf{Imagen directa:} Dada la aplicación $f$, se define la imagen directa de un subconjunto $A \in \mathcal{P}(\Omega_1)$ como el conjunto:
+    \[f(A) = \{ \omega_2 \in \Omega_2 \mid \exists \omega_1 \in A \text{ con } f(\omega_1) = \omega_2 \} \subseteq \Omega_2\]
+    \item \textbf{Imagen inversa (Antiimagen):} Se define la imagen inversa de un subconjunto $B \in \mathcal{P}(\Omega_2)$ como el conjunto:
+    \[f^{-1}(B) = \{ \omega_1 \in \Omega_1 \mid f(\omega_1) \in B \} \equiv \{ f \in B \} \subseteq \Omega_1\]
+    \textit{Nota de notación:} A diferencia de la transformación puntual de elementos $f^{-1}(\omega_2)$ (que exige biyectividad), la imagen inversa entre subconjuntos $f^{-1}(B)$ existe siempre para cualquier aplicación $f$.
+\end{enumerate}
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.85\linewidth]{imagenes/tema1/T1_4_m.png}
+    \vspace{0.2cm}
+\end{center}
+\end{definicion}
 
-Sean $\Omega_1$ y $\Omega_2$ dos conjuntos y $f: \Omega_1 \to \Omega_2$ una aplicación:
+% ------------------------------------------------------------------------------
+\begin{ejemplo}{Modelización probabilística mediante antiimágenes de un juego de dados}{ej:1_4}
+En Teoría de la Probabilidad, la determinación de sucesos suele reducirse a calcular antiimágenes de subconjuntos borelianos mediante variables aleatorias.
+
+Consideremos un juego que consiste en lanzar dos dados distinguibles, donde se gana si la suma de las puntuaciones es mayor o igual que $7$.
 \begin{itemize}
-    \item Imagen directa de $A \subseteq \Omega_1$: $f(A) = \{ \omega_2 \in \Omega_2 \mid \exists \omega_1 \in A \text{ con } f(\omega_1) = \omega_2 \}$.
-    \item Imagen inversa de $B \subseteq \Omega_2$: $f^{-1}(B) = \{ \omega_1 \in \Omega_1 \mid f(\omega_1) \in B \}$.
+    \item Espacio muestral del primer dado: $\Omega_1 = \{1, 2, 3, 4, 5, 6\}$.
+    \item Espacio muestral del segundo dado: $\Omega_2 = \{1, 2, 3, 4, 5, 6\}$.
+    \item El espacio producto de resultados elementales es $\Omega_1 \times \Omega_2$.
 \end{itemize}
 
-\begin{observacion}[Propiedades de la imagen inversa]
-Para cualquier aplicación $f: \Omega_1 \to \Omega_2$ y subconjuntos $B, B_i \subseteq \Omega_2$:
-\begin{enumerate}[label=\arabic*)]
-    \item $f^{-1}(\varnothing) = \varnothing$ y $f^{-1}(\Omega_2) = \Omega_1$
-    \item $f^{-1}(B^c) = (f^{-1}(B))^c$
-    \item $B_1 \subseteq B_2 \implies f^{-1}(B_1) \subseteq f^{-1}(B_2)$
-    \item $\displaystyle f^{-1}\left( \bigcup_{i \in I} B_i \right) = \bigcup_{i \in I} f^{-1}(B_i)$
-    \item $\displaystyle f^{-1}\left( \bigcap_{i \in I} B_i \right) = \bigcap_{i \in I} f^{-1}(B_i)$
-\end{enumerate}
-\end{observacion}
+Definimos la función suma como $f : \Omega_1 \times \Omega_2 \to \mathbb{R}$ dada por $f(\omega_1, \omega_2) = \omega_1 + \omega_2$.
+\begin{itemize}
+    \item Su recorrido o imagen directa del espacio total es:
+    \[\mathrm{Im}(f) = f(\Omega_1 \times \Omega_2) = \{2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12\} \subseteq \mathbb{R}\]
+    \item El suceso favorable ``ganar el juego'' se formaliza como la antiimagen del intervalo $[7, \infty) \subset \mathbb{R}$:
+    \begin{align*}
+        \text{``Suma mayor o igual que 7''} &\equiv \{ (\omega_1, \omega_2) \in \Omega_1 \times \Omega_2 \mid f(\omega_1, \omega_2) = \omega_1 + \omega_2 \ge 7 \} \\
+        &= \{ (\omega_1, \omega_2) \in \Omega_1 \times \Omega_2 \mid f(\omega_1, \omega_2) \in [7, \infty) \} \\
+        &= f^{-1}([7, \infty)) = f^{-1}([7, 12])
+    \end{align*}
+\end{itemize}
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema1/T1_4_n.png}
+    \vspace{0.2cm}
+\end{center}
+\end{ejemplo}
 
-\begin{proposicion}{Preservación de $\sigma$-álgebras por imagen inversa}{prop9}
-Dada una aplicación $f: \Omega_1 \to \Omega_2$, si $\mathcal{G}$ es una $\sigma$-álgebra sobre $\Omega_2$, la clase de las antiimágenes $f^{-1}(\mathcal{G}) = \{ f^{-1}(B) \mid B \in \mathcal{G} \}$ es una $\sigma$-álgebra sobre $\Omega_1$.
+\newpage
+% ------------------------------------------------------------------------------
+\begin{proposicion}{Propiedades fundamentales de la imagen inversa}{prop:propiedades_imagen_inversa}
+Dada una aplicación $f: \Omega_1 \to \Omega_2$ y subconjuntos $B, B_1, B_2, B_i \subseteq \Omega_2$, la imagen inversa preserva todas las operaciones conjuntistas:
+\begin{enumerate}[label=\arabic*)]
+    \item $f^{-1}(\varnothing) = \varnothing$ \quad y \quad $f^{-1}(\Omega_2) = \Omega_1$.
+    \item Preservación de complementarios: $f^{-1}(B^c) = \bigl(f^{-1}(B)\bigr)^c$.
+    \item Monotonía: $B_1 \subseteq B_2 \implies f^{-1}(B_1) \subseteq f^{-1}(B_2)$.
+    \item Preservación de uniones arbitrarias: $\displaystyle f^{-1}\left( \bigcup_{i \in I} B_i \right) = \bigcup_{i \in I} f^{-1}(B_i)$.
+    \item Preservación de intersecciones arbitrarias: $\displaystyle f^{-1}\left( \bigcap_{i \in I} B_i \right) = \bigcap_{i \in I} f^{-1}(B_i)$.
+\end{enumerate}
+
+\tcblower
+
+\begin{demostracion}
+Demostramos las propiedades principales mediante la equivalencia lógica de pertenencia de elementos:
+\begin{itemize}
+    \item \textbf{Propiedad 2 (Complementarios):} Para cualquier $\omega_1 \in \Omega_1$:
+    \[
+    \begin{array}{rl}
+        \displaystyle \omega_1 \in f^{-1}(B^c) & \displaystyle \iff f(\omega_1) \in B^c \iff f(\omega_1) \notin B \iff \omega_1 \notin f^{-1}(B) \iff \\[6pt]
+        & \displaystyle \iff \omega_1 \in (f^{-1}(B))^c
+    \end{array}
+    \]
+    \item \textbf{Propiedad 4 (Uniones arbitrarias):} Para cualquier $\omega_1 \in \Omega_1$:
+    \[
+    \begin{array}{rl}
+        \displaystyle \omega_1 \in f^{-1}\left(\bigcup_{i \in I} B_i\right) & \displaystyle \iff f(\omega_1) \in \bigcup_{i \in I} B_i \iff \exists i_0 \in I, \, f(\omega_1) \in B_{i_0} \iff \\[6pt]
+        & \displaystyle \iff \exists i_0 \in I, \, \omega_1 \in f^{-1}(B_{i_0})\iff \omega_1 \in \bigcup_{i \in I} f^{-1}(B_i)
+    \end{array}
+    \]
+    \item \textbf{Propiedad 5 (Intersecciones arbitrarias):} Análoga a la anterior sustituyendo el cuantificador existencial por el universal ($\forall i \in I$).
+\end{itemize}
+\end{demostracion}
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.85\linewidth]{imagenes/tema1/T1_4_o.png}
+    \vspace{0.2cm}
+\end{center}
+\end{proposicion}
+\newpage
+% ------------------------------------------------------------------------------
+\begin{proposicion}{Propiedades fundamentales de la imagen directa}{prop:propiedades_imagen_directa}
+Dada una aplicación $f: \Omega_1 \to \Omega_2$ y subconjuntos $A, A_1, A_2, A_i \subseteq \Omega_1$, la imagen directa verifica:
+\begin{enumerate}[label=\arabic*)]
+    \item $f(\varnothing) = \varnothing$.
+    \item $f(\Omega_1) \subseteq \Omega_2$, verificándose la igualdad $f(\Omega_1) = \Omega_2$ si y solo si $f$ es epiyectiva.
+    \item Comportamiento con complementarios:
+    \begin{itemize}
+        \item Si $f$ es inyectiva: $f(A^c) \subseteq (f(A))^c$.
+        \item Si $f$ es epiyectiva: $f(A^c) \supseteq (f(A))^c$.
+        \item Si $f$ es biyectiva: $f(A^c) = (f(A))^c$.
+    \end{itemize}
+    \item Monotonía: $A_1 \subseteq A_2 \implies f(A_1) \subseteq f(A_2)$.
+    \item Preservación de uniones arbitrarias: $\displaystyle f\left( \bigcup_{i \in I} A_i \right) = \bigcup_{i \in I} f(A_i)$.
+    \item Inclusión en intersecciones arbitrarias: $\displaystyle f\left( \bigcap_{i \in I} A_i \right) \subseteq \bigcap_{i \in I} f(A_i)$, teniéndose la igualdad cuando $f$ es inyectiva.
+\end{enumerate}
+
+\tcblower
+
+\begin{demostracion}
+Demostramos la inclusión estricta en intersecciones y el papel de la inyectividad:
+\begin{itemize}
+    \item \textbf{Propiedad 6 (Intersecciones):} Sea $\omega_2 \in f\left(\bigcap_{i \in I} A_i\right)$. Existe $\omega_1 \in \bigcap_{i \in I} A_i$ tal que $f(\omega_1) = \omega_2$. Como $\omega_1 \in A_i$ para todo $i \in I$, resulta $\omega_2 = f(\omega_1) \in f(A_i)$ para todo $i \in I$, luego $\omega_2 \in \bigcap_{i \in I} f(A_i)$.
+
+    \item \textbf{Igualdad bajo inyectividad:} Supongamos $f$ inyectiva y sea $\omega_2 \in \bigcap_{i \in I} f(A_i)$. Para cada $i \in I$, existe $\omega_1^{(i)} \in A_i$ con $f(\omega_1^{(i)}) = \omega_2$. Por la inyectividad de $f$, todos estos elementos coinciden en un único $\omega_1 \in \Omega_1$. Así, $\omega_1 \in A_i$ para todo $i \in I \implies \omega_1 \in \bigcap_{i \in I} A_i$, de donde $\omega_2 = f(\omega_1) \in f\left(\bigcap_{i \in I} A_i\right)$.
+\end{itemize}
+\end{demostracion}
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.85\linewidth]{imagenes/tema1/T1_4_p.png}
+    \vspace{0.2cm}
+\end{center}
+\end{proposicion}
+\newpage
+% ------------------------------------------------------------------------------
+\begin{proposicion}{Preservación de $\sigma$-álgebras por la imagen inversa}{prop9}
+Dada una aplicación $f: \Omega_1 \to \Omega_2$, si $\mathcal{G}$ es una $\sigma$-álgebra de subconjuntos de $\Omega_2$, la colección de las antiimágenes:
+\[
+    f^{-1}(\mathcal{G}) = \{ f^{-1}(B) \subseteq \Omega_1 \mid B \in \mathcal{G} \}
+\]
+es una $\sigma$-álgebra sobre $\Omega_1$.
 \end{proposicion}
 
 \begin{demostracion}
-Verificamos las condiciones:
-\begin{enumerate}
-    \item $\Omega_2 \in \mathcal{G} \implies f^{-1}(\Omega_2) = \Omega_1 \in f^{-1}(\mathcal{G})$.
-    \item Si $A \in f^{-1}(\mathcal{G})$, existe $B \in \mathcal{G}$ tal que $A = f^{-1}(B)$. Su complemento $A^c = (f^{-1}(B))^c = f^{-1}(B^c) \in f^{-1}(\mathcal{G})$ porque $B^c \in \mathcal{G}$.
-    \item Si $\{A_n\} \subseteq f^{-1}(\mathcal{G})$, con $A_n = f^{-1}(B_n)$ y $B_n \in \mathcal{G}$, la unión $\bigcup A_n = \bigcup f^{-1}(B_n) = f^{-1}\left(\bigcup B_n\right) \in f^{-1}(\mathcal{G})$ porque $\bigcup B_n \in \mathcal{G}$.
+Verificamos las tres condiciones constitutivas de una $\sigma$-álgebra utilizando las propiedades de la imagen inversa:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Pertenencia del conjunto total:} Como $\mathcal{G}$ es $\sigma$-álgebra sobre $\Omega_2$, se cumple $\Omega_2 \in \mathcal{G}$. Su antiimagen satisface $f^{-1}(\Omega_2) = \Omega_1 \in f^{-1}(\mathcal{G})$.
+    \item \textbf{Estabilidad por complementación:} Sea $A \in f^{-1}(\mathcal{G})$. Por definición, existe un suceso medible $B \in \mathcal{G}$ tal que $A = f^{-1}(B)$. Tomando el complementario respecto a $\Omega_1$:
+    \[
+        A^c = (f^{-1}(B))^c = f^{-1}(B^c)
+    \]
+    Como $\mathcal{G}$ es $\sigma$-álgebra, $B^c \in \mathcal{G}$, por lo que su antiimagen $f^{-1}(B^c) = A^c \in f^{-1}(\mathcal{G})$.
+    \item \textbf{Estabilidad por uniones numerables:} Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq f^{-1}(\mathcal{G})$ una sucesión de subconjuntos. Para cada $n \in \mathbb{N}$, existe $B_n \in \mathcal{G}$ tal que $A_n = f^{-1}(B_n)$. Intercambiando la unión numerable con la imagen inversa:
+    \[
+        \bigcup_{n=1}^\infty A_n = \bigcup_{n=1}^\infty f^{-1}(B_n) = f^{-1}\left( \bigcup_{n=1}^\infty B_n \right)
+    \]
+    Al ser $\mathcal{G}$ una $\sigma$-álgebra, la unión numerable $\bigcup_{n=1}^\infty B_n \in \mathcal{G}$, de donde se concluye que $\bigcup_{n=1}^\infty A_n \in f^{-1}(\mathcal{G})$.
 \end{enumerate}
+Por lo tanto, $f^{-1}(\mathcal{G})$ es una $\sigma$-álgebra sobre $\Omega_1$.
 \end{demostracion}
-
+\newpage
+% ------------------------------------------------------------------------------
 \begin{teorema}{Teorema de los buenos conjuntos}{teo3}
-Si $f: \Omega_1 \to \Omega_2$ es una aplicación y $\mathcal{C}$ es una clase cualquiera de subconjuntos de $\Omega_2$, se verifica:
+Si $f: \Omega_1 \to \Omega_2$ es una aplicación y $\mathcal{C}$ es una clase cualquiera de subconjuntos de $\Omega_2$, la $\sigma$-álgebra generada por la antiimagen de $\mathcal{C}$ coincide con la antiimagen de la $\sigma$-álgebra generada por $\mathcal{C}$:
 \[
     \sigma(f^{-1}(\mathcal{C})) = f^{-1}(\sigma(\mathcal{C}))
 \]
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema1/T1_4_q.png}
+    \vspace{0.2cm}
+\end{center}
 \end{teorema}
 
 \begin{demostracion}
-Demostramos ambas inclusiones:
-\begin{enumerate}
-    \item ($\subseteq$): Como $\mathcal{C} \subseteq \sigma(\mathcal{C})$, aplicando la imagen inversa resulta $f^{-1}(\mathcal{C}) \subseteq f^{-1}(\sigma(\mathcal{C}))$. Por la Proposición \ref{prop:prop9}, $f^{-1}(\sigma(\mathcal{C}))$ es una $\sigma$-álgebra en $\Omega_1$. Dado que $\sigma(f^{-1}(\mathcal{C}))$ es la menor $\sigma$-álgebra que contiene a $f^{-1}(\mathcal{C})$, se tiene $\sigma(f^{-1}(\mathcal{C})) \subseteq f^{-1}(\sigma(\mathcal{C}))$.
-
-    \item ($\supseteq$): Definamos la clase de "buenos conjuntos" en $\Omega_2$:
+Demostramos el teorema mediante el método del doble encuadramiento demostrando ambas inclusiones:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Inclusión de izquierda a derecha ($\subseteq$):}
+    Puesto que la clase generadora cumple $\mathcal{C} \subseteq \sigma(\mathcal{C})$, aplicando la imagen inversa resulta $f^{-1}(\mathcal{C}) \subseteq f^{-1}(\sigma(\mathcal{C}))$.
+    Por la Proposición \ref{prop:prop9}, al ser $\sigma(\mathcal{C})$ una $\sigma$-álgebra sobre $\Omega_2$, la clase de antiimágenes $f^{-1}(\sigma(\mathcal{C}))$ es una $\sigma$-álgebra sobre $\Omega_1$.
+    Dado que $\sigma(f^{-1}(\mathcal{C}))$ es, por definición, la \textit{mínima} $\sigma$-álgebra sobre $\Omega_1$ que contiene a la familia $f^{-1}(\mathcal{C})$, se deduce que:
     \[
-        \mathcal{H} = \{ B \subseteq \Omega_2 \mid f^{-1}(B) \in \sigma(f^{-1}(\mathcal{C})) \}
+        \sigma(f^{-1}(\mathcal{C})) \subseteq f^{-1}(\sigma(\mathcal{C}))
     \]
-    $\mathcal{H}$ es una $\sigma$-álgebra en $\Omega_2$ porque preserva complementos y uniones numerables por las propiedades de la imagen inversa.
-    Además, para todo $C \in \mathcal{C}$, $f^{-1}(C) \in f^{-1}(\mathcal{C}) \subseteq \sigma(f^{-1}(\mathcal{C}))$, luego $\mathcal{C} \subseteq \mathcal{H}$.
-    Como $\sigma(\mathcal{C})$ es la menor $\sigma$-álgebra que contiene a $\mathcal{C}$, resulta $\sigma(\mathcal{C}) \subseteq \mathcal{H}$. Esto significa que para todo $B \in \sigma(\mathcal{C})$, $f^{-1}(B) \in \sigma(f^{-1}(\mathcal{C}))$, es decir, $f^{-1}(\sigma(\mathcal{C})) \subseteq \sigma(f^{-1}(\mathcal{C}))$.
+
+    \item \textbf{Inclusión de derecha a izquierda ($\supseteq$):}
+    Definimos la clase de los "`buenos conjuntos"' en el espacio de llegada $\Omega_2$ como aquellos subconjuntos cuya antiimagen pertenece a la $\sigma$-álgebra generada por $f^{-1}(\mathcal{C})$:
+    \[\mathcal{H} = \{ B \subseteq \Omega_2 \mid f^{-1}(B) \in \sigma(f^{-1}(\mathcal{C})) \} \subseteq \mathcal{P}(\Omega_2)\]
+    Comprobamos que $\mathcal{H}$ constituye una $\sigma$-álgebra sobre $\Omega_2$:
+    \begin{itemize}
+        \item $\Omega_2 \in \mathcal{H}$ pues $f^{-1}(\Omega_2) = \Omega_1 \in \sigma(f^{-1}(\mathcal{C}))$.
+        \item Si $B \in \mathcal{H} \implies f^{-1}(B) \in \sigma(f^{-1}(\mathcal{C})) \implies (f^{-1}(B))^c = f^{-1}(B^c) \in \sigma(f^{-1}(\mathcal{C})) \implies B^c \in \mathcal{H}$.
+        \item Si $\{B_n\}_{n \in \mathbb{N}} \subseteq \mathcal{H} \implies f^{-1}(B_n) \in \sigma(f^{-1}(\mathcal{C})) \implies \bigcup_{n=1}^\infty f^{-1}(B_n) = f^{-1}\left(\bigcup_{n=1}^\infty B_n\right) \in \sigma(f^{-1}(\mathcal{C})) \implies \bigcup_{n=1}^\infty B_n \in \mathcal{H}$.
+    \end{itemize}
+    Asimismo, para todo $C \in \mathcal{C}$, se cumple $f^{-1}(C) \in f^{-1}(\mathcal{C}) \subseteq \sigma(f^{-1}(\mathcal{C}))$, por lo que $\mathcal{C} \subseteq \mathcal{H}$.
+    Como $\sigma(\mathcal{C})$ es la \textit{mínima} $\sigma$-álgebra sobre $\Omega_2$ que contiene a $\mathcal{C}$, y $\mathcal{H}$ es una $\sigma$-álgebra que contiene a $\mathcal{C}$, se satisface:
+    \[\sigma(\mathcal{C}) \subseteq \mathcal{H}\]
+    Esto significa que para todo $B \in \sigma(\mathcal{C})$, se verifica que $f^{-1}(B) \in \sigma(f^{-1}(\mathcal{C}))$, es decir:
+    \[f^{-1}(\sigma(\mathcal{C})) \subseteq \sigma(f^{-1}(\mathcal{C}))\]
 \end{enumerate}
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema1/T1_4_r.png}
+    \vspace{0.2cm}
+\end{center}
+Al verificarse ambas inclusiones, queda demostrada la igualdad $\sigma(f^{-1}(\mathcal{C})) = f^{-1}(\sigma(\mathcal{C}))$.
 \end{demostracion}
-
-
-\newpage
-\phantom{a}
-
 \newpage
 % ==============================================================================
 % SECCIÓN DE PROBLEMAS RESUELTOS DEL TEMA 1
@@ -1246,8 +1514,11 @@ Recalcular los límites superior e inferior de las siguientes sucesiones de conj
     \[
         \lim_{n \to \infty} A_n = (0, 1)
     \]
-
-    \vspace{0.5em}
+    \begin{center}
+        \vspace{0.2cm}
+        \includegraphics[width=0.65\linewidth]{imagenes/tema1/T1_P1_a.png}
+        \vspace{0.2cm}
+    \end{center}
     % -------------------------------------------------------------------------
     % APARTADO 2 (PROBLEMA 4)
     % -------------------------------------------------------------------------
@@ -1283,11 +1554,15 @@ Recalcular los límites superior e inferior de las siguientes sucesiones de conj
         \varliminf_{n \to \infty} A_n &= \varliminf_{n \to \infty} A_{2n-1} \cap \varliminf_{n \to \infty} A_{2n} = \left( -2, \, \frac{2}{3} \right) \cap [0, 2) = \left[ 0, \, \frac{2}{3} \right)
     \end{align*}
     Como $\varliminf_{n \to \infty} A_n = [0, 2/3) \neq (-2, 2) = \varlimsup_{n \to \infty} A_n$, la sucesión $\{A_n\}$ no es convergente.
+    \begin{center}
+        \vspace{0.2cm}
+        \includegraphics[width=0.95\linewidth]{imagenes/tema1/T1_P1_b.png}
+        \vspace{0.2cm}
+    \end{center}
 \end{enumerate}
 \end{problema}
 
 \newpage
-
 % ------------------------------------------------------------------------------
 % PROBLEMA 8
 % ------------------------------------------------------------------------------
@@ -1329,6 +1604,12 @@ Analizamos el comportamiento de la intersección según el modo en que $\{s_k\}$
     \textit{Ejemplo:} Si $a_n = 1$ para todo $n \in \mathbb{N}$, entonces $s_k = 1$ para todo $k \ge 1$. Por tanto, $\sigma_k = (-\infty, 1)$ para todo $k$, resultando $\varlimsup A_n = (-\infty, 1)$.
 \end{enumerate}
 
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.75\linewidth]{imagenes/tema1/T1_P8.png}
+    \vspace{0.2cm}
+\end{center}
+
 \paragraph{Conclusión:}
 En general se verifica la inclusión en cadena:
 \[
@@ -1352,6 +1633,11 @@ Denotemos la partición atómica básica por $A = \{1,2\}$, $B = \{3,4\}$ y $C =
 \[
     \mathcal{S} = \{ \varnothing, \Omega, A, B, C, A \cup C \}
 \]
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.2\linewidth]{imagenes/tema1/T1_P9_a.png}
+    \vspace{0.2cm}
+\end{center}
 Comprobamos secuencialmente las tres condiciones de la Definición \ref{def:semialgebra}:
 
 \begin{enumerate}
@@ -1375,11 +1661,15 @@ Comprobamos secuencialmente las tres condiciones de la Definición \ref{def:semi
         \item $C^c = \{1,2,3,4\} = A \cup B$. Como $A, B \in \mathcal{S}$ y $A \cap B = \varnothing$, $C^c$ es unión finita disjunta de elementos de $\mathcal{S}$.
         \item $(A \cup C)^c = \{3,4\} = B \in \mathcal{S}$.
     \end{itemize}
+    \begin{center}
+        \vspace{0.2cm}
+        \includegraphics[width=0.85\linewidth]{imagenes/tema1/T1_P9_b.png}
+        \vspace{0.2cm}
+    \end{center}
 \end{enumerate}
 Dado que se satisfacen las tres propiedades, la clase $\mathcal{S}$ sí tiene estructura de semiálgebra.
 \end{problema}
 
-\newpage
 % ------------------------------------------------------------------------------
 % PROBLEMA 10 DE LA LISTA
 % ------------------------------------------------------------------------------
@@ -1531,6 +1821,11 @@ Sea $\mathbb{P} = \{2, 3, 5, 7, 11, \dots\} \subset \mathbb{N}$ el conjunto form
         \item $\mathbb{N} \in \mathcal{C}$ pues $\mathbb{P} \subseteq \mathbb{N}$.
         \item Sea $A \in \mathcal{C}$, de modo que $\mathbb{P} \subseteq A$. Su complementario respecto a $\mathbb{N}$, $A^c = \mathbb{N} \setminus A$, no contiene a ningún número primo ($A^c \cap \mathbb{P} = \varnothing$). Por tanto, $A^c \notin \mathcal{C}$, lo que muestra que $\mathcal{C}$ no es cerrada bajo complementación y no es una $\sigma$-álgebra.
     \end{enumerate}
+    \begin{center}
+        \vspace{0.2cm}
+        \includegraphics[width=0.9\linewidth]{imagenes/tema1/T1_P6_a.png}
+        \vspace{0.2cm}
+    \end{center}
 
     Definimos la clase de subconjuntos de $\mathbb{N}$ que no contienen a ningún número primo:
     \[
@@ -1557,12 +1852,22 @@ Sea $\mathbb{P} = \{2, 3, 5, 7, 11, \dots\} \subset \mathbb{N}$ el conjunto form
             \item Si existe al menos un subíndice $n_0 \in \mathbb{N}$ tal que $A_{n_0} \in \mathcal{C}$, se cumple $\mathbb{P} \subseteq A_{n_0} \subseteq \bigcup_{n=1}^\infty A_n$, por lo que $\bigcup_{n=1}^\infty A_n \in \mathcal{C} \subseteq \mathcal{C}_1$.
         \end{itemize}
         Por tanto, $\bigcup_{n=1}^\infty A_n \in \mathcal{C}_1$.
+        \begin{center}
+            \vspace{0.2cm}
+            \includegraphics[width=0.85\linewidth]{imagenes/tema1/T1_P6_b.png}
+            \vspace{0.2cm}
+        \end{center}
     \end{enumerate}
 
     Puesto que cualquier $\sigma$-álgebra que contenga a $\mathcal{C}$ debe contener a sus complementarios $\mathcal{F}$ y a sus uniones, $\mathcal{C}_1$ representa la menor $\sigma$-álgebra que contiene a $\mathcal{C}$. Concluimos que:
     \[
         \sigma(\mathcal{C}) = \mathcal{C}_1 = \{ A \in \mathcal{P}(\mathbb{N}) \mid \mathbb{P} \subseteq A \text{ o } A \cap \mathbb{P} = \varnothing \}
     \]
+    \begin{center}
+        \vspace{0.2cm}
+        \includegraphics[width=0.85\linewidth]{imagenes/tema1/T1_P6_c.png}
+        \vspace{0.2cm}
+    \end{center}
 
     \item \textbf{Estudio de los subconjuntos de múltiplos:}
 
@@ -1578,86 +1883,11 @@ Sea $\mathbb{P} = \{2, 3, 5, 7, 11, \dots\} \subset \mathbb{N}$ el conjunto form
         Por consiguiente, $M_6 \in \mathcal{F} \subseteq \mathcal{C}_1$, es decir, \textbf{los múltiplos de 6 sí pertenecen a la $\sigma$-álgebra $\sigma(\mathcal{C})$}.
     \end{itemize}
 \end{enumerate}
-\end{problema}
-
-\newpage
-
-\begin{problema}[(Proposición 7) Álgebra generada por una semiálgebra]
-Sea $S$ una semiálgebra sobre $\Omega$. Demostrar que el álgebra generada por $S$ viene dada por el conjunto de todas las uniones finitas de conjuntos disjuntos de $S$; es decir:
-\[
-    \mathcal{Q}(S) = \left\{ E \in \mathcal{P}(\Omega) \,\,\middle|\,\, E = \bigcup_{i=1}^n A_i \text{ para algún } n \in \mathbb{N}, \text{ donde } A_i \in S \text{ y } A_i \cap A_j = \varnothing \, (i \neq j) \right\}
-\]
-
-\tcblower
-
-Denotemos por $\mathcal{C}$ a la colección de todas las uniones finitas de conjuntos de $S$ disjuntos dos a dos:
-\[
-    \mathcal{C} = \left\{ E \in \mathcal{P}(\Omega) \,\,\middle|\,\, E = \bigcup_{n=1}^r A_n \text{ para algún } r \in \mathbb{N}, \text{ con } A_n \in S \text{ y } A_i \cap A_j = \varnothing \, (i \neq j) \right\}
-\]
-Queremos probar la igualdad $\mathcal{Q}(S) = \mathcal{C}$ mediante la doble inclusión:
-
-\begin{enumerate}
-    \item \textbf{Demostración de $\mathcal{Q}(S) \subseteq \mathcal{C}$:}
-
-    Para probar esta inclusión, demostraremos que $S \subseteq \mathcal{C}$ y que $\mathcal{C}$ tiene estructura de álgebra. Al ser $\mathcal{Q}(S)$ la menor álgebra que contiene a $S$, se deducirá automáticamente que $\mathcal{Q}(S) \subseteq \mathcal{C}$.
-
-    \begin{itemize}
-        \item \textit{Inclusión $S \subseteq \mathcal{C}$:}
-        Todo elemento $A \in S$ puede expresarse trivialmente como una unión finita de $r=1$ elementos de $S$. Por tanto, $S \subseteq \mathcal{C}$.
-
-        \item \textit{Comprobación de que $\mathcal{C}$ es un álgebra:}
-        \begin{enumerate}[label=\arabic*)]
-            \item \textit{Pertenencia del universo:} Como $S$ es una semiálgebra, $\Omega \in S$. Dado que $\Omega = \bigcup_{n=1}^1 \Omega$, se tiene directamente que $\Omega \in \mathcal{C}$.
-
-            \item \textit{Cierre por intersecciones finitas:}
-            Sean $B_1, B_2 \in \mathcal{C}$. Por definición, existen representaciones finitas en conjuntos disjuntos de $S$:
-            \[
-                B_1 = \bigcup_{n=1}^{r_1} A_{1n} \quad \text{y} \quad B_2 = \bigcup_{m=1}^{r_2} A_{2m}
-            \]
-            donde $A_{1n} \in S$ son disjuntos dos a dos entre sí, y $A_{2m} \in S$ son disjuntos dos a dos entre sí.
-            
-            Calculamos la intersección aplicando la propiedad distributiva:
-            \[
-                B_1 \cap B_2 = \left( \bigcup_{n=1}^{r_1} A_{1n} \right) \cap \left( \bigcup_{m=1}^{r_2} A_{2m} \right) = \bigcup_{n=1}^{r_1} \bigcup_{m=1}^{r_2} (A_{1n} \cap A_{2m})
-            \]
-            Puesto que $S$ es semiálgebra, es cerrada por intersecciones finitas, luego $A_{1n} \cap A_{2m} \in S$ para todo $n, m$. Además, la colección de conjuntos $\{A_{1n} \cap A_{2m}\}$ consta de conjuntos disjuntos dos a dos, pues si $(n,m) \neq (n',m')$, bien $n \neq n'$ (y $A_{1n} \cap A_{1n'} = \varnothing$) o bien $m \neq m'$ (y $A_{2m} \cap A_{2m'} = \varnothing$).
-            
-            En consecuencia, $B_1 \cap B_2$ se ha escrito como una unión finita de conjuntos de $S$ disjuntos dos a dos, por lo que $B_1 \cap B_2 \in \mathcal{C}$.
-
-            \item \textit{Cierre por complementación:}
-            Sea $B \in \mathcal{C}$ expresado como $B = \bigcup_{n=1}^r A_n$ con $A_n \in S$ disjuntos dos a dos.
-            Por la definición de semiálgebra, el complemento de cualquier elemento $A_n \in S$ se descompone como unión finita disjunta de elementos de $S$:
-            \[
-                A_n^c = \bigsqcup_{k=1}^{l_n} B_{nk}, \quad \text{con } B_{nk} \in S \text{ disjuntos dos a dos}
-            \]
-            Dado que $A_n^c \in \mathcal{C}$ para todo $n=1,\dots,r$, aplicamos las leyes de De Morgan para el complemento de $B$:
-            \[
-                B^c = \left( \bigcup_{n=1}^r A_n \right)^c = \bigcap_{n=1}^r A_n^c
-            \]
-            Como ya hemos demostrado que $\mathcal{C}$ es cerrada bajo intersecciones finitas, la intersección finita de los conjuntos $A_n^c \in \mathcal{C}$ pertenece a $\mathcal{C}$, concluyendo que $B^c \in \mathcal{C}$.
-        \end{enumerate}
-        Habiendo verificado las tres propiedades, concluimos que $\mathcal{C}$ es un álgebra sobre $\Omega$.
-    \end{itemize}
-
-    Puesto que $\mathcal{C}$ es un álgebra que contiene a $S$, y $\mathcal{Q}(S)$ es por definición la menor álgebra que contiene a $S$, se tiene:
-    \[
-        \mathcal{Q}(S) \subseteq \mathcal{C}
-    \]
-
-    \item \textbf{Demostración de $\mathcal{C} \subseteq \mathcal{Q}(S)$:}
-
-    Sea $\mathcal{G}$ cualquier álgebra sobre $\Omega$ que contenga a $S$ ($S \subseteq \mathcal{G}$).
-    Al ser $\mathcal{G}$ un álgebra, debe ser cerrada bajo uniones finitas de sus elementos. En particular, contiene a todas las uniones finitas de conjuntos disjuntos de $S$. Por consiguiente:
-    \[
-        \mathcal{C} \subseteq \mathcal{G}
-    \]
-    Puesto que esta inclusión se cumple para toda álgebra $\mathcal{G}$ que contenga a $S$, en particular se verifica para $\mathcal{G} = \mathcal{Q}(S)$, obteniendo:
-    \[
-        \mathcal{C} \subseteq \mathcal{Q}(S)
-    \]
-\end{enumerate}
-
-De ambas inclusiones se deduce formalmente la igualdad $\mathcal{Q}(S) = \mathcal{C}$.
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.85\linewidth]{imagenes/tema1/T1_P6_d.png}
+    \vspace{0.2cm}
+\end{center}
 \end{problema}
 
 \newpage
@@ -1789,6 +2019,11 @@ Comprobamos explícitamente que la clase $\mathcal{G}$ satisface las tres condic
         \item Si $A^c$ es numerable, entonces el propio conjunto $A^c$ es numerable, luego $A^c \in \mathcal{G}$.
     \end{itemize}
     En cualquiera de los dos casos se verifica que $A^c \in \mathcal{G}$.
+    \begin{center}
+        \vspace{0.2cm}
+        \includegraphics[width=0.85\linewidth]{imagenes/tema1/T1_P21_a.png}
+        \vspace{0.2cm}
+    \end{center}
 
     \item \textbf{Cierre por uniones numerables:}
     Sea $\{A_i\}_{i=1}^\infty \subseteq \mathcal{G}$ una colección numerable de conjuntos de $\mathcal{G}$. Distinguimos dos casos posibles:
@@ -1818,6 +2053,11 @@ Comprobamos explícitamente que la clase $\mathcal{G}$ satisface las tres condic
             \bigcup_{i=1}^\infty A_i \in \mathcal{G}
         \]
     \end{itemize}
+    \begin{center}
+        \vspace{0.2cm}
+        \includegraphics[width=0.9\linewidth]{imagenes/tema1/T1_P21_b.png}
+        \vspace{0.2cm}
+    \end{center}
 \end{enumerate}
 
 Al satisfacerse las tres propiedades, queda demostrado que la clase $\mathcal{G}$ es una $\sigma$-álgebra sobre $\Omega$ (conocida como la \textit{$\sigma$-álgebra co-numerable}).
@@ -1838,7 +2078,11 @@ Demostrar que el álgebra generada por $C$ coincide con la clase $C_3$, es decir
 \[
     \mathcal{Q}(C) = C_3
 \]
-
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.85\linewidth]{imagenes/tema1/T1_P22_a.png}
+    \vspace{0.2cm}
+\end{center}
 \tcblower
 
 Para probar que $\mathcal{Q}(C) = C_3$, establecemos la igualdad mediante la doble inclusión:
@@ -1901,6 +2145,11 @@ Para probar que $\mathcal{Q}(C) = C_3$, establecemos la igualdad mediante la dob
 \end{enumerate}
 
 De ambas inclusiones se concluye formalmente la igualdad $\mathcal{Q}(C) = C_3$.
+\begin{center}
+    \vspace{0.2cm}
+    \includegraphics[width=0.85\linewidth]{imagenes/tema1/T1_P22_b.png}
+    \vspace{0.2cm}
+\end{center}
 \end{problema}
 
 \newpage

@@ -17,7 +17,7 @@ Para cada suceso $B \in \mathcal{G}_2$, el elemento imagen inversa se denota ind
 \]
 
 % ------------------------------------------------------------------------------
-\begin{proposicion}[$\sigma$-álgebra generada por una aplicación]
+\begin{proposicion}{$\sigma$-álgebra generada por una aplicación}
 Sea $X : \Omega_1 \to \Omega_2$ una aplicación y $(\Omega_2, \mathcal{G}_2)$ un espacio medible. La mínima $\sigma$-álgebra sobre $\Omega_1$ respecto de la cual $X$ es medible viene dada por:
 \[
     X^{-1}(\mathcal{G}_2) = \{ A \subseteq \Omega_1 \mid \exists B \in \mathcal{G}_2 \text{ tal que } A = X^{-1}(B) \}
@@ -39,7 +39,7 @@ Procedemos en dos pasos:
 \end{demostracion}
 
 % ------------------------------------------------------------------------------
-\begin{corolario}[Criterio de medibilidad por clases generadoras]
+\begin{corolario}{Criterio de medibilidad por clases generadoras}
 Una aplicación $X : (\Omega_1, \mathcal{G}_1) \to (\Omega_2, \mathcal{G}_2)$ es medible si y solo si existe una clase de subconjuntos $\mathcal{C}$ de $\Omega_2$ tal que genera la $\sigma$-álgebra $\mathcal{G}_2$ ($\sigma(\mathcal{C}) = \mathcal{G}_2$) y satisface:
 \[
     X^{-1}(\mathcal{C}) \subseteq \mathcal{G}_1
@@ -66,7 +66,7 @@ Demostramos ambas implicaciones:
 \end{demostracion}
 
 % ------------------------------------------------------------------------------
-\begin{proposicion}[Medibilidad de aplicaciones continuas]
+\begin{proposicion}{Medibilidad de aplicaciones continuas}
 Sean $(\Omega_1, \mathcal{T}_1)$ y $(\Omega_2, \mathcal{T}_2)$ dos espacios topológicos, y sean $\mathcal{B}_1 = \sigma(\mathcal{T}_1)$ y $\mathcal{B}_2 = \sigma(\mathcal{T}_2)$ sus respectivas $\sigma$-álgebras de Borel. Si la aplicación $X : \Omega_1 \to \Omega_2$ es continua, entonces $X$ es medible respecto a $(\mathcal{B}_1, \mathcal{B}_2)$.
 \end{proposicion}
 
@@ -83,7 +83,7 @@ Por consiguiente, $X : (\Omega_1, \mathcal{B}_1) \to (\Omega_2, \mathcal{B}_2)$ 
 \end{demostracion}
 
 % ------------------------------------------------------------------------------
-\begin{proposicion}[Composición de aplicaciones medibles]
+\begin{proposicion}{Composición de aplicaciones medibles}
 Sean $X : (\Omega_1, \mathcal{G}_1) \to (\Omega_2, \mathcal{G}_2)$ e $Y : (\Omega_2, \mathcal{G}_2) \to (\Omega_3, \mathcal{G}_3)$ dos aplicaciones medibles. Entonces la aplicación compuesta $Y \circ X : (\Omega_1, \mathcal{G}_1) \to (\Omega_3, \mathcal{G}_3)$ también es medible.
 \end{proposicion}
 
@@ -118,7 +118,7 @@ Por el Corolario de las clases generadoras, $f : (\Omega, \mathcal{G}) \to (\mat
 \]
 
 % ------------------------------------------------------------------------------
-\begin{proposicion}[Operaciones algebraicas con funciones medibles]
+\begin{proposicion}{Operaciones algebraicas con funciones medibles}
 Sean $f_1, f_2 : (\Omega, \mathcal{G}) \to (\mathbb{R}, \mathcal{B})$ dos funciones medibles y $c \in \mathbb{R}$ una constante. Entonces las siguientes funciones también son medibles:
 \begin{enumerate}[label=\alph*)]
     \item $f_3 = c$ (función constante).
@@ -132,7 +132,7 @@ Sean $f_1, f_2 : (\Omega, \mathcal{G}) \to (\mathbb{R}, \mathcal{B})$ dos funcio
 \end{proposicion}
 
 % ------------------------------------------------------------------------------
-\begin{proposicion}[Límites de sucesiones de funciones medibles]
+\begin{proposicion}{Límites de sucesiones de funciones medibles}
 Sea $\{f_n\}_{n \in \mathbb{N}}$ una sucesión de funciones medibles $f_n : (\Omega, \mathcal{G}) \to (\mathbb{R}, \mathcal{B})$. Entonces también son funciones medibles:
 \begin{enumerate}[label=\alph*)]
     \item $\sup_{n \in \mathbb{N}} \{f_n\}$ e $\inf_{n \in \mathbb{N}} \{f_n\}$.
@@ -141,7 +141,7 @@ Sea $\{f_n\}_{n \in \mathbb{N}}$ una sucesión de funciones medibles $f_n : (\Om
 \end{proposicion}
 
 % ------------------------------------------------------------------------------
-\begin{teorema}[Medida inducida por una aplicación medible]
+\begin{teorema}{Medida inducida por una aplicación medible}
 Sea $f : (\Omega_1, \mathcal{G}_1, \mu) \to (\Omega_2, \mathcal{G}_2)$ una aplicación medible. La composición $\mu_f = \mu \circ f^{-1}$ define una medida sobre $(\Omega_2, \mathcal{G}_2)$. Si además $\mu$ es una medida de probabilidad, entonces $\mu_f = \mu \circ f^{-1}$ también es una probabilidad sobre $(\Omega_2, \mathcal{G}_2)$.
 \end{teorema}
 
