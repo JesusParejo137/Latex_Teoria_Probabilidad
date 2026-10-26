@@ -13,7 +13,7 @@
         \mu\left(\bigcup_{i=1}^n A_i\right)=\sum_{i=1}^n \mu(A_i)
         \]
     \end{enumerate}
-    y diremos que es $\sigma-aditiva$ si:
+    y diremos que es $\mathbf{\sigma-aditiva}$ si:
     \begin{enumerate}[label=\alph*)]
         \item $\mu(\varnothing)=0$
         \item Si $A_1,\hdots,A_n,\hdots\in\mathcal{C}$ disjuntos dos a dos ($A_i\cap A_j=\varnothing, i\neq j$), entonces
@@ -53,6 +53,9 @@ Demostramos formalmente cada apartado haciendo uso de la propiedad de aditividad
     \[
         A \cup B = (A \setminus B) \cup (A \cap B) \cup (B \setminus A)
     \]
+    \begin{center}
+        \includegraphics[width=0.4\linewidth]{imagenes/tema2/T2_1_a.png}
+    \end{center}
     Aplicando la aditividad finita sobre esta descomposición:
     \[
         \mu(A \cup B) = \mu(A \setminus B) + \mu(A \cap B) + \mu(B \setminus A)
@@ -65,7 +68,9 @@ Demostramos formalmente cada apartado haciendo uso de la propiedad de aditividad
     \[
         \mu(A) + \mu(B) = \mu(A \setminus B) + \mu(A \cap B) + \mu(B \setminus A) + \mu(A \cap B) = \mu(A \cup B) + \mu(A \cap B)
     \]
-
+    \begin{center}
+        \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_1_b.png}
+    \end{center}
     \begin{observacion}
     En la teoría de la probabilidad, al trabajar con medidas acotadas por 1, es habitual despejar la expresión como $P(A \cup B) = P(A) + P(B) - P(A \cap B)$. Sin embargo, en la teoría general de la medida donde las funciones de conjunto pueden tomar valores infinitos, no es correcto realizar la resta si $\mu(A \cap B) = \infty$, ya que se incurriría en la indeterminación $\infty - \infty$. Por ello, la formulación dada en la Proposición representa la forma aditiva general e indiscutible.
     \end{observacion}
@@ -78,6 +83,9 @@ Demostramos formalmente cada apartado haciendo uso de la propiedad de aditividad
     \[
         \mu(A \setminus B) = \mu(A) - \mu(B)
     \]
+    \begin{center}
+        \includegraphics[width=0.55\linewidth]{imagenes/tema2/T2_1_c.png}
+    \end{center}
 
     \item Si $B \subseteq A$, volvemos a tener $\mu(A) = \mu(A \setminus B) + \mu(B)$. 
     Puesto que $\mu(A)$ y $\mu(B)$ están bien definidos al ser $A, B \in \mathcal{Q}$:
@@ -88,19 +96,10 @@ Demostramos formalmente cada apartado haciendo uso de la propiedad de aditividad
     En consecuencia, la medida infinita del subconjunto $B$ arrastra al superconjunto $A$ a tener su misma medida infinita.
 
     \item Se deduce inmediatamente por contrarrecíproco del apartado 4: si $\mu(B)$ fuese infinito ($+\infty$ o $-\infty$), por la propiedad 4 la medida de $A$ debería ser también infinita, contradiciendo la hipótesis de que $\mu(A)$ es finita. Por tanto, $\mu(B)$ es necesariamente finita.
+    \begin{center}
+        \includegraphics[width=0.85\linewidth]{imagenes/tema2/T2_1_d.png}
+    \end{center}
 \end{enumerate}
-\begin{center}
-    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_1_a.png}
-\end{center}
-\begin{center}
-    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_1_b.png}
-\end{center}
-\begin{center}
-    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_1_c.png}
-\end{center}
-\begin{center}
-    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_1_d.png}
-\end{center}
 \end{demostracion}
 
 \newpage
@@ -114,7 +113,7 @@ Demostramos formalmente cada apartado haciendo uso de la propiedad de aditividad
     \[
     \lim(\mu(A_n))=\mu(\lim(A_n))
     \]
-    Una función de conjunto $\mu$ se dice \textbf{continua descendendente} si para toda sucesión $\{A_n\}$ decreciente tal que $|\mu(A_{n_0}|<\infty$, para algún $n_0$, se verifica:
+    Una función de conjunto $\mu$ se dice \textbf{continua descendendente} si para toda sucesión $\{A_n\}$ decreciente tal que $|\mu(A_{n_0})|<\infty$, para algún $n_0$, se verifica:
     \[
     \lim(\mu(A_n))=\mu(\lim(A_n))
     \]
@@ -182,14 +181,14 @@ Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión de conjunto
 \end{enumerate}
 
 \begin{center}
-    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_1_teorema4.png}
+    \includegraphics[width=0.95\linewidth]{imagenes/tema2/T2_1_teorema4.png}
 \end{center}
 \end{demostracion}
 
 \newpage
 
 \begin{teorema}{Teorema de continuidad}{teo5}
-Sea $\mathcal{G}$ una $\sigma$-álgebra sobre $\Omega$ y $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ una función de conjunto aditiva. Si $\mu$ es $\sigma$-aditiva, entonces $\mu$ es continua.
+Sea $\mathcal{G}$ una $\sigma$-álgebra sobre $\Omega$ y $\mu : \mathcal{G} \to \overline{\mathbb{R}}$ una función de conjunto. Si $\mu$ es $\sigma$-aditiva, entonces $\mu$ es continua.
 \end{teorema}
 
 \begin{demostracion}
@@ -211,8 +210,14 @@ Para probar que $\mu$ es continua, debemos demostrar que es continua ascendente 
         \[
             \mu\left( \lim_{n \to \infty} A_n \right) = \pm\infty
         \]
-        Por tanto, en este caso se cumple trivialmente $\displaystyle \lim_{n \to \infty} \mu(A_n) = \mu\left( \lim_{n \to \infty} A_n \right) = \pm\infty$.
+        Por tanto, en este caso se cumple trivialmente
+        \[
+        \lim_{n \to \infty} \mu(A_n) = \mu\left( \lim_{n \to \infty} A_n \right) = \pm\infty
+        \]
 
+        \begin{center}
+            \includegraphics[width=0.85\linewidth]{imagenes/tema2/T2_1_e.png}
+        \end{center}
         \item \textit{Caso 2: $|\mu(A_n)| < +\infty$ para todo $n \in \mathbb{N}$.}
         
         Definimos la sucesión de conjuntos disjuntos $\{B_n\}_{n \in \mathbb{N}}$ mediante las coronas (tomando $A_0 = \varnothing$):
@@ -227,6 +232,9 @@ Para probar que $\mu$ es continua, debemos demostrar que es continua ascendente 
                 \mu(B_n) = \mu(A_n \setminus A_{n-1}) = \mu(A_n) - \mu(A_{n-1})
             \]
         \end{itemize}
+        \begin{center}
+            \includegraphics[width=0.85\linewidth]{imagenes/tema2/T2_1_f.png}
+        \end{center}
         Dado que $\mu$ es $\sigma$-aditiva por hipótesis, calculamos la medida del límite:
         \begin{align*}
             \mu\left( \lim_{n \to \infty} A_n \right) &= \mu\left( \bigcup_{i=1}^\infty A_i \right) = \mu\left( \bigcup_{i=1}^\infty B_i \right) = \sum_{i=1}^\infty \mu(B_i) \\
@@ -236,6 +244,9 @@ Para probar que $\mu$ es continua, debemos demostrar que es continua ascendente 
     \end{itemize}
     En ambos casos se verifica que $\displaystyle \lim_{n \to \infty} \mu(A_n) = \mu\left( \lim_{n \to \infty} A_n \right)$, demostrando que $\mu$ es continua ascendente.
 
+    \begin{center}
+        \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_1_g.png}
+    \end{center}
     \item \textbf{Continuidad descendente:}
     
     Sea $\{A_n\}_{n \in \mathbb{N}} \subseteq \mathcal{G}$ una sucesión decreciente ($A_1 \supseteq A_2 \supseteq \dots \supseteq A_n \supseteq \dots$) tal que existe algún $k \in \mathbb{N}$ con $\mu(A_k)$ finito.
@@ -254,7 +265,6 @@ Para probar que $\mu$ es continua, debemos demostrar que es continua ascendente 
     \[
         \lim_{n \to \infty} B_n = \lim_{n \to \infty} (A_k \setminus A_{n+k-1}) = A_k \setminus \left( \lim_{n \to \infty} A_n \right)
     \]
-
     Por la continuidad ascendente probada en el apartado anterior, se verifica que:
     \[
         \mu\left( \lim_{n \to \infty} B_n \right) = \lim_{n \to \infty} \mu(B_n)
@@ -271,7 +281,9 @@ Para probar que $\mu$ es continua, debemos demostrar que es continua ascendente 
             &= \mu(A_k) - \lim_{n \to \infty} \mu(A_{n+k-1}) = \mu(A_k) - \lim_{n \to \infty} \mu(A_n)
         \end{align*}
     \end{itemize}
-
+    \begin{center}
+        \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_1_h.png}
+    \end{center}
     Igualando ambas expresiones:
     \[
         \mu(A_k) - \mu\left( \lim_{n \to \infty} A_n \right) = \mu(A_k) - \lim_{n \to \infty} \mu(A_n)
@@ -284,19 +296,6 @@ Para probar que $\mu$ es continua, debemos demostrar que es continua ascendente 
 \end{enumerate}
 
 Al ser continua tanto ascendente como descendentemente, queda demostrado que la función de conjunto $\mu$ es continua.
-
-\begin{center}
-    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_1_e.png}
-\end{center}
-\begin{center}
-    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_1_f.png}
-\end{center}
-\begin{center}
-    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_1_g.png}
-\end{center}
-\begin{center}
-    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_1_h.png}
-\end{center}
 \end{demostracion}
 
 \newpage
@@ -489,7 +488,7 @@ Si $P : \mathcal{G} \to \mathbb{R}$ es una medida de probabilidad y $\{A_n\}_{n 
 Sean $\mu, \nu : \mathcal{G} \to \overline{\mathbb{R}}$ dos funciones de conjunto $\sigma$-aditivas sobre el espacio medible $(\Omega, \mathcal{G})$.
 
 \begin{definicion}{Medidas mutuamente singulares}{def:singulares}
-Decimos que las medidas $\mu$ y $\nu$ son \textit{mutuamente singulares} (o ortogonales), y lo denotamos por $\nu \perp \mu$, si existe algún conjunto medible $A \in \mathcal{G}$ tal que:
+Decimos que las medidas $\mu$ y $\nu$ son \textbf{mutuamente singulares} (o ortogonales), y lo denotamos por $\nu \perp \mu$, si existe algún conjunto medible $A \in \mathcal{G}$ tal que:
 \[
     \nu(A) = 0 \quad \text{y} \quad \mu(A^c) = 0
 \]
@@ -497,19 +496,19 @@ En este caso, la medida $\nu$ está concentrada en el conjunto $A^c$, mientras q
 \end{definicion}
 
 \begin{definicion}{Continuidad absoluta de medidas}{def:abs_continua}
-Decimos que $\nu$ es \textit{absolutamente continua} respecto a $\mu$, y lo denotamos por $\nu \ll \mu$, si y solo si $\nu$ se anula sobre todos los conjuntos de la $\sigma$-álgebra $\mathcal{G}$ sobre los que $\mu$ se anula. Es decir:
+Decimos que $\nu$ es \textbf{absolutamente continua} respecto a $\mu$, y lo denotamos por $\nu \ll \mu$, si y solo si $\nu$ se anula sobre todos los conjuntos de la $\sigma$-álgebra $\mathcal{G}$ sobre los que $\mu$ se anula. Es decir:
 \[
     \forall A \in \mathcal{G}, \quad \mu(A) = 0 \implies \nu(A) = 0
 \]
 \end{definicion}
 
 \begin{observacion}
-La relación de continuidad absoluta $\ll$ define una relación de \textit{preorden} (reflexiva y transitiva) en el conjunto de todas las medidas sobre el espacio medible $(\Omega, \mathcal{G})$:
+La relación de continuidad absoluta $\ll$ define una relación de \textbf{preorden} (reflexiva y transitiva) en el conjunto de todas las medidas sobre el espacio medible $(\Omega, \mathcal{G})$:
 \begin{enumerate}[label=\arabic*.]
     \item \textbf{Reflexividad:} $\mu \ll \mu$ para toda medida $\mu$.
     \item \textbf{Transitividad:} Si $\nu_1 \ll \nu_2$ y $\nu_2 \ll \nu_3$, entonces $\nu_1 \ll \nu_3$.
 \end{enumerate}
-En general, la relación no es antisimétrica. Cuando dos medidas cumplen simultáneamente $\nu \ll \mu$ y $\mu \ll \nu$, se dice que $\mu$ y $\nu$ son \textit{medidas equivalentes} ($\mu \sim \nu$), lo que significa que comparten exactamente los mismos conjuntos de medida nula.
+En general, la relación no es antisimétrica. Cuando dos medidas cumplen simultáneamente $\nu \ll \mu$ y $\mu \ll \nu$, se dice que $\mu$ y $\nu$ son \textbf{medidas equivalentes} ($\mu \sim \nu$), lo que significa que comparten exactamente los mismos conjuntos de medida nula.
 \end{observacion}
 
 \begin{figure}[h]
@@ -629,6 +628,11 @@ Verificamos en primer lugar que $\tau$ cumple las condiciones de función de con
 
 Por consiguiente, la función de conjunto $\tau$ es aditiva sobre la clase $\mathcal{G}$.
 
+\begin{center}
+    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_P25_a.png}
+\end{center}
+
+\newpage
 \paragraph{2. Contraejemplo de no $\sigma$-aditividad:}
 
 Para probar que $\tau$ no es $\sigma$-aditiva, construimos una colección numerable de conjuntos disjuntos de medida nula cuya unión posea medida strictly positiva.
@@ -660,12 +664,7 @@ Dado que:
     1 = \tau\left( \bigcup_{i=1}^\infty E_i \right) \neq \sum_{i=1}^\infty \tau(E_i) = 0
 \]
 se concluye que la función de conjunto $\tau$ \textbf{no es $\sigma$-aditiva} sobre la clase $\mathcal{G}$.
-\begin{center}
-    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_P25_a.png}
-\end{center}
-\begin{center}
-    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_P25_b.png}
-\end{center}
+
 \begin{center}
     \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_P25_c.png}
 \end{center}
@@ -712,10 +711,7 @@ Tomando el límite cuando $n \to \infty$:
 
 \textbf{Conclusión:} Sí es posible calcular $\mu\left(\lim_{n \to \infty} A_n\right)$ sin conocer explícitamente el conjunto límite (que en este caso correspondería al conjunto de los números pares $2\mathbb{N}$, de cardinal infinito), utilizando la propiedad de continuidad de la medida.
 \begin{center}
-    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_P26_a.png}
-\end{center}
-\begin{center}
-    \includegraphics[width=0.75\linewidth]{imagenes/tema2/T2_P26_b.png}
+    \includegraphics[width=0.9\linewidth]{imagenes/tema2/T2_P26_a.png}
 \end{center}
 \end{problema}
 
@@ -784,18 +780,14 @@ Construimos el conjunto $A$ mediante una sucesión decreciente de conjuntos $\{A
     &\;\;\vdots \\
     A_n &= \{ x \in [0,1] \mid \text{ninguno de los primeros } n \text{ dígitos decimales de } x \text{ es } 1 \}
 \end{align*}
+\begin{center}
+    \includegraphics[width=0.85\linewidth]{imagenes/tema2/T2_P28_a.png}
+\end{center}
 
 El conjunto de interés se obtiene como la intersección numerable de esta familia:
 \[
     A = \bigcap_{n=0}^\infty A_n = \lim_{n \to \infty} A_n
 \]
-
-% Espacio reservado para incorporar figura en los apuntes
-\begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Representación gráfica de los conjuntos $A_0, A_1, A_2$ en la recta real]} \vfill}}
-    \vspace{0.2cm}
-\end{center}
 
 Calculamos la medida de Lebesgue $\lambda$ de los primeros términos:
 \begin{itemize}
@@ -855,7 +847,11 @@ Sea el espacio de medida $(\mathbb{N}, \mathcal{P}(\mathbb{N}), \mu)$ con $\mu =
     \]
     
     Dado que $0 \neq \infty$, \textbf{no se verifica} la igualdad $\mu\left(\lim_{n \to \infty} A_n\right) = \lim_{n \to \infty} \mu(A_n)$.
+    \begin{center}
+        \includegraphics[width=0.85\linewidth]{imagenes/tema2/T2_P29_a.png}
+    \end{center}
 
+    \newpage
     \item \textbf{Análisis de la sucesión $A_n = \{n, n+1, n+2, \dots, 2n\}$:}
     
     La sucesión $\{A_n\}$ no es monótona ($A_1 = \{1,2\}$, $A_2 = \{2,3,4\}$, $A_3 = \{3,4,5,6\}$), por lo que debemos calcular sus límites superior e inferior de conjuntos:
@@ -886,6 +882,9 @@ Sea el espacio de medida $(\mathbb{N}, \mathcal{P}(\mathbb{N}), \mu)$ con $\mu =
     \]
     
     Como $0 \neq \infty$, \textbf{tampoco se verifica} la igualdad en este apartado.
+    \begin{center}
+        \includegraphics[width=0.85\linewidth]{imagenes/tema2/T2_P29_b.png}
+    \end{center}
 \end{enumerate}
 \end{problema}
 \newpage
@@ -908,6 +907,10 @@ Calculamos en primer lugar el límite de la sucesión de conjuntos $A_n = \{n\}$
 \end{itemize}
 Dado que $\varliminf_{n \to \infty} A_n = \varlimsup_{n \to \infty} A_n = \varnothing$, la sucesión es convergente y $\lim_{n \to \infty} A_n = \varnothing$.
 
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema2/T2_P30_sucesion.png}
+\end{center}
+
 \paragraph{Apartado a) Medida de probabilidad $\nu$ concentrada en $\mathbb{N}$:}
 Al ser $\nu$ una medida de probabilidad, cumple $\nu(\mathbb{R}) = \nu(\mathbb{N}) = 1 < \infty$. Por tanto, el espacio de medida es finito y se satisfacen todas las hipótesis del Corolario de continuidad para probabilidades:
 
@@ -924,7 +927,9 @@ Sustituyendo en la cadena de desigualdades del Teorema 6 / Corolario 1:
     0 \le 0 \le 0 \le 0
 \]
 Se verifican todas las desigualdades, convirtiéndose en \textbf{igualdades estrictas} ($\nu(\lim A_n) = \lim \nu(A_n) = 0$).
-
+\begin{center}
+    \includegraphics[width=0.85\linewidth]{imagenes/tema2/T2_P30_a.png}
+\end{center}
 \paragraph{Apartado b) Medida cardinal $\mu$:}
 Evaluamos los términos de la cadena de desigualdades para la medida de contar $\mu$:
 \begin{enumerate}[label=\arabic*.]
@@ -952,6 +957,9 @@ Concluimos que:
     \item Las dos primeras desigualdades de la parte general del Teorema 6a ($0 \le 1 \le 1$) \textbf{sí se verifican}.
     \item La última desigualdad ($1 \le 0$) \textbf{falla} y no se cumple. Esto es consistente con la teoría, pues $\mu(\sigma_n) = \mu(\{n, n+1, \dots\}) = \infty$, incumpliéndose la hipótesis del Teorema 6b de finitud de la medida sobre la cola de uniones.
 \end{itemize}
+\begin{center}
+    \includegraphics[width=0.95\linewidth]{imagenes/tema2/T2_P30_b.png}
+\end{center}
 \end{problema}
 \newpage
 % ------------------------------------------------------------------------------
@@ -997,11 +1005,8 @@ Consideremos el espacio muestral numerable $\Omega = \mathbb{N}$ equipado con la
     Por lo tanto, es imposible recubrir $\mathbb{N}$ con elementos de $\mathcal{F}$ que tengan medida finita.
 \end{enumerate}
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Comparación de la partición fina en $\mathcal{P}(\mathbb{N})$ frente al bloque único de la sub-$\sigma$-álgebra trivial $\mathcal{F}=\{\varnothing, \mathbb{N}\}$]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=0.9\linewidth]{imagenes/tema2/T2_P31_a.png}
 \end{center}
 
 \paragraph{Conclusión:}
@@ -1033,7 +1038,10 @@ Verificamos los axiomas de medida sobre el espacio medible $(\mathbb{R}, \mathca
     \]
     \item \textit{$\sigma$-aditividad:} Dada una sucesión $(A_n)_{n \in \mathbb{N}} \subseteq \mathcal{B}$ de conjuntos borelianos disjuntos dos a dos ($A_i \cap A_j = \varnothing$ para todo $i \neq j$), la distribución del producto cartesiano/intersección satisface que los conjuntos $(A_n \cap \mathbb{N})_{n \in \mathbb{N}}$ son también disjuntos dos a dos. Por la aditividad del cardinal sobre conjuntos disjuntos:
     \[
-        \nu\left( \bigcup_{n=1}^\infty A_n \right) = \#\left( \left(\bigcup_{n=1}^\infty A_n\right) \cap \mathbb{N} \right) = \#\left( \bigcup_{n=1}^\infty (A_n \cap \mathbb{N}) \right) = \sum_{n=1}^\infty \#(A_n \cap \mathbb{N}) = \sum_{n=1}^\infty \nu(A_n)
+    \begin{array}{rl}
+        \displaystyle \nu\left( \bigcup_{n=1}^\infty A_n \right) & \displaystyle = \#\left( \left(\bigcup_{n=1}^\infty A_n\right) \cap \mathbb{N} \right) = \#\left( \bigcup_{n=1}^\infty (A_n \cap \mathbb{N}) \right) = \\[16pt]
+        & \displaystyle = \sum_{n=1}^\infty \#(A_n \cap \mathbb{N}) = \sum_{n=1}^\infty \nu(A_n)
+    \end{array}
     \]
 \end{enumerate}
 Por tanto, $\nu$ es una medida sobre $(\mathbb{R}, \mathcal{B})$ (medida de contar concentrada en $\mathbb{N}$).
@@ -1059,11 +1067,8 @@ Evaluamos ambas medidas sobre el conjunto $A$ y su complementario $A^c = \mathbb
     \]
 \end{itemize}
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Soporte discreto $\mathbb{N}$ de la medida $\nu$ frente al soporte continuo de la medida de Lebesgue $\lambda$]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=0.9\linewidth]{imagenes/tema2/T2_P32_a.png}
 \end{center}
 
 Al haber encontrado un suceso $A = \mathbb{N}^c \in \mathcal{B}$ tal que $\nu(A) = 0$ y $\lambda(A^c) = 0$, queda demostrado que las medidas $\lambda$ y $\nu$ son mutuamente singulares ($\lambda \perp \nu$).
@@ -1092,11 +1097,8 @@ Consideremos el conjunto unipuntual formado por el número cero, $A = \{0\} \in 
 Dado que $\lambda(\{0\}) = 0$ pero $\nu(\{0\}) = 1 \neq 0$, la implicación no se cumple.
 Por lo tanto, \textbf{$\nu$ no es absolutamente continua respecto a $\lambda$} ($\nu \not\ll \lambda$).
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Contrapunto entre medida nula de Lebesgue en un singleton y su medida cardinal no nula]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=0.9\linewidth]{imagenes/tema2/T2_P33_a.png}
 \end{center}
 
 \paragraph{2. Estudio de $\lambda \ll \nu$ (Continuidad absoluta de Lebesgue respecto a la medida cardinal):}
@@ -1115,6 +1117,9 @@ Evaluando la medida de Lebesgue sobre el conjunto vacío:
 Dado que la única forma de que $\nu(A)$ se anule es que $A = \varnothing$, y sobre dicho conjunto la medida de Lebesgue $\lambda$ se anula trivialmente, la implicación $\nu(A) = 0 \implies \lambda(A) = 0$ se satisface universalmente para todo $A \in \mathcal{B}$.
 
 Por lo tanto, \textbf{$\lambda$ es absolutamente continua respecto a $\nu$} ($\lambda \ll \nu$).
+\begin{center}
+    \includegraphics[width=0.9\linewidth]{imagenes/tema2/T2_P33_b.png}
+\end{center}
 \end{problema}
 \newpage
 % ------------------------------------------------------------------------------
@@ -1144,7 +1149,10 @@ Comprobamos los axiomas de medida sobre $(\mathbb{R}, \mathcal{B})$ para la func
     \]
     \item \textit{$\sigma$-aditividad:} Dada una sucesión $(B_n)_{n \in \mathbb{N}} \subseteq \mathcal{B}$ de conjuntos disjuntos dos a dos ($B_i \cap B_j = \varnothing$ para $i \neq j$), la familia $(B_n \cap \mathbb{R}^-)_{n \in \mathbb{N}}$ es también disjunta dos a dos. Por la $\sigma$-aditividad de la medida de Lebesgue:
     \[
-        \mu\left( \bigcup_{n=1}^\infty B_n \right) = \lambda\left( \left(\bigcup_{n=1}^\infty B_n\right) \cap \mathbb{R}^- \right) = \lambda\left( \bigcup_{n=1}^\infty (B_n \cap \mathbb{R}^-) \right) = \sum_{n=1}^\infty \lambda(B_n \cap \mathbb{R}^-) = \sum_{n=1}^\infty \mu(B_n)
+    \begin{array}{rl}
+        \displaystyle \mu\left( \bigcup_{n=1}^\infty B_n \right) & \displaystyle = \lambda\left( \left(\bigcup_{n=1}^\infty B_n\right) \cap \mathbb{R}^- \right) = \lambda\left( \bigcup_{n=1}^\infty (B_n \cap \mathbb{R}^-) \right) = \\[16pt]
+        & \displaystyle = \sum_{n=1}^\infty \lambda(B_n \cap \mathbb{R}^-) = \sum_{n=1}^\infty \mu(B_n)
+    \end{array}
     \]
 \end{enumerate}
 Por consiguiente, $\mu$ y $\nu$ son medidas bien definidas sobre $(\mathbb{R}, \mathcal{B})$.
@@ -1169,13 +1177,9 @@ Por consiguiente, $\mu$ y $\nu$ son medidas bien definidas sobre $(\mathbb{R}, \
     \end{itemize}
 \end{itemize}
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Soporte disjunto de las medidas $\mu$ sobre $(-\infty,0)$ y $\nu$ sobre $[0,\infty)$]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=0.9\linewidth]{imagenes/tema2/T2_P34_a.png}
 \end{center}
-
 \paragraph{3. Comparación respecto de la medida de Lebesgue $\lambda$:}
 \begin{itemize}
     \item \textit{Continuidad absoluta de $\mu$ y $\nu$ respecto de $\lambda$ ($\mu \ll \lambda$ y $\nu \ll \lambda$):}
@@ -1199,8 +1203,6 @@ Observamos que $\lambda = \mu + \nu$, lo que representa la descomposición de la
 \end{problema}
 
 \newpage
-\newpage %===
-
 % ------------------------------------------------------------------------------
 % PROBLEMA 35
 % ------------------------------------------------------------------------------
@@ -1237,11 +1239,8 @@ Dado que la medida de Lebesgue de cualquier conjunto unipuntual es cero ($\lambd
     \lambda(A^c) = \lambda\left( \bigsqcup_{i=1}^n \{x_i\} \right) = \sum_{i=1}^n \lambda(\{x_i\}) = \sum_{i=1}^n 0 = 0
 \]
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Soporte puntual $S=\{x_1,\dots,x_n\}$ de la medida discreta $\mu$ frente a la medida de Lebesgue $\lambda$]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=0.9\linewidth]{imagenes/tema2/T2_P35_a.png}
 \end{center}
 
 Al haber encontrado el conjunto $A = S^c \in \mathcal{B}$ tal que $\mu(A) = 0$ y $\lambda(A^c) = 0$, queda demostrado que la medida discreta $\mu$ y la medida de Lebesgue $\lambda$ son mutuamente singulares ($\mu \perp \lambda$).
@@ -1251,8 +1250,6 @@ De forma adicional, se observa que $\mu$ no es absolutamente continua respecto d
 \end{problema}
 
 \newpage
-\newpage %===
-
 % ------------------------------------------------------------------------------
 % PROBLEMA 36
 % ------------------------------------------------------------------------------
@@ -1278,11 +1275,14 @@ Verificamos las tres propiedades fundamentales de las medidas sobre el espacio m
     \]
     \item \textit{$\sigma$-aditividad:} Dada una sucesión $(A_n)_{n \in \mathbb{N}} \subseteq \mathcal{B}$ de conjuntos borelianos disjuntos dos a dos ($A_i \cap A_j = \varnothing$ para todo $i \neq j$), por la propiedad de la integral de Lebesgue (o el Teorema de convergencia monótona aplicado a la serie de funciones indicatrices):
     \[
-        \mu\left( \bigcup_{n=1}^\infty A_n \right) = \int_{\bigcup_{n=1}^\infty A_n} f(x) \, dx = \int_{\mathbb{R}} \sum_{n=1}^\infty f(x) \chi_{A_n}(x) \, dx = \sum_{n=1}^\infty \int_{A_n} f(x) \, dx = \sum_{n=1}^\infty \mu(A_n)
+    \begin{array}{rl}
+        \displaystyle \mu\left( \bigcup_{n=1}^\infty A_n \right) & \displaystyle = \int_{\bigcup_{n=1}^\infty A_n} f(x) \, dx = \int_{\mathbb{R}} \sum_{n=1}^\infty f(x) \chi_{A_n}(x) \, dx = \\[16pt]
+        & \displaystyle = \sum_{n=1}^\infty \int_{A_n} f(x) \, dx = \sum_{n=1}^\infty \mu(A_n)
+    \end{array}
     \]
 \end{enumerate}
 Por tanto, $\mu$ es una medida bien definida sobre $(\mathbb{R}, \mathcal{B})$.
-
+\newpage
 \paragraph{2. Análisis de la relación $\mu \ll \lambda$:}
 Estudiamos la condición $\forall A \in \mathcal{B}, \, \lambda(A) = 0 \implies \mu(A) = 0$.
 Sea $A \in \mathcal{B}$ tal que $\lambda(A) = 0$. Por las propiedades generales de la integral de Lebesgue, la integral de cualquier función medible sobre un conjunto de medida de Lebesgue nula es siempre cero:
@@ -1290,13 +1290,6 @@ Sea $A \in \mathcal{B}$ tal que $\lambda(A) = 0$. Por las propiedades generales 
     \mu(A) = \int_A f(x) \, d\lambda = 0
 \]
 Por consiguiente, \textbf{siempre se verifica que} $\mu \ll \lambda$ (la medida $\mu$ es absolutamente continua respecto de la medida de Lebesgue $\lambda$). En este contexto, la función $f$ actúa como la derivada de Radon-Nikodym de $\mu$ respecto de $\lambda$ ($f = \frac{d\mu}{d\lambda}$).
-
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
-\begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Integración de la función de densidad $f(x) \ge 0$ sobre conjuntos $A$ con medida de Lebesgue nula o positiva]} \vfill}}
-    \vspace{0.2cm}
-\end{center}
 
 \paragraph{3. Análisis de la relación $\lambda \ll \mu$:}
 Estudiamos si es cierto que $\forall A \in \mathcal{B}, \, \mu(A) = 0 \implies \lambda(A) = 0$.
@@ -1317,11 +1310,12 @@ Para $A = (-2, -1) \in \mathcal{B}$:
 Dado que $\mu(A) = 0$ pero $\lambda(A) = 1 \neq 0$, la implicación de continuidad absoluta no se satisface.
 
 Por tanto, en general \textbf{$\lambda$ no es absolutamente continua respecto de $\mu$} ($\lambda \not\ll \mu$).
+\begin{center}
+    \includegraphics[width=0.95\linewidth]{imagenes/tema2/T2_P36_a.png}
+\end{center}
 \end{problema}
 
 \newpage
-\newpage %===
-
 % ------------------------------------------------------------------------------
 % PROBLEMA 37
 % ------------------------------------------------------------------------------
@@ -1356,11 +1350,8 @@ Por la aditividad de la medida $\lambda$:
     \lambda(\Omega) = \lambda(B_0 \sqcup B_0^c) = \lambda(B_0) + \lambda(B_0^c) = 0 + 0 = 0
 \]
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Intersección trivial de las condiciones de continuidad absoluta y singularidad mutua entre medidas]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=0.95\linewidth]{imagenes/tema2/T2_P37_a.png}
 \end{center}
 
 \paragraph{4. Conclusión para un conjunto medible arbitrario:}
@@ -1372,8 +1363,6 @@ Dado que $\lambda(A) = 0$ para todo $A \in \mathcal{G}$, se concluye que la medi
 \end{problema}
 
 \newpage
-\newpage %===
-
 % ------------------------------------------------------------------------------
 % PROBLEMA 38
 % ------------------------------------------------------------------------------
@@ -1401,6 +1390,9 @@ Por lo tanto, hemos encontrado un suceso $B_0 \in \mathcal{G}$ tal que $\lambda_
 \[
     \lambda_1 \perp \lambda_2
 \]
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema2/T2_P38_a.png}
+\end{center}
 
 \paragraph{b) Demostración de $\lambda_1 \ll \mu \land \lambda_2 \ll \mu \implies \lambda_1 + \lambda_2 \ll \mu$:}
 Sea $A \in \mathcal{G}$ un conjunto medible tal que $\mu(A) = 0$. Por la hipótesis de continuidad absoluta de $\lambda_1$ y $\lambda_2$ respecto de $\mu$:
@@ -1415,14 +1407,9 @@ Al cumplirse la implicación $\mu(A) = 0 \implies (\lambda_1 + \lambda_2)(A) = 0
 \[
     \lambda_1 + \lambda_2 \ll \mu
 \]
-
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Preservación de la continuidad absoluta y la singularidad mutua bajo suma de medidas]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema2/T2_P38_b.png}
 \end{center}
-
 \paragraph{c) Demostración de $\lambda_1 \perp \mu \land \lambda_2 \perp \mu \implies \lambda_1 + \lambda_2 \perp \mu$:}
 Por ser $\lambda_1 \perp \mu$ y $\lambda_2 \perp \mu$, existen conjuntos $A_1, A_2 \in \mathcal{G}$ tales que:
 \[
@@ -1453,6 +1440,9 @@ Al haber hallado $A \in \mathcal{G}$ tal que $(\lambda_1 + \lambda_2)(A) = 0$ y 
 \[
     \lambda_1 + \lambda_2 \perp \mu
 \]
+\begin{center}
+    \includegraphics[width=0.95\linewidth]{imagenes/tema2/T2_P38_c.png}
+\end{center}
 
 \paragraph{d) Demostración para la medida suma $\lambda = \lambda_1 + \lambda_2$:}
 \begin{enumerate}[label=\arabic*.]
@@ -1470,11 +1460,12 @@ Al haber hallado $A \in \mathcal{G}$ tal que $(\lambda_1 + \lambda_2)(A) = 0$ y 
     \]
     Por consiguiente, queda demostrado que $\lambda \ll \lambda_2$.
 \end{enumerate}
+\begin{center}
+    \includegraphics[width=\linewidth]{imagenes/tema2/T2_P38_d.png}
+\end{center}
 \end{problema}
 
 \newpage
-\newpage %===
-
 % ------------------------------------------------------------------------------
 % PROBLEMA 39
 % ------------------------------------------------------------------------------
@@ -1518,20 +1509,11 @@ Por la $\sigma$-aditividad de la medida $\mu$, evaluamos la medida del conjunto 
 \]
 Dado que $\nu(A) = 0 \implies \mu(A) = 0$ para todo $A \in \mathcal{P}(\mathbb{N})$, queda demostrado que $\mu \ll \nu$.
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
-\begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Descomposición atómica de la masa de medida en $\mathbb{N}$ y transmisión de la masa nula]} \vfill}}
-    \vspace{0.2cm}
-\end{center}
-
 \paragraph{Conclusión:}
 En el espacio medible $(\mathbb{N}, \mathcal{P}(\mathbb{N}))$, la continuidad absoluta entre medidas queda completamente determinada por el comportamiento de las medidas sobre los átomos unipuntuales $\{n\}$.
 \end{problema}
 
 \newpage
-\newpage %===
-
 % ------------------------------------------------------------------------------
 % PROBLEMA 40
 % ------------------------------------------------------------------------------
@@ -1565,13 +1547,6 @@ Determinar si $\mu$ y $\nu$ son medidas sobre $(\Omega, \mathcal{G})$, si los es
     \end{itemize}
     En ambos casos se satisface la $\sigma$-aditividad. Por consiguiente, $\nu$ es una medida sobre $(\Omega, \mathcal{G})$.
 \end{enumerate}
-
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
-\begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Partición del espacio no numerable $\Omega$ en conjuntos numerables y co-numerables para las medidas $\mu$ y $\nu$]} \vfill}}
-    \vspace{0.2cm}
-\end{center}
 
 \paragraph{2. Análisis de la $\sigma$-finitud:}
 \begin{itemize}
