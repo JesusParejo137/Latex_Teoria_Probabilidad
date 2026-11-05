@@ -1,5 +1,5 @@
-\chapter{Funciones medibles. Integral de Lebesgue}
-
+\chapter*{Tema 3. Funciones medibles. Integral de Lebesgue}
+\setcounter{chapter}{3}
 \section{Aplicaciones medibles}
 
 \begin{definicion}{Aplicación medible}{def:aplicacion_medible}
@@ -97,11 +97,12 @@ A su vez, por la medibilidad de $X$, la antiimagen de este conjunto $X^{-1}(Y^{-
 Así pues, $(Y \circ X)^{-1}(A) \in \mathcal{G}_1$, probando que $Y \circ X$ es medible.
 \end{demostracion}
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Composición de aplicaciones medibles $(\Omega_1,\mathcal{G}_1) \xrightarrow{X} (\Omega_2,\mathcal{G}_2) \xrightarrow{Y} (\Omega_3,\mathcal{G}_3)$]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=0.95\linewidth]{imagenes/tema3/T3_1_a.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=0.95\linewidth]{imagenes/tema3/T3_1_b.png}
 \end{center}
 
 % ------------------------------------------------------------------------------
@@ -534,7 +535,7 @@ Decidir razonadamente si la función $f : (\Omega, \mathcal{G}) \to (\mathbb{R},
 
 \tcblower
 
-\subsubsection*{Método 1: Análisis por caracterización de la antiimagen de borelianos arbitrarios}
+\textbf{Método 1: Análisis por caracterización de la antiimagen de borelianos arbitrarios}
 
 Por definición, $f : (\Omega, \mathcal{G}) \to (\mathbb{R}, \mathcal{B})$ es medible si y solo si la imagen inversa de cualquier conjunto boreliano $B \in \mathcal{B}$ pertenece a la $\sigma$-álgebra del espacio de partida, es decir, $f^{-1}(B) \in \mathcal{G}$.
 
@@ -551,11 +552,11 @@ Observamos que la imagen directa de $f$ consta únicamente de dos puntos: $\math
 Dado que la $\sigma$-álgebra del espacio de partida es $\mathcal{G} = \{\varnothing, A, A^c, \Omega\}$, se verifica que en los cuatro casos posibles $f^{-1}(B) \in \mathcal{G}$. Por consiguiente, $f$ es una función medible.
 
 \begin{center}
-    \includegraphics[width=0.85\linewidth]{imagenes/tema3/T3_P42_a.png}
+    \includegraphics[width=0.95\linewidth]{imagenes/tema3/T3_P42_a.png}
 \end{center}
 
 \newpage
-\subsubsection*{Método 2: Comprobación mediante la clase generadora de semirrectas $(-\infty, x]$}
+\textbf{Método 2: Comprobación mediante la clase generadora de semirrectas $(-\infty, x]$}
 
 Por el Corolario de las clases generadoras, para probar la medibilidad de $f$ basta comprobar que la antiimagen de cualquier elemento de una clase que genere la $\sigma$-álgebra de Borel $\mathcal{B}$ pertenece a $\mathcal{G}$.
 
@@ -661,13 +662,13 @@ Demostrar que $h : (\Omega, \mathcal{G}) \to (\Omega', \mathcal{G}')$ es una apl
 
 Para demostrar la medibilidad de la aplicación $h$, debemos probar que la imagen inversa de cualquier suceso medible $B \in \mathcal{G}'$ del espacio de llegada pertenece a la $\sigma$-álgebra $\mathcal{G}$ del espacio de partida, es decir, $h^{-1}(B) \in \mathcal{G}$ para todo $B \in \mathcal{G}'$.
 
-\subsubsection*{1. Descomposición de la antiimagen:}
+\paragraph{1. Descomposición de la antiimagen:}
 Sea $B \in \mathcal{G}'$ un subconjunto medible arbitrario. Expresamos el espacio de partida $\Omega$ como la unión disjunta del conjunto $A$ y su complementario $A^c$ ($\Omega = A \cup A^c$). Utilizando las propiedades de la imagen inversa y distribuyendo respecto a esta partición:
 \[
     h^{-1}(B) = h^{-1}(B) \cap \Omega = h^{-1}(B) \cap (A \cup A^c) = (h^{-1}(B) \cap A) \cup (h^{-1}(B) \cap A^c)
 \]
 
-\subsubsection*{2. Restricción de $h$ sobre los bloques de la partición:}
+\paragraph{2. Restricción de $h$ sobre los bloques de la partición:}
 Analizamos el comportamiento de la función $h$ en cada subdominio:
 \begin{itemize}
     \item Para todo $\omega \in A$, la función coincide con $f(\omega)$, por lo que:
@@ -686,14 +687,14 @@ Sustituyendo ambas identidades en la descomposición de $h^{-1}(B)$, obtenemos l
 \]
 
 \begin{center}
-    \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P44_a.png}
+    \includegraphics[width=0.75\linewidth]{imagenes/tema3/T3_P44_a.png}
 \end{center}
 
-\subsubsection*{3. Comprobación de la pertenencia a la $\sigma$-álgebra $\mathcal{G}$:}
+\paragraph{3. Comprobación de la pertenencia a la $\sigma$-álgebra $\mathcal{G}$:}
 Analizamos la medibilidad de cada uno de los componentes de la unión:
 \begin{enumerate}[label=\arabic*.]
-    \item Puesto que $f$ es una aplicación medible, por definición $f^{-1}(B) \in \mathcal{G}$.
-    \item Puesto que $g$ es una aplicación medible, por definición $g^{-1}(B) \in \mathcal{G}$.
+    \item Puesto que $f : (\Omega, \mathcal{G}) \to (\Omega', \mathcal{G}')$ es una aplicación medible, por definición $f^{-1}(B) \in \mathcal{G}$.
+    \item Puesto que $g : (\Omega, \mathcal{G}) \to (\Omega', \mathcal{G}')$ es una aplicación medible, por definición $g^{-1}(B) \in \mathcal{G}$.
     \item Por hipótesis $A \in \mathcal{G}$, y al ser $\mathcal{G}$ una $\sigma$-álgebra, es cerrada bajo complementación, luego $A^c \in \mathcal{G}$.
     \item Dado que las $\sigma$-álgebras son cerradas bajo intersecciones finitas:
     \[
@@ -719,13 +720,13 @@ Sea $(\Omega, \mathcal{G}, \mu)$ un espacio de medida completo. Sean $f, g : (\O
 
 Para demostrar que $g : (\Omega, \mathcal{G}) \to (\Omega', \mathcal{G}')$ es una aplicación medible, debemos probar que para cualquier suceso medible $B \in \mathcal{G}'$ del espacio de llegada, su antiimagen $g^{-1}(B)$ pertenece a la $\sigma$-álgebra $\mathcal{G}$ del espacio de partida.
 
-\subsubsection*{1. Descomposición de la antiimagen:}
+\paragraph{1. Descomposición de la antiimagen:}
 Sea $B \in \mathcal{G}'$ un suceso arbitrario. Considerando la partición del espacio muestral $\Omega = A^c \cup A$, expresamos la antiimagen $g^{-1}(B)$ como la unión disjunta:
 \[
     g^{-1}(B) = (g^{-1}(B) \cap A^c) \cup (g^{-1}(B) \cap A)
 \]
 
-\subsubsection*{2. Análisis sobre el complementario $A^c$:}
+\paragraph{2. Análisis sobre el complementario $A^c$:}
 Por hipótesis, la aplicación $g$ coincide con $f$ sobre $A^c$ ($g(\omega) = f(\omega), \, \forall \omega \in A^c$). En consecuencia:
 \[
     g^{-1}(B) \cap A^c = f^{-1}(B) \cap A^c
@@ -737,7 +738,7 @@ Analizamos la pertenencia a $\mathcal{G}$ de esta intersección:
     \item La estabilidad de $\mathcal{G}$ respecto a intersecciones finitas garantiza que $f^{-1}(B) \cap A^c \in \mathcal{G}$.
 \end{itemize}
 
-\subsubsection*{3. Análisis sobre el conjunto de medida nula $A$:}
+\paragraph{3. Análisis sobre el conjunto de medida nula $A$:}
 Consideramos ahora el segundo término de la unión, $g^{-1}(B) \cap A$:
 \begin{itemize}
     \item Por construcción, este conjunto es un subconjunto de $A$:
@@ -748,18 +749,17 @@ Consideramos ahora el segundo término de la unión, $g^{-1}(B) \cap A$:
     \item Por tanto, $g^{-1}(B) \cap A \in \mathcal{G}$.
 \end{itemize}
 
-\subsubsection*{4. Conclusión:}
+\begin{center}
+    \includegraphics[width=0.95\linewidth]{imagenes/tema3/T3_P45_a.png}
+\end{center}
+
+\paragraph{4. Conclusión:}
 Al ser la $\sigma$-álgebra $\mathcal{G}$ cerrada bajo uniones finitas, expresamos $g^{-1}(B)$ como unión de dos elementos de $\mathcal{G}$:
 \[
     g^{-1}(B) = (f^{-1}(B) \cap A^c) \cup (g^{-1}(B) \cap A) \in \mathcal{G}
 \]
 Por lo tanto, la antiimagen de cualquier suceso $B \in \mathcal{G}'$ por $g$ es un conjunto medible, lo que demuestra formalmente que $g$ es una aplicación medible.
-
-\begin{center}
-    \includegraphics[width=0.85\linewidth]{imagenes/tema3/T3_P45_a.png}
-\end{center}
 \end{problema}
-\textbf{Nota:} Otra manera de demostrar la medibilidad de $f$ es descomponiéndola como
 
 \newpage
 %===================
@@ -782,7 +782,7 @@ La medibilidad de la función $f : (\mathbb{R}, \mathcal{B}) \to (\mathbb{R}, \m
 
 Observamos que la imagen directa de $f$ es el conjunto $\mathrm{Im}(f) = (-\infty, t] \cup \{1\}$. Dado que $t < 1$, existe un intervalo de discontinuidad en la imagen dada por $(t, 1)$.
 
-\subsubsection*{a) Análisis con la clase generadora $\mathcal{C}_1 = \{(a, b] \mid a < b, \, a,b \in \mathbb{R}\}$:}
+\textbf{a) Análisis con la clase generadora $\mathcal{C}_1 = \{(a, b] \mid a < b, \, a,b \in \mathbb{R}\}$:}
 
 Calculamos la imagen inversa $f^{-1}((a, b])$ distinguiendo los casos según la posición de $a$ y $b$ respecto a $t$ y $1$:
 
@@ -793,9 +793,6 @@ Calculamos la imagen inversa $f^{-1}((a, b])$ distinguiendo los casos según la 
     \[
         f^{-1}((a, b]) = (a, b] \in \mathcal{B}
     \]
-    \begin{center}
-        \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P46_a1.png}
-    \end{center}
 
     \item \textbf{Caso 2 ($a < t < b < 1$):}
     Para $\omega \le t$, $f(\omega) = \omega \in (a, b] \iff \omega \in (a, t]$.
@@ -803,9 +800,6 @@ Calculamos la imagen inversa $f^{-1}((a, b])$ distinguiendo los casos según la 
     \[
         f^{-1}((a, b]) = (a, t] \in \mathcal{B}
     \]
-    \begin{center}
-        \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P46_a2.png}
-    \end{center}
 
     \item \textbf{Caso 3 ($a < t$ y $b \ge 1$):}
     Para $\omega \le t$, $f(\omega) = \omega \in (a, b] \iff \omega \in (a, t]$.
@@ -813,9 +807,6 @@ Calculamos la imagen inversa $f^{-1}((a, b])$ distinguiendo los casos según la 
     \[
         f^{-1}((a, b]) = (a, t] \cup (t, \infty) = (a, \infty) \in \mathcal{B}
     \]
-    \begin{center}
-        \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P46_a3.png}
-    \end{center}
 
     \item \textbf{Caso 4 ($t \le a < 1$ y $b < 1$):}
     Para $\omega \le t$, $f(\omega) = \omega \le t \le a$, luego $f(\omega) \notin (a, b]$.
@@ -823,9 +814,6 @@ Calculamos la imagen inversa $f^{-1}((a, b])$ distinguiendo los casos según la 
     \[
         f^{-1}((a, b]) = \varnothing \in \mathcal{B}
     \]
-    \begin{center}
-        \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P46_a4.png}
-    \end{center}
 
     \item \textbf{Caso 5 ($t \le a < 1$ y $b \ge 1$):}
     Para $\omega \le t$, $f(\omega) = \omega \le t \le a$, luego $f(\omega) \notin (a, b]$.
@@ -833,9 +821,6 @@ Calculamos la imagen inversa $f^{-1}((a, b])$ distinguiendo los casos según la 
     \[
         f^{-1}((a, b]) = (t, \infty) \in \mathcal{B}
     \]
-    \begin{center}
-        \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P46_a5.png}
-    \end{center}
 
     \item \textbf{Caso 6 ($a \ge 1$):}
     Para $\omega \le t$, $f(\omega) = \omega \le t < 1 \le a$.
@@ -843,9 +828,6 @@ Calculamos la imagen inversa $f^{-1}((a, b])$ distinguiendo los casos según la 
     \[
         f^{-1}((a, b]) = \varnothing \in \mathcal{B}
     \]
-    \begin{center}
-        \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P46_a6.png}
-    \end{center}
 \end{itemize}
 
 En todos los casos posibles, $f^{-1}((a, b]) \in \mathcal{B}$. Por el Corolario de las clases generadoras, concluimos que \textbf{$f$ es una función medible}.
@@ -854,7 +836,7 @@ En todos los casos posibles, $f^{-1}((a, b]) \in \mathcal{B}$. Por el Corolario 
     \includegraphics[width=0.95\linewidth]{imagenes/tema3/T3_P46_a.png}
 \end{center}
 
-\subsubsection*{b) Análisis con la clase generadora $\mathcal{C}_2 = \{(-\infty, x] \mid x \in \mathbb{R}\}$:}
+\textbf{b) Análisis con la clase generadora $\mathcal{C}_2 = \{(-\infty, x] \mid x \in \mathbb{R}\}$:}
 
 Calculamos la imagen inversa de las semirrectas $f^{-1}((-\infty, x])$ según el valor del parámetro $x$:
 
@@ -865,9 +847,6 @@ Calculamos la imagen inversa de las semirrectas $f^{-1}((-\infty, x])$ según el
     \[
         f^{-1}((-\infty, x]) = (-\infty, x] \in \mathcal{B}
     \]
-    \begin{center}
-        \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P46_b1.png}
-    \end{center}
 
     \item \textbf{Caso 2 ($t < x < 1$):}
     Para $\omega \le t$, $f(\omega) = \omega \le t < x$, por lo que todo $\omega \in (-\infty, t]$ verifica $f(\omega) \in (-\infty, x]$.
@@ -875,9 +854,6 @@ Calculamos la imagen inversa de las semirrectas $f^{-1}((-\infty, x])$ según el
     \[
         f^{-1}((-\infty, x]) = (-\infty, t] \in \mathcal{B}
     \]
-    \begin{center}
-        \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P46_b2.png}
-    \end{center}
 
     \item \textbf{Caso 3 ($x \ge 1$):}
     Para $\omega \le t$, $f(\omega) = \omega \le t < 1 \le x$.
@@ -886,9 +862,6 @@ Calculamos la imagen inversa de las semirrectas $f^{-1}((-\infty, x])$ según el
     \[
         f^{-1}((-\infty, x]) = (-\infty, t] \cup (t, \infty) = \mathbb{R} \in \mathcal{B}
     \]
-    \begin{center}
-        \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P46_b3.png}
-    \end{center}
 \end{itemize}
 
 \begin{center}
@@ -907,7 +880,7 @@ Construir una función $f : (\Omega, \mathcal{G}) \to (\mathbb{R}, \mathcal{B})$
 
 \tcblower
 
-\subsubsection*{1. Construcción del espacio medible y de la función $f$:}
+\paragraph{1. Construcción del espacio medible y de la función $f$:}
 Sea $\Omega$ un conjunto no vacío y sea $A \subseteq \Omega$ un subconjunto propio no vacío ($\varnothing \neq A \neq \Omega$). Consideramos la $\sigma$-álgebra elemental generada por $A$:
 \[
     \mathcal{G} = \sigma(\{A\}) = \{\Omega, \varnothing, A, A^c\}
@@ -920,7 +893,7 @@ Definimos la función $f : \Omega \to \mathbb{R}$ como:
     f(\omega) = \begin{cases} -1 & \text{si } \omega \in B \\ 1 & \text{si } \omega \in A \setminus B \\ 0 & \text{si } \omega \in A^c \end{cases}
 \]
 
-\subsubsection*{2. Demostración de que $f$ no es medible:}
+\paragraph{2. Demostración de que $f$ no es medible:}
 Para probar que $f$ no es medible respecto a $(\mathcal{G}, \mathcal{B})$, basta exhibir un conjunto boreliano $I \in \mathcal{B}$ cuya imagen inversa $f^{-1}(I)$ no pertenezca a $\mathcal{G}$.
 
 Consideramos el intervalo boreliano $I = (-\infty, -1/2] \in \mathcal{B}$. Calculamos su antiimagen:
@@ -933,7 +906,7 @@ Como $B \notin \mathcal{G}$, la imagen inversa de este boreliano no es un conjun
     \includegraphics[width=0.95\linewidth]{imagenes/tema3/T3_P47_a.png}
 \end{center}
 
-\subsubsection*{3. Demostración de que $|f|$ es medible:}
+\paragraph{3. Demostración de que $|f|$ es medible:}
 Calculamos el valor absoluto $|f|(\omega) = |f(\omega)|$ para todo $\omega \in \Omega$:
 \[
     |f|(\omega) = \begin{cases} |-1| = 1 & \text{si } \omega \in B \\ |1| = 1 & \text{si } \omega \in A \setminus B \\ |0| = 0 & \text{si } \omega \in A^c \end{cases} \implies |f|(\omega) = \begin{cases} 1 & \text{si } \omega \in A \\ 0 & \text{si } \omega \in A^c \end{cases} = \mathbf{1}_A(\omega)
@@ -962,12 +935,12 @@ Sea $f : (\Omega_1, \mathcal{G}_1, \mu) \to (\Omega_2, \mathcal{G}_2)$ una aplic
 
 \tcblower
 
-\subsubsection*{1. Buena definición de la función de conjunto $\mu_f$:}
+\paragraph{1. Buena definición de la función de conjunto $\mu_f$:}
 Para que la composición $\mu_f(B) = (\mu \circ f^{-1})(B) = \mu(f^{-1}(B))$ esté bien definida para todo $B \in \mathcal{G}_2$, es imprescindible que la antiimagen $f^{-1}(B)$ pertenezca al dominio de la medida $\mu$, es decir, a la $\sigma$-álgebra $\mathcal{G}_1$.
 
 Por hipótesis, $f : (\Omega_1, \mathcal{G}_1) \to (\Omega_2, \mathcal{G}_2)$ es una aplicación medible, lo que garantiza que $f^{-1}(B) \in \mathcal{G}_1$ para cualquier $B \in \mathcal{G}_2$. En consecuencia, $\mu_f : \mathcal{G}_2 \to \overline{\mathbb{R}}$ está correctamente definida.
 
-\subsubsection*{2. Verificación de las propiedades de medida para $\mu_f$:}
+\paragraph{2. Verificación de las propiedades de medida para $\mu_f$:}
 Comprobamos los tres axiomas constitutivos de una medida sobre $(\Omega_2, \mathcal{G}_2)$:
 
 \begin{enumerate}[label=\arabic*.]
@@ -991,10 +964,7 @@ Comprobamos los tres axiomas constitutivos de una medida sobre $(\Omega_2, \math
     \]
     Intercambiando la unión numerable con la imagen inversa y aplicando la $\sigma$-aditividad de la medida $\mu$ sobre la sucesión disjunta $(f^{-1}(B_n))_{n \in \mathbb{N}} \subseteq \mathcal{G}_1$:
     \[
-    \begin{array}{rl}
-        \displaystyle \mu_f\left( \bigsqcup_{n=1}^\infty B_n \right) & \displaystyle = \mu\left( f^{-1}\left( \bigsqcup_{n=1}^\infty B_n \right) \right) = \mu\left( \bigsqcup_{n=1}^\infty f^{-1}(B_n) \right) = \\[16pt]
-        & \displaystyle = \sum_{n=1}^\infty \mu(f^{-1}(B_n)) = \sum_{n=1}^\infty \mu_f(B_n)
-    \end{array}
+        \mu_f\left( \bigsqcup_{n=1}^\infty B_n \right) = \mu\left( f^{-1}\left( \bigsqcup_{n=1}^\infty B_n \right) \right) = \mu\left( \bigsqcup_{n=1}^\infty f^{-1}(B_n) \right) = \sum_{n=1}^\infty \mu(f^{-1}(B_n)) = \sum_{n=1}^\infty \mu_f(B_n)
     \]
 \end{enumerate}
 
@@ -1007,7 +977,7 @@ Por lo tanto, $\mu_f$ es una medida sobre $(\Omega_2, \mathcal{G}_2)$.
     \vspace{0.2cm}
 \end{center}
 
-\subsubsection*{3. Conservación de la condición de medida de probabilidad:}
+\paragraph{3. Conservación de la condición de medida de probabilidad:}
 Si la medida original $\mu$ es una probabilidad sobre $\Omega_1$, satisface el axioma de normalización $\mu(\Omega_1) = 1$.
 
 Evaluamos la medida inducida $\mu_f$ sobre el espacio muestral de llegada $\Omega_2$:
@@ -1280,32 +1250,19 @@ donde $t \in \left(0, \frac{1}{2}\right)$ es un parámetro fijo.
 \end{enumerate}
 
 \tcblower
-La clase $\mathcal{C}=\{(-\infty,x]\,/\,x\in\mathbb{R}\}$ genera la $\sigma-$álgebra de Borel $\mathcal{B}$, i.e.: $\sigma(\mathcal{C})=\mathcal{B}$.\\[4pt]
-Por el Teorema Referencial:
-\[
-\mathcal{B}_{[0,2]}=\mathcal{B}\cap[0,2]=\sigma(\mathcal{C})\cap[0,2]=\sigma(\mathcal{C}\cap[0,2])
-\]
-Es decir, la clase
-\[
-\mathcal{C}_{[0,2]}=\mathcal{C}\cap[0,2] = \{[0,x]\:/\: x\in[0,2]\}
-\]
-genera a $\mathcal{B}_{[0,2]}$.
 
-\subsubsection*{a) Demostración de la medibilidad de $f$:}
+\textbf{a) Demostración de la medibilidad de $f$:}
 
-Basta comprobar que las antiimágenes de los elementos de $\mathcal{C}_{[0,2]}$ pertenecen a la $\sigma-$álgebra de partida $\mathcal{B}_{[0,1]}$.
+Para probar la medibilidad de $f$, utilizaremos la clase generadora $\mathcal{C} = \{[0, x] \mid x \in [0, 2]\}$, la cual genera la $\sigma$-álgebra de Borel $\mathcal{B}_{[0,2]}$.
 
 Analizamos la imagen directa de $f$, dada por $\mathrm{Im}(f) = \{0\} \cup \left[t, \frac{3t}{2}\right) \cup \left\{\frac{3}{4}\right\} \cup \left(\frac{3}{2}, 2\right]$.
 
-Dado que $f$ descompone el espacio de llegada en los siguientes subintervalos disjuntos:
-\[
-[0,2]=[0,t)\sqcup
-\]
 \newpage
 Calculamos la antiimagen $f^{-1}([0, x])$ según el valor del parámetro $x \in [0, 2]$:
 
 \begin{itemize}
-    \item \fbox{$0 \le x < t$} $[0,x]\cap\mathrm{Im}(f)=\{0\}$: Como $f(\omega) = 0 \iff 0 \le \omega < \frac{t}{2}$:
+    \item \textbf{Si $0 \le x < t$:}
+    Únicamente el valor $0 \in \mathrm{Im}(f)$ pertenece al intervalo $[0, x]$. Como $f(\omega) = 0 \iff 0 \le \omega < \frac{t}{2}$:
     \[
         f^{-1}([0, x]) = \left[0, \frac{t}{2}\right) \in \mathcal{B}_{[0,1]}
     \]
@@ -1313,15 +1270,16 @@ Calculamos la antiimagen $f^{-1}([0, x])$ según el valor del parámetro $x \in 
         \includegraphics[width=0.75\linewidth]{imagenes/tema3/T3_P50_a1.png}
     \end{center}
 
-    \item \fbox{$t \le x < \frac{3t}{2}$} $[0,x]\cap\mathrm{Im}(f)=\{0\}\cup[t,x]$: Como $f(\omega)=\omega+t/2<x \iff \omega<x-t/2$:
+    \item \textbf{Si $t \le x < \frac{3t}{2}$:}
+    El intervalo $[0, x]$ contiene al valor $0$ y al tramo lineal $\omega + \frac{t}{2} \le x \iff \omega \le x - \frac{t}{2}$. Uniendo ambos tramos obtenemos:
     \[
-        f^{-1}([0, x])=f^{-1}(\{0\})\cup f^{-1}([t,x]) = \left[0, \frac{t}{2}\right) \cup \left[\frac{t}{2}, x - \frac{t}{2}\right] = \left[0, x - \frac{t}{2}\right] \in \mathcal{B}_{[0,1]}
+        f^{-1}([0, x]) = \left[0, \frac{t}{2}\right) \cup \left[\frac{t}{2}, x - \frac{t}{2}\right] = \left[0, x - \frac{t}{2}\right] \in \mathcal{B}_{[0,1]}
     \]
     \begin{center}
         \includegraphics[width=0.75\linewidth]{imagenes/tema3/T3_P50_a2.png}
     \end{center}
 
-    \item \fbox{$\frac{3t}{2} \le x < \frac{3}{4}$}
+    \item \textbf{Si $\frac{3t}{2} \le x < \frac{3}{4}$:}
     El intervalo $[0, x]$ contiene a $0$ y a todo el tramo continuo $\left[t, \frac{3t}{2}\right)$, pero no al punto $\frac{3}{4}$. Por tanto:
     \[
         f^{-1}([0, x]) = [0, t) \in \mathcal{B}_{[0,1]}
@@ -1351,7 +1309,7 @@ Calculamos la antiimagen $f^{-1}([0, x])$ según el valor del parámetro $x \in 
 
 Dado que la antiimagen de todo intervalo de la clase generadora es un conjunto boreliano de $[0, 1]$, se concluye que \textbf{$f$ es una función medible}.
 
-\subsubsection*{b) Expresión general de la medida inducida $\mu_f([0, x])$:}
+\textbf{b) Expresión general de la medida inducida $\mu_f([0, x])$:}
 
 Aplicando la definición $\mu_f([0, x]) = \mu(f^{-1}([0, x])) = 2\lambda(f^{-1}([0, x]))$, evaluamos el doble de la longitud de Lebesgue de los intervalos obtenidos en el apartado anterior:
 \[
@@ -1367,7 +1325,7 @@ Aplicando la definición $\mu_f([0, x]) = \mu(f^{-1}([0, x])) = 2\lambda(f^{-1}(
     \includegraphics[width=0.75\linewidth]{imagenes/tema3/T3_P50_b1.png}
 \end{center}
 
-\subsubsection*{c) Particularización para $t = \frac{1}{4}$ y cálculo de medidas específicas:}
+\textbf{c) Particularización para $t = \frac{1}{4}$ y cálculo de medidas específicas:}
 
 Sustituyendo $t = \frac{1}{4}$ (con lo que $\frac{3t}{2} = \frac{3}{8}$), la función de distribución acumulada de la medida inducida queda:
 \[
@@ -1443,7 +1401,7 @@ donde $t \in \left[\frac{1}{2}, 1\right]$ es un parámetro fijo.
 
 \tcblower
 
-\subsubsection*{a) Demostración de que $X$ es una variable aleatoria:}
+\paragraph{a) Demostración de que $X$ es una variable aleatoria:}
 Para probar que $X$ es una variable aleatoria, se debe comprobar que es una función medible definida sobre un espacio probabilístico.
 \begin{enumerate}[label=\arabic*.]
     \item \textbf{Espacio probabilístico de partida:} El espacio de medida $([0, 1], \mathcal{B}_{[0,1]}, \lambda)$ constituye un espacio probabilístico puesto que la medida de Lebesgue del espacio total cumple $\lambda([0, 1]) = 1 - 0 = 1$.
@@ -1477,7 +1435,7 @@ Para probar que $X$ es una variable aleatoria, se debe comprobar que es una func
 Al pertenecer todas las antiimágenes a la $\sigma$-álgebra $\mathcal{B}_{[0,1]}$, la aplicación $X$ es medible y, por consiguiente, es una \textbf{variable aleatoria}.
 
 \newpage
-\subsubsection*{b) Probabilidad asociada $P_X$ en $([0, 1], \mathcal{B}_{[0,1]}):$}
+\paragraph{b) Probabilidad asociada $P_X$ en $([0, 1], \mathcal{B}_{[0,1]}):$}
 Por definición, la medida de probabilidad inducida sobre los intervalos generadores es $P_X([0, x]) = \lambda(X^{-1}([0, x]))$. Evaluamos la longitud de Lebesgue de los intervalos obtenidos en el apartado anterior:
 \[
     P_X([0, x]) = \begin{cases}
@@ -1494,7 +1452,7 @@ Por definición, la medida de probabilidad inducida sobre los intervalos generad
     \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P51_b2.png}
 \end{center}
 
-\subsubsection*{c) Particularización para $t = 3/4$ y cálculo de probabilidades:}
+\paragraph{c) Particularización para $t = 3/4$ y cálculo de probabilidades:}
 Sustituyendo $t = 3/4$ (con lo cual $1-t = 1/4$), la función de distribución acumulada $F_X(x) = P_X([0, x])$ adopta la forma:
 \[
     F_X(x) = P_X([0, x]) = \begin{cases}
@@ -1533,7 +1491,7 @@ Calculamos las probabilidades de los intervalos solicitados:
     \end{center}
 \end{enumerate}
 
-\subsubsection*{d) Correspondencia con la medida de intervalos en $([0, 1], \mathcal{B}_{[0,1]}, \lambda):$}
+\paragraph{d) Correspondencia con la medida de intervalos en $([0, 1], \mathcal{B}_{[0,1]}, \lambda):$}
 Atendiendo a la definición de la probabilidad inducida $P_X(B) = \lambda(X^{-1}(B))$, las medidas en el espacio inducido se corresponden exactamente con la medida de Lebesgue de sus antiimágenes en el espacio de partida:
 \begin{enumerate}[label=\arabic*.]
     \item Para el intervalo $[0, 1/2]$, la antiimagen en el espacio muestral es $X^{-1}([0, 1/2]) = [3/4, 1]$, cuya medida vale:
@@ -1752,7 +1710,7 @@ Sea $\lambda$ la medida de Lebesgue sobre el espacio medible $([0, 1], \mathcal{
 
 \tcblower
 
-\subsubsection*{a) Demostración de que $X$ es una variable aleatoria:}
+\subsubsection*{a) Demostración de que $X$ es una variable aleatoria}
 Verificamos las condiciones constitutivas de una variable aleatoria:
 \begin{enumerate}[label=\arabic*.]
     \item \textbf{Espacio probabilístico de partida:} Como $\lambda([0, 1]) = 1$, el espacio de medida $([0, 1], \mathcal{B}_{[0,1]}, \lambda)$ constituye un espacio de probabilidad.
@@ -1797,7 +1755,7 @@ Verificamos las condiciones constitutivas de una variable aleatoria:
 
 Al ser las antiimágenes de todos los generadores subconjuntos borelianos de $[0, 1]$, la aplicación $X$ es medible y, en consecuencia, es una \textbf{variable aleatoria}.
 
-\subsubsection*{b) Probabilidad inducida $P_X$ bajo la medida de Lebesgue $\lambda$:}
+\subsubsection*{b) Probabilidad inducida $P_X$ bajo la medida de Lebesgue $\lambda$}
 Calculamos la función de distribución de la probabilidad inducida $P_X([0, x]) = \lambda(X^{-1}([0, x]))$ evaluando la longitud de los intervalos obtenidos:
 \[
     P_X([0, x]) = \begin{cases}
@@ -1839,7 +1797,7 @@ Evaluamos la medida de los intervalos solicitados:
     \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P53_grafica.png}
 \end{center}
 
-\subsubsection*{c) Probabilidad inducida $P_X$ bajo la medida con densidad $P$:}
+\subsubsection*{c) Probabilidad inducida $P_X$ bajo la medida con densidad $P$}
 La medida $P$ sobre $([0, 1], \mathcal{B}_{[0,1]})$ viene dada por la densidad $f(x) = 2x$. Para cualquier intervalo $[a, b] \subseteq [0, 1]$:
 \[
     P([a, b]) = \int_a^b 2x \, dx = \left. x^2 \right|_a^b = b^2 - a^2
@@ -1909,8 +1867,7 @@ Evaluamos la medida de los intervalos solicitados bajo esta nueva probabilidad:
 
 \tcblower
 
-\textbf{a) Demostración de $\chi_{A \cap B} = \chi_A \cdot \chi_B$:}
-
+\subsubsection*{a) Demostración de $\chi_{A \cap B} = \chi_A \cdot \chi_B$}
 Evaluamos el producto de las funciones características punto a punto para todo elemento $\omega \in \Omega$:
 \begin{itemize}
     \item \textbf{Caso 1 ($\omega \in A \cap B$):}
@@ -1929,8 +1886,7 @@ Evaluamos el producto de las funciones características punto a punto para todo 
 
 Al coincidir ambas funciones en todo el dominio $\Omega$, se concluye que $\chi_{A \cap B} = \chi_A \cdot \chi_B$.
 
-\textbf{b) Demostración de que $f \cdot \chi_A$ es simple y preserva la no negatividad:}
-
+\subsubsection*{b) Demostración de que $f \cdot \chi_A$ es simple y preserva la no negatividad}
 Al ser $f$ una función simple sobre $(\Omega, \mathcal{G})$, por definición existe una partición finita de $\Omega$ dada por subconjuntos medibles disjuntos dos a dos $\{B_1, B_2, \dots, B_n\} \subseteq \mathcal{G}$ tal que:
 \[
     f(\omega) = \sum_{i=1}^n x_i \chi_{B_i}(\omega), \quad \text{con } x_i \in \overline{\mathbb{R}}
@@ -1965,15 +1921,12 @@ Además, si $f \ge 0$, se cumple $f(\omega) \ge 0$ para todo $\omega \in \Omega$
     (f \cdot \chi_A)(\omega) = f(\omega) \cdot \chi_A(\omega) \ge 0, \quad \forall \omega \in \Omega \implies f \cdot \chi_A \ge 0
 \]
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Representación de la partición $\{B_i \cap A\}_{i=1}^n \cup \{A^c\}$ de $\Omega$ asociada a la función simple $f \cdot \chi_A$]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P54.png}
 \end{center}
 
-\textbf{c) Demostración de $\chi_{A \cup B} = \chi_A + \chi_B$ para sucesos disjuntos:}
-
+\newpage
+\subsubsection*{c) Demostración de $\chi_{A \cup B} = \chi_A + \chi_B$ para sucesos disjuntos}
 Sean $A, B \in \mathcal{G}$ dos conjuntos medibles mutuamente disjuntos ($A \cap B = \varnothing$). Evaluamos la suma de funciones características $(\chi_A + \chi_B)(\omega)$ distinguiendo según la pertenencia de $\omega \in \Omega$:
 \begin{itemize}
     \item \textbf{Caso 1 ($\omega \in A$):}
@@ -2010,8 +1963,7 @@ Como la igualdad se verifica para todo $\omega \in \Omega$, se deduce que $\chi_
 
 \tcblower
 
-\paragraph{a) Demostración para la función característica de la antiimagen:}
-
+\subsubsection*{a) Demostración para la función característica de la antiimagen}
 Evaluamos la función compuesta $(\chi_A \circ f)(\omega_1) = \chi_A(f(\omega_1))$ para todo punto $\omega_1 \in \Omega_1$:
 \[
     (\chi_A \circ f)(\omega_1) = \chi_A(f(\omega_1)) = \begin{cases} 
@@ -2030,8 +1982,7 @@ Como la igualdad de funciones se verifica para todo $\omega_1 \in \Omega_1$, que
 
 Puesto que $A \in \mathcal{G}_2$ y $f$ es una aplicación medible, por definición de medibilidad se cumple $f^{-1}(A) \in \mathcal{G}_1$, garantizando que $\chi_{f^{-1}(A)}$ es la función característica de un suceso medible de $\Omega_1$.
 
-\paragraph{b) Demostración de que $g \circ f$ es una función simple y preserva la no negatividad:}
-
+\subsubsection*{b) Demostración de que $g \circ f$ es una función simple y preserva la no negatividad}
 \begin{enumerate}[label=\arabic*.]
     \item \textbf{Representación canónica de $g$:}
     Puesto que $g : (\Omega_2, \mathcal{G}_2) \to (\overline{\mathbb{R}}, \overline{\mathcal{B}})$ es una función simple, existe una partición finita del espacio universal $\Omega_2$ formada por conjuntos medibles disjuntos dos a dos $\{B_1, B_2, \dots, B_n\} \subseteq \mathcal{G}_2$ tal que:
@@ -2062,11 +2013,8 @@ Puesto que $A \in \mathcal{G}_2$ y $f$ es una aplicación medible, por definici�
 
 Al expresarse $g \circ f$ como una combinación lineal finita de funciones características asociadas a una partición finita medible del espacio $\Omega_1$, se concluye formalmente que \textbf{$g \circ f$ es una función simple}.
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Esquema del transporte de la partición $\{B_i\}$ de $\Omega_2$ a $\Omega_1$ mediante $f^{-1}$ y la preservación de funciones simples]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=0.85\linewidth]{imagenes/tema3/T3_P55.png}
 \end{center}
 
 Por último, si $g \ge 0$, se satisface $g(\omega_2) \ge 0$ para todo $\omega_2 \in \Omega_2$. Evaluando sobre la imagen $f(\omega_1) \in \Omega_2$:
@@ -2083,7 +2031,7 @@ Dadas dos funciones simples $f, g : (\Omega, \mathcal{G}) \to (\overline{\mathbb
 
 \tcblower
 
-\paragraph{1. Construcción de una partición común:}
+\subsubsection*{1. Construcción de una partición común}
 Puesto que $f$ y $g$ son funciones simples sobre $(\Omega, \mathcal{G})$, existen dos particiones finitas del espacio muestral $\Omega$ formadas por subconjuntos medibles disjuntos dos a dos:
 \[
     \{A_1, A_2, \dots, A_n\} \subseteq \mathcal{G} \quad \text{y} \quad \{B_1, B_2, \dots, B_m\} \subseteq \mathcal{G}
@@ -2112,7 +2060,7 @@ Verificamos que $\mathcal{P}$ constituye una partición finita medible del espac
     \]
 \end{enumerate}
 
-\paragraph{2. Expresión de $f + g$ sobre la partición común:}
+\subsubsection*{2. Expresión de $f + g$ sobre la partición común}
 Descomponemos cada elemento de las particiones originales sobre el refinamiento común:
 \[
     A_i = A_i \cap \Omega = A_i \cap \left( \bigsqcup_{j=1}^m B_j \right) = \bigsqcup_{j=1}^m (A_i \cap B_j) \implies \chi_{A_i} = \sum_{j=1}^m \chi_{A_i \cap B_j}
@@ -2136,14 +2084,11 @@ Sumando ambas funciones punto a punto para todo $\omega \in \Omega$:
 
 Puesto que $(f + g)$ se expresa como una combinación lineal finita de funciones características asociadas a la partición finita medible $\{A_i \cap B_j\}$, queda demostrado formalmente que \textbf{$f + g$ es una función simple}.
 
-% Espacio reservado para incorporar diagrama explicativo en los apuntes
 \begin{center}
-    \vspace{0.2cm}
-    \framebox[\linewidth]{\vbox to 2.2cm{\vfill \centering \textit{[Espacio reservado para diagrama: Refinamiento de las particiones $\{A_i\}$ y $\{B_j\}$ mediante la partición común $\{A_i \cap B_j\}$]} \vfill}}
-    \vspace{0.2cm}
+    \includegraphics[width=0.85\linewidth]{imagenes/tema3/T3_P56.png}
 \end{center}
 
-\paragraph{3. Preservación de la no negatividad:}
+\subsubsection*{3. Preservación de la no negatividad}
 Si $f \ge 0$ y $g \ge 0$, para todo $\omega \in \Omega$ se verifica $f(\omega) \ge 0$ y $g(\omega) \ge 0$. Por las propiedades del orden en $\overline{\mathbb{R}}$:
 \[
     (f + g)(\omega) = f(\omega) + g(\omega) \ge 0 + 0 = 0, \quad \forall \omega \in \Omega \implies f + g \ge 0
@@ -2231,6 +2176,31 @@ Consideramos la función valor absoluto $f(x) = |x|$ definida sobre $(\mathbb{R}
 \end{itemize}
 
 Geométricamente, la gráfica de $f_n(x)$ representa una función en escalera simétrica respecto al eje $y$, inscrita estrictamente por debajo de la curva en "V" de $y = |x|$, con peldaños de anchura decreciente $2^{-n}$ y truncada horizontalmente a la altura $y = n$.
+
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P57_f1.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P57_f2.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P57_f3.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P57_monotonia.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P57_particion.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P57_subdivision.png}
+\end{center}
+
 \end{problema}
 
 \newpage
@@ -2249,14 +2219,18 @@ no implica que $f = g$ c.s. $\mu$; y, por tanto, en particular:
 
 \tcblower
 
-\subsubsection*{1. Observación teórica sobre el signo de las funciones:}
+\subsubsection*{1. Observación teórica sobre el signo de las funciones}
 Recordamos que si una función $f \ge 0$ es no negativa y medible, la condición $\int_\Omega f \, d\mu = 0$ sí implica que $f = 0$ c.s. $\mu$. Sin embargo, cuando las funciones pueden tomar valores de signo variable, la integral se compone de la diferencia entre la parte positiva y la parte negativa:
 \[
     \int_\Omega f \, d\mu = \int_\Omega f^+ \, d\mu - \int_\Omega f^- \, d\mu
 \]
 Por lo tanto, $\int_\Omega f \, d\mu = 0$ tan solo exige la igualdad entre las integrales de sus partes positiva y negativa ($\int_\Omega f^+ \, d\mu = \int_\Omega f^- \, d\mu$), lo cual no fuerza a que $f^+ = 0$ ni $f^- = 0$ casi seguro.
 
-\subsubsection*{2. Contraejemplo para $\int_\Omega f \, d\mu = 0 \nRightarrow f = 0$ c.s. $\mu$:}
+\begin{center}
+    \includegraphics[width=0.85\linewidth]{imagenes/tema3/T3_P58_a.png}
+\end{center}
+
+\subsubsection*{2. Contraejemplo para $\int_\Omega f \, d\mu = 0 \nRightarrow f = 0$ c.s. $\mu$}
 Consideramos el espacio de medida completo $(\mathbb{R}, \overline{\mathcal{B}}, \lambda)$, donde $\lambda$ representa la medida de Lebesgue sobre la recta real.
 
 Definimos la función medible $f : \mathbb{R} \to \mathbb{R}$ dada por:
@@ -2278,7 +2252,7 @@ Sin embargo, analizamos el conjunto de puntos donde $f$ no se anula:
 \]
 Su medida de Lebesgue es $\lambda([-1, 1] \setminus \{0\}) = 2 > 0$. Puesto que el conjunto de puntos donde $f(\omega) \neq 0$ no tiene medida nula, se concluye que \textbf{$f \neq 0$ c.s. $\lambda$}, a pesar de que su integral se anula.
 
-\subsubsection*{3. Contraejemplo para $\int_\Omega f \, d\mu = \int_\Omega g \, d\mu \nRightarrow f = g$ c.s. $\mu$:}
+\subsubsection*{3. Contraejemplo para $\int_\Omega f \, d\mu = \int_\Omega g \, d\mu \nRightarrow f = g$ c.s. $\mu$}
 Consideramos de nuevo el espacio $(\mathbb{R}, \overline{\mathcal{B}}, \lambda)$ y definimos dos funciones indicadoras sobre intervalos disjuntos:
 \[
     f(\omega) = \mathbf{1}_{[0, 1]}(\omega), \qquad g(\omega) = \mathbf{1}_{[1, 2]}(\omega)
@@ -2292,11 +2266,191 @@ Se verifica que $\int_{\mathbb{R}} f \, d\lambda = \int_{\mathbb{R}} g \, d\lamb
 
 Sin embargo, determinamos el conjunto donde ambas funciones no coinciden:
 \[
-    \{\omega \in \mathbb{R} \mid f(\omega) \neq g(\omega)\} = (0, 1) \cup (1, 2)
+    \{\omega \in \mathbb{R} \mid f(\omega) \neq g(\omega)\} = [0, 1) \cup (1, 2]
 \]
 La medida de Lebesgue de esta diferencia es:
 \[
     \lambda((0, 1) \cup (1, 2)) = \lambda((0, 1)) + \lambda((1, 2)) = 1 + 1 = 2 > 0
 \]
 Por lo tanto, la coincidencia de las integrales no implica que las funciones sean iguales casi seguro, es decir, \textbf{$f \neq g$ c.s. $\lambda$}.
+
+
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_P58_b.png}
+\end{center}
+\end{problema}
+
+\newpage
+%===================
+% Problema Adicional 1: Variable aleatoria a trozos con solapamiento y densidad polinómica
+%===================
+\begin{problema}[Variable aleatoria dada por una función a trozos con saltos y cambio de medida con densidad polinómica]
+Sea $\lambda$ la medida de Lebesgue sobre el espacio medible $([0, 1], \mathcal{B}_{[0,1]})$. Se define la aplicación $X : ([0, 1], \mathcal{B}_{[0,1]}, \lambda) \to ([0, 1], \mathcal{B}_{[0,1]})$ dada por:
+\[
+    X(\omega) = \begin{cases}
+        \frac{1}{4} & \text{si } \omega \in \left[0, \frac{1}{3}\right) \\[6pt]
+        2\omega - \frac{5}{12} & \text{si } \omega \in \left[\frac{1}{3}, \frac{2}{3}\right) \\[6pt]
+        \frac{1}{2} & \text{si } \omega \in \left[\frac{2}{3}, \frac{5}{6}\right) \\[6pt]
+        1 - \omega & \text{si } \omega \in \left[\frac{5}{6}, 1\right]
+    \end{cases}
+\]
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_PAd1_a.png}
+\end{center}
+\begin{enumerate}[label=\alph*)]
+    \item Demostrar que $X$ es una variable aleatoria.
+    \item Determinar la probabilidad inducida $P_X$ sobre $([0, 1], \mathcal{B}_{[0,1]})$ bajo la medida $\lambda$ y calcular la medida de los conjuntos $\left[0, \frac{1}{3}\right]$, $\left[\frac{1}{4}, \frac{3}{4}\right]$ y $\left\{\frac{1}{4}\right\}$.
+    \item Si en el espacio de partida se sustituye la medida $\lambda$ por una medida de probabilidad $P$ dada por la densidad $f(\omega) = 3\omega^2$ en $[0, 1]$ (de modo que $P([a,b]) = \int_a^b 3\omega^2 d\omega$), determinar la nueva probabilidad inducida $P_X$ y calcular la medida de los mismos conjuntos.
+\end{enumerate}
+
+\tcblower
+
+\subsubsection*{a) Demostración de que $X$ es una variable aleatoria:}
+Verificamos las condiciones necesarias para que $X$ sea una variable aleatoria:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Espacio probabilístico de partida:} Como $\lambda([0, 1]) = 1$, el espacio de medida $([0, 1], \mathcal{B}_{[0,1]}, \lambda)$ constituye un espacio de probabilidad.
+    \item \textbf{Medibilidad de $X$:} Analizamos la antiimagen de los elementos de la clase generadora de semirrectas $\{[0, x] \mid x \in [0, 1]\}$.
+    
+    Estudiamos primero la imagen directa de la función $X$:
+    \[
+        \mathrm{Im}(X) = \left[0, \frac{1}{6}\right] \cup \left[\frac{1}{4}, \frac{11}{12}\right)
+    \]
+    Calculamos $X^{-1}([0, x])$ distinguiendo los tramos del parámetro $x \in [0, 1]$:
+    \begin{itemize}
+        \item \textbf{Si $0 \le x < \frac{1}{6}$:} Únicamente la cuarta rama $1 - \omega \le x \iff \omega \ge 1 - x$ contribuye, aportando el intervalo $[1 - x, 1] \subseteq \left[\frac{5}{6}, 1\right]$:
+        \[
+            X^{-1}([0, x]) = [1 - x, 1] \in \mathcal{B}_{[0,1]}
+        \]
+        \begin{center}
+            \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_PAd1_a1.png}
+        \end{center}
+
+        \item \textbf{Si $\frac{1}{6} \le x < \frac{1}{4}$:} El intervalo $[0, x]$ cubre completamente el rango de la cuarta rama $\left[0, \frac{1}{6}\right]$, pero no alcanza el valor $\frac{1}{4}$ de las ramas anteriores:
+        \[
+            X^{-1}([0, x]) = \left[\frac{5}{6}, 1\right] \in \mathcal{B}_{[0,1]}
+        \]
+        \begin{center}
+            \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_PAd1_a2.png}
+        \end{center}
+
+        \item \textbf{Si $\frac{1}{4} \le x < \frac{1}{2}$:} El intervalo $[0, x]$ contiene a la cuarta rama completa $\left[\frac{5}{6}, 1\right]$, a toda la primera rama $\left[0, \frac{1}{3}\right)$ (ya que $X = \frac{1}{4} \le x$), y al tramo de la segunda rama tal que $2\omega - \frac{5}{12} \le x \iff \omega \le \frac{x}{2} + \frac{5}{24}$. No contiene a la tercera rama ($X = \frac{1}{2} > x$):
+        \[
+            X^{-1}([0, x]) = \left[0, \frac{1}{3}\right) \cup \left[\frac{1}{3}, \frac{x}{2} + \frac{5}{24}\right] \cup \left[\frac{5}{6}, 1\right] = \left[0, \frac{x}{2} + \frac{5}{24}\right] \cup \left[\frac{5}{6}, 1\right] \in \mathcal{B}_{[0,1]}
+        \]
+        \begin{center}
+            \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_PAd1_a3.png}
+        \end{center}
+
+        \item \textbf{Si $\frac{1}{2} \le x < \frac{11}{12}$:} Además de los intervalos del caso anterior, el valor $x \ge \frac{1}{2}$ abarca a la tercera rama completa $\left[\frac{2}{3}, \frac{5}{6}\right)$ (donde $X = \frac{1}{2}$), uniéndose con $\left[\frac{5}{6}, 1\right]$ para formar $\left[\frac{2}{3}, 1\right]$:
+        \[
+            X^{-1}([0, x]) = \left[0, \frac{x}{2} + \frac{5}{24}\right] \cup \left[\frac{2}{3}, \frac{5}{6}\right) \cup \left[\frac{5}{6}, 1\right] = \left[0, \frac{x}{2} + \frac{5}{24}\right] \cup \left[\frac{2}{3}, 1\right] \in \mathcal{B}_{[0,1]}
+        \]
+        \begin{center}
+            \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_PAd1_a4.png}
+        \end{center}
+
+        \item \textbf{Si $\frac{11}{12} \le x \le 1$:} Contiene a toda la imagen $\mathrm{Im}(X)$, por lo que la antiimagen es el espacio completo:
+        \[
+            X^{-1}([0, x]) = [0, 1] \in \mathcal{B}_{[0,1]}
+        \]
+        \begin{center}
+            \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_PAd1_a5.png}
+        \end{center}
+    \end{itemize}
+\end{enumerate}
+
+Al ser las antiimágenes de todos los intervalos generadores conjuntos borelianos de $[0, 1]$, concluimos que la aplicación $X$ es medible y, por ende, constituye una \textbf{variable aleatoria}.
+
+\subsubsection*{b) Probabilidad inducida $P_X$ bajo la medida de Lebesgue $\lambda$:}
+Calculamos la función de distribución de la probabilidad inducida $P_X([0, x]) = \lambda(X^{-1}([0, x]))$ evaluando la longitud de Lebesgue de las uniones de intervalos obtenidas:
+\[
+    P_X([0, x]) = \begin{cases}
+        \lambda([1 - x, 1]) = 1 - (1 - x) = x & \text{si } 0 \le x < \frac{1}{6} \\[6pt]
+        \lambda\left(\left[\frac{5}{6}, 1\right]\right) = 1 - \frac{5}{6} = \frac{1}{6} & \text{si } \frac{1}{6} \le x < \frac{1}{4} \\[6pt]
+        \lambda\left(\left[0, \frac{x}{2} + \frac{5}{24}\right]\right) + \lambda\left(\left[\frac{5}{6}, 1\right]\right) = \left(\frac{x}{2} + \frac{5}{24}\right) + \frac{1}{6} = \frac{x}{2} + \frac{3}{8} & \text{si } \frac{1}{4} \le x < \frac{1}{2} \\[6pt]
+        \lambda\left(\left[0, \frac{x}{2} + \frac{5}{24}\right]\right) + \lambda\left(\left[\frac{2}{3}, 1\right]\right) = \left(\frac{x}{2} + \frac{5}{24}\right) + \left(1 - \frac{2}{3}\right) = \frac{x}{2} + \frac{13}{24} & \text{si } \frac{1}{2} \le x < \frac{11}{12} \\[6pt]
+        \lambda([0, 1]) = 1 & \text{si } \frac{11}{12} \le x \le 1
+    \end{cases}
+\]
+
+Evaluamos la medida de los conjuntos solicitados:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Para $\left[0, \frac{1}{3}\right]$:}
+    Puesto que $x = \frac{1}{3} \in \left[\frac{1}{4}, \frac{1}{2}\right)$, evaluamos en la tercera rama:
+    \[
+        P_X\left(\left[0, \frac{1}{3}\right]\right) = \frac{1/3}{2} + \frac{3}{8} = \frac{1}{6} + \frac{3}{8} = \frac{4 + 9}{24} = \frac{13}{24}
+    \]
+
+    \item \textbf{Para $\left[\frac{1}{4}, \frac{3}{4}\right]$:}
+    Por la propiedad de la medida de probabilidad:
+    \[
+        P_X\left(\left[\frac{1}{4}, \frac{3}{4}\right]\right) = P_X\left(\left[0, \frac{3}{4}\right]\right) - P_X\left(\left[0, \frac{1}{4}\right)\right)
+    \]
+    Evaluando $x = \frac{3}{4} \in \left[\frac{1}{2}, \frac{11}{12}\right) \implies P_X\left(\left[0, \frac{3}{4}\right]\right) = \frac{3/4}{2} + \frac{13}{24} = \frac{9 + 13}{24} = \frac{22}{24} = \frac{11}{12}$, y para el límite por la izquierda en $x = \frac{1}{4}$: $P_X\left(\left[0, \frac{1}{4}\right)\right) = \lim_{x \to (1/4)^-} P_X([0, x]) = \frac{1}{6}$:
+    \[
+        P_X\left(\left[\frac{1}{4}, \frac{3}{4}\right]\right) = \frac{11}{12} - \frac{1}{6} = \frac{9}{12} = \frac{3}{4}
+    \]
+
+    \item \textbf{Para el punto puntual $\left\{\frac{1}{4}\right\}$:}
+    \[
+        P_X\left(\left\{\frac{1}{4}\right\}\right) = P_X\left(\left[0, \frac{1}{4}\right]\right) - P_X\left(\left[0, \frac{1}{4}\right)\right) = \left(\frac{1/4}{2} + \frac{3}{8}\right) - \frac{1}{6} = \frac{1}{2} - \frac{1}{6} = \frac{1}{3}
+    \]
+    \textit{Comprobación directa:} $X^{-1}\left(\left\{\frac{1}{4}\right\}\right) = \left[0, \frac{1}{3}\right) \implies \lambda\left(\left[0, \frac{1}{3}\right)\right) = \frac{1}{3}$.
+\end{enumerate}
+
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_PAd1_bc1.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_PAd1_bc2.png}
+\end{center}
+
+\begin{center}
+    \includegraphics[width=0.65\linewidth]{imagenes/tema3/T3_PAd1_grafica.png}
+\end{center}
+
+\subsubsection*{c) Probabilidad inducida $P_X$ bajo la medida con densidad $P$:}
+La medida de probabilidad $P$ sobre $([0, 1], \mathcal{B}_{[0,1]})$ con densidad $f(\omega) = 3\omega^2$ cumple que para cualquier intervalo $[a, b] \subseteq [0, 1]$:
+\[
+    P([a, b]) = \int_a^b 3\omega^2 d\omega = \left. \omega^3 \right|_a^b = b^3 - a^3
+\]
+Como $P([0, 1]) = 1^3 - 0^3 = 1$, $P$ es una medida de probabilidad bien definida.
+
+Calculamos la nueva probabilidad inducida $P_X([0, x]) = P(X^{-1}([0, x]))$:
+\[
+P_X([0, x]) = \begin{cases}
+    1 - (1 - x)^3 & \text{si } 0 \le x < \frac{1}{6} \\[6pt]
+    \frac{91}{216} & \text{si } \frac{1}{6} \le x < \frac{1}{4} \\[6pt]
+    \left(\frac{x}{2} + \frac{5}{24}\right)^3 + \frac{91}{216} & \text{si } \frac{1}{4} \le x < \frac{1}{2} \\[6pt]
+    \left(\frac{x}{2} + \frac{5}{24}\right)^3 + \frac{19}{27} & \text{si } \frac{1}{2} \le x < \frac{11}{12} \\[6pt]
+    1 & \text{si } \frac{11}{12} \le x \le 1
+\end{cases}
+\]
+
+Evaluamos las medidas solicitadas bajo la probabilidad $P$:
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Para $\left[0, \frac{1}{3}\right]$:}
+    Sustituyendo $x = \frac{1}{3}$ en la tercera rama:
+    \[
+        P_X\left(\left[0, \frac{1}{3}\right]\right) = \left(\frac{1/3}{2} + \frac{5}{24}\right)^3 + \frac{91}{216} = \left(\frac{9}{24}\right)^3 + \frac{91}{216} = \left(\frac{3}{8}\right)^3 + \frac{91}{216} = \frac{27}{512} + \frac{91}{216} = \frac{6553}{13824}
+    \]
+
+    \item \textbf{Para $\left[\frac{1}{4}, \frac{3}{4}\right]$:}
+    \[
+        P_X\left(\left[\frac{1}{4}, \frac{3}{4}\right]\right) = P_X\left(\left[0, \frac{3}{4}\right]\right) - P_X\left(\left[0, \frac{1}{4}\right)\right)
+    \]
+    Para $x = \frac{3}{4}$: $P_X\left(\left[0, \frac{3}{4}\right]\right) = \left(\frac{3/4}{2} + \frac{5}{24}\right)^3 + \frac{19}{27} = \left(\frac{14}{24}\right)^3 + \frac{19}{27} = \left(\frac{7}{12}\right)^3 + \frac{19}{27} = \frac{343}{1728} + \frac{1216}{1728} = \frac{1559}{1728}$.\\
+    Para $P_X\left(\left[0, \frac{1}{4}\right)\right) = \frac{91}{216} = \frac{728}{1728}$.
+    \[
+        P_X\left(\left[\frac{1}{4}, \frac{3}{4}\right]\right) = \frac{1559}{1728} - \frac{728}{1728} = \frac{831}{1728} = \frac{277}{576}
+    \]
+
+    \item \textbf{Para el punto puntual $\left\{\frac{1}{4}\right\}$:}
+    \[
+        P_X\left(\left\{\frac{1}{4}\right\}\right) = P_X\left(\left[0, \frac{1}{4}\right]\right) - P_X\left(\left[0, \frac{1}{4}\right)\right) = \left( \left(\frac{1}{3}\right)^3 + \frac{91}{216} \right) - \frac{91}{216} = \frac{1}{27}
+    \]
+    \textit{Comprobación directa:} $X^{-1}\left(\left\{\frac{1}{4}\right\}\right) = \left[0, \frac{1}{3}\right) \implies P\left(\left[0, \frac{1}{3}\right)\right) = \left(\frac{1}{3}\right)^3 - 0^3 = \frac{1}{27}$.
+\end{enumerate}
+
 \end{problema}
